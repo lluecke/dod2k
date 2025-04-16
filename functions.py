@@ -55,7 +55,7 @@ def  write_compact_dataframe_to_csv(df, saveto='df.name'):
                                              filename%fn, path, 
                                              ID=df['datasetId'].values)
         else:
-            keys = [key for key in df.columns if key not in ['paleoData_values', 'year']]
+            keys = [key for key in df[sorted(df.columns)].columns if key not in ['paleoData_values', 'year']]
             print('METADATA: %s'%', '.join(keys))
             write_dataframe_columns_to_csv(df[keys].values, 
                                              keys, filename%fn, path,
@@ -90,7 +90,6 @@ def load_compact_dataframe_from_csv(df_name, readfrom='df.name', index_col=4):
     df_meta = pd.read_csv(os.getcwd()+path+'/'+filename%'metadata'+'.csv', index_col=index_col, keep_default_na=False)
     df_data = read_compact_dataframe_columns_from_csv('paleoData_values', filename%'paleoData_values', path)
     df_year = read_compact_dataframe_columns_from_csv('year', filename%'year', path)
-    # print('aaaaa')
     
     df_csv = df_meta.join(df_data).join(df_year)
     
@@ -99,7 +98,6 @@ def load_compact_dataframe_from_csv(df_name, readfrom='df.name', index_col=4):
     
 
     df_csv = df_csv[sorted(df_csv.columns)]
-
     
     df_csv['year'] = df_csv['year'].map(lambda x: np.array(x, dtype = np.float32))
     df_csv['paleoData_values'] = df_csv['paleoData_values'].map(lambda x: np.array(x, dtype = np.float32))
@@ -231,6 +229,27 @@ def get_colours(data, colormap='brewer_RdBu_11', minval=False,
     rgba         = cmap(norm(data))
     cols         = list(rgba)
     return cols
+    
+def get_colours2(data, colormap='brewer_RdBu_11', minval=False,
+                maxval=False):
+    """
+    generates colours from a colormap based on the *data* values (array or list)
+    returns *cols*: list of colours, in same order as data
+    """
+    from matplotlib.colors import Normalize
+    import matplotlib.cm as cm
+    if not minval:
+        minval = np.min(data)
+    if not maxval:
+        maxval = np.max(data)
+    N = len(data)
+    cmap         = cm.get_cmap(colormap)
+    sm           = cm.ScalarMappable(cmap = colormap)
+    sm.set_array(range(N))
+    norm         = Normalize(vmin=minval, vmax=maxval)
+    rgba         = cmap(norm(data))
+    cols         = list(rgba)
+    return cols, sm, norm
 
 def fns(path, end='.nc', start='', other_cond='', print_dir=True):
     fn = []

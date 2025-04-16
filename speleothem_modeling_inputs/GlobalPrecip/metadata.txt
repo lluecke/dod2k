@@ -1,0 +1,18 @@
+Global maps of H and O isotope ratios for monthly and mean-annual amount-weighted precipitation at 5 arc-minute resolution. These files are based on the methods of Bowen and Revenaugh (2003) and Bowen et. al (2005). Please cite the source if you reuse this data product.
+
+Format: GeoTIFF
+Spatial extent: Global land surface
+Spatial resolution: 5' x 5'
+Temporal extent: Climatological, monthly or annual average (preciptation amount-weighted)
+Projection: WGS84 unprojected
+Layers:
+*d2h_MA: Mean predicted annual-average d2H values
+*d2h_se_MA: Standard error of the mean predicted annual-average d2H values
+*d2h_01...: Mean predicted monthly d2H values for January (01) through December (12)
+*d2h_se_01...: Standard error of the mean predicted monthly d2H values for January (01) through December (12)
+*d18o_MA: Mean predicted annual-average d18O values
+*d18o_se_MA: Standard error of the mean predicted annual-average d18O values
+*d18o_01...: Mean predicted monthly d18O values for January (01) through December (12)
+*d18o_se_01...: Standard error of the mean predicted monthly d18O values for January (01) through December (12)
+Source: Bowen, G. J., & Revenaugh, J. (2003). Interpolating the isotopic composition of modern meteoric precipitation. Water resources research, 39(10). 
+Source: Bowen, G. J., Wassenaar, L. I., & Hobson, K. A. (2005). Global application of stable hydrogen and oxygen isotopes to wildlife forensics. Oecologia, 143(3), 337-348.

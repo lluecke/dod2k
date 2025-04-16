@@ -854,7 +854,7 @@ def join_composites_metadata(df, comp_ID_pairs, df_decisions, header):
                     add_dup_note += 'Metadata averaged to: '+str(entry)
                     loop=False
                 row[key]= entry
-                print('Added the following note to DuplicateDetails:', add_dup_note)
+                print('Add the following note to duplicateDetails:', add_dup_note)
                 # loop=True
                 # while loop:
                 #     print('--------------------------------------------------------------------------------')
@@ -893,7 +893,7 @@ def join_composites_metadata(df, comp_ID_pairs, df_decisions, header):
                 #         if confirm=='y': loop=False
                 #         add_dup_note += 'Metadata manually set to: %s'%str(entry)
                 #     row[key]= entry
-                #     print('Added the following note to DuplicateDetails:', add_dup_note)
+                #     print('Added the following note to duplicateDetails:', add_dup_note)
                     
         # create new entries for the following columns:
         # create z-scores of data
@@ -937,19 +937,21 @@ def join_composites_metadata(df, comp_ID_pairs, df_decisions, header):
         row['climateInterpretation_variableDetail']  = '%s: %s, %s: %s'%(ID_1, df.at[ID_1, 'climateInterpretation_variable'], ID_2, df.at[ID_2, 'climateInterpretation_variable'])
         row['datasetId']        = '%s_composite_st_'%df.name+ID_1+'_'+ID_2    
         row['paleoData_units']  = 'z-scores'
+        row['duplicateDetails'] = df.at[ID_1, 'duplicateDetails']+', '+df.at[ID_2, 'duplicateDetails']
     
-        # save details on composition process in DuplicateDetails:
-        if row['DuplicateDetails']=='N/A':
-            row['DuplicateDetails']=''
-        row['DuplicateDetails']  += 'COMPOSITE OF two overlapping duplicate records: %s (originally from %s) and %s (originally from %s). '%(ID_1, db_1, ID_2, db_2)
-        row['DuplicateDetails'] += '' # add details on how the records were merged.
-        row['DuplicateDetails'] += ' Decision type: %s .'%df_decisions.iloc[ii]['Decision type']
+        # save details on composition process in duplicateDetails:
+        
+        if row['duplicateDetails']=='N/A, N/A':
+            row['duplicateDetails']=''
+        row['duplicateDetails']  += 'COMPOSITE OF two overlapping duplicate records: %s (originally from %s) and %s (originally from %s). '%(ID_1, db_1, ID_2, db_2)
+        row['duplicateDetails'] += '' # add details on how the records were merged.
+        row['duplicateDetails'] += ' Decision type: %s .'%df_decisions.iloc[ii]['Decision type']
         
         if comp_ID_pairs.iloc[ii]['Decision type']=='MANUAL': 
             operator_details = ' '.join(header[1:]).replace(' Modified ','')[:-2].replace(':','').replace('  E-Mail', '')
-            row['DuplicateDetails']+=' (decision made %s).'%(operator_details)
-            row['DuplicateDetails']+=' Note on decision process: %s'%comp_ID_pairs.iloc[ii]['Decision comment']
-        row['DuplicateDetails'] += add_dup_note
+            row['duplicateDetails']+=' (decision made %s).'%(operator_details)
+            row['duplicateDetails']+=' Note on decision process: %s'%comp_ID_pairs.iloc[ii]['Decision comment']
+        row['duplicateDetails'] += add_dup_note
         
         # create dataframe for composites
         df_comp = pd.concat([df_comp, pd.DataFrame({kk: [vv] for kk, vv in row.items()})], ignore_index = True, axis=0)
