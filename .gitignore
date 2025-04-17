@@ -1,4 +1,4 @@
-
+speleothem_modeling_inputs/
 dod2k/dup_detection_old/
 ch2k/.ipynb_checkpoints
 fe23/.ipynb_checkpoints
@@ -22,8 +22,3 @@ dod2k_dupfree_dupfree/figs
 dod2k_dupfree_dupfree_MT/figs
 *.pdf
 __pycache__
-mike_matlab_script
-speleothem_modeling_inputs/
-
-
-
