@@ -21,5 +21,5 @@ dod2k_dupfree/figs
 dod2k_dupfree_dupfree/figs
 dod2k_dupfree_dupfree_MT/figs
 *.pdf
-__pycache_
-mike_matlab_script_
+__pycache__
+mike_matlab_script
