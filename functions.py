@@ -13,6 +13,15 @@ from copy import deepcopy as dc
 import matplotlib.pyplot as plt
 import csv
 import pandas as pd
+import xarray as xr
+
+
+def haversine(ll1, ll2):
+    # define haversine function for computing distance on a sphere, approximation for short distances on Earth 
+    r = 6371
+    p = np.pi / 180
+    a = 0.5 - np.cos((ll2[0]-ll1[0])*p)/2 + np.cos(ll1[0]*p) * np.cos(ll2[0]*p) * (1-np.cos((ll2[1]-ll1[1])*p))/2
+    return 2 * r * np.arcsin(np.sqrt(a))
 
 def write_csv(data, filename):
     
@@ -242,6 +251,8 @@ def get_colours2(data, colormap='brewer_RdBu_11', minval=False,
         minval = np.min(data)
     if not maxval:
         maxval = np.max(data)
+    print(minval)
+    print(maxval)
     N = len(data)
     cmap         = cm.get_cmap(colormap)
     sm           = cm.ScalarMappable(cmap = colormap)
@@ -272,3 +283,53 @@ def convert_to_nparray(data):
     data = np.array([conv_nan(vv) for vv in data])#, -9999.99)
     mask = np.round(data, 2)==-9999.99#np.array([False if np.round(vv, 2)!=-9999.99 else True for vv in data ])
     return np.ma.masked_array(data, mask)
+
+def gcd(lat1, lon1, lat2, lon2, radius=6378.137):
+    ''' 2D Great Circle Distance [km]
+
+    Args:
+        radius (float): Earth radius
+    '''
+    # Convert degrees to radians
+    lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])
+    dlat, dlon = lat2 - lat1, lon2 - lon1
+    a = np.sin(dlat / 2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon / 2)**2
+    c = 2 * np.arcsin(np.sqrt(a))
+    dist = radius * c
+    return dist
+
+def find_nearest2d(da:xr.DataArray, lat, lon, lat_name='lat', lon_name='lon', new_dim='sites', r=1):
+    """
+    author: Feng Zhu
+    """
+    da_res = da.sel({lat_name: lat, lon_name:lon}, method='nearest')
+    if da_res.isnull().any():
+        if isinstance(lat, (int, float)): lat = [lat]
+        if isinstance(lon, (int, float)): lon = [lon]
+        da_res_list = []
+        for la, lo in zip(lat, lon):
+            mask_lat = (da.lat > la-r)&(da.lat < la+r)
+            mask_lon = (da.lon > lo-r)&(da.lon < lo+r)
+            # da_sub = da.sel({lat_name: slice(la-r, la+r), lon_name: slice(lo-r, lo+r)})
+            da_sub = da.sel({'lat': mask_lat, 'lon': mask_lon})
+            dist = gcd(da_sub[lat_name], da_sub[lon_name], la, lo)
+            da_sub_valid = da_sub.where(~np.isnan(da_sub), drop=True)
+            valid_mask = ~np.isnan(da_sub_valid)
+            if valid_mask.sum() == 0:
+                print('la:', la)
+                print('lo:', lo)
+                print('la+r:', la+r)
+                print('la-r:', la-r)
+                print('lo+r:', lo+r)
+                print('lo-r:', lo-r)
+                print(da_sub)
+                raise ValueError('No valid values found. Please try larger `r` values.')
+
+            dist_min = dist.where(dist == dist.where(~np.isnan(da_sub_valid)).min(), drop=True)
+            nearest_lat = dist_min[lat_name].values.item()
+            nearest_lon = dist_min[lon_name].values.item()
+            da_res = da_sub_valid.sel({lat_name: nearest_lat, lon_name: nearest_lon}, method='nearest')
+            da_res_list.append(da_res)
+        da_res = xr.concat(da_res_list, dim=new_dim).squeeze()
+
+    return da_res

@@ -994,7 +994,7 @@ def df_colours_markers(db_name='dod2k_dupfree_dupfree'):
     return archive_colour, archives_sorted, proxy_marker 
 
 
-def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350):
+def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350, barlabel='EOF', which_EOF=0):
     
     #%% plot the spatial distribution of all records
     proxy_lats = df['geo_meanLat'].values
@@ -1008,8 +1008,8 @@ def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350):
     
     # ax.stock_img(clip_on=False)
     
-    ax.add_feature(cfeature.LAND, alpha=0.5) # adds land features
-    ax.add_feature(cfeature.OCEAN, alpha=0.3, facecolor='#C5DEEA') # adds ocean features
+    ax.add_feature(cfeature.LAND, alpha=0.6) # adds land features
+    ax.add_feature(cfeature.OCEAN, alpha=0.6, facecolor='#C5DEEA') # adds ocean features
     ax.coastlines() # adds coastline features
     
     ax.set_global()
@@ -1021,16 +1021,27 @@ def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350):
     # also need to modify the colorscale label cax.set_ylabel('EOF 2')
     
     # if we are multipling the PCs x -1, multiply the EOF loadings by -1 as well
+    a= {}
+    label={}
     for key in keys:
-        if key in ['tree_d18O', 'coral_d18O']:
-            EOFs[key][0]  = -1*EOFs[key][0] # multiply EOF sign by -1
-
+        if key in ['tree_d18O', 'coral_d18O']:# multiply EOF sign by -1
+            a[key] = -1
+            label[key] = key+' ($\\ast(-1)$)'
+        else:
+            a[key] = 1
+            label[key]=key
+    print(a)
     
-    all_EOFs = [EOFs[key][0][ii]  for key in keys for ii in range(len(EOFs[key][0]))]
+    all_EOFs = [a[key]*EOFs[key][which_EOF][ii]  for key in keys for ii in range(len(EOFs[key][which_EOF]))]
    
     colors, sm, norm = f.get_colours2(all_EOFs, 
-                                colormap='coolwarm',
-                                   minval=np.min(all_EOFs), maxval=np.max(all_EOFs))
+                                colormap='RdBu_r',minval=-0.6,maxval=0.6)
+                                   # minval=np.min(all_EOFs), maxval=np.max(all_EOFs)
+                                    # minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), 
+                                    # maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])
+                                   #minval=np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), 
+                                   #maxval=np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))]) 
+                                   # ) manual set to make EOF1, EOF2 colorscales equal as well as symmetric
     
     ijk=0
 
@@ -1038,12 +1049,17 @@ def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350):
         
         marker  = mt[ijk]
 
-        colors = f.get_colours(EOFs[key][0], colormap='coolwarm',
-                               minval=np.min(all_EOFs), maxval=np.max(all_EOFs))
-        id_mask = np.isin(df['datasetId'], pca_rec[key])
+        colors = f.get_colours(a[key]*EOFs[key][which_EOF], colormap='RdBu_r',minval=-0.6,maxval=0.6)
+                               # minval=np.min(all_EOFs), maxval=np.max(all_EOFs))
+                               # minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), 
+                               # maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])
+                               # minval=-0.6 # np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), 
+                               # maxval=+0.6 #np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))])
+                               # ) # manual set to make EOF1, EOF2 colorscales equal as well as symmetric
+        id_mask = np.isin(df['datasetId'], pca_rec[key]) 
         for jj in range(len(pca_rec[key])):
             
-            label   = key+' (n=%d)'%len(pca_rec[key]) if jj==0 else None
+            scat_label   = label[key]+' (n=%d)'%len(pca_rec[key]) if jj==0 else None
             
             plt.scatter(proxy_lons[id_mask][jj], proxy_lats[id_mask][jj], 
                         transform=ccrs.PlateCarree(), zorder=999,
@@ -1055,17 +1071,17 @@ def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350):
                         transform=ccrs.PlateCarree(), zorder=999,
                         marker=marker, 
                         color='none', 
-                        label=label, 
+                        label=scat_label, 
                         lw=1, ec='k', s=200)
         ijk+=1
     
     cax=ax.inset_axes([1.02, 0.1, 0.035, 0.8])
     sm.set_array([])
     
-    matplotlib.colorbar.ColorbarBase(cax, cmap='coolwarm', norm=norm)
-    cax.set_ylabel('EOF 1')
+    matplotlib.colorbar.ColorbarBase(cax, cmap='RdBu_r', norm=norm)
+    cax.set_ylabel(barlabel, fontsize=13.5)
     
-    plt.legend(bbox_to_anchor=(0.03,-0.01), loc='upper left', ncol=3, fontsize=12, framealpha=0)
+    plt.legend(bbox_to_anchor=(0.03,-0.01), loc='upper left', ncol=3, fontsize=13.5, framealpha=0)
     grid.tight_layout(fig)
 
     return fig
