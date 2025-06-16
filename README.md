@@ -1,5 +1,9 @@
 This is compile_proxy_database_v2.1.
 
+DOI for the source code: https://doi.org/10.5281/zenodo.15676256
+
+DOI for the data: (to be provided by NCEI)
+
 This project reads the following five databases (as of 11/12/2024):
 
 - PAGES 2k (v2.0.0: https://springernature.figshare.com/collections/A_global_multiproxy_database_for_temperature_reconstructions_of_the_Common_Era/3285353 (accessed 15/6/23), with Palmyra update (Dee et al. 2020))
