@@ -1,8 +1,13 @@
-This is compile_proxy_database_v2.1.
+This is DoD2k version 1.0.
 
 DOI for the source code: https://doi.org/10.5281/zenodo.15676256
 
-DOI for the data: (to be provided by NCEI)
+DOI for the data: https://www.ncei.noaa.gov/access/paleo-search/study/41981
+
+How to get started with the dod2k environment, functions, notebooks and products: Quickstart.md
+ 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project reads the following five databases (as of 11/12/2024):
 
@@ -28,8 +33,8 @@ The duplicate detection occurs via:
         = the purpose of this notebook is to identify all the potential duplicate candidates based on certain criteria
         = the output is a list of all the detected potential candidate pairs
   - dup_decisions.ipynb      which creates   dod2k/dup_detection/dup_decisions_dod2k_INITIALS_DATE.csv
-        = the purpose of this notebook is to go rhtough each potential duplicate candidates and either automatically decide whether they are TRUE duplicates, or, for the trickier cases, present a summary figure to the operator and ask them for their input.
-        = the putput is a list of all the decisions associated with the duplicate candidates
+        = the purpose of this notebook is to go through each potential duplicate candidates and either automatically decide whether they are TRUE duplicates, or, for the trickier cases, present a summary figure to the operator and ask them for their input.
+        = the output is a list of all the decisions associated with the duplicate candidates
   - dup_removal.ipynb        which creates   dod2k/dod2k_INITIALS_DATE_dup_free_metadata.csv, dod2k/dod2k_INITIALS_DATE_dup_free_paleoData_values.csv, dod2k/dod2k_INITIALS_DATE_dup_free_year.csv, dod2k/dod2k_INITIALS_DATE_dup_free_README.csv
         = the purpose of this notebook is to remove the duplicates from the database
         = for the final version of changes, the operator can decide to save a copy as
@@ -40,5 +45,7 @@ The output is presented via the following notebooks:
 - df_info.ipynb            which displays the input variables of the dataframe
 - df_plot_dod2k.ipynb      which creates a series of plots of the dod2k data
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+This work was supported by a Royal Society of London/Wolfson Visiting Fellowship grant Award \RSWVF\R1\221018 to MNE, which partly supported LJL, US NSF/P4CLIMATE Award AGS2303530 to MNE, which supported KJF and FZ, and by the University of Maryland, College Park and the University of Edinburgh, School of Geosciences, for funding and hosting MNE during a sabbatical year visit.
     
