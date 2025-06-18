@@ -2,7 +2,9 @@ This is compile_proxy_database_v2.1.
 
 DOI for the source code: https://doi.org/10.5281/zenodo.15676256
 
-DOI for the data: (to be provided by NCEI)
+DOI for the data: https://www.ncei.noaa.gov/access/paleo-search/study/41981
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project reads the following five databases (as of 11/12/2024):
 
@@ -40,5 +42,7 @@ The output is presented via the following notebooks:
 - df_info.ipynb            which displays the input variables of the dataframe
 - df_plot_dod2k.ipynb      which creates a series of plots of the dod2k data
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+This work was supported by a Royal Society of London/Wolfson Visiting Fellowship grant Award \RSWVF\R1\221018 to MNE, which partly supported LJL, US NSF/P4CLIMATE Award AGS2303530 to MNE, which supported KJF and FZ, and by the University of Maryland, College Park and the University of Edinburgh, School of Geosciences, for funding and hosting MNE during a sabbatical year visit.
     
