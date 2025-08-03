@@ -6,7 +6,10 @@ DOI for the data: https://www.ncei.noaa.gov/access/paleo-search/study/41981
 
 How to get started with the dod2k environment, functions, notebooks and products: Quickstart.md
  
+<<<<<<< HEAD
  
+=======
+>>>>>>> 4f96f619e5ff7648feac7cc59a24492b65abae14
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project reads the following five databases (as of 11/12/2024):
