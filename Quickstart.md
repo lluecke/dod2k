@@ -4,7 +4,9 @@ How to get started with the dod2k environment, functions, notebooks and products
 
 0. Get the project: in a working directory,
 
+```
 git clone https://github.com/lluecke/dod2k.git
+```
 
 1. Create the environment: in dod2k/, 
 
