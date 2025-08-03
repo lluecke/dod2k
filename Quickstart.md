@@ -57,7 +57,7 @@ MT_analysis_v9.3.ipynb
 T_analysis_v9.3.ipynb
 ```
 
-To run ```S_analysis_v1.6.ipynb``` you will first need to create the directory ```speleothem_modeling_inputs```, and download into it data from their source urls:
+4. To run ```S_analysis_v1.6.ipynb``` you will first need to create the directory ```speleothem_modeling_inputs```, and download into it data from their source urls:
 
 ```
 mkdir speleothem_modeling_inputs
