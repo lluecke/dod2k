@@ -4,9 +4,12 @@ DOI for the source code: https://doi.org/10.5281/zenodo.15676256
 
 DOI for the data: https://www.ncei.noaa.gov/access/paleo-search/study/41981
 
+<<<<<<< HEAD
 How to get started with the dod2k environment, functions, notebooks and products: Quickstart.md
  
 
+=======
+>>>>>>> b25f1e0ea541baaac172904bdc33cf2f8078bb84
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 This project reads the following five databases (as of 11/12/2024):
