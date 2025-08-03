@@ -24,7 +24,7 @@ pip install git+https://github.com/sylvia-dee/PRYSM.git
 conda env export > dod2k-env.yml
 ```
 
-1.2. To add it as a virtual environment in jupyterhub:
+1.2. To add it as a virtual environment in jupyterhub: in a jupyterhub-username terminal window,
 
 ```
 pip install --user virtualenv
