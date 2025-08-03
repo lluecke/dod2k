@@ -54,7 +54,19 @@ dup_decision.ipynb
 dup_removal.ipynb
 M_analysis_v0.3.ipynb
 MT_analysis_v9.3.ipynb
-S_analysis_v1.6.ipynb
 T_analysis_v9.3.ipynb
 ```
+
+To run ```S_analysis_v1.6.ipynb``` you will first need to create the directory ```speleothem_modeling_inputs```, and download into it data from their source urls:
+
+```
+mkdir speleothem_modeling_inputs
+cd speleothem_modeling_inputs
+wget https://wateriso.utah.edu/waterisotopes/media/ArcGrids/GlobalPrecip.zip
+unzip GlobalPrecip.zip
+wget https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.07/cruts.2304141047.v4.07/tmp/cru_ts4.07.1901.2022.tmp.dat.nc.gz
+gunzip cru_ts4.07.1901.2022.tmp.dat.nc.gz
+```
+
+
 
