@@ -13,7 +13,7 @@ git clone https://github.com/lluecke/dod2k.git
 ```
 conda create --name dod2k-env -c conda-forge
 conda activate dod2k-env
-conda install pandas numpy matplotlib cartopy scipy geopy xarray
+conda install pandas numpy matplotlib cartopy scipy=1.6.0 geopy xarray
 pip install lipd tqdm rasterio pyproj netcdf4 cfr scikit-learn rioxarray legacy-cgi
 pip install git+https://github.com/sylvia-dee/PRYSM.git
 ```
