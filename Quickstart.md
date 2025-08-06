@@ -8,29 +8,11 @@ How to get started with the dod2k environment, functions, notebooks and products
 git clone https://github.com/lluecke/dod2k.git
 ```
 
-1.0. Create the environment: in dod2k/, 
+1.0. Create and activate the python environment: in dod2k/, 
 
 ```
-conda create --name dod2k-env -c conda-forge
+conda env create -n dod2k-env -f dod2k-env.yml
 conda activate dod2k-env
-conda install pandas numpy matplotlib cartopy scipy=1.6.0 geopy xarray
-pip install lipd tqdm rasterio pyproj netcdf4 cfr scikit-learn rioxarray legacy-cgi
-pip install git+https://github.com/sylvia-dee/PRYSM.git
-```
-
-1.1. To export the environment as a .yml file:
-
-```
-conda env export > dod2k-env.yml
-```
-
-1.2. To add it as a virtual environment in jupyterhub: in a jupyterhub-username terminal window,
-
-```
-pip install --user virtualenv
-virtualenv dod2k-env
-pip install --user ipykernel
-python -m ipykernel install --user --name=dod2k-env --display-name "Python (dod2k-env)"
 ```
 
 2.0. Test load scripts:
