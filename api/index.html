@@ -261,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting_started/installation/" class="md-tabs__link">
+        <a href="../getting_started/" class="md-tabs__link">
           
   
   
@@ -473,6 +473,29 @@
             Getting started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -976,60 +999,37 @@
   
 
 
-<!-- ```python
-import sys
-sys.path.insert(0, "/home/jupyter-lluecke/compile_proxy_database_v2.2/dod2k")
-``` -->
-
 <h1 id="api-reference">API Reference</h1>
-<p>This section documents the core modules of <strong>dod2k</strong>.<br />
+<p>This section documents the core modules of <strong>DoD2k v2.0</strong>.<br />
 Each page below contains detailed API documentation generated automatically from the code.</p>
+<div class="grid cards">
 <ul>
-<li><a href="ut_functions/">Core Utilities</a></li>
-<li><a href="ut_analysis/">Analysis Functions</a></li>
-<li><a href="ut_plot/">Plotting Utilities</a></li>
-<li><a href="ut_duplicate_search/">Duplicate Search</a></li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m21.71 20.29-1.42 1.42a1 1 0 0 1-1.41 0L7 9.85A3.8 3.8 0 0 1 6 10a4 4 0 0 1-3.78-5.3l2.54 2.54.53-.53 1.42-1.42.53-.53L4.7 2.22A4 4 0 0 1 10 6a3.8 3.8 0 0 1-.15 1l11.86 11.88a1 1 0 0 1 0 1.41M2.29 18.88a1 1 0 0 0 0 1.41l1.42 1.42a1 1 0 0 0 1.41 0l5.47-5.46-2.83-2.83M20 2l-4 2v2l-2.17 2.17 2 2L18 8h2l2-4Z"/></svg></span> <strong>Core Utilities</strong></p>
+<hr />
+<p>Essential functions for data loading, processing, and standardization</p>
+<p><a href="ut_functions/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View documentation</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2M9 17H7v-7h2zm4 0h-2V7h2zm4 0h-2v-4h2z"/></svg></span> <strong>Analysis Functions</strong></p>
+<hr />
+<p>Statistical analysis and data processing workflows</p>
+<p><a href="ut_analysis/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View documentation</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m16 11.78 4.24-7.33 1.73 1-5.23 9.05-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"/></svg></span> <strong>Plotting Utilities</strong></p>
+<hr />
+<p>Visualization functions for proxy records and metadata</p>
+<p><a href="ut_plot/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View documentation</a></p>
+</li>
+<li>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h7c-.41-.25-.8-.56-1.14-.9a6.48 6.48 0 0 1-.36-9.18C13.69 9.5 17.33 9.13 20 11V8zm-1 7V3.5L18.5 9zm7.31 9.9c1.33-2.11.69-4.9-1.4-6.22-2.11-1.33-4.91-.68-6.22 1.4-1.34 2.11-.69 4.89 1.4 6.22 1.46.93 3.32.93 4.79.02L22 23.39 23.39 22zm-3.81.1a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5"/></svg></span> <strong>Duplicate Search</strong></p>
+<hr />
+<p>Algorithms for detecting and removing duplicate records</p>
+<p><a href="ut_duplicate_search/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.22 19.03a.75.75 0 0 1 0-1.06L18.19 13H3.75a.75.75 0 0 1 0-1.5h14.44l-4.97-4.97a.749.749 0 0 1 .326-1.275.75.75 0 0 1 .734.215l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0"/></svg></span> View documentation</a></p>
+</li>
 </ul>
-<!-- 
-# API Reference
-
-This page provides a reference for all publicly available modules, functions, and classes in **dod2k**.  
-Documentation is automatically generated from docstrings using `mkdocstrings`.
-
----
-
-## Plotting tools: f_plot
-    ::: dod2k.f_plot
-        handler: python
-        options:
-          show_root_heading: true
-          show_source: false
-          show_signature: true
-          heading_level: 3
-
-
-
-## Analysis tools: f_analysis
-
-Module containing functions for filtering, transforming, and processing climate data (written for use in e.g. ```analysis_T.ipynb```, ```analysis_M.ipynb```, ```analysis_MT.ipynb```) .
-
-::: dod2k.f_analysis
-    handler: python
-    options:
-      show_root_heading: true
-      show_source: true
-      show_signature: true
-      heading_level: 2
-
- -->
-<!-- 
-f_plot
-Module containing functions for plotting data and generating reproducible figures.
-```markdown
-::: dod2k.f_plot
-    options:
-      show_source: true
-``` -->
+</div>
 
 
 

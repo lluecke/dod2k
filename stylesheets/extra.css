@@ -1,9 +1,7 @@
 /* Hero section styling */
 
 /* Only center h1 on the homepage */
-.md-content article > h1:first-child {
-    text-align: center;
-}
+
 .md-typeset h1 {
     font-weight: 700;
     color: var(--md-primary-fg-color);
