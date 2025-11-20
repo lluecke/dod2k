@@ -1282,11 +1282,11 @@ The interactive notebook then goes through each column and shows the entries, fo
 Now plot a bar chart of the major archives using <a href="../../api/ut_plot/#plot_count_proxy_by_archive_short"><code>plot_count_proxy_by_archive_short()</code></a></p>
 <div class="highlight"><pre><span></span><code><span class="n">uplt</span><span class="o">.</span><span class="n">plot_count_proxy_by_archive_short</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archive_proxy_count</span><span class="p">,</span> <span class="n">archive_proxy_ticks</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span> 
 </code></pre></div>
-<figure markdown="span">
-  ![Archive map](/figs/dod2k_dupfree_dupfree/dod2k_dupfree_dupfree_proxy_count_short.jpg){ width="800" }
-  <figcaption>Figure 1: Number of records for each proxy type, by archive.</figcaption>
+<figure>
+  <img alt="Archive map" src="/figs/dod2k_dupfree_dupfree/dod2k_dupfree_dupfree_proxy_count_short.jpg" width="800" />
+<br />
+<figcaption>Figure 1: Number of records for each proxy type, by archive.</figcaption>
 </figure>
-
 <p>Next plot a spatial plot of all the proxy records:</p>
 <div class="highlight"><pre><span></span><code><span class="c1">#%% plot the spatial distribution of all records</span>
 <span class="n">proxy_lats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;geo_meanLat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -1337,11 +1337,11 @@ Now plot a bar chart of the major archives using <a href="../../api/ut_plot/#plo
 <span class="n">utf</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_spatial_all&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </code></pre></div>
 <p>Which creates this plot</p>
-<figure markdown="span">
-  ![Archive map](/figs/dod2k_dupfree_dupfree/dod2k_dupfree_dupfree_spatial_all.jpg){ width="800" }
-  <figcaption>Figure 2: Spatial distribution of records by archive and proxy type.</figcaption>
+<figure>
+  <img alt="Archive map" src="/figs/dod2k_dupfree_dupfree/dod2k_dupfree_dupfree_spatial_all.jpg" width="800" />
+<br />
+<figcaption>Figure 2: Spatial distribution of records by archive and proxy type.</figcaption>
 </figure>
-
 <p>For further guidance see the <a href="../../notebooks/df_plot_dod2k/">interactive notebook</a>.</p>
 <h2 id="filter-the-dataframe"><strong>Filter the dataframe</strong></h2>
 <p>Under <code>repo_root/notebooks</code> you can find the notebook <code>df_filter.ipynb</code>. This notebook let's you filter the dataframe for a specific metadata type, e.g. for moisture sensitive records, or for tree/TRW type records, etc.</p>
