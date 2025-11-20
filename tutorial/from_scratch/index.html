@@ -1393,18 +1393,9 @@
     B --&gt; C[Detect&lt;br/&gt;Duplicates]
     C --&gt; D[Review]
     D --&gt; E[Remove]
-    E --&gt; F{Check?}
-    F --&gt;|Residuals| C
-    F --&gt;|Clean| G[Final&lt;br/&gt;DoD2k]
-    G --&gt; H[Analyze]</code></pre>
-<p><strong>Expected timeline:</strong></p>
-<ul>
-<li>Loading databases: 2-4 hours</li>
-<li>Merging: 10-30 minutes</li>
-<li>Duplicate detection: 1-3 hours (depending on database size)</li>
-<li>Duplicate decisions: 4-8 hours (manual review required)</li>
-<li>Duplicate removal: 10-20 minutes</li>
-</ul>
+    E --&gt; F{Residual Duplicates?}
+    F --&gt;|Yes| C
+    F --&gt;|No| G[Final&lt;br/&gt;DoD2k]</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Time Investment</p>
 <p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
