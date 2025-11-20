@@ -747,6 +747,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#complete-workflow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Workflow Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -810,24 +819,6 @@
   <a href="#step-4-rerun-duplicate-detection-optional" class="md-nav__link">
     <span class="md-ellipsis">
       Step 4: Rerun Duplicate Detection (Optional)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-5-load-and-visualize-the-final-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 5: Load and Visualize the Final Database
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-workflow-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Complete Workflow Summary
     </span>
   </a>
   
@@ -1258,6 +1249,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#complete-workflow-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Workflow Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -1327,24 +1327,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-load-and-visualize-the-final-database" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 5: Load and Visualize the Final Database
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#complete-workflow-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      Complete Workflow Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#related-tutorials" class="md-nav__link">
     <span class="md-ellipsis">
       Related Tutorials
@@ -1374,6 +1356,19 @@
 
 <h1 id="generate-dod2k-from-scratch"><strong>Generate DoD2k from scratch</strong></h1>
 <p>This tutorial guides you through the complete end-to-end workflow to recreate the DoD2k database from original source data.</p>
+<h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
+<pre class="mermaid"><code>graph TD
+    A[Load Individual Databases] --&gt; B[Merge Databases]
+    B --&gt; C[Detect Duplicates]
+    C --&gt; D[Review Duplicates]
+    D --&gt; E[Remove Duplicates]
+    E --&gt; F{Residual Duplicates?}
+    F --&gt;|Yes| C
+    F --&gt;|No| G[Final DoD2k Database]</code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Time Investment</p>
+<p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
+</div>
 <h2 id="step-1-load-the-input-databases-from-source">Step 1: Load the input databases from source</h2>
 <p>Load each database using the interactive notebooks in <code>dod2k/notebooks/</code>. Each notebook is named <code>load_DB.ipynb</code> for database <code>DB</code>.</p>
 <details class="info">
@@ -1548,19 +1543,83 @@ and subsequently
 <span class="n">data</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df_decisions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div></p>
-<p><strong>Implement decisions and create duplicate-free dataframe:</strong></p>
-<p>The notebook will:</p>
+<p><strong>Implementation workflow:</strong></p>
+<p>The notebook processes duplicates in four steps:</p>
 <ol>
-<li>Remove records marked as <code>REMOVE</code></li>
-<li>Create composites for records marked as <code>COMPOSITE</code></li>
-<li>Check for overlapping decisions</li>
-<li>Merge results into final dataframe</li>
+<li>
+<p><strong>Remove records marked as <code>REMOVE</code></strong> - All records flagged for removal are separated into <code>df_duplica_rmv</code> (for inspection) and dropped from the working dataframe</p>
+</li>
+<li>
+<p><strong>Create composites</strong> - Records marked as <code>COMPOSITE</code> are averaged (z-scores for data values, means for coordinates) and given new composite IDs. Summary figures are generated for quality control.</p>
+</li>
+<li>
+<p><strong>Check for overlapping decisions</strong> - The algorithm identifies any records with conflicting decisions (e.g., both <code>REMOVE</code> and <code>COMPOSITE</code> from different duplicate pairs)</p>
+</li>
+<li>
+<p><strong>Merge results</strong> - Cleaned records (<code>df_dupfree_rmv</code>) and composites (<code>df_composite</code>) are combined into the final duplicate-free database</p>
+</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Multiple Duplicates Handling - Under Construction</p>
-<p>The automated screening for records with multiple conflicting duplicate decisions (e.g., both <code>REMOVE</code> and <code>COMPOSITE</code>) is currently under development. For now, such cases should be manually reviewed if they occur.</p>
+<p>Automated screening for records with multiple conflicting duplicate decisions is currently under development. Such cases should be manually reviewed if they occur.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Detailed Instructions</p>
+<p>For complete step-by-step code and explanations, see Section 3.3 of the <a href="../duplicate/#33-implement-duplicate-decisions">Duplicate Detection Tutorial</a>.</p>
 </div>
 <p><strong>Save the duplicate-free database:</strong>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
+<span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
+
+<span class="c1"># Create output directory</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Save files</span>
+<span class="n">df_dupfree</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_compact.pkl&#39;</span><span class="p">)</span>
+<span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df_dupfree</span><span class="p">)</span>
+
+<span class="c1"># Save metadata README</span>
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_dupfree_README.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></p>
+<p><strong>Output:</strong> Duplicate-free database saved in <code>data/all_merged_INITIALS_DATE_dupfree/</code></p>
+<div class="admonition success">
+<p class="admonition-title">Duplicate Detection Complete</p>
+<p>The database is now free of duplicates and ready for analysis.</p>
+</div>
+<!-- ### 3.3 Remove Duplicates
+
+**Notebook:** [dup_removal.ipynb](../notebooks/dup_removal.ipynb)
+
+Implement the decisions to create the final duplicate-free database.
+
+**Setup:**
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Set index</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+
+<span class="c1"># Load decisions (specify your initials and date)</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/dup_detection/dup_decisions_</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_decisions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+
+**Implement decisions and create duplicate-free dataframe:**
+
+The notebook will:
+
+1. Remove records marked as `REMOVE`
+2. Create composites for records marked as `COMPOSITE`
+3. Check for overlapping decisions
+4. Merge results into final dataframe
+
+!!! warning "Multiple Duplicates Handling - Under Construction"
+    The automated screening for records with multiple conflicting duplicate decisions (e.g., both `REMOVE` and `COMPOSITE`) is currently under development. For now, such cases should be manually reviewed if they occur.
+
+
+**Save the duplicate-free database:**
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
 <span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
 <span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
@@ -1579,8 +1638,10 @@ and subsequently
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div></p>
-<p><strong>Output:</strong> Duplicate-free database saved in <code>data/all_merged_INITIALS_DATE_dupfree/</code></p>
+</code></pre></div>
+
+**Output:** Duplicate-free database saved in `data/all_merged_INITIALS_DATE_dupfree/` -->
+
 <hr />
 <h2 id="step-4-rerun-duplicate-detection-optional">Step 4: Rerun Duplicate Detection (Optional)</h2>
 <p>After creating the initial duplicate-free database, you may want to verify no residual duplicates remain.</p>
@@ -1597,38 +1658,26 @@ and subsequently
 <p class="admonition-title">Duplicate Detection Complete</p>
 <p>The database is now free of duplicates and ready for analysis.</p>
 </div>
-<h2 id="step-5-load-and-visualize-the-final-database">Step 5: Load and Visualize the Final Database</h2>
-<p><strong>Notebook:</strong> <a href="../../notebooks/df_info/">df_info.ipynb</a> and <a href="../../notebooks/df_plot_dod2k/">df_plot_dod2k.ipynb</a></p>
-<p>Load your final DoD2k database:
+<!-- ## Step 5: Load and Visualize the Final Database
+
+**Notebook:** [df_info.ipynb](../notebooks/df_info.ipynb) and [df_plot_dod2k.ipynb](../notebooks/df_plot_dod2k.ipynb)
+
+Load your final DoD2k database:
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">db_name</span> <span class="o">=</span> <span class="s1">&#39;all_merged_INITIALS_DATE_dupfree&#39;</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
-</code></pre></div></p>
-<p><strong>Explore the database:</strong></p>
-<ul>
-<li>View summary statistics and metadata</li>
-<li>Create spatial distribution maps</li>
-<li>Plot proxy records and time coverage</li>
-<li>Filter by archive type, location, or time period</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">See Also</p>
-<p>For detailed visualization and analysis workflows, see <a href="../use_dod2k/">Loading &amp; Visualizing DoD2k</a>.</p>
-</div>
+</code></pre></div>
+
+**Explore the database:**
+
+- View summary statistics and metadata
+- Create spatial distribution maps
+- Plot proxy records and time coverage
+- Filter by archive type, location, or time period
+
+!!! tip "See Also"
+    For detailed visualization and analysis workflows, see [Loading & Visualizing DoD2k](use_dod2k.md).
+ -->
 <hr />
-<h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
-<pre class="mermaid"><code>graph TD
-    A[Load Individual Databases] --&gt; B[Merge Databases]
-    B --&gt; C[Detect Duplicates]
-    C --&gt; D[Review Duplicates]
-    D --&gt; E[Remove Duplicates]
-    E --&gt; F{Residual Duplicates?}
-    F --&gt;|Yes| C
-    F --&gt;|No| G[Final DoD2k Database]
-    G --&gt; H[Visualize &amp; Analyze]</code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Time Investment</p>
-<p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
-</div>
 <hr />
 <h2 id="related-tutorials">Related Tutorials</h2>
 <ul>
