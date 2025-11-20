@@ -1,0 +1,1233 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Database of databases">
+      
+      
+      
+      
+        <link rel="prev" href="../duplicate/">
+      
+      
+        <link rel="next" href="../applications/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Generate DoD2k from scratch - DoD2k Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#generate-dod2k-from-scratch" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DoD2k Documentation" class="md-header__button md-logo" aria-label="DoD2k Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DoD2k Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Generate DoD2k from scratch
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lluecke/dod2k" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lluecke/dod2k
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../quickstart/" class="md-tabs__link">
+          
+  
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notebooks/df_info/" class="md-tabs__link">
+          
+  
+  
+  Notebooks
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DoD2k Documentation" class="md-nav__button md-logo" aria-label="DoD2k Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DoD2k Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lluecke/dod2k" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lluecke/dod2k
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Explore DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load and merge original databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../duplicate/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Generate DoD2k from scratch
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generate DoD2k from scratch
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#load-the-input-databases-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load the input databases from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-the-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge the databases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-duplicate-detection-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the duplicate detection workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the duplicate detection workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate decisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate removal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-duplicate-detection-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rerun the duplicate detection workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-and-visualise-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load and visualise the database
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notebooks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Notebooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Display entries of compact dataframe column by column
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_plot_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visualise DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter compact dataframe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 1: find the potential duplicates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_decision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 2: review and decide on candidate pairs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_removal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 3: remove true duplicates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#load-the-input-databases-from-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load the input databases from source
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#merge-the-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge the databases
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#run-the-duplicate-detection-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Run the duplicate detection workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Run the duplicate detection workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate detection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate decisions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duplicate-removal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Duplicate removal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rerun-the-duplicate-detection-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rerun the duplicate detection workflow
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-and-visualise-the-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      Load and visualise the database
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="generate-dod2k-from-scratch"><strong>Generate DoD2k from scratch</strong></h1>
+<p>Here we explain how to obtain the DoD2k database from the original source databases. </p>
+<h2 id="load-the-input-databases-from-source">Load the input databases from source</h2>
+<p>In order to load the input databases from source, we use the interactive load notebooks. Note that all notebooks are in the directory <code>dod2k/notebooks</code> and are named <code>load_DB.ipynb</code> for any database <code>DB</code>.</p>
+<details class="info">
+<summary>Load PAGES 2k data from source</summary>
+<p>The interactive notebook to load PAGES 2k can be found here: <a href="../../notebooks/load_pages2k/">load_pages2k.ipynb</a>.</p>
+<p>This notebook loads PAGES 2k data from LiPDverse, currently version 2.2.0, and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file</span>
+
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">pages2k</span><span class="o">/</span><span class="n">Pages2kTemperature2_2_0</span><span class="o">.</span><span class="n">pkl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Pages2kTemperature</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">Pages2kTemperature2_2_0</span><span class="o">.</span><span class="n">pkl</span>
+</code></pre></div>
+<p>This will download the pickle file <code>Pages2kTemperature2_2_0.pkl</code> into <code>data/pages2k</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load FE23 data from source</summary>
+<p>The interactive notebook to load FE23 can be found here: <a href="../../notebooks/load_fe23/">load_fe23.ipynb</a>.</p>
+<p>This notebook loads FE23 from the NCEI and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># download and unzip FE23 </span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">fe23</span><span class="o">/</span><span class="n">franke2022</span><span class="o">-</span><span class="n">fe23</span><span class="o">.</span><span class="n">nc</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">ncei</span><span class="o">.</span><span class="n">noaa</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">paleo</span><span class="o">/</span><span class="n">contributions_by_author</span><span class="o">/</span><span class="n">franke2022</span><span class="o">/</span><span class="n">franke2022</span><span class="o">-</span><span class="n">fe23</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">fe23_full</span>  <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;fe23/franke2022-fe23.nc&#39;</span><span class="p">)</span>
+
+<span class="c1"># save slice of FE23 with only relevant variables as netCDF (fe23_full is 25GB)</span>
+<span class="n">fe23_slice</span> <span class="o">=</span> <span class="n">fe23_full</span><span class="p">[</span><span class="nb">vars</span><span class="p">]</span>
+<span class="n">fe23_slice</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;data/fe23/franke2022-fe23_slice.nc&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This will download the netCDF file <code>franke2022-fe23.nc</code> into <code>data/fe23</code>. Note that this is a very large dataset (around 25GB) so it might be useful for the operator to slice a small list of variables of the large file and save it instead.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load Iso2k data from source</summary>
+<p>The interactive notebook to load Iso2k can be found here: <a href="../../notebooks/load_iso2k/">load_iso2k.ipynb</a>.</p>
+<p>This notebook loads Iso2k from the LiPDverse and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file (use -O to specify output filename)</span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># Unzip to the correct destination</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span>
+</code></pre></div>
+<p>This will download the zip file <code>iso2k1_1_2.zip</code> into <code>data/iso2k</code> and unzip into the directory <code>data/iso2k/iso2k1_1_2</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load SISAL data from source</summary>
+<p>The interactive notebook to load SISAL can be found here: <a href="../../notebooks/load_sisal/">load_sisal.ipynb</a>.</p>
+<p>This notebook loads SISAL from a set of <code>csv</code> files. </p>
+<p>The current version (v3) was made available to the authorsd but is not currently uploaded on the LiPDverse homepage yet. We will update the notebook and documentation accordingly once there are updates on the public availability. </p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load CoralHydro2k data from source</summary>
+<p>The interactive notebook to load CoralHydro2k can be found here: <a href="../../notebooks/load_ch2k/">load_ch2k.ipynb</a>.</p>
+<p>This notebook loads CoralHydro2k from the LiPDverse and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file (use -O to specify output filename)</span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">CoralHydro2k</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># Unzip to the correct destination</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">ch2k_101</span>
+</code></pre></div>
+<p>This will download the zip file <code>CoralHydro2k1_0_1.zip</code> into <code>data/ch2k</code> and unzip into the directory <code>data/ch2k/ch2k_101</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<h2 id="merge-the-databases">Merge the databases</h2>
+<p>After the load notebooks were run and the source data has been standardised and saved as compact dataframes, the next step is to merge the databases. Please run the interactive noteboook <a href="../../notebooks/merge_databases/">merge_databases.ipynb</a>, which merges the dataframes and outputs a compact dataframe, ready for duplicate detection. Before merging the databases, make sure that all the databases are included by defining</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dataset_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pages2k&#39;</span><span class="p">,</span> <span class="s1">&#39;fe23&#39;</span><span class="p">,</span> <span class="s1">&#39;ch2k&#39;</span><span class="p">,</span> <span class="s1">&#39;iso2k&#39;</span><span class="p">,</span> <span class="s1">&#39;sisal&#39;</span> <span class="p">]</span>
+</code></pre></div>
+<p>The 'compact dataframe' of the resulting merged database is saved in <code>data/all_merged</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For further information on the loading and merging process see also the tutorial: <a href="../load_merge/">load_merge.md</a>. </p>
+</div>
+<h2 id="run-the-duplicate-detection-workflow">Run the duplicate detection workflow</h2>
+<p>The merged dataset is then subjected to the duplicate detection workflow, in which potential duplicate candidates are first flagged. While some duplicates are obviously identical, in which case one of the records is automatically removed, a number of duplicates require expert decisions. The operator then has to go through these candidate pairs and manually inspect the potential duplicates and make a decision for each of those pairs. 
+Ultimately, the decisions are implemented and the identified duplicates are removed from the dataset. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For further information on the duplicate detection workflow see also the tutorial: <a href="../duplicate/">duplicate.md</a>. </p>
+</div>
+<p>The steps required for the duplicate detection are:</p>
+<h3 id="duplicate-detection">Duplicate detection</h3>
+<p>The interactive notebook for the duplicate detection can be found here: <a href="../../notebooks/dup_detection/">dup_detection.ipynb</a>.
+First, set up the working environment as described in the notebook. Then, load the merged dataset named <code>'all_merged'</code> from <code>data/all_merged</code>, using 
+<div class="highlight"><span class="filename">python3/Jupter</span><pre><span></span><code><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;all_merged&#39;</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">db_name</span>
+</code></pre></div>
+Make sure to set <code>df.name=db_name</code>, which is used for saving and tagging any output data. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The duplicate detection algorithm does not require any user input. It can therefore be easier to convert the interactive notebook to a python script and run it from the command line. Do this by
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">cd</span> <span class="o">~/</span><span class="n">dod2k_v2</span><span class="mf">.0</span><span class="o">/</span><span class="n">dod2k</span>
+<span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="n">scripts</span>
+<span class="n">jupyter</span> <span class="n">nbconvert</span> <span class="o">--</span><span class="n">to</span> <span class="n">python</span> <span class="n">notebooks</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">.</span><span class="n">ipynb</span> <span class="o">--</span><span class="n">stdout</span> <span class="o">|</span> \
+<span class="n">sed</span> <span class="s1">&#39;s/^get_ipython()/# get_ipython()/&#39;</span> <span class="o">|</span> \
+<span class="n">sed</span> <span class="s1">&#39;s/^\([[:space:]]*\)%/</span><span class="se">\1</span><span class="s1"># %/&#39;</span> <span class="o">&gt;</span> <span class="n">scripts</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+and subsequently 
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div></p>
+</div>
+<p>The output file is called <code>data/all_merged/dup_detection/dup_detection_candidates_all_merged.csv</code> and provides a list of all the duplicate candidates. </p>
+<details class="info">
+<summary>Duplicate decisions</summary>
+</details>
+<details class="info">
+<summary>Duplicate removal</summary>
+</details>
+<h3 id="duplicate-decisions">Duplicate decisions</h3>
+<h3 id="duplicate-removal">Duplicate removal</h3>
+<h2 id="rerun-the-duplicate-detection-workflow">Rerun the duplicate detection workflow</h2>
+<h2 id="load-and-visualise-the-database">Load and visualise the database</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

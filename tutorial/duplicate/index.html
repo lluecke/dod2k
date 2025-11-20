@@ -1,0 +1,1616 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Database of databases">
+      
+      
+      
+      
+        <link rel="prev" href="../load_merge/">
+      
+      
+        <link rel="next" href="../from_scratch/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Duplicate Detection - DoD2k Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#run-the-duplicate-detection-workflow-to-generate-a-duplicate-free-dataframe" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DoD2k Documentation" class="md-header__button md-logo" aria-label="DoD2k Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DoD2k Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Duplicate Detection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lluecke/dod2k" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lluecke/dod2k
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../quickstart/" class="md-tabs__link">
+          
+  
+  
+  Tutorials
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../api/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  API Reference
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notebooks/df_info/" class="md-tabs__link">
+          
+  
+  
+  Notebooks
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DoD2k Documentation" class="md-nav__button md-logo" aria-label="DoD2k Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    DoD2k Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lluecke/dod2k" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lluecke/dod2k
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tutorials
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Explore DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_merge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load and merge original databases
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Duplicate Detection
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate Detection
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-duplicate-detection-dup_detectionipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Duplicate detection (dup_detection.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Duplicate detection (dup_detection.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-set-up-working-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Set up working environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-load-the-compact-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Load the compact dataframe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-run-the-duplicate-detection-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Run the duplicate detection algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-optional-display-the-duplicate-candidate-summary-figures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Optional: display the duplicate candidate summary figures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-duplicate-decisions-dup_decisionipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Duplicate decisions (dup_decision.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Duplicate decisions (dup_decision.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hierarchy-for-duplicate-removal-for-identical-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Hierarchy for duplicate removal for identical duplicates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-duplicate-decision-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Duplicate decision process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-duplicate-removal-dup_removalipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Duplicate removal (dup_removal.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Duplicate removal (dup_removal.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-load-duplicate-decisions-from-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Load duplicate decisions from csv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-implement-duplicate-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Implement duplicate decisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Implement duplicate decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-records-to-be-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Records to be removed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-records-to-be-composited" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Records to be composited
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-check-for-overlaps-between-remove-and-composite-type-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Check for overlaps between 'REMOVE' and 'COMPOSITE' type records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-save-duplicate-free-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Save duplicate free dataframe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../from_scratch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Generate DoD2k from scratch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../applications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Applications
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notebooks
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Notebooks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_info/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Display entries of compact dataframe column by column
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_plot_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Visualise DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/df_filter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Filter compact dataframe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_detection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 1: find the potential duplicates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_decision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 2: review and decide on candidate pairs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_removal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate detection - step 3: remove true duplicates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-duplicate-detection-dup_detectionipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Duplicate detection (dup_detection.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Duplicate detection (dup_detection.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-set-up-working-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Set up working environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-load-the-compact-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Load the compact dataframe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-run-the-duplicate-detection-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Run the duplicate detection algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-optional-display-the-duplicate-candidate-summary-figures" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Optional: display the duplicate candidate summary figures
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-duplicate-decisions-dup_decisionipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Duplicate decisions (dup_decision.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Duplicate decisions (dup_decision.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-hierarchy-for-duplicate-removal-for-identical-duplicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Hierarchy for duplicate removal for identical duplicates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-duplicate-decision-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Duplicate decision process
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-duplicate-removal-dup_removalipynb" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Duplicate removal (dup_removal.ipynb)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 3: Duplicate removal (dup_removal.ipynb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-initialisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Initialisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-load-duplicate-decisions-from-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Load duplicate decisions from csv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-implement-duplicate-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Implement duplicate decisions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Implement duplicate decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-records-to-be-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Records to be removed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-records-to-be-composited" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Records to be composited
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-check-for-overlaps-between-remove-and-composite-type-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Check for overlaps between 'REMOVE' and 'COMPOSITE' type records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-save-duplicate-free-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Save duplicate free dataframe
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="run-the-duplicate-detection-workflow-to-generate-a-duplicate-free-dataframe"><strong>Run the duplicate detection workflow to generate a duplicate free dataframe</strong></h1>
+<p>This workflow runs a duplicate detection, decision and removal algorithm to generate a duplicate free dataframe. </p>
+<p>The input dataframe must have the following columns:</p>
+<ul>
+<li><code>archiveType</code>       (used for duplicate detection algorithm)</li>
+<li><code>dataSetName</code></li>
+<li><code>datasetId</code></li>
+<li><code>geo_meanElev</code>      (used for duplicate detection algorithm)</li>
+<li><code>geo_meanLat</code>       (used for duplicate detection algorithm)</li>
+<li><code>geo_meanLon</code>       (used for duplicate detection algorithm)</li>
+<li><code>geo_siteName</code>      (used for duplicate detection algorithm)</li>
+<li><code>interpretation_direction</code></li>
+<li><code>interpretation_seasonality</code></li>
+<li><code>interpretation_variable</code></li>
+<li><code>interpretation_variableDetails</code></li>
+<li><code>originalDataURL</code></li>
+<li><code>originalDatabase</code></li>
+<li><code>paleoData_notes</code></li>
+<li><code>paleoData_proxy</code>   (used for duplicate detection algorithm)</li>
+<li><code>paleoData_units</code></li>
+<li><code>paleoData_values</code>  (used for duplicate detection algorithm, test for correlation, RMSE, correlation of 1st difference, RMSE of 1st difference)</li>
+<li><code>paleoData_variableName</code></li>
+<li><code>year</code>              (used for duplicate detection algorithm)</li>
+<li><code>yearUnits</code></li>
+</ul>
+<p>All outputs are saved as <code>csv</code> in the directory <code>data/DATABASENAME/dup_detection</code>.</p>
+<hr />
+<h2 id="step-1-duplicate-detection-dup_detectionipynb"><strong>Step 1: Duplicate detection (<code>dup_detection.ipynb</code>)</strong></h2>
+<p>This interactive notebook (<code>dup_detection.ipynb</code>) runs a duplicate detection algorithm for a specific database. To view the interactive notebook see <a href="../../notebooks/dup_detection/">dup_detection.ipynb</a>.</p>
+<h3 id="11-set-up-working-environment">1.1 Set up working environment</h3>
+<p>Make sure the repo_root is added correctly, it should be: your_root_dir/dod2k
+This should be the working directory throughout this notebook (and all other notebooks).
+The following libraries are required to run this notebook</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dod2k_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ut_functions</span> <span class="k">as</span> <span class="n">utf</span> <span class="c1"># contains utility functions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dod2k_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ut_duplicate_search</span> <span class="k">as</span> <span class="n">dup</span> <span class="c1"># contains utility functions</span>
+</code></pre></div>
+<h3 id="12-load-the-compact-dataframe">1.2 Load the compact dataframe</h3>
+<p>Define the dataset which needs to be screened for duplicates. Input files for the duplicate detection mechanism need to be compact dataframes (<code>pandas</code> dataframes with standardised columns and entry formatting). </p>
+<p>The function <code>load_compact_dataframe_from_csv</code> loads the dataframe from a <code>csv</code> file from <code>data\DB\</code>, with <code>DB</code> the name of the database. The database name (<code>db_name</code>) can be 
+- <code>pages2k</code>
+- <code>ch2k</code>
+- <code>iso2k</code>
+- <code>sisal</code>
+- <code>fe23</code></p>
+<p>for the individual databases, or </p>
+<ul>
+<li><code>all_merged</code></li>
+</ul>
+<p>to load the merged database of all individual databases, or can be any user defined compact dataframe.</p>
+<p>Load the dataframe using
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;all_merged&#39;</span> 
+<span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="13-run-the-duplicate-detection-algorithm">1.3 Run the duplicate detection algorithm</h3>
+<p>Now run the first part of the duplicate detection algorithm, which goes through each candidate pair and evaluates the pairs for the following criteria:</p>
+<ul>
+<li><strong>metadata criteria</strong>:</li>
+<li>archive types (<code>archiveType</code>) must be identical</li>
+<li>proxy types (<code>paleoData_proxy</code>) must be identical</li>
+<li><strong>geographical criteria</strong>:</li>
+<li>elevation (<code>geo_meanElev</code>) similar, within defined tolerance (use kwarg <code>elevation_tolerance</code>, defaults to 0)</li>
+<li>latitude and longtitude (<code>geo_meanLat</code> and <code>geo_meanLon</code>) similar, within defined tolerance in km (use kwarg <code>dist_tolerance_km</code>, defaults to 8 km)</li>
+<li><strong>overlap criterion</strong>:</li>
+<li>time must overlap for at least $n$ points (use kwarg <code>n_points_thresh</code> to modify, defaults to $n=10$) unless at least one of the record is shorter than <code>n_points_thresh</code> </li>
+<li><strong>site criterion</strong>:</li>
+<li>there must be some overlap in the site name (<code>geo_siteName</code>)</li>
+<li><strong>correlation criteria</strong>:</li>
+<li>correlation between the overlapping period must be greater than defined threshold (use <code>corr_thresh</code> to modify, defaults to 0.9) or correlation of first difference must be greater than defined threshold (use <code>corr_diff_thresh</code> to modify, defaults to 0.9)</li>
+<li>RMSE of overlapping period must be smaller than defined threshold (use <code>rmse_thresh</code> to modify, defaults to 0.1) or RMSE of first difference must be smaller than defined threshold (use <code>rmse_diff_thresh</code> to modify, defaults to 0.1)</li>
+<li><strong>URL criterion</strong>:</li>
+<li>URLs (<code>originalDataURL</code>) must be identical if both records originate from the same database (<code>originalDatabase</code> must be identical)</li>
+</ul>
+<p><strong>A potential duplicate candidate pair is flagged, if all of these criteria are satisfied OR the correlation between the candidates is particularly high (&gt;0.98), while there is sufficient overlap (as defined by the overlap criterion).</strong></p>
+<p>The output for a database named <code>DB</code> is saved under <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code>.</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="14-optional-display-the-duplicate-candidate-summary-figures">1.4 Optional: display the duplicate candidate summary figures</h3>
+<p><em>OPTIONAL</em>: plot the duplicate candidate pairs, which were flagged by the duplicate detection algorithm. 
+The function <code>plot_duplicates</code> loads the flagged candidate pairs for a database named <code>DB</code> from csv (<code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code>) and produces summary figures of the potential duplicates, which are saved in the directory <code>figs/DB/dup_detection/</code>.</p>
+<p><strong>Note that the same summary figures are being used for the duplicate decision process (<code>dup_decisions.ipynb</code>).</strong></p>
+<p>Run
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div></p>
+<details class="tip" open="open">
+<summary>Tip for large databases</summary>
+<p>The duplicate detection algorithm can take a while to run, especially for large databases (such as the merged database with over 5000 records). 
+Instead of running this notebook interactively, it might therefore be better to execute it as a python script via the command line.</p>
+<p>In order to do this, run</p>
+<div class="highlight"><span class="filename">bash</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dod2k_v2.0/dod2k
+mkdir<span class="w"> </span>-p<span class="w"> </span>scripts
+jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class="w"> </span>python<span class="w"> </span>notebooks/dup_detection.ipynb<span class="w"> </span>--stdout<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sed<span class="w"> </span><span class="s1">&#39;s/^get_ipython()/# get_ipython()/&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>sed<span class="w"> </span><span class="s1">&#39;s/^\([[:space:]]*\)%/\1# %/&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>scripts/dup_detection.py
+</code></pre></div>
+<p>This generates a script <code>dup_detection.py</code> from the command line. Make sure you have modified this file to load the correct database before executing. Then run 
+<div class="highlight"><span class="filename">bash</span><pre><span></span><code>python<span class="w"> </span>scripts/dup_detection.py
+</code></pre></div></p>
+</details>
+<h2 id="step-2-duplicate-decisions-dup_decisionipynb"><strong>Step 2: Duplicate decisions (<code>dup_decision.ipynb</code>)</strong></h2>
+<p>This interactive notebook (<code>dup_decision.ipynb</code>) runs a duplicate decision algorithm for a specific database, following the identification of the potential duplicate candidate pairs. The algorithm walks the operator through each of the detected duplicate candidate pairs from <code>dup_detection.ipynb</code> and runs a decision process to decide whether to keep or reject the identified records.   To view the interactive notebook see <a href="../../notebooks/dup_decision/">dup_decision.ipynb</a>. </p>
+<h3 id="21-initialisation">2.1 Initialisation</h3>
+<p>To set up the working directory and load the compact dataframe, please follow the instructions detailed in  steps 1.1 (set up working directory) and 1.2 (load compact dataframe). </p>
+<p>In addition, the operator is asked to provide their credentials along with the decision process. Please fill in your details:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">initials</span> <span class="o">=</span> <span class="s1">&#39;FN&#39;</span>
+<span class="n">fullname</span> <span class="o">=</span> <span class="s1">&#39;Full Name&#39;</span>
+<span class="n">email</span>    <span class="o">=</span> <span class="s1">&#39;name@email.ac.uk&#39;</span>
+<span class="n">operator_details</span> <span class="o">=</span> <span class="p">[</span><span class="n">initials</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">email</span><span class="p">]</span>
+</code></pre></div>
+<p>The initials are used to label the intermediate output files for the next steps of the workflow, and the name and email address will be saved in the final duplicate free dataframe to ensure transparency and traceability.</p>
+<h3 id="22-hierarchy-for-duplicate-removal-for-identical-duplicates">2.2 Hierarchy for duplicate removal for identical duplicates</h3>
+<p>For automated decisions, which apply to <em>identical</em> duplicates, we have defined a hierarchy of databases, which decides which record should be kept.</p>
+<p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value $n$ (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. Note that this parameter is not migrated to the final duplicate free database. </p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGES2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CoralHydro2k v1.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SISAL v3&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+</code></pre></div>
+<h3 id="23-duplicate-decision-process">2.3 Duplicate decision process</h3>
+<p>The following cell takes you through the potential duplicate candidate pairs and lets you decide whether to 
+- keep both records
+- keep just one record
+- delete both records
+- create composite of both records.</p>
+<p>Recollections and updates of duplicates are automatically selected (<code>choose_recollection=True</code>), as well as identical duplicates following the hierarchy defined above (<code>remove_identicals=True</code>). </p>
+<p>The duplicate decision algorithm is then initiated via:</p>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                        <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+This takes the operator through each potential duplicate candidate pair, presents a summary figure which shows the data and the metadata. For example:</p>
+<figure markdown="span">
+  ![Archive map](/figs/dup_detection/all_merged/003_pages2k_6_FE23_northamerica_usa_az555__2_3037.jpg){ width="800" }
+  <figcaption>Figure 1: Summary figure of a potential duplicate candidate pair, for which the operator is asked to make a decision.</figcaption>
+</figure>
+
+<p>The operator is first presented with the option to leave a note on the decision process: </p>
+<div class="highlight"><pre><span></span><code>**Decision required for this duplicate pair (see figure above).**
+Before inputting your decision. Would you like to leave a comment on your decision process?
+</code></pre></div>
+<p>This adds transparency on the decision process and justifies the operators choices. </p>
+<p>Next, the operator is asked to make the following decision, for example:</p>
+<div class="highlight"><pre><span></span><code>Keep record 1 (pages2k_50, black) [1], record 2 (FE23_northamerica_canada_cana091, blue) [2], keep both [b], keep none [n] or create a composite of both records [c]?  [Type 1/2/b/n/c]
+</code></pre></div>
+<p>For candidate pairs which have a very high correlation and.or for which the metadata is identical, we have implemented an automated choice, in which the data record from the most recently published database is automatically chosen. This means less user inout is required and is especially helpful for very large databases with hundreds of duplicates. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The operator has the option to restart the decision process from a backup file in the directory <code>data/DB/dup_detection</code>. This can be especially useful should the connection be interrupted during the process. If such a file exists, the operator would be asked wether they want to use this file to restart the decision process. The decision process will then restart where the backup file cut out. This works for multiple interruptions.</p>
+</div>
+<details class="question">
+<summary>Can I reverse a decision?</summary>
+<p>There is currently no option to reverse a decision while running the duplicate decisions. However should the operator want to revise a previous decision they have two options: </p>
+<ol>
+<li>
+<p>If this concerns the most recent decision, the operator should interrupt the decision process and remove the last line from the backup file (<code>data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv</code>). They could then restart the decision process and the process will restart from the last line in the backup file, so the operator has the opportunity to revise their last decision.</p>
+</li>
+<li>
+<p>They could interrupt the decision process and directly edit the backup file. The backup file (<code>data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv</code>) is a spreasheet which can be edited directly and the decisions can be revised under 'Decision 1' and 'Decision 2' (columns X and Y in Microsoft Excel). Note that the operator should keep to the standard terminology of input to avoid problems further downstream, i.e. use <code>KEEP</code>, <code>REMOVE</code> or <code>COMPOSITE</code> only. </p>
+</li>
+<li>
+<p>The operator could complete the decision process and manually edit the final decision output file. Please make sure to use correct terminology as in option #2.</p>
+</li>
+</ol>
+</details>
+<p>The final output is saved in <code>data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv</code></p>
+<p>Summary figures are saved in the directory <code>figs/dup_detection/DB</code>, and are also linked in the output csv file.</p>
+<h2 id="step-3-duplicate-removal-dup_removalipynb"><strong>Step 3: Duplicate removal (<code>dup_removal.ipynb</code>)</strong></h2>
+<p>This interactive notebook (<code>dup_removal.ipynb</code>) removes the duplicates flagged in <code>dup_detection.ipynb</code>, following the decisions made in <code>dup_decision.ipynb</code>. The decisions include
+- removal of redundant duplicates
+- creation of composites</p>
+<p>To view the interactive notebook see <a href="../../notebooks/dup_removal/">dup_removal.ipynb</a>. </p>
+<h3 id="31-initialisation">3.1 Initialisation</h3>
+<p>To set up the working directory and load the compact dataframe, please follow the instructions detailed in steps 1.1 (set up working directory), 1.2 (load compact dataframe) and 2.1 (provide operator credentials).</p>
+<p>In addition, <code>datasetId</code> needs to be set as dataframe index to reliably identify the duplicates later on:
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</code></pre></div></p>
+<h3 id="32-load-duplicate-decisions-from-csv">3.2 Load duplicate decisions from csv</h3>
+<p>In order to load the duplicate decisions from csv, the operator <em>initials</em> and the <em>date</em> need to be specified, to match the desired decision output file.</p>
+<p>Accordingly, the decision output file is loaded from <code>data/DBNAME/dup_detection/dup_decisions_DBNAME_INITIALS_DATE.csv</code>:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">filename</span>      <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/dup_detection/dup_decisions_</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">data</span><span class="p">,</span> <span class="n">header</span>  <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_decisions</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
+<p><code>dup.read_csv</code> provides the <code>header</code>, which details the operator's details as provided in the decision file, along with any comments on the general decision process. Later in the notebook, <code>header</code> is written into a metadata file which should be provided alongside the duplicate free dataset. <code>df_decisions</code> is a <code>pandas</code> dataframe which is populated with the decision data, record by record, and will be used to implement the decisions to create a duplicate free dataset.</p>
+<h3 id="33-implement-duplicate-decisions">3.3 Implement duplicate decisions</h3>
+<p>From <code>df_decisions</code> we extract a dictionary which carries the information on all the duplicate decisions. For each duplicate pair, the dictionary is populated with information about the respective duplicate and the duplicate decision process. Note that we also account for multiple duplicates. This dictionary is used to populate the column <code>duplicateDetails</code> in the finalised duplicate free dataframe (<code>df_dupfree</code>).</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup_details</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">dup_counts</span>  <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">dec_1</span><span class="p">,</span> <span class="n">dec_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision 2&#39;</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="n">dec_1</span><span class="o">==</span><span class="s1">&#39;KEEP&#39;</span> <span class="ow">and</span> <span class="n">dec_2</span><span class="o">==</span><span class="s1">&#39;KEEP&#39;</span><span class="p">:</span> <span class="k">continue</span> <span class="c1"># in this case no true duplicates!</span>
+
+    <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId 2&#39;</span><span class="p">]]</span>
+    <span class="n">db_1</span><span class="p">,</span> <span class="n">db_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;originalDatabase 1&#39;</span><span class="p">,</span> <span class="s1">&#39;originalDatabase 2&#39;</span><span class="p">]]</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dup_details</span><span class="p">:</span>
+            <span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
+    <span class="n">dup_details</span><span class="p">[</span><span class="n">id_1</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="n">id_1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;duplicate ID&#39;</span><span class="p">:</span> <span class="n">id_2</span><span class="p">,</span> <span class="s1">&#39;duplicate database&#39;</span><span class="p">:</span> <span class="n">db_2</span><span class="p">,</span> <span class="s1">&#39;duplicate decision&#39;</span><span class="p">:</span> <span class="n">dec_2</span><span class="p">,</span> <span class="s1">&#39;decision type&#39;</span><span class="p">:</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]}</span>
+    <span class="n">dup_details</span><span class="p">[</span><span class="n">id_2</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="n">id_2</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;duplicate ID&#39;</span><span class="p">:</span> <span class="n">id_1</span><span class="p">,</span> <span class="s1">&#39;duplicate database&#39;</span><span class="p">:</span> <span class="n">db_1</span><span class="p">,</span> <span class="s1">&#39;duplicate decision&#39;</span><span class="p">:</span> <span class="n">dec_1</span><span class="p">,</span> <span class="s1">&#39;decision type&#39;</span><span class="p">:</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]}</span>
+
+    <span class="k">if</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;MANUAL&#39;</span><span class="p">:</span> 
+        <span class="n">operator_details</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; Modified &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;  E-Mail&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
+            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;operator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operator_details</span>
+            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;note&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision comment&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
+            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;operator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>
+            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;note&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>       
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that any one record can appear more than once and have multiple decisions associated with it (e.g. <code>'REMOVE'</code>, <code>'KEEP'</code> or <code>'COMPOSITE'</code>).</p>
+<p>In order to remove the duplicates we therefore implement the following steps:</p>
+<ol>
+<li>Records to be REMOVED. Remove all records from the dataframe which are associated with the decision <code>'REMOVE'</code> and save in <code>df_dupfree_rmv</code></li>
+<li>Records to be COMPOSITED. Create compounds of the records and save in <code>df_composite</code></li>
+<li>Now check for records which have both <code>'REMOVE'</code> and <code>'COMPOSITE'</code> associated. These are potentially remaining duplicates. We check for this later in the notebook.</li>
+</ol>
+</div>
+<h4 id="1-records-to-be-removed">1. Records to be removed</h4>
+<p>First simply remove all the records to which the decision <code>REMOVE</code> or <code>COMPOSITE</code> applies to and store in <code>df_dupfree_rmv</code>, while all <code>'REMOVE'</code> or <code>'COMPOSITE'</code> type records are stored in <code>df_duplica_rmv</code> (for later inspection).</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
+<span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+<span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+<span class="n">remove_IDs</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span>
+
+<span class="n">df_duplica_rmv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">remove_IDs</span><span class="p">]</span> <span class="c1"># df containing only records which were removed</span>
+<span class="n">df_dupfree_rmv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+</code></pre></div>
+<p><code>df_dupfree_rmv</code> then contains all data apart from records which are marked as <code>REMOVE</code> or <code>COMPOSITE</code>. Thus, it only keeps the records which either were never marked as duplicates or where the operator had decided to keep a duplicate. </p>
+<p>The <code>'REMOVE'</code> type records are thus eliminated, while the <code>'COMPOSITE'</code> type records are addressed in the next paragraph.</p>
+<p>Note that the <code>duplicateDetails</code> need to be added to <code>df_dupfree_rmv</code> via</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree_rmv</span><span class="p">[</span><span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;N/A&#39;</span>
+<span class="k">for</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">dup_details</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;N/A&#39;</span><span class="p">:</span> 
+            <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
+</code></pre></div>
+<h4 id="2-records-to-be-composited">2. Records to be composited</h4>
+<p>Now identify all the records to which the decision <code>'COMPOSITE'</code> applies to, create composites and store in <code>df_composite</code>. 
+For differences in the numerical metadata we use the average (e.g. <code>geo_meanLat</code>, <code>geo_meanLon</code>, ...), while for string types we merge the strings to form a composite. The <code>datasetId</code> is created from both original values to <code>'f{df.name}_composite_z_{ID_1}_{ID_2}'</code>, with <code>ID_1</code> and <code>ID_2</code> the original <code>datasetId</code> for each record. The data is being composited by averaging the z-scores of the original data. </p>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># add the column &#39;duplicateDetails&#39; to df, in case it does not exist</span>
+<span class="k">if</span> <span class="s1">&#39;duplicateDetails&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;N/A&#39;</span>
+
+<span class="c1"># load the records to be composited</span>
+<span class="n">comp_ID_pairs</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="p">[(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
+
+<span class="c1"># create new composite data and metadata from the pairs</span>
+<span class="c1"># loop through the composite pairs and check metadata</span>
+<span class="n">df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+</code></pre></div>
+The function <code>join_composites_metadata</code> also creates summary figures of the composites in order to supervise the composition process. </p>
+<h4 id="3-check-for-overlaps-between-remove-and-composite-type-records">3. Check for overlaps between <code>'REMOVE'</code> and <code>'COMPOSITE'</code> type records</h4>
+<p>Before merging and saving the duplicate free dataframe we still need to ensure that there is no overlap between <code>'COMPOSITE'</code> and <code>'REMOVE'</code> type duplicates. We first collect a list of these duplicates via </p>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">overlap_rmv_cmp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">decisions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="k">if</span> <span class="p">(</span><span class="s1">&#39;REMOVE&#39;</span> <span class="ow">in</span> <span class="n">decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span><span class="o">&amp;</span><span class="p">(</span><span class="s1">&#39;COMPOSITE&#39;</span> <span class="ow">in</span> <span class="n">decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]):</span>
+        <span class="n">overlap_rmv_cmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</code></pre></div>
+If the list is empty, we can proceed to the merging and saving of <code>df_dupfree</code>. If not we need to address the overlap via </p>
+<p><strong>COMING SOON</strong></p>
+<h3 id="34-save-duplicate-free-dataframe">3.4 Save duplicate free dataframe</h3>
+<p>Merge <code>df_composite</code> and <code>df_dupfree_rmv</code> to create duplicate free dataframe:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
+</code></pre></div>
+<p>Sort the columns and assign a name to the dataframe which is used for saving purposes (determines directory and filename). Make sure that <code>date</code> and operator initials <code>initials</code> are used in the name.</p>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+<span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+Now save the dataframe to pickle, and to csv:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># save concatenate dataframe as db_merged</span>
+<span class="n">df_dupfree</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_compact.pkl&#39;</span><span class="p">)</span>
+
+<span class="c1"># save to a list of csv files (metadata, data, year)</span>
+<span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df_dupfree</span><span class="p">)</span>
+</code></pre></div>
+<p>We also need to preserve some metadata on the decision process via </p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># write header with operator information as README txt file</span>
+<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_dupfree_README.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
+    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+<p><strong>This terminates the duplicate workflow</strong> </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>For more details on the interactive notebooks, see 
+1. <a href="../../notebooks/dup_detection/">dup_detection.ipynb</a>
+2. <a href="../../notebooks/dup_decision/">dup_decision.ipynb</a>
+3. <a href="../../notebooks/dup_removal/">dup_removal.ipynb</a></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
