@@ -238,6 +238,25 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../tutorial/use_dod2k/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  DoD2k
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../installation/" class="md-tabs__link">
         
   
@@ -384,6 +403,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../../tutorial/use_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../installation/" class="md-nav__link">
         
   
@@ -421,10 +462,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -437,8 +478,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Tutorials
           </label>
@@ -479,7 +520,7 @@
   
   
   <span class="md-ellipsis">
-    Explore DoD2k
+    DoD2k
     
   </span>
   
@@ -633,10 +674,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -649,8 +690,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Notebooks
           </label>
@@ -2086,7 +2127,8 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 949</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 948</span>
+<span class="normal"> 949</span>
 <span class="normal"> 950</span>
 <span class="normal"> 951</span>
 <span class="normal"> 952</span>
@@ -2413,8 +2455,7 @@ Default is True.</p>
 <span class="normal">1273</span>
 <span class="normal">1274</span>
 <span class="normal">1275</span>
-<span class="normal">1276</span>
-<span class="normal">1277</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1276</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                         <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Review potential duplicate pairs in a proxy database and decide which records to keep, remove, or combine.</span>
@@ -2677,7 +2718,7 @@ Default is True.</p>
 
 
 
-                    <span class="n">figsave</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">add</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/dup_detection/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
+                    <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="nb">dir</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/dup_detection/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
 
 
                     <span class="n">figpath</span>    <span class="o">=</span> <span class="s1">&#39;https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span>
@@ -4418,7 +4459,7 @@ operator details in the composite notes.</p>
 <li>For categorical metadata, entries are concatenated into a composite string.</li>
 <li>Overlapping periods are averaged, and non-overlapping periods are appended.</li>
 <li>A scatter plot is generated for each composite showing the original records
-  and the resulting composite, and it is saved using <code>figsave</code>.</li>
+  and the resulting composite, and it is saved using <code>save_fig</code>.</li>
 <li>The function maintains provenance of original datasets, including notes and URLs,
   in the 'duplicateDetails' field.</li>
 </ul>
@@ -4426,7 +4467,8 @@ operator details in the composite notes.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1599</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1598</span>
+<span class="normal">1599</span>
 <span class="normal">1600</span>
 <span class="normal">1601</span>
 <span class="normal">1602</span>
@@ -4603,8 +4645,7 @@ operator details in the composite notes.</p>
 <span class="normal">1773</span>
 <span class="normal">1774</span>
 <span class="normal">1775</span>
-<span class="normal">1776</span>
-<span class="normal">1777</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+<span class="normal">1776</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create composite records from overlapping duplicate proxy datasets and generate metadata.</span>
 
@@ -4653,7 +4694,7 @@ operator details in the composite notes.</p>
 <span class="sd">    - For categorical metadata, entries are concatenated into a composite string.</span>
 <span class="sd">    - Overlapping periods are averaged, and non-overlapping periods are appended.</span>
 <span class="sd">    - A scatter plot is generated for each composite showing the original records</span>
-<span class="sd">      and the resulting composite, and it is saved using `figsave`.</span>
+<span class="sd">      and the resulting composite, and it is saved using `save_fig`.</span>
 <span class="sd">    - The function maintains provenance of original datasets, including notes and URLs,</span>
 <span class="sd">      in the &#39;duplicateDetails&#39; field.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -4741,7 +4782,7 @@ operator details in the composite notes.</p>
         <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;composite&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        <span class="n">figsave</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;composite_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ID_1</span><span class="p">,</span> <span class="n">ID_2</span><span class="p">),</span> <span class="n">add</span><span class="o">=</span><span class="s1">&#39;/</span><span class="si">%s</span><span class="s1">/dup_detection/&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;composite_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ID_1</span><span class="p">,</span> <span class="n">ID_2</span><span class="p">),</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;/</span><span class="si">%s</span><span class="s1">/dup_detection/&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 
         <span class="c1"># new metadata for identification etc.</span>
@@ -4904,7 +4945,7 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
   process (e.g., <code>find_duplicates</code>) and that a corresponding CSV exists in <code>df.name/dup_detection/</code>.</li>
 <li>Metadata printed and saved includes site names, coordinates, dataset IDs, original database,
   and summary statistics (mean, std, units, etc.).</li>
-<li>Figures are saved in PDF format by default using <code>figsave</code>.</li>
+<li>Figures are saved in PDF format by default using <code>save_fig</code>.</li>
 </ul>
 </details>
 
@@ -5000,8 +5041,7 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 <span class="normal">940</span>
 <span class="normal">941</span>
 <span class="normal">942</span>
-<span class="normal">943</span>
-<span class="normal">944</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="normal">943</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate plots of potential duplicate records in a proxy database and optionally save their metadata.</span>
 
@@ -5034,7 +5074,7 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 <span class="sd">      process (e.g., `find_duplicates`) and that a corresponding CSV exists in `df.name/dup_detection/`.</span>
 <span class="sd">    - Metadata printed and saved includes site names, coordinates, dataset IDs, original database,</span>
 <span class="sd">      and summary statistics (mean, std, units, etc.).</span>
-<span class="sd">    - Figures are saved in PDF format by default using `figsave`.</span>
+<span class="sd">    - Figures are saved in PDF format by default using `save_fig`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 
@@ -5086,9 +5126,8 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
         <span class="n">dup_mdata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dup_mdata_row</span><span class="p">]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
-            <span class="n">figsave</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span>
-                    <span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="n">add</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/dup_detection&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
-            <span class="c1"># raise Exception</span>
+            <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;%03d_</span><span class="si">{</span><span class="n">id_1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">id_2</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/dup_detection&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
+
 
 
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== POTENTIAL DUPLICATE </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">n_pot_dups</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;: </span><span class="si">%s</span><span class="s1">+</span><span class="si">%s</span><span class="s1"> ===&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">jj</span><span class="p">]))</span>
