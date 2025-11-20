@@ -756,15 +756,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#complete-workflow-summary_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Complete Workflow Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -1267,15 +1258,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#complete-workflow-summary_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      Complete Workflow Summary
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -1375,19 +1357,6 @@
 <h1 id="generate-dod2k-from-scratch"><strong>Generate DoD2k from scratch</strong></h1>
 <p>This tutorial guides you through the complete end-to-end workflow to recreate the DoD2k database from original source data.</p>
 <h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
-<pre class="mermaid"><code>graph TD
-    A[Load Individual Databases] --&gt; B[Merge Databases]
-    B --&gt; C[Detect Duplicates]
-    C --&gt; D[Review Duplicates]
-    D --&gt; E[Remove Duplicates]
-    E --&gt; F{Residual Duplicates?}
-    F --&gt;|Yes| C
-    F --&gt;|No| G[Final DoD2k Database]</code></pre>
-<div class="admonition warning">
-<p class="admonition-title">Time Investment</p>
-<p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
-</div>
-<h2 id="complete-workflow-summary_1">Complete Workflow Summary</h2>
 <pre class="mermaid"><code>graph LR
     A[Load&lt;br/&gt;Databases] --&gt; B[Merge]
     B --&gt; C[Detect&lt;br/&gt;Duplicates]
