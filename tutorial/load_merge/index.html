@@ -1251,28 +1251,69 @@
 <li><code>db_compact_paleoData_values.csv</code>: <code>csv</code> file which includes the actual record data for each record</li>
 </ul>
 <p>Further information about each individual load notebook can be found here:</p>
-<ul>
-<li>
-<p><strong>CoralHydro2k</strong>
-see the interactive notebook: <a href="../../notebooks/load_ch2k/">load_ch2k.ipynb</a>.</p>
-</li>
-<li>
-<p><strong>FE23/Breitenmoser</strong>
-see the interactive notebook: <a href="../../notebooks/load_fe23/">load_fe23.ipynb</a>.</p>
-</li>
-<li>
-<p><strong>Iso2k</strong>
-see the interactive notebook: <a href="../../notebooks/load_iso2k/">load_iso2k.ipynb</a>.</p>
-</li>
-<li>
-<p><strong>PAGES 2k</strong>
-see the interactive notebook: <a href="../../notebooks/load_pages2k/">load_pages2k.ipynb</a>.</p>
-</li>
-<li>
-<p><strong>SISAL</strong>
-see the interactive notebook: <a href="../../notebooks/load_sisal/">load_sisal.ipynb</a>.</p>
-</li>
-</ul>
+<details class="info">
+<summary>Load PAGES 2k data from source</summary>
+<p>The interactive notebook to load PAGES 2k can be found here: <a href="../../notebooks/load_pages2k/">load_pages2k.ipynb</a>.</p>
+<p>This notebook loads PAGES 2k data from LiPDverse, currently version 2.2.0, and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file</span>
+
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">pages2k</span><span class="o">/</span><span class="n">Pages2kTemperature2_2_0</span><span class="o">.</span><span class="n">pkl</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Pages2kTemperature</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">Pages2kTemperature2_2_0</span><span class="o">.</span><span class="n">pkl</span>
+</code></pre></div>
+<p>This will download the pickle file <code>Pages2kTemperature2_2_0.pkl</code> into <code>data/pages2k</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load FE23 data from source</summary>
+<p>The interactive notebook to load FE23 can be found here: <a href="../../notebooks/load_fe23/">load_fe23.ipynb</a>.</p>
+<p>This notebook loads FE23 from the NCEI and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># download and unzip FE23 </span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">fe23</span><span class="o">/</span><span class="n">franke2022</span><span class="o">-</span><span class="n">fe23</span><span class="o">.</span><span class="n">nc</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">ncei</span><span class="o">.</span><span class="n">noaa</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">paleo</span><span class="o">/</span><span class="n">contributions_by_author</span><span class="o">/</span><span class="n">franke2022</span><span class="o">/</span><span class="n">franke2022</span><span class="o">-</span><span class="n">fe23</span><span class="o">.</span><span class="n">nc</span>
+<span class="n">fe23_full</span>  <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="s1">&#39;fe23/franke2022-fe23.nc&#39;</span><span class="p">)</span>
+
+<span class="c1"># save slice of FE23 with only relevant variables as netCDF (fe23_full is 25GB)</span>
+<span class="n">fe23_slice</span> <span class="o">=</span> <span class="n">fe23_full</span><span class="p">[</span><span class="nb">vars</span><span class="p">]</span>
+<span class="n">fe23_slice</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="s1">&#39;data/fe23/franke2022-fe23_slice.nc&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>This will download the netCDF file <code>franke2022-fe23.nc</code> into <code>data/fe23</code>. Note that this is a very large dataset (around 25GB) so it might be useful for the operator to slice a small list of variables of the large file and save it instead.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load Iso2k data from source</summary>
+<p>The interactive notebook to load Iso2k can be found here: <a href="../../notebooks/load_iso2k/">load_iso2k.ipynb</a>.</p>
+<p>This notebook loads Iso2k from the LiPDverse and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file (use -O to specify output filename)</span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># Unzip to the correct destination</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">data</span><span class="o">/</span><span class="n">iso2k</span><span class="o">/</span><span class="n">iso2k1_1_2</span>
+</code></pre></div>
+<p>This will download the zip file <code>iso2k1_1_2.zip</code> into <code>data/iso2k</code> and unzip into the directory <code>data/iso2k/iso2k1_1_2</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load SISAL data from source</summary>
+<p>The interactive notebook to load SISAL can be found here: <a href="../../notebooks/load_sisal/">load_sisal.ipynb</a>.</p>
+<p>This notebook loads SISAL from a set of <code>csv</code> files. </p>
+<p>The current version (v3) was made available to the authorsd but is not currently uploaded on the LiPDverse homepage yet. We will update the notebook and documentation accordingly once there are updates on the public availability. </p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
+<details class="info">
+<summary>Load CoralHydro2k data from source</summary>
+<p>The interactive notebook to load CoralHydro2k can be found here: <a href="../../notebooks/load_ch2k/">load_ch2k.ipynb</a>.</p>
+<p>This notebook loads CoralHydro2k from the LiPDverse and creates a standardised 'compact dataframe'. </p>
+<p>In order to load the data from source please activate the following cell:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Download the file (use -O to specify output filename)</span>
+<span class="err">!</span><span class="n">wget</span> <span class="o">-</span><span class="n">O</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">lipdverse</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">CoralHydro2k</span><span class="o">/</span><span class="n">current_version</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span>
+
+<span class="c1"># Unzip to the correct destination</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">CoralHydro2k1_0_1</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="n">data</span><span class="o">/</span><span class="n">ch2k</span><span class="o">/</span><span class="n">ch2k_101</span>
+</code></pre></div>
+<p>This will download the zip file <code>CoralHydro2k1_0_1.zip</code> into <code>data/ch2k</code> and unzip into the directory <code>data/ch2k/ch2k_101</code>.</p>
+<p>Subsequently, run the interactive notebook to create a set of <code>csv</code> files containing the compact dataframe.</p>
+</details>
 <h2 id="merge-the-databases-to-a-common-dataframe"><strong>Merge the databases to a common dataframe.</strong></h2>
 <p>The individual databases can be merged into a common dataframe by loading all the compact dataframes, created in the <em>load notebooks</em> (see previous section). </p>
 <p>Simply run the notebook <a href="../../notebooks/merge_databases/">merge_databases.ipynb</a>. This notebook loads the compact dataframes and concatenates them via </p>
@@ -1325,7 +1366,7 @@ dtypes: float32(3), object(18)
 memory usage: 941.6+ KB
 None
 </code></pre></div></p>
-<p>This dataframe is saved in the directory <code>data/all_merged</code>, and can be used as input for duplicate detection.</p>
+<p>This dataframe is saved in the directory <code>data/all_merged</code>, and can be used as input for <a href="../duplicate/">duplicate detection</a>.</p>
 
 
 

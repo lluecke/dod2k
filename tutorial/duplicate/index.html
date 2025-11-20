@@ -724,6 +724,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#required-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required columns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-duplicate-detection-dup_detectionipynb" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Duplicate detection (dup_detection.ipynb)
@@ -1339,6 +1348,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#required-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Required columns
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-duplicate-detection-dup_detectionipynb" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Duplicate detection (dup_detection.ipynb)
@@ -1536,7 +1554,9 @@
 
 <h1 id="run-the-duplicate-detection-workflow-to-generate-a-duplicate-free-dataframe"><strong>Run the duplicate detection workflow to generate a duplicate free dataframe</strong></h1>
 <p>This workflow runs a duplicate detection, decision and removal algorithm to generate a duplicate free dataframe. </p>
+<h2 id="required-columns">Required columns</h2>
 <p>The input dataframe must have the following columns:</p>
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.5rem;">
 <ul>
 <li><code>archiveType</code>       (used for duplicate detection algorithm)</li>
 <li><code>dataSetName</code></li>
@@ -1559,12 +1579,17 @@
 <li><code>year</code>              (used for duplicate detection algorithm)</li>
 <li><code>yearUnits</code></li>
 </ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Output Location</p>
 <p>All outputs are saved as <code>csv</code> in the directory <code>data/DATABASENAME/dup_detection</code>.</p>
+</div>
 <hr />
 <h2 id="step-1-duplicate-detection-dup_detectionipynb"><strong>Step 1: Duplicate detection (<code>dup_detection.ipynb</code>)</strong></h2>
-<p>This interactive notebook (<code>dup_detection.ipynb</code>) runs a duplicate detection algorithm for a specific database. To view the interactive notebook see <a href="../../notebooks/dup_detection/">dup_detection.ipynb</a>.</p>
+<p><strong>Notebook:</strong> <a href="../../notebooks/dup_detection/"><code>dup_detection.ipynb</code></a></p>
+<p>This interactive notebook (<code>dup_detection.ipynb</code>) runs a duplicate detection algorithm for a specific database. </p>
 <h3 id="11-set-up-working-environment">1.1 Set up working environment</h3>
-<p>Make sure the repo_root is added correctly, it should be: your_root_dir/dod2k
+<p>Make sure the repo_root is added correctly: <code>your_root_dir/dod2k</code>
 This should be the working directory throughout this notebook (and all other notebooks).
 The following libraries are required to run this notebook</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -1592,6 +1617,8 @@ The following libraries are required to run this notebook</p>
 </code></pre></div></p>
 <h3 id="13-run-the-duplicate-detection-algorithm">1.3 Run the duplicate detection algorithm</h3>
 <p>Now run the first part of the duplicate detection algorithm, which goes through each candidate pair and evaluates the pairs for the following criteria:</p>
+<div class="admonition abstract">
+<p class="admonition-title">Detection Criteria</p>
 <ul>
 <li><strong>metadata criteria</strong>:</li>
 <li>archive types (<code>archiveType</code>) must be identical</li>
@@ -1609,6 +1636,10 @@ The following libraries are required to run this notebook</p>
 <li><strong>URL criterion</strong>:</li>
 <li>URLs (<code>originalDataURL</code>) must be identical if both records originate from the same database (<code>originalDatabase</code> must be identical)</li>
 </ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Flagging Logic</p>
+</div>
 <p><strong>A potential duplicate candidate pair is flagged, if all of these criteria are satisfied OR the correlation between the candidates is particularly high (&gt;0.98), while there is sufficient overlap (as defined by the overlap criterion).</strong></p>
 <p>The output for a database named <code>DB</code> is saved under <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code>.</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
