@@ -855,27 +855,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-records-to-be-removed" class="md-nav__link">
+  <a href="#331-records-to-be-removed" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Records to be removed
+      3.3.1. Records to be removed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-records-to-be-composited" class="md-nav__link">
+  <a href="#332-records-to-be-composited" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Records to be composited
+      3.3.2. Records to be composited
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-check-for-overlaps-between-remove-and-composite-type-records" class="md-nav__link">
+  <a href="#333-check-for-multiple-duplicate-records-with-different-decisions" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Check for overlaps between 'REMOVE' and 'COMPOSITE' type records
+      3.3.3. Check for multiple duplicate records with different decisions
     </span>
   </a>
   
@@ -1470,27 +1470,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1-records-to-be-removed" class="md-nav__link">
+  <a href="#331-records-to-be-removed" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Records to be removed
+      3.3.1. Records to be removed
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-records-to-be-composited" class="md-nav__link">
+  <a href="#332-records-to-be-composited" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Records to be composited
+      3.3.2. Records to be composited
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#3-check-for-overlaps-between-remove-and-composite-type-records" class="md-nav__link">
+  <a href="#333-check-for-multiple-duplicate-records-with-different-decisions" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Check for overlaps between 'REMOVE' and 'COMPOSITE' type records
+      3.3.3. Check for multiple duplicate records with different decisions
     </span>
   </a>
   
@@ -1598,7 +1598,10 @@ The following libraries are required to run this notebook</p>
 <span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
 </code></pre></div></p>
 <h3 id="13-run-the-duplicate-detection-algorithm">1.3 Run the duplicate detection algorithm</h3>
-<p>Now run the first part of the duplicate detection algorithm, which goes through each candidate pair and evaluates the pairs for the following criteria:</p>
+<p>Now run the first part of the duplicate detection algorithm, which goes through each candidate pair and evaluates the pairs according to a defined set of criteria.</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div>
+<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code></p>
 <div class="admonition abstract">
 <p class="admonition-title">Detection Criteria</p>
 <ul>
@@ -1623,9 +1626,6 @@ The following libraries are required to run this notebook</p>
 <p class="admonition-title">Flagging Logic</p>
 <p><strong>A potential duplicate candidate pair is flagged, if all of these criteria are satisfied OR the correlation between the candidates is particularly high (&gt;0.98), while there is sufficient overlap (as defined by the overlap criterion).</strong></p>
 </div>
-<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code></p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</code></pre></div>
 <details class="tip" open="open">
 <summary>Tip for large databases</summary>
 <p>The duplicate detection algorithm can take a while to run, especially for large databases (such as the merged database with over 5000 records). 
@@ -1661,12 +1661,12 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
  -->
 
 <p><em>Optional:</em> Plot flagged candidate pairs. Figures are saved to <code>figs/DB/dup_detection/</code>.</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>These same figures are used in the duplicate decision process.</p>
 </div>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
 <h2 id="step-2-duplicate-decisions-dup_decisionipynb"><strong>Step 2: Duplicate decisions (<code>dup_decision.ipynb</code>)</strong></h2>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_decision/"><code>dup_decision.ipynb</code></a></p>
 <p>This interactive notebook (<code>dup_decision.ipynb</code>) runs a duplicate decision algorithm for a specific database, following the identification of the potential duplicate candidate pairs. The algorithm walks the operator through each of the detected duplicate candidate pairs from <code>dup_detection.ipynb</code> and runs a decision process to decide whether to keep or reject the identified records.  </p>
@@ -1689,7 +1689,7 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 
 <h3 id="22-hierarchy-for-duplicate-removal-for-identical-duplicates">2.2 Hierarchy for duplicate removal for identical duplicates</h3>
 <p>For automated decisions, which apply to <em>identical</em> duplicates, we have defined a hierarchy of databases, which decides which record should be kept.</p>
-<p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value $n$ (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. Note that this parameter is not migrated to the final duplicate free database. </p>
+<p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value n (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. Note that this parameter is not migrated to the final duplicate free database. </p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGES2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
@@ -1768,13 +1768,21 @@ For candidate pairs which have a very high correlation and.or for which the meta
 The final output is saved in `data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv`
 
 Summary figures are saved in the directory `figs/dup_detection/DB`, and are also linked in the output csv file. -->
-<p><strong>Example prompts:</strong>
-<div class="highlight"><pre><span></span><code>**Decision required for this duplicate pair (see figure above).**
+
+<p><strong>Example prompts:</strong></p>
+<figure>
+  <img alt="Duplicate summary figure" src="../../assets/images/dup_detection/duplicate_candidate_pair.jpg" width="800" />
+<br />
+<figcaption>Figure 1: Summary figure of a potential duplicate candidate pair, for which the operator is asked to make a decision.</figcaption>
+</figure>
+<p><div class="highlight"><pre><span></span><code>**Decision required for this duplicate pair (see figure above).**
 Would you like to leave a comment on your decision process?
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>Keep record 1 (pages2k_50, black) [1], record 2 (FE23_northamerica_canada_cana091, blue) [2], 
 keep both [b], keep none [n] or create a composite [c]? [Type 1/2/b/n/c]
 </code></pre></div></p>
+<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv</code></p>
+<p><strong>Figures:</strong> <code>figs/dup_detection/DB/</code> (linked in output CSV)</p>
 <div class="admonition note">
 <p class="admonition-title">Backup &amp; Resume</p>
 <p>The process creates backup files in <code>data/DB/dup_detection/</code>. If interrupted, you can resume from the backup.</p>
@@ -1794,14 +1802,16 @@ keep both [b], keep none [n] or create a composite [c]? [Type 1/2/b/n/c]
 </li>
 </ol>
 </details>
-<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv</code></p>
-<p><strong>Figures:</strong> <code>figs/dup_detection/DB/</code> (linked in output CSV)</p>
 <hr />
 <h2 id="step-3-duplicate-removal-dup_removalipynb"><strong>Step 3: Duplicate removal (<code>dup_removal.ipynb</code>)</strong></h2>
-<p>This interactive notebook (<code>dup_removal.ipynb</code>) removes the duplicates flagged in <code>dup_detection.ipynb</code>, following the decisions made in <code>dup_decision.ipynb</code>. The decisions include
+<p><strong>Notebook:</strong> <a href="../../notebooks/dup_removal/"><code>dup_removal.ipynb</code></a></p>
+<p>This notebook removes duplicates based on decisions from Step 2.</p>
+<!-- This interactive notebook (`dup_removal.ipynb`) removes the duplicates flagged in `dup_detection.ipynb`, following the decisions made in `dup_decision.ipynb`. The decisions include
 - removal of redundant duplicates
-- creation of composites</p>
-<p>To view the interactive notebook see <a href="../../notebooks/dup_removal/">dup_removal.ipynb</a>. </p>
+- creation of composites
+
+ To view the interactive notebook see [dup_removal.ipynb](../notebooks/dup_removal.ipynb).  -->
+
 <h3 id="31-initialisation">3.1 Initialisation</h3>
 <p>To set up the working directory and load the compact dataframe, please follow the instructions detailed in steps 1.1 (set up working directory), 1.2 (load compact dataframe) and 2.1 (provide operator credentials).</p>
 <p>In addition, <code>datasetId</code> needs to be set as dataframe index to reliably identify the duplicates later on:
@@ -1850,12 +1860,12 @@ keep both [b], keep none [n] or create a composite [c]? [Type 1/2/b/n/c]
 <p>Note that any one record can appear more than once and have multiple decisions associated with it (e.g. <code>'REMOVE'</code>, <code>'KEEP'</code> or <code>'COMPOSITE'</code>).</p>
 <p>In order to remove the duplicates we therefore implement the following steps:</p>
 <ol>
-<li>Records to be REMOVED. Remove all records from the dataframe which are associated with the decision <code>'REMOVE'</code> and save in <code>df_dupfree_rmv</code></li>
-<li>Records to be COMPOSITED. Create compounds of the records and save in <code>df_composite</code></li>
-<li>Now check for records which have both <code>'REMOVE'</code> and <code>'COMPOSITE'</code> associated. These are potentially remaining duplicates. We check for this later in the notebook.</li>
+<li><strong>Remove</strong> all records from the dataframe which are associated with the decision <code>'REMOVE'</code> or <code>COMPOSITE</code> -&gt; <code>df_dupfree_rmv</code></li>
+<li><strong>Create composites</strong> of the <code>COMPOSITE</code> records -&gt; <code>df_composite</code></li>
+<li><strong>Check</strong> for records which have multiple decisions associated. These are potentially remaining duplicates.</li>
 </ol>
 </div>
-<h4 id="1-records-to-be-removed">1. Records to be removed</h4>
+<h4 id="331-records-to-be-removed">3.3.1. Records to be removed</h4>
 <p>First simply remove all the records to which the decision <code>REMOVE</code> or <code>COMPOSITE</code> applies to and store in <code>df_dupfree_rmv</code>, while all <code>'REMOVE'</code> or <code>'COMPOSITE'</code> type records are stored in <code>df_duplica_rmv</code> (for later inspection).</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
@@ -1875,7 +1885,7 @@ keep both [b], keep none [n] or create a composite [c]? [Type 1/2/b/n/c]
             <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span> <span class="n">df_dupfree_rmv</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
 </code></pre></div>
-<h4 id="2-records-to-be-composited">2. Records to be composited</h4>
+<h4 id="332-records-to-be-composited">3.3.2. Records to be composited</h4>
 <p>Now identify all the records to which the decision <code>'COMPOSITE'</code> applies to, create composites and store in <code>df_composite</code>. 
 For differences in the numerical metadata we use the average (e.g. <code>geo_meanLat</code>, <code>geo_meanLon</code>, ...), while for string types we merge the strings to form a composite. The <code>datasetId</code> is created from both original values to <code>'f{df.name}_composite_z_{ID_1}_{ID_2}'</code>, with <code>ID_1</code> and <code>ID_2</code> the original <code>datasetId</code> for each record. The data is being composited by averaging the z-scores of the original data. </p>
 <p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># add the column &#39;duplicateDetails&#39; to df, in case it does not exist</span>
@@ -1889,7 +1899,7 @@ For differences in the numerical metadata we use the average (e.g. <code>geo_mea
 <span class="n">df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
 </code></pre></div>
 The function <code>join_composites_metadata</code> also creates summary figures of the composites in order to supervise the composition process. </p>
-<h4 id="3-check-for-overlaps-between-remove-and-composite-type-records">3. Check for overlaps between <code>'REMOVE'</code> and <code>'COMPOSITE'</code> type records</h4>
+<h4 id="333-check-for-multiple-duplicate-records-with-different-decisions">3.3.3. Check for multiple duplicate records with different decisions</h4>
 <p>Before merging and saving the duplicate free dataframe we still need to ensure that there is no overlap between <code>'COMPOSITE'</code> and <code>'REMOVE'</code> type duplicates. We first collect a list of these duplicates via </p>
 <p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">overlap_rmv_cmp</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">decisions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -1897,7 +1907,10 @@ The function <code>join_composites_metadata</code> also creates summary figures 
         <span class="n">overlap_rmv_cmp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
 </code></pre></div>
 If the list is empty, we can proceed to the merging and saving of <code>df_dupfree</code>. If not we need to address the overlap via </p>
-<p><strong>COMING SOON</strong></p>
+<div class="admonition warning">
+<p class="admonition-title">Coming Soon</p>
+<p>Handling for overlaps is under development.</p>
+</div>
 <h3 id="34-save-duplicate-free-dataframe">3.4 Save duplicate free dataframe</h3>
 <p>Merge <code>df_composite</code> and <code>df_dupfree_rmv</code> to create duplicate free dataframe:</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
@@ -1921,7 +1934,10 @@ Now save the dataframe to pickle, and to csv:</p>
     <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div>
-<p><strong>This terminates the duplicate workflow</strong> </p>
+<div class="admonition success">
+<p class="admonition-title">Workflow Complete</p>
+<p>The duplicate detection workflow is now finished!</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For more details on the interactive notebooks, see 
