@@ -769,15 +769,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#14-optional-display-the-duplicate-candidate-summary-figures" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.4 Optional: display the duplicate candidate summary figures
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1393,15 +1384,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#14-optional-display-the-duplicate-candidate-summary-figures" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.4 Optional: display the duplicate candidate summary figures
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1639,18 +1621,11 @@ The following libraries are required to run this notebook</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Flagging Logic</p>
-</div>
 <p><strong>A potential duplicate candidate pair is flagged, if all of these criteria are satisfied OR the correlation between the candidates is particularly high (&gt;0.98), while there is sufficient overlap (as defined by the overlap criterion).</strong></p>
-<p>The output for a database named <code>DB</code> is saved under <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code>.</p>
+</div>
+<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code></p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="14-optional-display-the-duplicate-candidate-summary-figures">1.4 Optional: display the duplicate candidate summary figures</h3>
-<p><em>OPTIONAL</em>: plot the duplicate candidate pairs, which were flagged by the duplicate detection algorithm. 
-The function <code>plot_duplicates</code> loads the flagged candidate pairs for a database named <code>DB</code> from csv (<code>data/DB/dup_detection/dup_detection_candidates_DB.csv</code>) and produces summary figures of the potential duplicates, which are saved in the directory <code>figs/DB/dup_detection/</code>.</p>
-<p><strong>Note that the same summary figures are being used for the duplicate decision process (<code>dup_decisions.ipynb</code>).</strong></p>
-<p>Run
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div></p>
 <details class="tip" open="open">
 <summary>Tip for large databases</summary>
 <p>The duplicate detection algorithm can take a while to run, especially for large databases (such as the merged database with over 5000 records). 
@@ -1666,8 +1641,35 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 <div class="highlight"><span class="filename">bash</span><pre><span></span><code>python<span class="w"> </span>scripts/dup_detection.py
 </code></pre></div></p>
 </details>
+<!-- The output for a database named `DB` is saved under `data/DB/dup_detection/dup_detection_candidates_DB.csv`.
+
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="err">```</span> <span class="o">--&gt;</span>
+
+
+<span class="c1">### 1.4 Optional: display the duplicate candidate summary figures</span>
+
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span> <span class="o">*</span><span class="n">OPTIONAL</span><span class="o">*</span><span class="p">:</span> <span class="n">plot</span> <span class="n">the</span> <span class="n">duplicate</span> <span class="n">candidate</span> <span class="n">pairs</span><span class="p">,</span> <span class="n">which</span> <span class="n">were</span> <span class="n">flagged</span> <span class="n">by</span> <span class="n">the</span> <span class="n">duplicate</span> <span class="n">detection</span> <span class="n">algorithm</span><span class="o">.</span> 
+<span class="n">The</span> <span class="n">function</span> <span class="err">`</span><span class="n">plot_duplicates</span><span class="err">`</span> <span class="n">loads</span> <span class="n">the</span> <span class="n">flagged</span> <span class="n">candidate</span> <span class="n">pairs</span> <span class="k">for</span> <span class="n">a</span> <span class="n">database</span> <span class="n">named</span> <span class="err">`</span><span class="n">DB</span><span class="err">`</span> <span class="kn">from</span><span class="w"> </span><span class="nn">csv</span> <span class="p">(</span><span class="err">`</span><span class="n">data</span><span class="o">/</span><span class="n">DB</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">/</span><span class="n">dup_detection_candidates_DB</span><span class="o">.</span><span class="n">csv</span><span class="err">`</span><span class="p">)</span> <span class="ow">and</span> <span class="n">produces</span> <span class="n">summary</span> <span class="n">figures</span> <span class="n">of</span> <span class="n">the</span> <span class="n">potential</span> <span class="n">duplicates</span><span class="p">,</span> <span class="n">which</span> <span class="n">are</span> <span class="n">saved</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">directory</span> <span class="err">`</span><span class="n">figs</span><span class="o">/</span><span class="n">DB</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">/</span><span class="err">`</span><span class="o">.</span>
+
+<span class="o">**</span><span class="n">Note</span> <span class="n">that</span> <span class="n">the</span> <span class="n">same</span> <span class="n">summary</span> <span class="n">figures</span> <span class="n">are</span> <span class="n">being</span> <span class="n">used</span> <span class="k">for</span> <span class="n">the</span> <span class="n">duplicate</span> <span class="n">decision</span> <span class="n">process</span> <span class="p">(</span><span class="err">`</span><span class="n">dup_decisions</span><span class="o">.</span><span class="n">ipynb</span><span class="err">`</span><span class="p">)</span><span class="o">.**</span>
+
+<span class="n">Run</span>
+<span class="err">```</span><span class="n">python</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;python3/Jupyter&quot;</span>
+<span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+ -->
+
+<p><em>Optional:</em> Plot flagged candidate pairs. Figures are saved to <code>figs/DB/dup_detection/</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These same figures are used in the duplicate decision process.</p>
+</div>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="step-2-duplicate-decisions-dup_decisionipynb"><strong>Step 2: Duplicate decisions (<code>dup_decision.ipynb</code>)</strong></h2>
-<p>This interactive notebook (<code>dup_decision.ipynb</code>) runs a duplicate decision algorithm for a specific database, following the identification of the potential duplicate candidate pairs. The algorithm walks the operator through each of the detected duplicate candidate pairs from <code>dup_detection.ipynb</code> and runs a decision process to decide whether to keep or reject the identified records.   To view the interactive notebook see <a href="../../notebooks/dup_decision/">dup_decision.ipynb</a>. </p>
+<p><strong>Notebook:</strong> <a href="../../notebooks/dup_decision/"><code>dup_decision.ipynb</code></a></p>
+<p>This interactive notebook (<code>dup_decision.ipynb</code>) runs a duplicate decision algorithm for a specific database, following the identification of the potential duplicate candidate pairs. The algorithm walks the operator through each of the detected duplicate candidate pairs from <code>dup_detection.ipynb</code> and runs a decision process to decide whether to keep or reject the identified records.  </p>
 <h3 id="21-initialisation">2.1 Initialisation</h3>
 <p>To set up the working directory and load the compact dataframe, please follow the instructions detailed in  steps 1.1 (set up working directory) and 1.2 (load compact dataframe). </p>
 <p>In addition, the operator is asked to provide their credentials along with the decision process. Please fill in your details:</p>
@@ -1676,7 +1678,15 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 <span class="n">email</span>    <span class="o">=</span> <span class="s1">&#39;name@email.ac.uk&#39;</span>
 <span class="n">operator_details</span> <span class="o">=</span> <span class="p">[</span><span class="n">initials</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">email</span><span class="p">]</span>
 </code></pre></div>
-<p>The initials are used to label the intermediate output files for the next steps of the workflow, and the name and email address will be saved in the final duplicate free dataframe to ensure transparency and traceability.</p>
+<div class="admonition info">
+<p class="admonition-title">Why Credentials?</p>
+<ul>
+<li>Initials label intermediate output files</li>
+<li>Name and email ensure transparency and traceability</li>
+</ul>
+</div>
+<!-- The initials are used to label the intermediate output files for the next steps of the workflow, and the name and email address will be saved in the final duplicate free dataframe to ensure transparency and traceability. -->
+
 <h3 id="22-hierarchy-for-duplicate-removal-for-identical-duplicates">2.2 Hierarchy for duplicate removal for identical duplicates</h3>
 <p>For automated decisions, which apply to <em>identical</em> duplicates, we have defined a hierarchy of databases, which decides which record should be kept.</p>
 <p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value $n$ (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. Note that this parameter is not migrated to the final duplicate free database. </p>
@@ -1687,53 +1697,106 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SISAL v3&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 </code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This hierarchy is not saved in the final duplicate-free database.</p>
+</div>
 <h3 id="23-duplicate-decision-process">2.3 Duplicate decision process</h3>
-<p>The following cell takes you through the potential duplicate candidate pairs and lets you decide whether to 
-- keep both records
-- keep just one record
-- delete both records
-- create composite of both records.</p>
-<p>Recollections and updates of duplicates are automatically selected (<code>choose_recollection=True</code>), as well as identical duplicates following the hierarchy defined above (<code>remove_identicals=True</code>). </p>
-<p>The duplicate decision algorithm is then initiated via:</p>
-<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+<p>Run the decision algorithm:
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> 
+                        <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<strong>Decision options for each pair:</strong></p>
+<ul>
+<li>keep both records</li>
+<li>keep just one record</li>
+<li>delete both records</li>
+<li>create composite of both records.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Automated Decisions</p>
+<ul>
+<li>Recollections/updates: automatically selected</li>
+<li>Identical duplicates: highest hierarchy record kept automatically</li>
+</ul>
+</div>
+<!-- Recollections and updates of duplicates are automatically selected (`choose_recollection=True`), as well as identical duplicates following the hierarchy defined above (`remove_identicals=True`).  -->
+
+<!-- The duplicate decision algorithm is then initiated via:
+
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                         <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-This function goes one-by-one through the individual duplicate candidate pairs and scans the data and metadata. For identical duplicates (defined as very high correlation and identical metadata, or perfect correlation), the algorithm makes an automated decision, in which the database with the highest hierarchical position is being chosen to keep (decision <code>KEEP</code>), while the other record will be removed (decision <code>REMOVE</code>). For other duplciates, the operator needs to provide manual input, based on a summary figure (see Figure 1). </p>
-<figure>
-  <img alt="Duplicate summary figure" src="../../assets/images/dup_detection/duplicate_candidate_pair.jpg" width="800" />
-<br />
-<figcaption>Figure 1: Summary figure of a potential duplicate candidate pair, for which the operator is asked to make a decision.</figcaption>
+This function goes one-by-one through the individual duplicate candidate pairs and scans the data and metadata. For identical duplicates (defined as very high correlation and identical metadata, or perfect correlation), the algorithm makes an automated decision, in which the database with the highest hierarchical position is being chosen to keep (decision `KEEP`), while the other record will be removed (decision `REMOVE`). For other duplciates, the operator needs to provide manual input, based on a summary figure (see Figure 1).  -->
+
+<!-- <figure markdown="span">
+  ![Duplicate summary figure](../assets/images/dup_detection/duplicate_candidate_pair.jpg){ width="800" }
+  <figcaption>Figure 1: Summary figure of a potential duplicate candidate pair, for which the operator is asked to make a decision.</figcaption>
 </figure>
-<p>The operator is first presented with the option to leave a note on the decision process: </p>
+
+The operator is first presented with the option to leave a note on the decision process: 
+
 <div class="highlight"><pre><span></span><code>**Decision required for this duplicate pair (see figure above).**
 Before inputting your decision. Would you like to leave a comment on your decision process?
 </code></pre></div>
-<p>This adds transparency on the decision process and justifies the operators choices. </p>
-<p>Next, the operator is asked to make the following decision, for example:</p>
+
+This adds transparency on the decision process and justifies the operators choices. 
+
+Next, the operator is asked to make the following decision, for example:
+
 <div class="highlight"><pre><span></span><code>Keep record 1 (pages2k_50, black) [1], record 2 (FE23_northamerica_canada_cana091, blue) [2], keep both [b], keep none [n] or create a composite of both records [c]?  [Type 1/2/b/n/c]
 </code></pre></div>
-<p>For candidate pairs which have a very high correlation and.or for which the metadata is identical, we have implemented an automated choice, in which the data record from the most recently published database is automatically chosen. This means less user inout is required and is especially helpful for very large databases with hundreds of duplicates. </p>
+
+For candidate pairs which have a very high correlation and.or for which the metadata is identical, we have implemented an automated choice, in which the data record from the most recently published database is automatically chosen. This means less user inout is required and is especially helpful for very large databases with hundreds of duplicates. 
+
+
+!!! Note
+
+    The operator has the option to restart the decision process from a backup file in the directory `data/DB/dup_detection`. This can be especially useful should the connection be interrupted during the process. If such a file exists, the operator would be asked wether they want to use this file to restart the decision process. The decision process will then restart where the backup file cut out. This works for multiple interruptions.
+
+??? question "Can I reverse a decision?"
+
+    There is currently no option to reverse a decision while running the duplicate decisions. However should the operator want to revise a previous decision they have two options: 
+
+    1. If this concerns the most recent decision, the operator should interrupt the decision process and remove the last line from the backup file (`data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv`). They could then restart the decision process and the process will restart from the last line in the backup file, so the operator has the opportunity to revise their last decision.
+
+    2. They could interrupt the decision process and directly edit the backup file. The backup file (`data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv`) is a spreasheet which can be edited directly and the decisions can be revised under 'Decision 1' and 'Decision 2' (columns X and Y in Microsoft Excel). Note that the operator should keep to the standard terminology of input to avoid problems further downstream, i.e. use `KEEP`, `REMOVE` or `COMPOSITE` only. 
+
+    3. The operator could complete the decision process and manually edit the final decision output file. Please make sure to use correct terminology as in option #2.
+
+
+The final output is saved in `data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv`
+
+Summary figures are saved in the directory `figs/dup_detection/DB`, and are also linked in the output csv file. -->
+<p><strong>Example prompts:</strong>
+<div class="highlight"><pre><span></span><code>**Decision required for this duplicate pair (see figure above).**
+Would you like to leave a comment on your decision process?
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Keep record 1 (pages2k_50, black) [1], record 2 (FE23_northamerica_canada_cana091, blue) [2], 
+keep both [b], keep none [n] or create a composite [c]? [Type 1/2/b/n/c]
+</code></pre></div></p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The operator has the option to restart the decision process from a backup file in the directory <code>data/DB/dup_detection</code>. This can be especially useful should the connection be interrupted during the process. If such a file exists, the operator would be asked wether they want to use this file to restart the decision process. The decision process will then restart where the backup file cut out. This works for multiple interruptions.</p>
+<p class="admonition-title">Backup &amp; Resume</p>
+<p>The process creates backup files in <code>data/DB/dup_detection/</code>. If interrupted, you can resume from the backup.</p>
 </div>
 <details class="question">
-<summary>Can I reverse a decision?</summary>
+<summary>Can I Reverse a Decision?</summary>
 <p>There is currently no option to reverse a decision while running the duplicate decisions. However should the operator want to revise a previous decision they have two options: </p>
 <ol>
 <li>
-<p>If this concerns the most recent decision, the operator should interrupt the decision process and remove the last line from the backup file (<code>data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv</code>). They could then restart the decision process and the process will restart from the last line in the backup file, so the operator has the opportunity to revise their last decision.</p>
+<p><strong>Most recent decision:</strong> Interrupt the process, remove the last line from the backup file (<code>data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv</code>), then restart.</p>
 </li>
 <li>
-<p>They could interrupt the decision process and directly edit the backup file. The backup file (<code>data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv</code>) is a spreasheet which can be edited directly and the decisions can be revised under 'Decision 1' and 'Decision 2' (columns X and Y in Microsoft Excel). Note that the operator should keep to the standard terminology of input to avoid problems further downstream, i.e. use <code>KEEP</code>, <code>REMOVE</code> or <code>COMPOSITE</code> only. </p>
+<p><strong>Any decision:</strong> Interrupt and directly edit the backup file columns 'Decision 1' and 'Decision 2'. Use only: <code>KEEP</code>, <code>REMOVE</code>, or <code>COMPOSITE</code>.</p>
 </li>
 <li>
-<p>The operator could complete the decision process and manually edit the final decision output file. Please make sure to use correct terminology as in option #2.</p>
+<p><strong>After completion:</strong> Manually edit the final output file with correct terminology.</p>
 </li>
 </ol>
 </details>
-<p>The final output is saved in <code>data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv</code></p>
-<p>Summary figures are saved in the directory <code>figs/dup_detection/DB</code>, and are also linked in the output csv file.</p>
+<p><strong>Output:</strong> <code>data/DB/dup_detection/dup_decisions_dod2k_dupfree_INITIALS_DATE.csv</code></p>
+<p><strong>Figures:</strong> <code>figs/dup_detection/DB/</code> (linked in output CSV)</p>
+<hr />
 <h2 id="step-3-duplicate-removal-dup_removalipynb"><strong>Step 3: Duplicate removal (<code>dup_removal.ipynb</code>)</strong></h2>
 <p>This interactive notebook (<code>dup_removal.ipynb</code>) removes the duplicates flagged in <code>dup_detection.ipynb</code>, following the decisions made in <code>dup_decision.ipynb</code>. The decisions include
 - removal of redundant duplicates
