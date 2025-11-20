@@ -756,6 +756,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#complete-workflow-summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Workflow Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -1258,6 +1267,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#complete-workflow-summary_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Complete Workflow Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#step-1-load-the-input-databases-from-source" class="md-nav__link">
     <span class="md-ellipsis">
       Step 1: Load the input databases from source
@@ -1369,6 +1387,28 @@
 <p class="admonition-title">Time Investment</p>
 <p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
 </div>
+<h2 id="complete-workflow-summary_1">Complete Workflow Summary</h2>
+<pre class="mermaid"><code>graph LR
+    A[Load&lt;br/&gt;Databases] --&gt; B[Merge]
+    B --&gt; C[Detect&lt;br/&gt;Duplicates]
+    C --&gt; D[Review]
+    D --&gt; E[Remove]
+    E --&gt; F{Check?}
+    F --&gt;|Residuals| C
+    F --&gt;|Clean| G[Final&lt;br/&gt;DoD2k]
+    G --&gt; H[Analyze]</code></pre>
+<p><strong>Expected timeline:</strong></p>
+<ul>
+<li>Loading databases: 2-4 hours</li>
+<li>Merging: 10-30 minutes</li>
+<li>Duplicate detection: 1-3 hours (depending on database size)</li>
+<li>Duplicate decisions: 4-8 hours (manual review required)</li>
+<li>Duplicate removal: 10-20 minutes</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Time Investment</p>
+<p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
+</div>
 <h2 id="step-1-load-the-input-databases-from-source">Step 1: Load the input databases from source</h2>
 <p>Load each database using the interactive notebooks in <code>dod2k/notebooks/</code>. Each notebook is named <code>load_DB.ipynb</code> for database <code>DB</code>.</p>
 <details class="info">
@@ -1447,16 +1487,16 @@
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dataset_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pages2k&#39;</span><span class="p">,</span> <span class="s1">&#39;fe23&#39;</span><span class="p">,</span> <span class="s1">&#39;ch2k&#39;</span><span class="p">,</span> <span class="s1">&#39;iso2k&#39;</span><span class="p">,</span> <span class="s1">&#39;sisal&#39;</span> <span class="p">]</span>
 </code></pre></div>
 <p>The merged compact dataframe is saved in <code>data/all_merged/</code>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">See Also</p>
 <p>For detailed merging instructions, see <a href="../load_merge/">Loading &amp; Merging Databases</a>.</p>
 </div>
 <h2 id="step-3-run-the-duplicate-detection-workflow">Step 3: Run the duplicate detection workflow</h2>
 <p>The merged dataset must go through the three-step duplicate workflow.</p>
 <p>In the duplicate workflow, potential duplicate candidates are first flagged. While some duplicates are obviously identical, in which case one of the records is automatically removed, a number of duplicates require expert decisions. The operator then has to go through these candidate pairs and manually inspect the potential duplicates and make a decision for each of those pairs. 
 Ultimately, the decisions are implemented and the identified duplicates are removed from the dataset. </p>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
+<div class="admonition tip">
+<p class="admonition-title">See Also</p>
 <p>For complete details on the duplicate detection workflow, see <a href="../duplicate/">Duplicate Detection Tutorial</a>.</p>
 </div>
 <h3 id="31-duplicate-detection">3.1 Duplicate detection</h3>
@@ -1547,22 +1587,37 @@ and subsequently
 <p>The notebook processes duplicates in four steps:</p>
 <ol>
 <li>
-<p><strong>Remove records marked as <code>REMOVE</code></strong> - All records flagged for removal are separated into <code>df_duplica_rmv</code> (for inspection) and dropped from the working dataframe</p>
+<p><strong>Remove records marked as <code>REMOVE</code></strong> - All records flagged for removal are separated into <code>df_duplica_rmv</code> (for inspection) and dropped from the working dataframe <code>df_dupfree_rmv</code></p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
+<span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+<span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+<span class="n">remove_IDs</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span>
+
+<span class="n">df_dupfree_rmv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong>Create composites</strong> - Records marked as <code>COMPOSITE</code> are averaged (z-scores for data values, means for coordinates) and given new composite IDs. Summary figures are generated for quality control.</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records to be composited</span>
+<span class="n">comp_ID_pairs</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="p">[(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
+
+<span class="c1"># create new composite data and metadata from the pairs</span>
+<span class="n">df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+</code></pre></div>
 </li>
 <li>
 <p><strong>Check for overlapping decisions</strong> - The algorithm identifies any records with conflicting decisions (e.g., both <code>REMOVE</code> and <code>COMPOSITE</code> from different duplicate pairs)</p>
-</li>
-<li>
-<p><strong>Merge results</strong> - Cleaned records (<code>df_dupfree_rmv</code>) and composites (<code>df_composite</code>) are combined into the final duplicate-free database</p>
-</li>
-</ol>
 <div class="admonition warning">
 <p class="admonition-title">Multiple Duplicates Handling - Under Construction</p>
 <p>Automated screening for records with multiple conflicting duplicate decisions is currently under development. Such cases should be manually reviewed if they occur.</p>
 </div>
+</li>
+<li>
+<p><strong>Merge results</strong> - Cleaned records (<code>df_dupfree_rmv</code>) and composites (<code>df_composite</code>) are combined into the final duplicate-free database</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tmp_df_dupfree_rmv</span><span class="p">,</span> <span class="n">tmp_df_composite</span><span class="p">])</span>
+</code></pre></div>
+</li>
+</ol>
 <div class="admonition info">
 <p class="admonition-title">Detailed Instructions</p>
 <p>For complete step-by-step code and explanations, see Section 3.3 of the <a href="../duplicate/#33-implement-duplicate-decisions">Duplicate Detection Tutorial</a>.</p>
