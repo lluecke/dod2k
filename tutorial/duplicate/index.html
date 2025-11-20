@@ -239,17 +239,18 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../use_dod2k/" class="md-tabs__link">
-        
-  
-  
     
+    
+      <li class="md-tabs__item">
+        <a href="../../dod2k/" class="md-tabs__link">
+          
+  
   
   DoD2k
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -413,9 +414,27 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../use_dod2k/" class="md-nav__link">
+    
+    
+    
+    
+      
+      
         
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -424,7 +443,65 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DoD2k
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_dod2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Use DoD2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -633,7 +710,7 @@
   
   
   <span class="md-ellipsis">
-    DoD2k
+    Use DoD2k
     
   </span>
   
@@ -1529,9 +1606,9 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 <p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
                         <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
-This takes the ope</p>
+This function goes one-by-one through the individual duplicate candidate pairs and scans the data and metadata. For identical duplicates (defined as very high correlation and identical metadata, or perfect correlation), the algorithm makes an automated decision, in which the database with the highest hierarchical position is being chosen to keep (decision <code>KEEP</code>), while the other record will be removed (decision <code>REMOVE</code>). For other duplciates, the operator needs to provide manual input, based on a summary figure (see Figure 1). </p>
 <figure>
-  <img alt="Duplicate summary figure" src="../assets/images/dup_detection/duplicate_candidate_pair.jpg" width="800" />
+  <img alt="Duplicate summary figure" src="../../assets/images/dup_detection/duplicate_candidate_pair.jpg" width="800" />
 <br />
 <figcaption>Figure 1: Summary figure of a potential duplicate candidate pair, for which the operator is asked to make a decision.</figcaption>
 </figure>
