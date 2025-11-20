@@ -1533,6 +1533,8 @@ and subsequently
 <li><strong>Manual:</strong> Ambiguous cases require operator review with summary figures</li>
 </ul>
 </div>
+<p>!! tip "Backup &amp; Resume Functionality"
+    The decision process automatically creates backup files in <code>data/all_merged/dup_detection/</code>. If your session is interrupted, you can restart the process and it will resume from where the backup left off. This is especially useful for large databases with hundreds of duplicate pairs.</p>
 <h3 id="33-remove-duplicates">3.3 Remove Duplicates</h3>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_removal/">dup_removal.ipynb</a></p>
 <p>Implement the decisions to create the final duplicate-free database.</p>
@@ -1554,6 +1556,10 @@ and subsequently
 <li>Check for overlapping decisions</li>
 <li>Merge results into final dataframe</li>
 </ol>
+<div class="admonition warning">
+<p class="admonition-title">Multiple Duplicates Handling - Under Construction</p>
+<p>The automated screening for records with multiple conflicting duplicate decisions (e.g., both <code>REMOVE</code> and <code>COMPOSITE</code>) is currently under development. For now, such cases should be manually reviewed if they occur.</p>
+</div>
 <p><strong>Save the duplicate-free database:</strong>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
 <span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
@@ -1575,10 +1581,6 @@ and subsequently
 <span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></p>
 <p><strong>Output:</strong> Duplicate-free database saved in <code>data/all_merged_INITIALS_DATE_dupfree/</code></p>
-<div class="admonition success">
-<p class="admonition-title">Duplicate Detection Complete</p>
-<p>The database is now free of duplicates and ready for analysis.</p>
-</div>
 <hr />
 <h2 id="step-4-rerun-duplicate-detection-optional">Step 4: Rerun Duplicate Detection (Optional)</h2>
 <p>After creating the initial duplicate-free database, you may want to verify no residual duplicates remain.</p>
@@ -1591,6 +1593,10 @@ and subsequently
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div></p>
 <p>If additional duplicates are found, repeat Steps 3.2 and 3.3. This creates a <code>dupfree_dupfree</code> database, ensuring thoroughness.</p>
+<div class="admonition success">
+<p class="admonition-title">Duplicate Detection Complete</p>
+<p>The database is now free of duplicates and ready for analysis.</p>
+</div>
 <h2 id="step-5-load-and-visualize-the-final-database">Step 5: Load and Visualize the Final Database</h2>
 <p><strong>Notebook:</strong> <a href="../../notebooks/df_info/">df_info.ipynb</a> and <a href="../../notebooks/df_plot_dod2k/">df_plot_dod2k.ipynb</a></p>
 <p>Load your final DoD2k database:
@@ -1610,7 +1616,7 @@ and subsequently
 </div>
 <hr />
 <h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
-<div class="highlight"><pre><span></span><code>graph TD
+<pre class="mermaid"><code>graph TD
     A[Load Individual Databases] --&gt; B[Merge Databases]
     B --&gt; C[Detect Duplicates]
     C --&gt; D[Review Duplicates]
@@ -1618,16 +1624,7 @@ and subsequently
     E --&gt; F{Residual Duplicates?}
     F --&gt;|Yes| C
     F --&gt;|No| G[Final DoD2k Database]
-    G --&gt; H[Visualize &amp; Analyze]
-</code></pre></div>
-<p><strong>Expected timeline:</strong></p>
-<ul>
-<li>Loading databases: 2-4 hours</li>
-<li>Merging: 10-30 minutes</li>
-<li>Duplicate detection: 1-3 hours (depending on database size)</li>
-<li>Duplicate decisions: 4-8 hours (manual review required)</li>
-<li>Duplicate removal: 10-20 minutes</li>
-</ul>
+    G --&gt; H[Visualize &amp; Analyze]</code></pre>
 <div class="admonition warning">
 <p class="admonition-title">Time Investment</p>
 <p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
