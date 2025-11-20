@@ -322,7 +322,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../notebooks/df_info/" class="md-tabs__link">
+        <a href="../notebooks/" class="md-tabs__link">
           
   
   
@@ -874,6 +874,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../notebooks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../notebooks/df_info/" class="md-nav__link">
         
   
@@ -995,6 +1018,121 @@
   
   <span class="md-ellipsis">
     Duplicate detection - step 3: remove true duplicates
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/load_pages2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load PAGES 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/load_sisal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load SISAL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/load_ch2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load CoralHydro 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/load_iso2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load Iso 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/load_fe23/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load FE23
     
   </span>
   
@@ -1134,7 +1272,7 @@
 </table>
 <p>Since these databases may share a number of records, these databases were subject to a <strong>duplicate detection and removal process</strong>. The resulting output is <strong>DoD2k</strong>.</p>
 <h2 id="visualise-dod2k"><strong>Visualise DoD2k</strong></h2>
-<p>Under <code>dod2k/notebooks</code> you can find the notebook <code>df_plot_dod2k.ipynb</code>. This notebook visualises the dataframe and produces summary figures of the database. It also reproduces the manuscript figures. </p>
+<p>Under <code>dod2k/notebooks</code> you can find the notebook <code>[df_plot_dod2k.ipynb](df_plot_dod2k.ipynb)</code>. This notebook visualises the dataframe and produces summary figures of the database. It also reproduces the manuscript figures. </p>
 <p>Import the python libraries
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1180,7 +1318,7 @@
         <span class="n">other_archives</span>     <span class="o">+=</span><span class="p">[</span><span class="n">at</span><span class="p">]</span>
         <span class="n">archive_colour</span><span class="p">[</span><span class="n">at</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
-Now plot a bar chart of the major archives using <a href="../api/ut_plot.md#plot_count_proxy_by_archive_short"><code>plot_count_proxy_by_archive_short()</code></a></p>
+Now plot a bar chart of the major archives using <a href="../api/ut_plot/#plot_count_proxy_by_archive_short"><code>plot_count_proxy_by_archive_short()</code></a></p>
 <div class="highlight"><pre><span></span><code><span class="n">uplt</span><span class="o">.</span><span class="n">plot_count_proxy_by_archive_short</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archive_proxy_count</span><span class="p">,</span> <span class="n">archive_proxy_ticks</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span> 
 </code></pre></div>
 <figure>
@@ -1243,7 +1381,7 @@ Now plot a bar chart of the major archives using <a href="../api/ut_plot.md#plot
 <br />
 <figcaption>Figure 2: Spatial distribution of records by archive and proxy type.</figcaption>
 </figure>
-<p>For further guidance see the <a href="../tutorial/use_dod2k.ipynb">tutorial</a> and/or the <a href="../notebooks/df_plot_dod2k.ipynb">interactive notebook</a>.</p>
+<p>For further guidance see the <a href="tutorial/use_dod2k.ipynb">tutorial</a> and/or the <a href="../notebooks/df_plot_dod2k/">interactive notebook</a>.</p>
 
 
 

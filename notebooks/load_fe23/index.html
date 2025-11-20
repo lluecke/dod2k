@@ -11,6 +11,8 @@
       
       
       
+        <link rel="prev" href="../load_iso2k/">
+      
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -312,11 +314,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../df_info/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -760,28 +764,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -794,12 +801,35 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Notebooks
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -934,6 +964,526 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_pages2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load PAGES 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_sisal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load SISAL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_ch2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load CoralHydro 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../load_iso2k/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load Iso 2k
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Load FE23
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Load FE23
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#set-up-working-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Set up working environment
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#load-the-source-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      load the source data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-compact-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      create compact dataframe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#save-compact-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      save compact dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="save compact dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#save-pickle" class="md-nav__link">
+    <span class="md-ellipsis">
+      save pickle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      save csv
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualise-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visualise dataframe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#display-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display dataframe
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display dataframe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#display-identification-metadata-datasetname-datasetid-originaldataurl-originaldatabase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Display identification metadata: dataSetName, datasetId, originalDataURL, originalDatabase
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Display identification metadata: dataSetName, datasetId, originalDataURL, originalDatabase">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#index" class="md-nav__link">
+    <span class="md-ellipsis">
+      index
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasetname-associated-with-each-record-may-not-be-unique" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataSetName (associated with each record, may not be unique)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datasetid-unique-identifier-as-given-by-original-authors-includes-original-database-token" class="md-nav__link">
+    <span class="md-ellipsis">
+      datasetId (unique identifier, as given by original authors, includes original database token)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#originaldataurl-urldoi-of-original-published-record-where-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      originalDataURL (URL/DOI of original published record where available)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#originaldatabase-original-database-used-as-input-for-dataframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      originalDatabase (original database used as input for dataframe)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geographical-metadata-elevation-latitude-longitude-site-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      geographical metadata: elevation, latitude, longitude, site name
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="geographical metadata: elevation, latitude, longitude, site name">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geo_meanelev-mean-elevation-in-m" class="md-nav__link">
+    <span class="md-ellipsis">
+      geo_meanElev (mean elevation in m)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geo_meanlat-mean-latitude-in-degrees-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      geo_meanLat (mean latitude in degrees N)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geo_meanlon-mean-longitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      geo_meanLon (mean longitude)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="geo_meanLon (mean longitude)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geo_sitename-name-of-collection-site" class="md-nav__link">
+    <span class="md-ellipsis">
+      geo_siteName (name of collection site)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-metadata-archive-type-proxy-type-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      proxy metadata: archive type, proxy type, interpretation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="proxy metadata: archive type, proxy type, interpretation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archivetype-archive-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      archiveType (archive type)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_proxy-proxy-type" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_proxy (proxy type)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_sensorspecies-further-information-on-proxy-type-species" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_sensorSpecies (further information on proxy type: species)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_notes-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_notes (notes)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_variablename" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_variableName
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#climate-metadata-interpretation-variable-direction-seasonality" class="md-nav__link">
+    <span class="md-ellipsis">
+      climate metadata: interpretation variable, direction, seasonality
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="climate metadata: interpretation variable, direction, seasonality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretation_direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpretation_direction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation_seasonality" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpretation_seasonality
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation_variable" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpretation_variable
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation_variabledetail" class="md-nav__link">
+    <span class="md-ellipsis">
+      interpretation_variableDetail
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    <span class="md-ellipsis">
+      data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paleodata_units" class="md-nav__link">
+    <span class="md-ellipsis">
+      paleoData_units
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#year" class="md-nav__link">
+    <span class="md-ellipsis">
+      year
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yearunits" class="md-nav__link">
+    <span class="md-ellipsis">
+      yearUnits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
