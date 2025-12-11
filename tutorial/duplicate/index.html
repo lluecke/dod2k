@@ -1816,18 +1816,17 @@ Before inputting your decision. Would you like to leave a comment on your decisi
 <div class="admonition info">
 <p class="admonition-title">Handling of multiple duplicates</p>
 <p>The decision process is currently not optimised for handling of multiple duplicates (i.e. records which have more than one potential duplicate candidate), going through the duplicates on a pair-by-pair basis. However, <code>dup.duplicate_decisions_multiple</code> includes improved handling of multiple duplicates. For any records which are associated with multiple duplicates, all the other duplicate candidates are shown alongside the summary figure for the duplicate candidate pair. Any previous decisions, when available, are shown besides the <code>datasetId</code>, <code>archiveType</code>, <code>paleoData_proxy</code> etc.:</p>
-</div>
 <div class="highlight"><pre><span></span><code>***ATTENTION*** THIS RECORD IS ASSOCIATED WITH MULTIPLE DUPLICATES! PLEASE PAY SPECIAL ATTENTION WHEN MAKING DECISIONS FOR THIS RECORD!
 The potential duplicates also associated with this record are:
  Dataset ID          : iso2k_786
      - URL                 : https://www.ncdc.noaa.gov/paleo/study/1856
 </code></pre></div>
-<figure>
+<p><figure markdown="span">
   <img alt="Multiple summary figure" src="../../assets/images/dup_detection/duplicate_multiples.png" width="800" />
-<br />
-<figcaption>Figure 2: Summary figure for multiple duplicates.</figcaption>
-</figure>
+  <figcaption>Figure 2: Summary figure for multiple duplicates.</figcaption>
+</figure></p>
 <p>The operator can then make an informed decision for each candidate pair.</p>
+</div>
 <hr />
 <h2 id="step-3-duplicate-removal-dup_removalipynb"><strong>Step 3: Duplicate removal (<code>dup_removal.ipynb</code>)</strong></h2>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_removal/"><code>dup_removal.ipynb</code></a></p>
