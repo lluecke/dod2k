@@ -2796,8 +2796,8 @@ df_orig    = pd.DataFrame(read_PAGES['TS']) #converts metadata into a DataFrame
 <li><code>geo_meanLat</code>             (no change)</li>
 <li><code>geo_meanLon</code>             (no change)</li>
 <li><code>geo_siteName</code>            (no change)</li>
-<li><code>originalDataURL</code>         (no change)</li>
-<li><code>originalDatabase</code> (<code>PAGES 2k v2.2.0</code>)</li>
+<li><code>originalDataURL</code>         &lt;-- (<code>paleoData_WDSPaleoUrl</code>)</li>
+<li><code>originalDatabase</code>        &lt;-- (<code>PAGES 2k v2.2.0</code>)</li>
 <li><code>paleoData_notes</code>         (no change)</li>
 <li><code>paleoData_proxy</code>         &lt;-- paleoData_variableName</li>
 <li><code>paleoData_sensorSpecies</code> (no change)</li>
@@ -2840,12 +2840,12 @@ df_orig    = pd.DataFrame(read_PAGES['TS']) #converts metadata into a DataFrame
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_compact</span> <span class="o">=</span> <span class="n">df_orig</span><span class="p">[[</span><span class="s1">'archiveType'</span><span class="p">,</span>  <span class="s1">'dataSetName'</span><span class="p">,</span> <span class="s1">'datasetId'</span><span class="p">,</span>  <span class="s1">'geo_meanElev'</span><span class="p">,</span> <span class="s1">'geo_meanLat'</span><span class="p">,</span>
-                      <span class="s1">'geo_meanLon'</span><span class="p">,</span> <span class="s1">'geo_siteName'</span><span class="p">,</span>  <span class="s1">'originalDataURL'</span><span class="p">,</span> <span class="s1">'paleoData_notes'</span><span class="p">,</span> 
+                      <span class="s1">'geo_meanLon'</span><span class="p">,</span> <span class="s1">'geo_siteName'</span><span class="p">,</span> <span class="s1">'paleoData_notes'</span><span class="p">,</span> 
                       <span class="s1">'paleoData_units'</span><span class="p">,</span> <span class="s1">'paleoData_values'</span><span class="p">,</span> 
                       <span class="s1">'paleoData_sensorSpecies'</span><span class="p">,</span> <span class="s1">'year'</span><span class="p">,</span> <span class="s1">'yearUnits'</span><span class="p">]]</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-5">df_compact = df_orig[['archiveType',  'dataSetName', 'datasetId',  'geo_meanElev', 'geo_meanLat',
-                      'geo_meanLon', 'geo_siteName',  'originalDataURL', 'paleoData_notes', 
+                      'geo_meanLon', 'geo_siteName', 'paleoData_notes', 
                       'paleoData_units', 'paleoData_values', 
                       'paleoData_sensorSpecies', 'year', 'yearUnits']]</div>
 </div>
@@ -2889,16 +2889,19 @@ df_orig    = pd.DataFrame(read_PAGES['TS']) #converts metadata into a DataFrame
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"paleoData_proxy"</span><span class="p">,</span>  <span class="n">df_orig</span><span class="p">[</span><span class="s1">'paleoData_proxy'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"originalDataURL"</span><span class="p">,</span>  <span class="n">df_orig</span><span class="p">[</span><span class="s1">'paleoData_WDSPaleoUrl'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"paleoData_proxy"</span><span class="p">,</span>  <span class="n">df_orig</span><span class="p">[</span><span class="s1">'paleoData_proxy'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="s2">"paleoData_variableName"</span><span class="p">,</span>  <span class="n">df_orig</span><span class="p">[</span><span class="s1">'paleoData_variableName'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="s2">"originalDatabase"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"PAGES 2k v2.2.0"</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df_orig</span><span class="p">))</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">"interpretation_direction"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_orig</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">))</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"interpretation_seasonality"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_orig</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">))</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">"interpretation_variable"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_orig</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">))</span>
 <span class="n">df_compact</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s2">"interpretation_variableDetail"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_orig</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">))</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="n">df_compact</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-6">
+df_compact.insert(8, "originalDataURL",  df_orig['paleoData_WDSPaleoUrl'].values)
 df_compact.insert(8, "paleoData_proxy",  df_orig['paleoData_proxy'].values)
 df_compact.insert(8, "paleoData_variableName",  df_orig['paleoData_variableName'].values)
 df_compact.insert(9, "originalDatabase", ["PAGES 2k v2.2.0"]*len(df_orig))
@@ -2906,6 +2909,7 @@ df_compact.insert(1, "interpretation_direction", np.empty(len(df_orig), dtype=ob
 df_compact.insert(2, "interpretation_seasonality", np.empty(len(df_orig), dtype=object))
 df_compact.insert(3, "interpretation_variable", np.empty(len(df_orig), dtype=object))
 df_compact.insert(4, "interpretation_variableDetail", np.empty(len(df_orig), dtype=object))
+
 print(df_compact.info())</div>
 </div>
 </div>
@@ -2934,11 +2938,11 @@ Data columns (total 21 columns):
  8   geo_meanLat                    3699 non-null   float64
  9   geo_meanLon                    3699 non-null   float64
  10  geo_siteName                   3699 non-null   object 
- 11  originalDataURL                3699 non-null   object 
+ 11  paleoData_notes                465 non-null    object 
  12  paleoData_variableName         3699 non-null   object 
  13  originalDatabase               3699 non-null   object 
  14  paleoData_proxy                787 non-null    object 
- 15  paleoData_notes                465 non-null    object 
+ 15  originalDataURL                3697 non-null   object 
  16  paleoData_units                1614 non-null   object 
  17  paleoData_values               3693 non-null   object 
  18  paleoData_sensorSpecies        2202 non-null   object 
@@ -3781,7 +3785,7 @@ df_compact['paleoData_values'] = df_compact['paleoData_values'].map(lambda x: np
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
@@ -3808,7 +3812,7 @@ np.sort(df_compact['paleoData_proxy'].unique())</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[18]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['ARSTAN', 'Mg/Ca', 'Sr/Ca', 'TEX86', 'Uk37', 'accumulation rate',
        'alkenone', 'borehole', 'calcification rate', 'chironomid',
@@ -3830,7 +3834,7 @@ np.sort(df_compact['paleoData_proxy'].unique())</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
@@ -3857,7 +3861,7 @@ np.sort(df_compact['paleoData_variableName'].unique())</div>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[20]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>array(['ARSTAN', 'MAR', 'Mg/Ca', 'R650/R700', 'RABD660670', 'Sr/Ca',
        'TEX86', 'Uk37', 'calcification rate', 'chloride', 'composite',
@@ -3878,7 +3882,7 @@ np.sort(df_compact['paleoData_variableName'].unique())</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
@@ -3921,11 +3925,11 @@ Data columns (total 21 columns):
  8   geo_meanLat                    1364 non-null   float64
  9   geo_meanLon                    1364 non-null   float64
  10  geo_siteName                   1364 non-null   object 
- 11  originalDataURL                1364 non-null   object 
+ 11  paleoData_notes                1364 non-null   object 
  12  paleoData_variableName         1364 non-null   object 
  13  originalDatabase               1364 non-null   object 
  14  paleoData_proxy                1364 non-null   object 
- 15  paleoData_notes                1364 non-null   object 
+ 15  originalDataURL                1364 non-null   object 
  16  paleoData_units                1364 non-null   object 
  17  paleoData_values               1364 non-null   object 
  18  paleoData_sensorSpecies        800 non-null    object 
@@ -3956,7 +3960,7 @@ memory usage: 234.4+ KB
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
@@ -4037,7 +4041,7 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
@@ -4081,7 +4085,7 @@ df_compact.to_pickle('data/pages2k/pages2k_compact.pkl')</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
@@ -4126,7 +4130,7 @@ Saved to /home/jupyter-lluecke/dod2k_v2.0/dod2k/data/pages2k/pages2k_compact_%s.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
@@ -4177,7 +4181,7 @@ df = utf.load_compact_dataframe_from_csv('pages2k')</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
@@ -4234,8 +4238,8 @@ utf.save_fig(fig, f'geo_{df.name}', dir=df.name)</div>
 3 LakeSediment 52
 4 GlacierIce 52
 5 Documents 13
-6 Sclerosponge 4
-7 Speleothem 4
+6 Speleothem 4
+7 Sclerosponge 4
 8 Borehole 3
 9 Other 2
 saved figure in /home/jupyter-lluecke/dod2k_v2.0/dod2k/figs/pages2k/geo_pages2k.pdf
@@ -4268,7 +4272,7 @@ saved figure in /home/jupyter-lluecke/dod2k_v2.0/dod2k/figs/pages2k/geo_pages2k.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
@@ -4349,7 +4353,7 @@ utf.save_fig(fig, f'time_{df.name}', dir=df.name)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-27">
@@ -4402,7 +4406,7 @@ print(df.index)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-28">
@@ -4468,7 +4472,7 @@ No. of unique values: 623/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-29">
@@ -4544,7 +4548,7 @@ No. of unique values: 1364/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-30">
@@ -4586,466 +4590,733 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>originalDataURL: 
-['ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/came2007/came2007.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/harada2004/harada2004.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/keigwin2003/keigwin2003.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/keigwin2005'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/lamy2002/'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/linsley2010/linsley2010.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/lund2006/lund2006.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/richter2009/richter2009.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/saraswat2013/saraswat2013-sk237gc04.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/thornalley2009/thornalley2009.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/indian_ocean/abrolhos_data.txt,http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:0::::P1_study_id:16316'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/west_pacific/great_barrier/abraham1999iso.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/west_pacific/great_barrier/hendydata.txt'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/pollen/recons/'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/mexico/mexi020.rwl'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/mexico/mexi043.rwl'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/co517.rwl'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/co522.rwl'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/or042.rwl'
- 'ftp://ftp.ncdc.noaa.gov/pub/data/paleo/treering/measurements/northamerica/usa/wa104.rwl'
- 'ftp://rock.geosociety.org/pub/reposit/2005/2005010.pdf'
- 'http://data.aims.gov.au/metadataviewer/uuid/4f39c641-8450-4ea0-b2b6-4f3d582645f8'
- 'http://doi.pangaea.de/10.1594/PANGAEA.388665'
- 'http://doi.pangaea.de/10.1594/PANGAEA.603183?format=html'
- 'http://doi.pangaea.de/10.1594/PANGAEA.676709'
- 'http://doi.pangaea.de/10.1594/PANGAEA.711835'
- 'http://doi.pangaea.de/10.1594/PANGAEA.735717'
- 'http://doi.pangaea.de/10.1594/PANGAEA.737217'
- 'http://doi.pangaea.de/10.1594/PANGAEA.738188'
- 'http://doi.pangaea.de/10.1594/PANGAEA.755092'
- 'http://doi.pangaea.de/10.1594/PANGAEA.758916'
- 'http://doi.pangaea.de/10.1594/PANGAEA.761849'
- 'http://doi.pangaea.de/10.1594/PANGAEA.773754'
- 'http://doi.pangaea.de/10.1594/PANGAEA.776444'
- 'http://doi.pangaea.de/10.1594/PANGAEA.776883'
- 'http://doi.pangaea.de/10.1594/PANGAEA.780179'
- 'http://doi.pangaea.de/10.1594/PANGAEA.780423'
- 'http://doi.pangaea.de/10.1594/PANGAEA.802259'
- 'http://doi.pangaea.de/10.1594/PANGAEA.803648?format=html'
- 'http://doi.pangaea.de/10.1594/PANGAEA.841034'
- 'http://dx.doi.org/10.7265/N5QJ7F8B'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:0::::P1_STUDY_ID:13439,ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/west_pacific/gorman2012.txt,ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/west_pacific/gorman2012-rawdata.txt'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:0::::P1_STUDY_ID:1886'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:1355582511284701::::P1_STUDY_ID:8609,ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/east_pacific/palmyra2011.txt'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:1527603787540765::::P1_STUDY_ID:6397'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:2163030193099666::::P1_STUDY_ID:5596'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:2222171789808335::::P1_STUDY_ID:2561'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:2567749405070175::::P1_STUDY_ID:2585'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:2924806122352392::::P1_STUDY_ID:1872,http://doi.pangaea.de/10.1594/PANGAEA.69271'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:3016655888229035::::P1_STUDY_ID:1847'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:3800011116671332::::P1_STUDY_ID:11816'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:410856366157434::::P1_STUDY_ID:5584'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:4219423804332007::::P1_STUDY_ID:10425'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:471580410000037::::P1_STUDY_ID:12898'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:964510793893801::::P1_STUDY_ID:6089,ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/east_pacific/rarotonga2006.txt'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:990875010763301::::P1_STUDY_ID:1925'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_STUDY_ID:12359'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_STUDY_ID:16339'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_STUDY_ID:6116,ftp://ftp.ncdc.noaa.gov/pub/data/paleo/coral/west_pacific/papua_new_guinea/rabaul2006.txt'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_STUDY_ID:8608'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_study_id:1854'
- 'http://hurricane.ncdc.noaa.gov/pls/paleox/f?p=519:1:::::P1_study_id:1867'
- 'http://link.springer.com/article/10.1007/s10584-005-5922-3'
- 'http://www.ncdc.noaa.gov/paleo/metadata/noaa-coral-1846.html'
- 'http://www.ncdc.noaa.gov/paleo/pubs/oppo2009/oppo2009.html'
- 'http://www.ncdc.noaa.gov/paleo/study/1003400'
- 'http://www.ncdc.noaa.gov/paleo/study/1003401'
- 'http://www.ncdc.noaa.gov/paleo/study/1003402'
- 'http://www.ncdc.noaa.gov/paleo/study/1003403'
- 'http://www.ncdc.noaa.gov/paleo/study/1003405'
- 'http://www.ncdc.noaa.gov/paleo/study/1003406'
- 'http://www.ncdc.noaa.gov/paleo/study/1003409'
- 'http://www.ncdc.noaa.gov/paleo/study/1003952'
- 'http://www.ncdc.noaa.gov/paleo/study/1003953'
- 'http://www.ncdc.noaa.gov/paleo/study/10427'
- 'http://www.ncdc.noaa.gov/paleo/study/12194'
- 'http://www.ncdc.noaa.gov/paleo/study/12445'
- 'http://www.ncdc.noaa.gov/paleo/study/12449'
- 'http://www.ncdc.noaa.gov/paleo/study/12899'
- 'http://www.ncdc.noaa.gov/paleo/study/13016'
- 'http://www.ncdc.noaa.gov/paleo/study/16790'
- 'http://www.ncdc.noaa.gov/paleo/study/17755'
- 'http://www.ncdc.noaa.gov/paleo/study/5433'
- 'http://www.ncdc.noaa.gov/paleo/study/6192'
- 'http://www.ncdc.noaa.gov/paleo/study/8661'
- 'http://www.nrcresearchpress.com/doi/abs/10.1139/e06-056#.V22kqiMrJQJ'
- 'http://www1.ncdc.noaa.gov/pub/data/paleo/treering/updates/cana528.txt'
- 'http://www1.ncdc.noaa.gov/pub/data/paleo/treering/updates/cana529.txt'
- 'https://crudata.uea.ac.uk/cru/papers/briffa2013qsr/'
- 'https://crudata.uea.ac.uk/cru/papers/melvin2012holocene/'
- 'https://data.aad.gov.au/metadata/records/LD2012-d18O-Native-age'
- 'https://doi.pangaea.de/10.1594/PANGAEA.104881'
- 'https://doi.pangaea.de/10.1594/PANGAEA.218274'
- 'https://doi.pangaea.de/10.1594/PANGAEA.438810'
- 'https://doi.pangaea.de/10.1594/PANGAEA.57158'
- 'https://doi.pangaea.de/10.1594/PANGAEA.57291'
- 'https://doi.pangaea.de/10.1594/PANGAEA.769699'
- 'https://doi.pangaea.de/10.1594/PANGAEA.784992'
- 'https://doi.pangaea.de/10.1594/PANGAEA.786302'
- 'https://doi.pangaea.de/10.1594/PANGAEA.786354'
- 'https://doi.pangaea.de/10.1594/PANGAEA.786356'
- 'https://doi.pangaea.de/10.1594/PANGAEA.824732'
- 'https://doi.pangaea.de/10.1594/PANGAEA.853971'
- 'https://doi.pangaea.de/10.1594/PANGAEA.866368'
- 'https://www.ncdc.noaa.gov/cdo/f?P=519:1:::::P1_STUDY_ID,P1_SITE_ID:15520,55748'
- 'https://www.ncdc.noaa.gov/cdo/f?P=519:1:::::P1_STUDY_ID,P1_SITE_ID:3690,16112'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:0::::P1_STUDY_ID:1003957'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:784943880673501::::P1_STUDY_ID:10492'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:14174'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:14790'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:3264'
- 'https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:3669'
- 'https://www.ncdc.noaa.gov/paleo/study/1003968'
- 'https://www.ncdc.noaa.gov/paleo/study/1003970'
- 'https://www.ncdc.noaa.gov/paleo/study/1003971'
- 'https://www.ncdc.noaa.gov/paleo/study/1003986'
- 'https://www.ncdc.noaa.gov/paleo/study/1003988'
- 'https://www.ncdc.noaa.gov/paleo/study/1003992'
- 'https://www.ncdc.noaa.gov/paleo/study/10428'
- 'https://www.ncdc.noaa.gov/paleo/study/10453'
- 'https://www.ncdc.noaa.gov/paleo/study/10713'
- 'https://www.ncdc.noaa.gov/paleo/study/10714'
- 'https://www.ncdc.noaa.gov/paleo/study/10715'
- 'https://www.ncdc.noaa.gov/paleo/study/10716'
- 'https://www.ncdc.noaa.gov/paleo/study/10717'
- 'https://www.ncdc.noaa.gov/paleo/study/10808'
- 'https://www.ncdc.noaa.gov/paleo/study/11131'
- 'https://www.ncdc.noaa.gov/paleo/study/11173'
- 'https://www.ncdc.noaa.gov/paleo/study/11176'
- 'https://www.ncdc.noaa.gov/paleo/study/11180'
- 'https://www.ncdc.noaa.gov/paleo/study/11929'
- 'https://www.ncdc.noaa.gov/paleo/study/12426'
- 'https://www.ncdc.noaa.gov/paleo/study/12443'
- 'https://www.ncdc.noaa.gov/paleo/study/12484'
- 'https://www.ncdc.noaa.gov/paleo/study/12485'
- 'https://www.ncdc.noaa.gov/paleo/study/12486'
- 'https://www.ncdc.noaa.gov/paleo/study/12487'
- 'https://www.ncdc.noaa.gov/paleo/study/12488'
- 'https://www.ncdc.noaa.gov/paleo/study/12489'
- 'https://www.ncdc.noaa.gov/paleo/study/12547'
- 'https://www.ncdc.noaa.gov/paleo/study/12548'
- 'https://www.ncdc.noaa.gov/paleo/study/12549'
- 'https://www.ncdc.noaa.gov/paleo/study/12550'
- 'https://www.ncdc.noaa.gov/paleo/study/12557'
- 'https://www.ncdc.noaa.gov/paleo/study/12568'
- 'https://www.ncdc.noaa.gov/paleo/study/12577'
- 'https://www.ncdc.noaa.gov/paleo/study/12595'
- 'https://www.ncdc.noaa.gov/paleo/study/12596'
- 'https://www.ncdc.noaa.gov/paleo/study/12599'
- 'https://www.ncdc.noaa.gov/paleo/study/12600'
- 'https://www.ncdc.noaa.gov/paleo/study/12601'
- 'https://www.ncdc.noaa.gov/paleo/study/12602'
- 'https://www.ncdc.noaa.gov/paleo/study/12607'
- 'https://www.ncdc.noaa.gov/paleo/study/12608'
- 'https://www.ncdc.noaa.gov/paleo/study/12610'
- 'https://www.ncdc.noaa.gov/paleo/study/12628'
- 'https://www.ncdc.noaa.gov/paleo/study/12634'
- 'https://www.ncdc.noaa.gov/paleo/study/12644'
- 'https://www.ncdc.noaa.gov/paleo/study/12651'
- 'https://www.ncdc.noaa.gov/paleo/study/12652'
- 'https://www.ncdc.noaa.gov/paleo/study/12696'
- 'https://www.ncdc.noaa.gov/paleo/study/12697'
- 'https://www.ncdc.noaa.gov/paleo/study/12703'
- 'https://www.ncdc.noaa.gov/paleo/study/12762'
- 'https://www.ncdc.noaa.gov/paleo/study/12763'
- 'https://www.ncdc.noaa.gov/paleo/study/12764'
- 'https://www.ncdc.noaa.gov/paleo/study/12765'
- 'https://www.ncdc.noaa.gov/paleo/study/12767'
- 'https://www.ncdc.noaa.gov/paleo/study/12768'
- 'https://www.ncdc.noaa.gov/paleo/study/12782'
- 'https://www.ncdc.noaa.gov/paleo/study/12783'
- 'https://www.ncdc.noaa.gov/paleo/study/12784'
- 'https://www.ncdc.noaa.gov/paleo/study/12785'
- 'https://www.ncdc.noaa.gov/paleo/study/12787'
- 'https://www.ncdc.noaa.gov/paleo/study/12788'
- 'https://www.ncdc.noaa.gov/paleo/study/12789'
- 'https://www.ncdc.noaa.gov/paleo/study/12891'
- 'https://www.ncdc.noaa.gov/paleo/study/12894'
- 'https://www.ncdc.noaa.gov/paleo/study/12906'
- 'https://www.ncdc.noaa.gov/paleo/study/12994'
- 'https://www.ncdc.noaa.gov/paleo/study/13035'
- 'https://www.ncdc.noaa.gov/paleo/study/13175'
- 'https://www.ncdc.noaa.gov/paleo/study/13216'
- 'https://www.ncdc.noaa.gov/paleo/study/13284'
- 'https://www.ncdc.noaa.gov/paleo/study/13458'
- 'https://www.ncdc.noaa.gov/paleo/study/13543'
- 'https://www.ncdc.noaa.gov/paleo/study/13707'
- 'https://www.ncdc.noaa.gov/paleo/study/13708'
- 'https://www.ncdc.noaa.gov/paleo/study/13709'
- 'https://www.ncdc.noaa.gov/paleo/study/13710'
- 'https://www.ncdc.noaa.gov/paleo/study/13756'
- 'https://www.ncdc.noaa.gov/paleo/study/13758'
- 'https://www.ncdc.noaa.gov/paleo/study/13782'
- 'https://www.ncdc.noaa.gov/paleo/study/13783'
- 'https://www.ncdc.noaa.gov/paleo/study/13785'
- 'https://www.ncdc.noaa.gov/paleo/study/14188'
- 'https://www.ncdc.noaa.gov/paleo/study/14274'
- 'https://www.ncdc.noaa.gov/paleo/study/14349'
- 'https://www.ncdc.noaa.gov/paleo/study/14730'
- 'https://www.ncdc.noaa.gov/paleo/study/14888'
- 'https://www.ncdc.noaa.gov/paleo/study/14889'
- 'https://www.ncdc.noaa.gov/paleo/study/14908'
- 'https://www.ncdc.noaa.gov/paleo/study/14909'
- 'https://www.ncdc.noaa.gov/paleo/study/14910'
- 'https://www.ncdc.noaa.gov/paleo/study/14928'
- 'https://www.ncdc.noaa.gov/paleo/study/14929'
- 'https://www.ncdc.noaa.gov/paleo/study/14948'
- 'https://www.ncdc.noaa.gov/paleo/study/15048'
- 'https://www.ncdc.noaa.gov/paleo/study/15128'
- 'https://www.ncdc.noaa.gov/paleo/study/15129'
- 'https://www.ncdc.noaa.gov/paleo/study/15130'
- 'https://www.ncdc.noaa.gov/paleo/study/15131'
- 'https://www.ncdc.noaa.gov/paleo/study/15132'
- 'https://www.ncdc.noaa.gov/paleo/study/15133'
- 'https://www.ncdc.noaa.gov/paleo/study/15134'
- 'https://www.ncdc.noaa.gov/paleo/study/15135'
- 'https://www.ncdc.noaa.gov/paleo/study/15136'
- 'https://www.ncdc.noaa.gov/paleo/study/15137'
- 'https://www.ncdc.noaa.gov/paleo/study/15138'
- 'https://www.ncdc.noaa.gov/paleo/study/15149'
- 'https://www.ncdc.noaa.gov/paleo/study/15150'
- 'https://www.ncdc.noaa.gov/paleo/study/15151'
- 'https://www.ncdc.noaa.gov/paleo/study/15152'
- 'https://www.ncdc.noaa.gov/paleo/study/15153'
- 'https://www.ncdc.noaa.gov/paleo/study/15154'
- 'https://www.ncdc.noaa.gov/paleo/study/15155'
- 'https://www.ncdc.noaa.gov/paleo/study/15156'
- 'https://www.ncdc.noaa.gov/paleo/study/15157'
- 'https://www.ncdc.noaa.gov/paleo/study/15158'
- 'https://www.ncdc.noaa.gov/paleo/study/15170'
- 'https://www.ncdc.noaa.gov/paleo/study/15171'
- 'https://www.ncdc.noaa.gov/paleo/study/15172'
- 'https://www.ncdc.noaa.gov/paleo/study/15208'
- 'https://www.ncdc.noaa.gov/paleo/study/15209'
- 'https://www.ncdc.noaa.gov/paleo/study/15210'
- 'https://www.ncdc.noaa.gov/paleo/study/15211'
- 'https://www.ncdc.noaa.gov/paleo/study/15212'
- 'https://www.ncdc.noaa.gov/paleo/study/15213'
- 'https://www.ncdc.noaa.gov/paleo/study/15214'
- 'https://www.ncdc.noaa.gov/paleo/study/15215'
- 'https://www.ncdc.noaa.gov/paleo/study/15230'
- 'https://www.ncdc.noaa.gov/paleo/study/15232'
- 'https://www.ncdc.noaa.gov/paleo/study/15234'
- 'https://www.ncdc.noaa.gov/paleo/study/15235'
- 'https://www.ncdc.noaa.gov/paleo/study/15236'
- 'https://www.ncdc.noaa.gov/paleo/study/15237'
- 'https://www.ncdc.noaa.gov/paleo/study/15238'
- 'https://www.ncdc.noaa.gov/paleo/study/15248'
- 'https://www.ncdc.noaa.gov/paleo/study/15249'
- 'https://www.ncdc.noaa.gov/paleo/study/15250'
- 'https://www.ncdc.noaa.gov/paleo/study/15312'
- 'https://www.ncdc.noaa.gov/paleo/study/15313'
- 'https://www.ncdc.noaa.gov/paleo/study/15315'
- 'https://www.ncdc.noaa.gov/paleo/study/15316'
- 'https://www.ncdc.noaa.gov/paleo/study/15317'
- 'https://www.ncdc.noaa.gov/paleo/study/15318'
- 'https://www.ncdc.noaa.gov/paleo/study/15319'
- 'https://www.ncdc.noaa.gov/paleo/study/15320'
- 'https://www.ncdc.noaa.gov/paleo/study/15322'
- 'https://www.ncdc.noaa.gov/paleo/study/15323'
- 'https://www.ncdc.noaa.gov/paleo/study/15324'
- 'https://www.ncdc.noaa.gov/paleo/study/15325'
- 'https://www.ncdc.noaa.gov/paleo/study/15327'
- 'https://www.ncdc.noaa.gov/paleo/study/15330'
- 'https://www.ncdc.noaa.gov/paleo/study/15332'
- 'https://www.ncdc.noaa.gov/paleo/study/15333'
- 'https://www.ncdc.noaa.gov/paleo/study/15337'
- 'https://www.ncdc.noaa.gov/paleo/study/15338'
- 'https://www.ncdc.noaa.gov/paleo/study/15342'
- 'https://www.ncdc.noaa.gov/paleo/study/15343'
- 'https://www.ncdc.noaa.gov/paleo/study/15344'
- 'https://www.ncdc.noaa.gov/paleo/study/15345'
- 'https://www.ncdc.noaa.gov/paleo/study/15346'
- 'https://www.ncdc.noaa.gov/paleo/study/15347'
- 'https://www.ncdc.noaa.gov/paleo/study/15348'
- 'https://www.ncdc.noaa.gov/paleo/study/15349'
- 'https://www.ncdc.noaa.gov/paleo/study/15350'
- 'https://www.ncdc.noaa.gov/paleo/study/15351'
- 'https://www.ncdc.noaa.gov/paleo/study/15352'
- 'https://www.ncdc.noaa.gov/paleo/study/15368'
- 'https://www.ncdc.noaa.gov/paleo/study/15369'
- 'https://www.ncdc.noaa.gov/paleo/study/15525'
- 'https://www.ncdc.noaa.gov/paleo/study/15527'
- 'https://www.ncdc.noaa.gov/paleo/study/16196'
- 'https://www.ncdc.noaa.gov/paleo/study/16216'
- 'https://www.ncdc.noaa.gov/paleo/study/16217'
- 'https://www.ncdc.noaa.gov/paleo/study/16438'
- 'https://www.ncdc.noaa.gov/paleo/study/16440'
- 'https://www.ncdc.noaa.gov/paleo/study/16558'
- 'https://www.ncdc.noaa.gov/paleo/study/16577'
- 'https://www.ncdc.noaa.gov/paleo/study/16587'
- 'https://www.ncdc.noaa.gov/paleo/study/16590'
- 'https://www.ncdc.noaa.gov/paleo/study/16592'
- 'https://www.ncdc.noaa.gov/paleo/study/16593'
- 'https://www.ncdc.noaa.gov/paleo/study/16595'
- 'https://www.ncdc.noaa.gov/paleo/study/16596'
- 'https://www.ncdc.noaa.gov/paleo/study/16597'
- 'https://www.ncdc.noaa.gov/paleo/study/16602'
- 'https://www.ncdc.noaa.gov/paleo/study/16605'
- 'https://www.ncdc.noaa.gov/paleo/study/16608'
- 'https://www.ncdc.noaa.gov/paleo/study/16609'
- 'https://www.ncdc.noaa.gov/paleo/study/16612'
- 'https://www.ncdc.noaa.gov/paleo/study/16761'
- 'https://www.ncdc.noaa.gov/paleo/study/17380'
- 'https://www.ncdc.noaa.gov/paleo/study/17475'
- 'https://www.ncdc.noaa.gov/paleo/study/17796'
- 'https://www.ncdc.noaa.gov/paleo/study/1839'
- 'https://www.ncdc.noaa.gov/paleo/study/1844'
- 'https://www.ncdc.noaa.gov/paleo/study/1845'
- 'https://www.ncdc.noaa.gov/paleo/study/1853'
- 'https://www.ncdc.noaa.gov/paleo/study/1855'
- 'https://www.ncdc.noaa.gov/paleo/study/1857'
- 'https://www.ncdc.noaa.gov/paleo/study/1859'
- 'https://www.ncdc.noaa.gov/paleo/study/1861'
- 'https://www.ncdc.noaa.gov/paleo/study/1866'
- 'https://www.ncdc.noaa.gov/paleo/study/18735'
- 'https://www.ncdc.noaa.gov/paleo/study/1875'
- 'https://www.ncdc.noaa.gov/paleo/study/1876'
- 'https://www.ncdc.noaa.gov/paleo/study/1885'
- 'https://www.ncdc.noaa.gov/paleo/study/1890'
- 'https://www.ncdc.noaa.gov/paleo/study/1894'
- 'https://www.ncdc.noaa.gov/paleo/study/1903'
- 'https://www.ncdc.noaa.gov/paleo/study/1915'
- 'https://www.ncdc.noaa.gov/paleo/study/1916'
- 'https://www.ncdc.noaa.gov/paleo/study/1920'
- 'https://www.ncdc.noaa.gov/paleo/study/19200'
- 'https://www.ncdc.noaa.gov/paleo/study/1924'
- 'https://www.ncdc.noaa.gov/paleo/study/19743'
- 'https://www.ncdc.noaa.gov/paleo/study/19804'
- 'https://www.ncdc.noaa.gov/paleo/study/19851'
- 'https://www.ncdc.noaa.gov/paleo/study/20366'
- 'https://www.ncdc.noaa.gov/paleo/study/20452'
- 'https://www.ncdc.noaa.gov/paleo/study/2429'
- 'https://www.ncdc.noaa.gov/paleo/study/2437'
- 'https://www.ncdc.noaa.gov/paleo/study/2465'
- 'https://www.ncdc.noaa.gov/paleo/study/2474'
- 'https://www.ncdc.noaa.gov/paleo/study/2492'
- 'https://www.ncdc.noaa.gov/paleo/study/2494'
- 'https://www.ncdc.noaa.gov/paleo/study/2754'
- 'https://www.ncdc.noaa.gov/paleo/study/2796'
- 'https://www.ncdc.noaa.gov/paleo/study/2808'
- 'https://www.ncdc.noaa.gov/paleo/study/2810'
- 'https://www.ncdc.noaa.gov/paleo/study/2812'
- 'https://www.ncdc.noaa.gov/paleo/study/2813'
- 'https://www.ncdc.noaa.gov/paleo/study/2819'
- 'https://www.ncdc.noaa.gov/paleo/study/2820'
- 'https://www.ncdc.noaa.gov/paleo/study/2822'
- 'https://www.ncdc.noaa.gov/paleo/study/2833'
- 'https://www.ncdc.noaa.gov/paleo/study/2838'
- 'https://www.ncdc.noaa.gov/paleo/study/2839'
- 'https://www.ncdc.noaa.gov/paleo/study/2842'
- 'https://www.ncdc.noaa.gov/paleo/study/2844'
- 'https://www.ncdc.noaa.gov/paleo/study/2850'
- 'https://www.ncdc.noaa.gov/paleo/study/2854'
- 'https://www.ncdc.noaa.gov/paleo/study/2858'
- 'https://www.ncdc.noaa.gov/paleo/study/2859'
- 'https://www.ncdc.noaa.gov/paleo/study/2860'
- 'https://www.ncdc.noaa.gov/paleo/study/2862'
- 'https://www.ncdc.noaa.gov/paleo/study/2871'
- 'https://www.ncdc.noaa.gov/paleo/study/2875'
- 'https://www.ncdc.noaa.gov/paleo/study/2923'
- 'https://www.ncdc.noaa.gov/paleo/study/2939'
- 'https://www.ncdc.noaa.gov/paleo/study/2949'
- 'https://www.ncdc.noaa.gov/paleo/study/3043'
- 'https://www.ncdc.noaa.gov/paleo/study/3044'
- 'https://www.ncdc.noaa.gov/paleo/study/3047'
- 'https://www.ncdc.noaa.gov/paleo/study/3059'
- 'https://www.ncdc.noaa.gov/paleo/study/3060'
- 'https://www.ncdc.noaa.gov/paleo/study/3263'
- 'https://www.ncdc.noaa.gov/paleo/study/3301'
- 'https://www.ncdc.noaa.gov/paleo/study/3313'
- 'https://www.ncdc.noaa.gov/paleo/study/3330'
- 'https://www.ncdc.noaa.gov/paleo/study/3335'
- 'https://www.ncdc.noaa.gov/paleo/study/3348'
- 'https://www.ncdc.noaa.gov/paleo/study/3355'
- 'https://www.ncdc.noaa.gov/paleo/study/3384'
- 'https://www.ncdc.noaa.gov/paleo/study/3395'
- 'https://www.ncdc.noaa.gov/paleo/study/3407'
- 'https://www.ncdc.noaa.gov/paleo/study/3413'
- 'https://www.ncdc.noaa.gov/paleo/study/3480'
- 'https://www.ncdc.noaa.gov/paleo/study/3563'
- 'https://www.ncdc.noaa.gov/paleo/study/3566'
- 'https://www.ncdc.noaa.gov/paleo/study/3576'
- 'https://www.ncdc.noaa.gov/paleo/study/3587'
- 'https://www.ncdc.noaa.gov/paleo/study/3592'
- 'https://www.ncdc.noaa.gov/paleo/study/3598'
- 'https://www.ncdc.noaa.gov/paleo/study/3605'
- 'https://www.ncdc.noaa.gov/paleo/study/3615'
- 'https://www.ncdc.noaa.gov/paleo/study/3706'
- 'https://www.ncdc.noaa.gov/paleo/study/3726'
- 'https://www.ncdc.noaa.gov/paleo/study/3739'
- 'https://www.ncdc.noaa.gov/paleo/study/3757'
- 'https://www.ncdc.noaa.gov/paleo/study/3766'
- 'https://www.ncdc.noaa.gov/paleo/study/3771'
- 'https://www.ncdc.noaa.gov/paleo/study/3772'
- 'https://www.ncdc.noaa.gov/paleo/study/3775'
- 'https://www.ncdc.noaa.gov/paleo/study/3776'
- 'https://www.ncdc.noaa.gov/paleo/study/3778'
- 'https://www.ncdc.noaa.gov/paleo/study/3780'
- 'https://www.ncdc.noaa.gov/paleo/study/3784'
- 'https://www.ncdc.noaa.gov/paleo/study/3786'
- 'https://www.ncdc.noaa.gov/paleo/study/3787'
- 'https://www.ncdc.noaa.gov/paleo/study/3789'
- 'https://www.ncdc.noaa.gov/paleo/study/3793'
- 'https://www.ncdc.noaa.gov/paleo/study/3796'
- 'https://www.ncdc.noaa.gov/paleo/study/3879'
- 'https://www.ncdc.noaa.gov/paleo/study/3902'
- 'https://www.ncdc.noaa.gov/paleo/study/4090'
- 'https://www.ncdc.noaa.gov/paleo/study/4126'
- 'https://www.ncdc.noaa.gov/paleo/study/4127'
- 'https://www.ncdc.noaa.gov/paleo/study/4129'
- 'https://www.ncdc.noaa.gov/paleo/study/4139'
- 'https://www.ncdc.noaa.gov/paleo/study/4320'
- 'https://www.ncdc.noaa.gov/paleo/study/4344'
- 'https://www.ncdc.noaa.gov/paleo/study/4349'
- 'https://www.ncdc.noaa.gov/paleo/study/4397'
- 'https://www.ncdc.noaa.gov/paleo/study/4400'
- 'https://www.ncdc.noaa.gov/paleo/study/4409'
- 'https://www.ncdc.noaa.gov/paleo/study/4499'
- 'https://www.ncdc.noaa.gov/paleo/study/4583'
- 'https://www.ncdc.noaa.gov/paleo/study/4584'
- 'https://www.ncdc.noaa.gov/paleo/study/4658'
- 'https://www.ncdc.noaa.gov/paleo/study/4670'
- 'https://www.ncdc.noaa.gov/paleo/study/4700'
- 'https://www.ncdc.noaa.gov/paleo/study/4707'
- 'https://www.ncdc.noaa.gov/paleo/study/4710'
- 'https://www.ncdc.noaa.gov/paleo/study/5244'
- 'https://www.ncdc.noaa.gov/paleo/study/5352'
- 'https://www.ncdc.noaa.gov/paleo/study/5375'
- 'https://www.ncdc.noaa.gov/paleo/study/5465'
- 'https://www.ncdc.noaa.gov/paleo/study/5502'
- 'https://www.ncdc.noaa.gov/paleo/study/5511'
- 'https://www.ncdc.noaa.gov/paleo/study/5512'
- 'https://www.ncdc.noaa.gov/paleo/study/5520'
- 'https://www.ncdc.noaa.gov/paleo/study/5524'
- 'https://www.ncdc.noaa.gov/paleo/study/5529'
- 'https://www.ncdc.noaa.gov/paleo/study/5917'
- 'https://www.ncdc.noaa.gov/paleo/study/5996'
- 'https://www.ncdc.noaa.gov/paleo/study/5997'
- 'https://www.ncdc.noaa.gov/paleo/study/6080'
- 'https://www.ncdc.noaa.gov/paleo/study/6087'
- 'https://www.ncdc.noaa.gov/paleo/study/6089'
- 'https://www.ncdc.noaa.gov/paleo/study/6115'
- 'https://www.ncdc.noaa.gov/paleo/study/6184'
- 'https://www.ncdc.noaa.gov/paleo/study/6195'
- 'https://www.ncdc.noaa.gov/paleo/study/6199'
- 'https://www.ncdc.noaa.gov/paleo/study/6203'
- 'https://www.ncdc.noaa.gov/paleo/study/6221'
- 'https://www.ncdc.noaa.gov/paleo/study/6234'
- 'https://www.ncdc.noaa.gov/paleo/study/6240'
- 'https://www.ncdc.noaa.gov/paleo/study/6400'
- 'https://www.ncdc.noaa.gov/paleo/study/8606'
- 'https://www.ncdc.noaa.gov/paleo/study/8660'
- 'https://www.ncdc.noaa.gov/paleo/study/8662'
- 'https://www.ncdc.noaa.gov/paleo/study/9953'
- 'https://www.ncdc.noaa.gov/paleo/study/9970' 'requested from AJO'
- 'this study']
-['this study']
+['ftp://ftp.ncdc.noaa.gov/pub/data/paleo/paleolimnology/northamerica/canada/baffin/big-round2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Afr-ColdAirCave.Sundqvist.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Afr-LakeMalawi.Powers.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Afr-LakeTanganyika.Tierney.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Afr-P178-15P.Tierney.2015-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Afr-P178-15P.Tierney.2015-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-CoastalDML.Thamban.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-DSS.DahlJensen.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-DSS.Moy.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-DomeC.Jouzel.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-DomeC.Stenni.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-DomeF1993.Uemura.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-Ferrigno.Thomas.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-JamesRossIsland.Mulvaney.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-MES.Rhodes.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-PlateauRemote.Mosley-Thompson.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-SipleStation.Mosley-Thompson.1990.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-SiteDML05.Graf.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-TALDICE.Stenni.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-TalosDome.Stenni.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-VLG.Bertler.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-Vostok.Ekaykin.2014-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-Vostok.Ekaykin.2014-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-WAIS-Divide.Severinghaus.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ant-WDC05A.Steig.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Agassiz.Vinther.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-AkademiiNaukIceCap.Opel.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Arjeplog.Bjorklund.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Armarnaes.Bjorklund.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Austfonna.Isaksson.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Avam-Taimyr.Briffa.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-BigRoundLake.Thomas.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-BlueLake.Bird.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-BrayaS.DAndrea.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-CampCentury.Fisher.1969.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Crete.Vinther.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-DevonIceCap.Fisher.1983.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Dye.Vinther.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Forfjorddalen.McCarroll.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-GISP2.Grootes.1997.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-GRIP.Vinther.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-GulfofAlaska.Wilson.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-HalletLake.McKay.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-HudsonLake.Clegg.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Hvtrvatn.Larsen.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Iceland.Bergthorsson.1969.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Indigirka.Hughes.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Jamtland.Wilson.2016.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Kittelfjall.Bjorklund.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Kongressvatnet.DAndrea.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Laanila.Lindholm.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Lake4.Rolland.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeC2.Lamoureux.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeDonardBaffinIsland.Moore.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeE.DAndrea.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeHamptrsk.Luoto.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeLehmilampi.Haltia-Hovi.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakeNataujrvi.Ojala.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LakePieni-Kauro.Luoto.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LenaRiver.McDonald.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Lomonosovfonna.Divine.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-LowerMurrayLake.Cook.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-MD992275.Jiang.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-MackenzieDelta.Porter.2013-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-MackenzieDelta.Porter.2013-3.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-MooseLake.Clegg.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-NGRIP1.Vinther.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-NGTB16.Schwager.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-NGTB18.Schwager.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-NGTB21.Schwager.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-PennyIceCapP96.Fisher.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-PennyIceCapP96.Okuyama.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-PolarUrals.Wilson.2015.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-PrinceOfWales.Kinnard.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Renland.Vinther.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-ScreamingLynxLake.Clegg.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-SoperLake.Hughen.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-StoreggaSlide.Sejrup.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Tjeggelvas.Bjorklund.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Tornetrask.Melvin.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-VringPlateau.Berner.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-WindyDome.Henderson.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Yamalia.Briffa.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Arc-Yukon.DArrigo.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiAktru.Cook.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiDjasator.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiJablonsky.Cook.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiKorumdu.Cook.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiKuraisky.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiKuraiskySteppe.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiSamakhaSteppe.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiTjute.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiUlaganValley.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-AltaiUstUlaganLake.Cook.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BARELC.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BHUTSP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BHUTTD.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT001.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT002.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT003.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT004.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT005.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT006.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT008.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT009.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT010.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT011.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BT018.Cook.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-BURGPW.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CENTIB.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN004.Wu.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN005.Sheppard.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN006.Sheppard.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN016.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN017.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN018.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN019.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN020.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN021.Li.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN026.Wright.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN029.Krusic.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN037.Fan.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN038.Fan.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN039.Fan.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN040.Fan.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN041.Fan.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN042.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN043.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN044.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN045.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN046.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN047.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN048.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN049.Brauning.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN050.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN051.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN052.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN053.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN054.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN055.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN056.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN057.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN058.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN059.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN060.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN061.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN062.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN063.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN064.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN065.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CHIN066.Shao.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-CentralChina.Wang.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-DEZQIN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-DQHZHO.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-DUSHJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Dasuopu.Thompson.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ENEPAB.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ESPERG.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ESPPAK.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-EastChina.Wang.1990.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-EastChina.Wang.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Fujian.Wang.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-GANGCD.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-GHEGAN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-GOUQIN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Guangdong.Zheng.1982.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-GuangdongAndGuangxi.Zhang.1980.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Guliya.Thompson.1997-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HBHXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HBLXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HBMXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HEBQIN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HRPCSM.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HXBURU.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-HYGJUP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Hunan-Jiangsu.Zhang.1980.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Hushre.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-INDI015.Borgaonkar.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-INDI024.Borgaonkar.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-INDI025.Borgaonkar.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-INDO005.DArrigo.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA012.Yasue.1997.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA013.Yasue.1997.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA014.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA015.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA016.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA017.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA019.Sano.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-JAPA020.Kimura.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KAZ001.Solomina.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KERALA.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG002.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG003.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG004.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG005.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG007.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG008.Shiyatov.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG009.Shiyatov.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG010.Shiyatov.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG011.Shiyatov.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG012.Solomina.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG013.Solomina.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG014.Solomina.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KYRG015.Solomina.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-KunashirIsland.Demezhko.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-LAJQIN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-LowerYangtzeRiver.Zhang.1980.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MCCHFH.Sano.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG002.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG004.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG006.Jacoby.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG007.Schweingruber.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG009.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG010.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG011.Jacoby.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG012.Jacoby.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG014.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG015.Jacoby.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG016.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG017.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG018.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG019.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG020.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG021.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG024.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG025.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG026.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG027.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG028.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG029.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG030.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG031.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG032.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MONG033.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQACJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQAXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQBXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQDXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQFXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MQRXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MTASMD.Davi.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MTASSP.Davi.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-MiddleYangtzeRiver.Zhang.1980.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA003.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA010.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA014.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA015.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA018.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA019.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA021.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA025.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA027.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA029.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA030.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA032.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA036.Krusic.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NEPA042.Krusic.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-NOGSAK.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI001.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI002.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI003.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI004.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI006.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI007.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI009.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI010.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI011.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI012.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI014.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI015.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI016.Esper.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI017.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI018.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI020.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI021.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI022.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI023.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI024.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI025.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI027.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI028.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI029.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI030.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI031.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI033.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI035.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI036.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI039.Cook.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PAKI040.Cook.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-PTCYUN.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-Puruogangri.Thompson.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-QUMAJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-RANGCD.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-RUSS219.Jacoby.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-RUSS236.Sano.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SANGTS.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SHIESP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SHIYAT.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SO90-39KGSO130-275KL.Munz.2015.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SODAPS.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SourthAndMiddleUrals.Demezhko.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-SouthChina.Wang.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-TDAXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-TDBXJP.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-TH001.Buckley.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-TIANMU.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-TW001.Wright.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHEWD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHEWW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHLWD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHLWW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHMND.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHMXD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UKHTRW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULEWD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULEWW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULLWD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULLWW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULMND.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULMXD.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-UULTRW.Schweingruber.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-VIET001.Buckley.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-WEXYUN.Wright.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-WULANJ.PAGES2k.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-WXIYUN.Wright.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-YKC.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-YKCOM.Yasue.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ZHANGX.PAGES2k.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ZHIDJP.Shao.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Asi-ZhejiangAndFujian.Zhang.1980.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-BuckleysChance.Buckley.1997.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-CTPEastTasmania.Allen.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-CTPWestTasmania.Allen.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-DuckholeLake.Saunders.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-MtRead.Cook.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-Oroko.Cook.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-PinkPine.Duncan.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-StewartIsland.DArrigo.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Aus-TakapariCedar.Xiong.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-CentralEurope.Dobrovoln.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-CentralandEasternPyrenees.Pla.2004.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-CoastofPortugal.Abrantes.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-EasternCarpathianMountains.Popa.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-EuropeanAlps.Bntgen.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-FinnishLakelands.Helama.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-LakeSilvaplana.Larocque-Tobler.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-LakeSilvaplana.Trachsel.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-Ltschental.Bntgen.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-MaritimeFrenchAlps.Bntgen.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-NorthernScandinavia.Esper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-NorthernSpain.Martn-Chivelet.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-RAPiD-17-5P.Moffa-Sanchez.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-Seebergsee.Larocque-Tobler.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-SpanishPyrenees.Dorado-Linan.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-SpannagelCave.Mangini.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Eur-TatraMountains.Bntgen.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-AlmondButterLower.DArrigo.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-AlmondButterUpper.DArrigo.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Arapahoe.Kienast.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Arapahoe.Kienast.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ArrowsmithMountain.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ArrowsmithMountain.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Athabasca.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Athabasca.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-AthabascaGlacier2.Luckman.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-AthabascaGlacier2.Luckman.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BakerLake.Hughes.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BakerLake.Hughes.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BarlowPassamMtHood.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BarlowPassamMtHood.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BasinPond.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BellMountain.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BellMountain.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Bennington.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Bennington.Luckman.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigBendLake.Jacoby.2003-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigBendLake.Jacoby.2003-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigWhite.Parish.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigWhite2.Wilson.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigWhite2.Wilson.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BigWhite2.Wilson.2005-3.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BlanchardRiver.Luckman.2013-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BlanchardRiver.Luckman.2013-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Bonif.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Bonif.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BorealPlateau.Graumlich.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BowSummit-PeytoLake.Luckman.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-BurntOver.DArrigo.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CameronPass.Bigler.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CanyonCreek.Lloyd.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CardinalDivide.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CarltonRidge.Kipfmuller.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CeaderBreaks.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CeaderBreaks.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CienegadeNuestraSenoradeGuadalupe.Fule.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CirquePeak.Graybill.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ClearPond.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ConroyLake.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CoppermineRiver.Jacoby.1989.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CornwallHills.Wilson.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CornwallHills.Wilson.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CottonwoodPass.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CottonwoodPass.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CraterLakeNE.Briffa.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-CraterLakeNE.Briffa.2002-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DanaPlateauInyoNationalForest.King.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DarkLake.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DeerMountain.Wiles.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DenaliNationalPark.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DenaliNationalPark.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DonJekRiverBridge.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-DonJekRiverBridge.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-EagleFecalPtarmiganMerge.Jacoby.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-EagleFecalPtarmiganMerge.Jacoby.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-EagleFecalPtarmiganMerge.Jacoby.2011-3.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ElephantMountain.Conkey.1994-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ElephantMountain.Conkey.1994-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-EurekaSummit.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-EurekaSummit.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FirthRiver.Anchukaitis.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FishCreekTrail.Biondi.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FlintCreekRange.Hughes.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FlowerLake.Graybill.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FoolCreek.Brown.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FoolCreek.Brown.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FortChimo.Fritts.1981.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FremontGlacier.Hill.0.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-FrenchGlacier.Colenutt.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GalenaPassSawtooth.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GalenaPassSawtooth.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GeraldineLakes.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GraniteMountain.Graumlich.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GranitePassHuntMountain.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GranitePassHuntMountain.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GreatBasin.Salzer.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-GreenLake.Menounos.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HartsPassN2.Peterson.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HellsKitchenLake.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HerringAlpine.Fritts.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HighlandFireOutlook.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HighlandFireOutlook.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HighwoodPass.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Hilda.Kavanagh.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HohLakeHigh.Peterson.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-HornbyCabin.Jacoby.1989.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-IttyhaukBay.DArrigo.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-KobukNoatak.King.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LaTasajera.Biondi.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LacNoir.Paquette.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LacRomanel.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LacRomanel.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LakeMina.St.Jacques.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LakeoftheClouds.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Landslide.Luckman.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-LittlePineLake.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Manitoba.DArrigo.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-McGinnisTrail.Wiles.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MeadowMountain.Wilson.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MeadowMountain.Wilson.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MedicineBowPeak.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MedicineBowPeak.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MedusaBay.Buckley.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MinersWell.Wiles.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MountAdamsLow.Peterson.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MountWashington.Graybill.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MtLemon.Briffa.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MtLemon.Briffa.2002-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MtStHelens.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-MtStHelens.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-NabesnaMine.Jacoby.2003-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-NabesnaMine.Jacoby.2003-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Nadahini.Luckman.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Nakiska.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-NorthernAlaskaComposite.DArrigo.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-OregonCaves.Ersek.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ParkMountain.Wilson.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ParkMountain.Wilson.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PearlPeak.Graybill.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PethaiPeninsula.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PethaiPeninsula.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PeytoLake.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PeytoLake.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PikePeaks.Harlan.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PikePeaks.Harlan.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Pintlers.Littell.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Pintlers.Littell.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PintlersTwo.Littell.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PowderRiverPass.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PowderRiverPass.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PrinceWilliamSound.Barclay.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-PyramidMountain.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-RedMountainPassSilverton.Graybill.1994-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-RedMountainPassSilverton.Graybill.1994-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-RockGlacierYukon.Kenigsberg.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-RoweLakes.Colenutt.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-RubyLake.Gajewski.1988.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-STREC.Gennaretti.2014-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SanFrancisoPeaksUpdate.Graybill.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ScatterLake.Graumlich.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SettlementPointAfognakIsland.Harlan.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SewardComposite.DArrigo.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SewardComposite.DArrigo.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SheepMountain.Graybill.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SheepTrail.Brown.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SheepTrail.Brown.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ShermanCreekPass.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-ShermanCreekPass.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SiberianOutpostView.Bunn.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SignalMountain.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SleepingDeerRoad.Hughes.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SleepingDeerRoad.Hughes.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SmallRiver.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SmithersSkiArea.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SmithersSkiArea.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SnakeCreek.Kenigsberg.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SnowBowlSanFranciscoPeak.Briffa.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SnowBowlSanFranciscoPeak.Briffa.2002-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SouthernAlaskacomposite.DArrigo.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SpillwayLakeYosemiteNationalPark.King.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SpruceCreek.Church.1981.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-StarrigawanOldSitka.Kaiser.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Sugarloaf.Kenigsberg.2013-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Sugarloaf.Kenigsberg.2013-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SunshineMeadows.Colenutt.1995-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SunshineMeadows.Colenutt.1995-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SunwaptaPass.Schweingruber.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SunwaptaPass.Schweingruber.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SurpriseValley.Luckman.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SylvanPassbeiCody.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-SylvanPassbeiCody.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TamarackBowl.Sauchyn.2016.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TimberGapUpper.Graybill.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TogwateePass.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TogwateePass.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TwistedTreeHeartrotHill.Jacoby.1989-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-TwistedTreeHeartrotHill.Jacoby.1989-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-UpperWrightLakes.Graumlich.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-VancouverCyprusProvincialPark.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-VancouverCyprusProvincialPark.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-VicaryMine.Sauchyn.2016.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-WindyRidgeAlaska.DArrigo.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-WrangellsComposite.DArrigo.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-YellowMountainRidge.King.2002.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Ymir.Wilson.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-Ymir.Wilson.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-YosemiteParkEEingang.Briffa.1996-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-YosemiteParkEEingang.Briffa.1996-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-wa069.Peterson.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/NAm-wa071.Peterson.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AbrahamReef.Druffel.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AlboranSea384B.Nieto-Moreno.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AlboranSea436B.Nieto-Moreno.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AmedeeIsland.DeLong.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AqabaJordanAQ18.Heiss.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-AqabaJordanAQ19.Heiss.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ArabianSea.Doose-Rolinski.2001-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ArabianSea.Doose-Rolinski.2001-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Bermuda.DraschbaA.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Bermuda.DraschbaB.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BermudaSouthShore.Goodkin.2008-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BermudaSouthShore.Goodkin.2008-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BiscayneBay.Swart.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BuccooReefTobagoMontastrea.Moses.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BuccooReefTobagoSidereastrea.Moses.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BuccooReefTobagoSidereastrea.Moses.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-BunakenIsland.Charles.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CH07-98-MC-22.Saenger.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CH07-98-MC-22.Saenger.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CapeGhir.Doose-Rolinski.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CapeGhir.Doose-Rolinski.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CapeGhir.McGregor.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CapeGhir.McGregor.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CapeHatteras.Cleroux.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CariacoBasin.Black.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CariacoBasin.Black.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CariacoBasin.Lea.2003-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CariacoBasin.Lea.2003-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ChileanMargin.Lamy.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ChileanMargin.Lamy.2002-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ClerkeReefRowleyShoals.Cooper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Clipperton1b.Wu.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Clipperton2b.Wu.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Clipperton4b.Wu.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Clipperton6a.Wu.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ClippertonAtoll.Linsley.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CoralBayNingaloo.Cooper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-CoralSea.Calvo.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DoubleReef.Asami.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DryTortugas.DeLong.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DryTortugas.Lund.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DryTortugas.Lund.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DryTortugasA.Lund.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-DryTortugasA.Lund.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EasternTropicalNorthAtlantic.Kuhnert.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EasternTropicalNorthAtlantic.Kuhnert.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EmeraldBasin.Keigwin.2003-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EmeraldBasin.Keigwin.2003-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EmeraldBasin.Keigwin.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-EmeraldBasin.Keigwin.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-FeniDrift.Richter.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-FeniDrift.Richter.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-FiskBasin.Richey.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-FiskBasin.Richey.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-FloridaBay.Swart.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GBR.Wei.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GarrisonBasin.Richey.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GarrisonBasin.Richey.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GingerbreadsBahamas.Saenger.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GreatBahamaBank.Lund.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GreatBahamaBank.Lund.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GreatBahamaBank.Richter.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GreatBahamaBank.Richter.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GreatBarrierReef.Hendy.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Guadeloupe.Steinhilber.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-GulfofGuinea.Weldeab.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-HaferaIsland.Wu.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-HoutmanAbrolhos.Kuhnert.1999.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-HoutmanAbrolhosIslands.Cooper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Ifaty1.Zinke.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Ifaty4.Zinke.2004.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-IfatyTul3.Zinke.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ImperieuseRowleyShoals.Cooper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-JacafFjord.Seplveda.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-JacafFjord.Seplveda.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Kiritimati.Evans.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-KuroshioCurrent.Isono.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-KuroshioCurrent.Isono.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-LaingIslandPapuaNewGuinea.Tudhope.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-LaurentianFan.Keigwin.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-LaurentianFan.Keigwin.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Lombok.Charles.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-LosRoques.Hetzinger.2008.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MD95-2011.Grimalt.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MD95-2011.Grimalt.2002-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MD98-2160.Newton.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MD98-2177.Newton.2010.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MadangLagoonPapuaNewGuinea.Kuhnert.2001.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MadangLagoonPapuaNewGuinea.Tudhope.1995.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Mafia.Damassa.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Mahe.Charles.1997.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Maiana.Urban.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MakassarStrait.Linsley.2010-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MakassarStrait.Linsley.2010-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MakassarStrait.Oppo.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MakassarStrait.Oppo.2009-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Malindi.Cole.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Malindi.Nakamura.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MaloChannelEspirituSantoIsland.Kilbourne.2004.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Mayotte.Zinke.2008-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Mayotte.Zinke.2008-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Mayotte.Zinke.2008-3.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MinorcaContourite.Moreno.2012-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-MinorcaContourite.Moreno.2012-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Miyanohama.Felis.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Moorea.Boiseau.1998.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Ningaloo.Kuhnert.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthEastBreakersBermuda.Kuhnert.2002-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthEastBreakersBermuda.Kuhnert.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthEastBreakersBermuda.Kuhnert.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthIceland.Sicre.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthwestPacificOcean.Harada.2004-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-NorthwestPacificOcean.Harada.2004-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ODP984.Came.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-ODP984.Came.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-OkinawaTrough.Wu.2012-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-OkinawaTrough.Wu.2012-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-PalauRockIslands.Osborne.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-PalauUlongChannel.Osborne.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Palmyra.Cobb.2003.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Palmyra.Nurhati.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Palmyra.Nurhati.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-PedradeLume-CapeVerdeIslands.Moses.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Philippines.Stott.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-PigmyBasin.Richey.2015-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-PuntaMaroma.Vsquez-Bedoya.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-RAPiD-12-1K.Thornalley.2009-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Rabaul.Quinn.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-RarotongaSrCa2r.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Rarotongad18O2R.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Rarotongad18O3R.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Rarotongad18O99.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-RedSea.Felis.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Reunion.Pfeiffer.2004.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SWCoastOfIndia.Saraswat.2013-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SWCoastOfIndia.Saraswat.2013-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SantaBarbaraBasin.Zhao.2000-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SavusavuBay1F.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SavusavuBayAB.Linsley.2006.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SavusavuBayFiji.Bagnato.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SecasIslandPanama.Linsley.1994.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SinaiPeninsulaRedSea.Moustafa.2000.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthAtlanticWestAfrica.Leduc.2010-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthAtlanticWestAfrica.Leduc.2010-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthChinaSea.Zhao.2006-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthChinaSea.Zhao.2006-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthIceland.Sicre.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthIceland.Sicre.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthernChileMargin.Mohtadi.2007-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SouthernChileMargin.Mohtadi.2007-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SubTropicalEasternNorthAtlantic.deMenocal.2000-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-SubTropicalEasternNorthAtlantic.deMenocal.2000-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-TagusMudPatch.Abrantes.2005-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-TagusMudPatch.Abrantes.2005-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-TantabiddiReefNingaloo.Cooper.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Tarawa.Cole.1990.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-TongueoftheOcean.Rosenheim.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-TongueoftheOceanExuma.Rosenheim.2005.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Vanuatu.Gorman.2012.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-Vanuatu.Quinn.1996.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WEqPacific.Stott.2007.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WestSpitzberg.Bonnet.2010-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WestSpitzberg.Bonnet.2010-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WestSpitzberg.Bonnet.2010-3.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WesternAntarcticPeninsula.Shevenell.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WesternAntarcticPeninsula.Shevenell.2011-2.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-WesternSvalbard.Spielhagen.2011-1.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/Ocn-XishaIslandSouthChinaSea.Sun.2004.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes11.PAGES2k.2011.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes15.Neukom.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes6.Villalba.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes9.Mundo.2014.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-LagunaAculeo.vonGunten.2009.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-LagunaChepical.deJong.2013.txt'
+ 'https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-QuelccayaIceCap.Thompson.2013.txt']
+[]
 ["&lt;class 'str'&gt;"]
-No. of unique values: 458/1364
+No. of unique values: 724/1364
 </pre>
 </div>
 </div>
@@ -5069,7 +5340,7 @@ No. of unique values: 458/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-31">
@@ -5146,7 +5417,7 @@ No. of unique values: 1/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-32">
@@ -5252,7 +5523,7 @@ No. of unique values: 311/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-33">
@@ -5324,7 +5595,7 @@ No. of unique values: 467/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-34">
@@ -5404,7 +5675,7 @@ No. of unique values: 503/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-35">
@@ -5481,7 +5752,7 @@ No. of unique values: 575/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [36]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-36">
@@ -5546,7 +5817,7 @@ No. of unique values: 10/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [37]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-37">
@@ -5617,7 +5888,7 @@ No. of unique values: 37/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [38]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-38">
@@ -5690,7 +5961,7 @@ No. of unique values: 46/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [39]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-39">
@@ -5758,7 +6029,7 @@ No. of unique values: 31/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [40]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-40">
@@ -5837,7 +6108,7 @@ No. of unique values: 151/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [41]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-41">
@@ -5898,7 +6169,7 @@ No. of unique values: 3/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [42]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-42">
@@ -5963,7 +6234,7 @@ No. of unique values: 37/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [43]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-43">
@@ -6024,7 +6295,7 @@ No. of unique values: 4/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [44]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-44">
@@ -6098,7 +6369,7 @@ No. of unique values: 14/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [45]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-45">
@@ -6208,7 +6479,7 @@ NAm-SmithersSkiArea.Schweingru: 0.472 -- 1.576
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [46]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-46">
@@ -6274,7 +6545,7 @@ No. of unique values: 18/1364
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [47]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-47">
@@ -6358,7 +6629,7 @@ NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [49]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-48">

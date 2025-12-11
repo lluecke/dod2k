@@ -1129,6 +1129,30 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#change-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      change metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="change metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#originaldataurl" class="md-nav__link">
+    <span class="md-ellipsis">
+      OriginalDataURL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#save-merged-dataframe" class="md-nav__link">
     <span class="md-ellipsis">
       save merged dataframe
@@ -2215,6 +2239,7 @@ from dod2k_utilities import ut_plot as uplt # contains plotting functions</div>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">'---------------'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'RESULT:'</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-4"># read compact dataframes from all the single databases
@@ -2231,6 +2256,7 @@ for ii, dn in enumerate(dataset_names[1:]):
 
 print('---------------')
 print('RESULT:')
+df.index = range(len(df))
 print(df.info())</div>
 </div>
 </div>
@@ -2256,7 +2282,7 @@ length:  5320
 ---------------
 RESULT:
 &lt;class 'pandas.core.frame.DataFrame'&gt;
-Index: 5320 entries, 0 to 545
+RangeIndex: 5320 entries, 0 to 5319
 Data columns (total 21 columns):
  #   Column                         Non-Null Count  Dtype  
 ---  ------                         --------------  -----  
@@ -2282,8 +2308,174 @@ Data columns (total 21 columns):
  19  year                           5320 non-null   object 
  20  yearUnits                      5320 non-null   object 
 dtypes: float32(3), object(18)
-memory usage: 852.0+ KB
+memory usage: 810.6+ KB
 None
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0107cd62-6e7f-4145-8479-6fcfec8b4ee3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="change-metadata">change metadata<a class="anchor-link" href="#change-metadata">¶</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=9b742260-ba3f-4e45-9960-e58e6fa15784">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="originaldataurl">OriginalDataURL<a class="anchor-link" href="#originaldataurl">¶</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=dc47826a-66eb-49d9-a3c1-baf17d45ba0e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol>
+<li>when writing OriginalDataURL, convert any ftp://ftp.ncdc to <a href="https://ncei">https://ncei</a> :  e.g.</li>
+</ol>
+<p>URL 1: ftp://ftp.ncdc.noaa.gov/pub/data/paleo/contributions_by_author/keigwin2005</p>
+<p>write to
+URL 1: <a href="https://ncei.noaa.gov/pub/data/paleo/contributions_by_author/keigwin2005">https://ncei.noaa.gov/pub/data/paleo/contributions_by_author/keigwin2005</a></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=047071b4-88f1-4683-851c-4e9af3a43b54">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[[</span><span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'ftp://ftp.ncdc'</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'before: '</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="s1">'originalDataURL'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'ftp://ftp.ncdc'</span><span class="p">,</span> <span class="s1">'https://ncei'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'after: '</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+    
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-5">for ii in df[[df['originalDataURL'].iloc[ii].startswith('ftp://ftp.ncdc') for ii in df.index]].index:
+    print('before: ', df['originalDataURL'].iloc[ii])
+    df.at[ii, 'originalDataURL'] = df.at[ii, 'originalDataURL'].replace('ftp://ftp.ncdc', 'https://ncei')
+    print('after: ', df['originalDataURL'].iloc[ii])
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>before:  ftp://ftp.ncdc.noaa.gov/pub/data/paleo/paleolimnology/northamerica/canada/baffin/big-round2008.txt
+after:  https://ncei.noaa.gov/pub/data/paleo/paleolimnology/northamerica/canada/baffin/big-round2008.txt
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=21b0b358-0350-431d-a4dc-45142341843f">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ol start="2">
+<li>When writing OriginalDataURLs like this one:</li>
+</ol>
+<p><a href="https://www.ncdc.noaa.gov/cdo/f?p=519:1:784943880673501::::P1_STUDY_ID:10492">https://www.ncdc.noaa.gov/cdo/f?p=519:1:784943880673501::::P1_STUDY_ID:10492</a></p>
+<p>rewrite to a URL that is valid, e.g.</p>
+<p><a href="https://www.ncei.noaa.gov/access/paleo-search/study/10492">https://www.ncei.noaa.gov/access/paleo-search/study/10492</a></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=5fe38e76-981a-4e68-9552-e8b6d6361c24">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[[</span><span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'https://www.ncdc.noaa.gov/cdo'</span><span class="p">)</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">]]</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'before: '</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+    <span class="n">study_id</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'STUDY_ID:'</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'study_ID: '</span><span class="p">,</span> <span class="n">study_id</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ii</span><span class="p">,</span> <span class="s1">'originalDataURL'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">'https://www.ncei.noaa.gov/access/paleo-search/study/</span><span class="si">{</span><span class="n">study_id</span><span class="si">}</span><span class="s1">'</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'after: '</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'originalDataURL'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+    
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-6">for ii in df[[df['originalDataURL'].iloc[ii].startswith('https://www.ncdc.noaa.gov/cdo') for ii in df.index]].index:
+    print('before: ', df['originalDataURL'].iloc[ii])
+    study_id=df.at[ii, 'originalDataURL'].split('STUDY_ID:')[-1]
+    print('study_ID: ', study_id)
+    df.at[ii, 'originalDataURL'] = f'https://www.ncei.noaa.gov/access/paleo-search/study/{study_id}'
+    print('after: ', df['originalDataURL'].iloc[ii])
+    </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>before:  https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:5472
+study_ID:  5472
+after:  https://www.ncei.noaa.gov/access/paleo-search/study/5472
+before:  https://www.ncdc.noaa.gov/cdo/f?p=519:1:0::::P1_STUDY_ID:13174
+study_ID:  13174
+after:  https://www.ncei.noaa.gov/access/paleo-search/study/13174
+before:  https://www.ncdc.noaa.gov/cdo/f?p=519:1:::::P1_STUDY_ID:8647
+study_ID:  8647
+after:  https://www.ncei.noaa.gov/access/paleo-search/study/8647
+before:  https://www.ncdc.noaa.gov/cdo/f?p=519:1:0::::P1_STUDY_ID:13174
+study_ID:  13174
+after:  https://www.ncei.noaa.gov/access/paleo-search/study/13174
 </pre>
 </div>
 </div>
@@ -2318,66 +2510,6 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-5">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">db_name</span><span class="o">=</span><span class="s1">'all_merged'</span>
-<span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">db_name</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">/'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-5">db_name='all_merged'
-df.name=db_name
-os.makedirs(f'data/{db_name}/', exist_ok=True)</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2c4abd40-8e65-43c5-9673-d289327300a2">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="CodeMirror cm-s-jupyter">
-<div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-6">
-<div>
-<span class="notice" hidden="">Copied!</span>
-<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
-<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
-</svg>
-</div>
-</clipboard-copy>
-</div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># save concatenate dataframe as db_merged</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">_compact.pkl'</span><span class="p">)</span>
-</pre></div>
-<div class="clipboard-copy-txt" id="cell-6"># save concatenate dataframe as db_merged
-df.to_pickle(f'data/{db_name}/{db_name}_compact.pkl')</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84a961f8-43b7-4658-b3ab-4505a8b89977">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
@@ -2391,9 +2523,69 @@ df.to_pickle(f'data/{db_name}/{db_name}_compact.pkl')</div>
 </div>
 </clipboard-copy>
 </div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">db_name</span><span class="o">=</span><span class="s1">'all_merged'</span>
+<span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="n">db_name</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">/'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-7">db_name='all_merged'
+df.name=db_name
+os.makedirs(f'data/{db_name}/', exist_ok=True)</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=2c4abd40-8e65-43c5-9673-d289327300a2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># save concatenate dataframe as db_merged</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">'data/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">db_name</span><span class="si">}</span><span class="s1">_compact.pkl'</span><span class="p">)</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-8"># save concatenate dataframe as db_merged
+df.to_pickle(f'data/{db_name}/{db_name}_compact.pkl')</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=84a961f8-43b7-4658-b3ab-4505a8b89977">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-7">print(df.info())</div>
+<div class="clipboard-copy-txt" id="cell-9">print(df.info())</div>
 </div>
 </div>
 </div>
@@ -2406,7 +2598,7 @@ df.to_pickle(f'data/{db_name}/{db_name}_compact.pkl')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Index: 5320 entries, 0 to 545
+RangeIndex: 5320 entries, 0 to 5319
 Data columns (total 21 columns):
  #   Column                         Non-Null Count  Dtype  
 ---  ------                         --------------  -----  
@@ -2432,7 +2624,7 @@ Data columns (total 21 columns):
  19  year                           5320 non-null   object 
  20  yearUnits                      5320 non-null   object 
 dtypes: float32(3), object(18)
-memory usage: 852.0+ KB
+memory usage: 810.6+ KB
 None
 </pre>
 </div>
@@ -2457,10 +2649,10 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-8">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2473,7 +2665,7 @@ None
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># save to a list of csv files (metadata, data, year)</span>
 <span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-8"># save to a list of csv files (metadata, data, year)
+<div class="clipboard-copy-txt" id="cell-10"># save to a list of csv files (metadata, data, year)
 utf.write_compact_dataframe_to_csv(df)</div>
 </div>
 </div>
@@ -2500,10 +2692,10 @@ Saved to /home/jupyter-lluecke/dod2k_v2.0/dod2k/data/all_merged/all_merged_compa
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-9">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2517,7 +2709,7 @@ Saved to /home/jupyter-lluecke/dod2k_v2.0/dod2k/data/all_merged/all_merged_compa
 <span class="nb">print</span><span class="p">(</span><span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-9"># load dataframe
+<div class="clipboard-copy-txt" id="cell-11"># load dataframe
 print(utf.load_compact_dataframe_from_csv(db_name).info())
 print(df.info())</div>
 </div>
@@ -2561,7 +2753,7 @@ dtypes: float32(3), object(18)
 memory usage: 810.6+ KB
 None
 &lt;class 'pandas.core.frame.DataFrame'&gt;
-Index: 5320 entries, 0 to 545
+RangeIndex: 5320 entries, 0 to 5319
 Data columns (total 21 columns):
  #   Column                         Non-Null Count  Dtype  
 ---  ------                         --------------  -----  
@@ -2587,7 +2779,7 @@ Data columns (total 21 columns):
  19  year                           5320 non-null   object 
  20  yearUnits                      5320 non-null   object 
 dtypes: float32(3), object(18)
-memory usage: 852.0+ KB
+memory usage: 810.6+ KB
 None
 </pre>
 </div>
@@ -2604,7 +2796,7 @@ None
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-10">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2616,7 +2808,7 @@ None
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-10"></div>
+<div class="clipboard-copy-txt" id="cell-12"></div>
 </div>
 </div>
 </div>
@@ -2650,10 +2842,10 @@ None
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-11">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-13">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2676,7 +2868,7 @@ None
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">uplt</span><span class="o">.</span><span class="n">plot_geo_archive_proxy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-11"># count archive types
+<div class="clipboard-copy-txt" id="cell-13"># count archive types
 archive_count = {}
 for ii, at in enumerate(set(df['archiveType'])):
     archive_count[at] = df.loc[df['archiveType']==at, 'archiveType'].count()
@@ -2707,8 +2899,8 @@ fig = uplt.plot_geo_archive_proxy(df, archive_colour)</div>
 5 LakeSediment 119
 6 Speleothem 45
 7 Documents 13
-8 Sclerosponge 6
-9 GroundIce 6
+8 GroundIce 6
+9 Sclerosponge 6
 10 Borehole 3
 11 Other 2
 12 MolluskShell 1
@@ -2741,10 +2933,10 @@ fig = uplt.plot_geo_archive_proxy(df, archive_colour)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-12">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2756,7 +2948,7 @@ fig = uplt.plot_geo_archive_proxy(df, archive_colour)</div>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">uplt</span><span class="o">.</span><span class="n">plot_coverage</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archives_sorted</span><span class="p">,</span> <span class="n">major_archives</span><span class="p">,</span> <span class="n">other_archives</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-12">fig = uplt.plot_coverage(df, archives_sorted, major_archives, other_archives, archive_colour)</div>
+<div class="clipboard-copy-txt" id="cell-14">fig = uplt.plot_coverage(df, archives_sorted, major_archives, other_archives, archive_colour)</div>
 </div>
 </div>
 </div>
@@ -2813,10 +3005,10 @@ fig = uplt.plot_geo_archive_proxy(df, archive_colour)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-13">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2829,7 +3021,7 @@ fig = uplt.plot_geo_archive_proxy(df, archive_colour)</div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># # check index</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-13"># # check index
+<div class="clipboard-copy-txt" id="cell-15"># # check index
 print(df.index)</div>
 </div>
 </div>
@@ -2842,10 +3034,7 @@ print(df.index)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Index([  0,   1,   2,   3,   4,   5,   6,   7,   8,   9,
-       ...
-       536, 537, 538, 539, 540, 541, 542, 543, 544, 545],
-      dtype='int64', length=5320)
+<pre>RangeIndex(start=0, stop=5320, step=1)
 </pre>
 </div>
 </div>
@@ -2869,10 +3058,10 @@ print(df.index)</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2888,7 +3077,7 @@ print(df.index)</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-14"># # check dataSetName
+<div class="clipboard-copy-txt" id="cell-16"># # check dataSetName
 key = 'dataSetName'
 print('%s: '%key)
 print(df[key].values)
@@ -2931,10 +3120,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -2954,7 +3143,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">'datasetId starts with: '</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">'_'</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-15"># # check datasetId
+<div class="clipboard-copy-txt" id="cell-17"># # check datasetId
 
 print(len(df.datasetId.unique()))
 print(len(df))
@@ -3004,10 +3193,10 @@ datasetId starts with:  ['FE23' 'ch2k' 'iso2k' 'pages2k' 'sisal']
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3025,7 +3214,7 @@ datasetId starts with:  ['FE23' 'ch2k' 'iso2k' 'pages2k' 'sisal']
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="c1"># 'this study' should point to the correct URL (PAGES2k)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-16"># originalDataURL
+<div class="clipboard-copy-txt" id="cell-18"># originalDataURL
 key = 'originalDataURL'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3045,9 +3234,9 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>originalDataURL: 
 ['This compilation' "['10.1002/2015GL063826']" "['10.1002/2015gl065397']"
- ... 'this study' 'www.ncdc.noaa.gov/paleo-search/study/27330'
+ ... 'this compilation' 'www.ncdc.noaa.gov/paleo-search/study/27330'
  'www.ncdc.noaa.gov/paleo/study/2474']
-['this compilation' 'this study']
+['this compilation']
 ["&lt;class 'str'&gt;"]
 </pre>
 </div>
@@ -3072,10 +3261,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3092,7 +3281,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="c1"># Note: the last two records have missing URLs</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-17"># # originalDataSet
+<div class="clipboard-copy-txt" id="cell-19"># # originalDataSet
 key = 'originalDatabase'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3147,10 +3336,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3167,7 +3356,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="s1">'</span><span class="si">%d</span><span class="s1">'</span><span class="o">%</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">kk</span><span class="p">)]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-18"># check Elevation
+<div class="clipboard-copy-txt" id="cell-20"># check Elevation
 key = 'geo_meanElev'
 print('%s: '%key)
 print(df[key])
@@ -3185,17 +3374,17 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>geo_meanElev: 
-0      1806.0
-1      2700.0
-2      2700.0
-3      2700.0
-4      2700.0
-        ...  
-541    1190.0
-542    1190.0
-543    1190.0
-544    1190.0
-545    1190.0
+0       1806.0
+1       2700.0
+2       2700.0
+3       2700.0
+4       2700.0
+         ...  
+5315    1190.0
+5316    1190.0
+5317    1190.0
+5318    1190.0
+5319    1190.0
 Name: geo_meanElev, Length: 5320, dtype: float32
 ['-1' '-10' '-1011' ... '991' '994' '995']
 ["&lt;class 'float'&gt;"]
@@ -3222,10 +3411,10 @@ Name: geo_meanElev, Length: 5320, dtype: float32
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3241,7 +3430,7 @@ Name: geo_meanElev, Length: 5320, dtype: float32
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="s1">'</span><span class="si">%d</span><span class="s1">'</span><span class="o">%</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-19"># # Latitude
+<div class="clipboard-copy-txt" id="cell-21"># # Latitude
 key = 'geo_meanLat'
 print('%s: '%key)
 print(np.unique(['%d'%kk for kk in df[key]]))
@@ -3293,10 +3482,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3312,7 +3501,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="s1">'</span><span class="si">%d</span><span class="s1">'</span><span class="o">%</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-20"># # Longitude 
+<div class="clipboard-copy-txt" id="cell-22"># # Longitude 
 key = 'geo_meanLon'
 print('%s: '%key)
 print(np.unique(['%d'%kk for kk in df[key]]))
@@ -3379,10 +3568,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3398,7 +3587,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-21"># Site Name 
+<div class="clipboard-copy-txt" id="cell-23"># Site Name 
 key = 'geo_siteName'
 print('%s: '%key)
 print(df[key].values)
@@ -3452,10 +3641,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3471,7 +3660,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-22"># archiveType
+<div class="clipboard-copy-txt" id="cell-24"># archiveType
 key = 'archiveType'
 print('%s: '%key)
 print(np.unique(df[key]))
@@ -3515,10 +3704,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3534,7 +3723,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-23"># paleoData_proxy
+<div class="clipboard-copy-txt" id="cell-25"># paleoData_proxy
 key = 'paleoData_proxy'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3583,10 +3772,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3602,7 +3791,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-24"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-26"># climate_interpretation
 key = 'paleoData_sensorSpecies'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3671,10 +3860,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-27">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3690,7 +3879,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-25"># # paleoData_notes
+<div class="clipboard-copy-txt" id="cell-27"># # paleoData_notes
 key = 'paleoData_notes'
 print('%s: '%key)
 print(df[key].values)
@@ -3733,10 +3922,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-28">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3752,7 +3941,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-26"># paleoData_variableName
+<div class="clipboard-copy-txt" id="cell-28"># paleoData_variableName
 key = 'paleoData_variableName'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3810,10 +3999,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-27">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-29">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3829,7 +4018,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-27"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-29"># climate_interpretation
 key = 'interpretation_direction'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3876,10 +4065,10 @@ No. of unique values: 14/5320
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-28">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-30">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3895,7 +4084,7 @@ No. of unique values: 14/5320
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-28"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-30"># climate_interpretation
 key = 'interpretation_seasonality'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3944,10 +4133,10 @@ No. of unique values: 54/5320
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [28]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-29">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-31">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3963,7 +4152,7 @@ No. of unique values: 54/5320
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-29"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-31"># climate_interpretation
 key = 'interpretation_variable'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4009,10 +4198,10 @@ No. of unique values: 17/5320
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [29]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-30">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-32">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4028,7 +4217,7 @@ No. of unique values: 17/5320
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-30"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-32"># climate_interpretation
 key = 'interpretation_variableDetail'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4127,10 +4316,10 @@ No. of unique values: 85/5320
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [30]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-31">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-33">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4151,7 +4340,7 @@ No. of unique values: 85/5320
     <span class="k">except</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'dataSetName'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="s1">'NaNs detected.'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-31"># # paleoData_values
+<div class="clipboard-copy-txt" id="cell-33"># # paleoData_values
 key = 'paleoData_values'
 
 print('%s: '%key)
@@ -4237,10 +4426,10 @@ NAm-SmithersSkiArea.Schweingru: 0.472 -- 1.576
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [31]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-32">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-34">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4256,7 +4445,7 @@ NAm-SmithersSkiArea.Schweingru: 0.472 -- 1.576
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-32"># paleoData_units
+<div class="clipboard-copy-txt" id="cell-34"># paleoData_units
 key = 'paleoData_units'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4300,10 +4489,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [34]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-33">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-35">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4321,7 +4510,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
     <span class="k">except</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">'NaNs detected.'</span><span class="p">,</span> <span class="n">vv</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-33"># # year
+<div class="clipboard-copy-txt" id="cell-35"># # year
 key = 'year'
 print('%s: '%key)
 for ii, vv in enumerate(df[key][:20]):
@@ -4384,10 +4573,10 @@ NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [35]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-34">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-36">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4403,7 +4592,7 @@ NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-34"># yearUnits
+<div class="clipboard-copy-txt" id="cell-36"># yearUnits
 key = 'yearUnits'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
