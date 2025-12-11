@@ -1359,23 +1359,22 @@
 <h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
 <pre class="mermaid"><code>graph LR
 
+    A[Load&lt;br/&gt;Databases]
+    B[Merge]
+
     %% --- Group 1 ---
     subgraph S1[Duplicate Detection]
-        A[Load&lt;br/&gt;Databases]
-        B[Merge]
         C[Detect&lt;br/&gt;Duplicates]
     end
 
     %% --- Group 2 ---
     subgraph S1[Duplicate Decisions]
-        C
+        D[Review]
     end
 
 
     %% --- Group 3 ---
     subgraph S2[Duplicate Removal]
-        C
-        D[Review]
         E[Remove]
         F{Residual Duplicates?}
     end
