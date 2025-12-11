@@ -855,6 +855,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#331-records-to-be-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1. Records to be removed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#332-records-to-be-composited" class="md-nav__link">
     <span class="md-ellipsis">
       3.3.2. Records to be composited
@@ -1461,6 +1470,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#331-records-to-be-removed" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1. Records to be removed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#332-records-to-be-composited" class="md-nav__link">
     <span class="md-ellipsis">
       3.3.2. Records to be composited
@@ -1853,50 +1871,19 @@ This dictionary can be used to identify and track multiple decisions, as well as
 <p>We also extract details of each decisions, which will later be used to populate the field <code>duplicateDetails</code> in the final dataframe (the output of this notebook):</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup_details</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">provide_dup_details</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
 </code></pre></div>
-<p>&lt;!-- carries the information on all the duplicate decisions. For each duplicate pair, the dictionary is populated with information about the respective duplicate and the duplicate decision process. Note that we also account for multiple duplicates. This dictionary is used to populate the column <code>duplicateDetails</code> in the finalised duplicate free dataframe (<code>df_dupfree</code>).</p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup_details</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">dup_counts</span>  <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
-    <span class="n">dec_1</span><span class="p">,</span> <span class="n">dec_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision 2&#39;</span><span class="p">]]</span>
-    <span class="k">if</span> <span class="n">dec_1</span><span class="o">==</span><span class="s1">&#39;KEEP&#39;</span> <span class="ow">and</span> <span class="n">dec_2</span><span class="o">==</span><span class="s1">&#39;KEEP&#39;</span><span class="p">:</span> <span class="k">continue</span> <span class="c1"># in this case no true duplicates!</span>
-
-    <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId 2&#39;</span><span class="p">]]</span>
-    <span class="n">db_1</span><span class="p">,</span> <span class="n">db_2</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;originalDatabase 1&#39;</span><span class="p">,</span> <span class="s1">&#39;originalDatabase 2&#39;</span><span class="p">]]</span>
-    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
-        <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dup_details</span><span class="p">:</span>
-            <span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
-    <span class="n">dup_details</span><span class="p">[</span><span class="n">id_1</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="n">id_1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;duplicate ID&#39;</span><span class="p">:</span> <span class="n">id_2</span><span class="p">,</span> <span class="s1">&#39;duplicate database&#39;</span><span class="p">:</span> <span class="n">db_2</span><span class="p">,</span> <span class="s1">&#39;duplicate decision&#39;</span><span class="p">:</span> <span class="n">dec_2</span><span class="p">,</span> <span class="s1">&#39;decision type&#39;</span><span class="p">:</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]}</span>
-    <span class="n">dup_details</span><span class="p">[</span><span class="n">id_2</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="n">id_2</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;duplicate ID&#39;</span><span class="p">:</span> <span class="n">id_1</span><span class="p">,</span> <span class="s1">&#39;duplicate database&#39;</span><span class="p">:</span> <span class="n">db_1</span><span class="p">,</span> <span class="s1">&#39;duplicate decision&#39;</span><span class="p">:</span> <span class="n">dec_1</span><span class="p">,</span> <span class="s1">&#39;decision type&#39;</span><span class="p">:</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]}</span>
-
-    <span class="k">if</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision type&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;MANUAL&#39;</span><span class="p">:</span> 
-        <span class="n">operator_details</span> <span class="o">=</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">header</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; Modified &#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;  E-Mail&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
-            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;operator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">operator_details</span>
-            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;note&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="s1">&#39;Decision comment&#39;</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="p">[</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">]:</span>
-            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;operator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>
-            <span class="n">dup_details</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">dup_counts</span><span class="p">[</span><span class="nb">id</span><span class="p">]][</span><span class="s1">&#39;note&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;N/A&#39;</span>       
-<span class="err">```</span> <span class="o">--&gt;</span>
-
-<span class="err">!!!</span> <span class="n">Note</span>
-
-    <span class="n">Note</span> <span class="n">that</span> <span class="nb">any</span> <span class="n">one</span> <span class="n">record</span> <span class="n">can</span> <span class="n">appear</span> <span class="n">more</span> <span class="n">than</span> <span class="n">once</span> <span class="ow">and</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">decisions</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">it</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="err">`</span><span class="s1">&#39;REMOVE&#39;</span><span class="err">`</span><span class="p">,</span> <span class="err">`</span><span class="s1">&#39;KEEP&#39;</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="err">`</span><span class="p">)</span><span class="o">.</span>
-
-    <span class="n">In</span> <span class="n">order</span> <span class="n">to</span> <span class="n">remove</span> <span class="n">the</span> <span class="n">duplicates</span> <span class="n">we</span> <span class="n">therefore</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">following</span> <span class="n">steps</span><span class="p">:</span>
-
-    <span class="mf">1.</span> <span class="o">**</span><span class="n">Remove</span><span class="o">**</span> <span class="nb">all</span> <span class="n">records</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">dataframe</span> <span class="n">which</span> <span class="n">are</span> <span class="n">associated</span> <span class="k">with</span> <span class="n">the</span> <span class="n">decision</span> <span class="err">`</span><span class="s1">&#39;REMOVE&#39;</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="n">COMPOSITE</span><span class="err">`</span> <span class="o">-&gt;</span> <span class="err">`</span><span class="n">df_cleaned</span><span class="err">`</span>
-    <span class="mf">2.</span> <span class="o">**</span><span class="n">Create</span> <span class="n">composites</span><span class="o">**</span> <span class="n">of</span> <span class="n">the</span> <span class="err">`</span><span class="n">COMPOSITE</span><span class="err">`</span> <span class="n">records</span> <span class="o">-&gt;</span> <span class="err">`</span><span class="n">df_composite</span><span class="err">`</span>
-    <span class="mf">3.</span> <span class="o">**</span><span class="n">Check</span><span class="o">**</span> <span class="k">for</span> <span class="n">records</span> <span class="n">which</span> <span class="n">have</span> <span class="n">multiple</span> <span class="n">decisions</span> <span class="n">associated</span><span class="o">.</span> <span class="n">These</span> <span class="n">are</span> <span class="n">potentially</span> <span class="n">remaining</span> <span class="n">duplicates</span><span class="o">.</span>
-
-<span class="c1">#### 3.3.1. Records to be removed</span>
-<span class="n">First</span> <span class="n">simply</span> <span class="n">remove</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">records</span> <span class="n">to</span> <span class="n">which</span> <span class="n">the</span> <span class="n">decision</span> <span class="err">`</span><span class="n">REMOVE</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="n">COMPOSITE</span><span class="err">`</span> <span class="n">applies</span> <span class="n">to</span> <span class="ow">and</span> <span class="n">store</span> <span class="ow">in</span> <span class="err">`</span><span class="n">df_cleaned</span><span class="err">`</span><span class="p">,</span> <span class="k">while</span> <span class="nb">all</span> <span class="err">`</span><span class="s1">&#39;REMOVE&#39;</span><span class="err">`</span> <span class="ow">or</span> <span class="err">`</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="err">`</span> <span class="nb">type</span> <span class="n">records</span> <span class="n">are</span> <span class="n">stored</span> <span class="ow">in</span> <span class="err">`</span><span class="n">df_duplica_rmv</span><span class="err">`</span> <span class="p">(</span><span class="k">for</span> <span class="n">later</span> <span class="n">inspection</span><span class="p">)</span><span class="o">.</span>
-
-<span class="err">```</span><span class="n">python</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;python3/Jupyter&#39;</span>
-<span class="c1"># load the records TO BE REMOVED</span>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that any one record can appear more than once and have multiple decisions associated with it (e.g. <code>'REMOVE'</code>, <code>'KEEP'</code> or <code>'COMPOSITE'</code>).</p>
+<p>In order to remove the duplicates we therefore implement the following steps:</p>
+<ol>
+<li><strong>Remove</strong> all records from the dataframe which are associated with the decision <code>'REMOVE'</code> or <code>COMPOSITE</code> -&gt; <code>df_cleaned</code></li>
+<li><strong>Create composites</strong> of the <code>COMPOSITE</code> records -&gt; <code>df_composite</code></li>
+<li><strong>Check</strong> for records which have multiple decisions associated. These are potentially remaining duplicates.</li>
+</ol>
+</div>
+<h4 id="331-records-to-be-removed">3.3.1. Records to be removed</h4>
+<p>First simply remove all the records to which the decision <code>REMOVE</code> or <code>COMPOSITE</code> applies to and store in <code>df_cleaned</code>, while all <code>'REMOVE'</code> or <code>'COMPOSITE'</code> type records are stored in <code>df_duplica_rmv</code> (for later inspection).</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span>
@@ -1942,17 +1929,15 @@ The function <code>join_composites_metadata</code> also creates summary figures 
 <li><code>REMOVE</code>/<code>KEEP</code> and <code>COMPOSITE</code>:</li>
 <li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
 <li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
-</ul>
+<li>
 <p>In this case, <code>b</code> and <code>ac</code> (the composite record of <code>a</code> and <code>c</code>) would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span></p>
-<ul>
+</li>
 <li>
 <p><code>REMOVE</code>/<code>KEEP</code> &amp; <code>REMOVE</code>/<code>KEEP</code></p>
 </li>
+<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
+<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>REMOVE</code>, <code>c</code> -&gt; <code>KEEP</code>.</li>
 <li>
-<p>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></p>
-</li>
-<li>
-<p>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>REMOVE</code>, <code>c</code> -&gt; <code>KEEP</code>.</p>
 <p>In this case, <code>a</code> would be removed, but <code>b</code> and <code>c</code> will be kept and would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>. </p>
 </li>
 <li>
@@ -1960,8 +1945,8 @@ The function <code>join_composites_metadata</code> also creates summary figures 
 </li>
 <li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>COMPOSITE</code>, <code>b</code> -&gt; <code>COMPOSITE</code></li>
 <li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
+<li>In this case, <code>ab</code> and <code>ac</code> would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>.</li>
 </ul>
-<p>In this case, <code>ab</code> and <code>ac</code> would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>.</p>
 <p>XXXX</p>
 <p>Before merging and saving the duplicate free dataframe we still need to ensure that there is no overlap between <code>'COMPOSITE'</code> and <code>'REMOVE'</code> type duplicates. We first collect a list of these duplicates via </p>
 <p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">overlap_rmv_cmp</span> <span class="o">=</span> <span class="p">[]</span>
