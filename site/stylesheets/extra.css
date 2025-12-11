@@ -1,0 +1,26 @@
+/* Hero section styling */
+
+/* Only center h1 on the homepage */
+
+.md-typeset h1 {
+    font-weight: 700;
+    color: var(--md-primary-fg-color);
+}
+
+/* Card styling */
+.grid.cards {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+/* Figure styling */
+figure img {
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Table styling for databases */
+.md-typeset table:not([class]) {
+    border-radius: 8px;
+    overflow: hidden;
+}

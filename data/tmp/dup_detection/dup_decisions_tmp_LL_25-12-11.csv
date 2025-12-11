@@ -1,0 +1,8 @@
+# Decisions for duplicate candidate pairs. 
+# Operated by Lucie Luecke (LL)
+# E-Mail: ljluec1@st-andrews.ac.uk
+# Created on: 2025-12-11 15:21:12.842494 (UTC)
+# test
+index 1,index 2,figure path,datasetId 1,datasetId 2,originalDatabase 1,originalDatabase 2,geo_siteName 1,geo_siteName 2,geo_meanLat 1,geo_meanLat 2,geo_meanLon 1,geo_meanLon 2,geo_meanElevation 1,geo_meanElevation 2,archiveType 1,archiveType 2,paleoData_proxy 1,paleoData_proxy 2,originalDataURL 1,originalDataURL 2,year 1,year 2,Decision 1,Decision 2,Decision type,Decision comment
+5,6,"https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/tmp000_pages2k_2146_pages2k_2149__5_6,jpg",pages2k_2146,pages2k_2149,PAGES 2k v2.2.0,PAGES 2k v2.2.0,Central Andes composite 6,Central Andes composite 6,-38.5,-38.5,-71.5,-71.5,1400.0,1400.0,Wood,Wood,ring width,ring width,https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes6.Villalba.2014.txt,https://www1.ncdc.noaa.gov/pub/data/paleo/pages2k/pages2k-temperature-v2-2017/data-version-2.0.0/SAm-CentralAndes6.Villalba.2014.txt,1435.0-2006.0,1435.0-2006.0,KEEP,KEEP,MANUAL,
+36,46,"https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/tmp001_iso2k_1069_iso2k_1660__36_46,jpg",iso2k_1069,iso2k_1660,Iso2k v1.1.2,Iso2k v1.1.2,Akademii Nauk,Akademii Nauk,80.5199966430664,80.5199966430664,94.81999969482422,94.81999969482422,750.0,750.0,GlacierIce,GlacierIce,d18O,d18O,https://doi.pangaea.de/10.1594/PANGAEA.824732,https://doi.pangaea.de/10.1594/PANGAEA.871279,900.0-1998.0,1883.0-1998.0,COMPOSITE,COMPOSITE,MANUAL,

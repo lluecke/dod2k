@@ -1,0 +1,96 @@
+site_name: DoD2k Documentation
+site_description: Database of databases
+# site_url: https://lluecke.github.io/dod2k
+repo_url: https://github.com/lluecke/dod2k
+repo_name: lluecke/dod2k
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+  - mkdocs-jupyter:
+      include_source: True
+      execute: False
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+            docstring_style: numpy
+            show_root_heading: true
+            show_signature: true
+nav:
+  - Home: index.md
+  - DoD2k: dod2k.md
+  - Getting started:
+      - Overview: getting_started/index.md
+      - Installation: getting_started/installation.md
+      - Quickstart: getting_started/quickstart.md
+  - Tutorials:
+      - Overview: tutorial/index.md
+      - Explore DoD2k: tutorial/use_dod2k.md
+      - Load and merge original databases: tutorial/load_merge.md
+      - Duplicate Detection: tutorial/duplicate.md
+      - Generate DoD2k from scratch: tutorial/from_scratch.md
+      - Applications: tutorial/applications.md
+  - API Reference: api/index.md
+  # - Databases: databases.md
+  - Notebooks: 
+      - Overview: notebooks/index.md
+      - Explore DoD2k: notebooks/df_info.ipynb
+      - Plot DoD2k: notebooks/df_plot_dod2k.ipynb
+      - Filter DoD2k: notebooks/df_filter.ipynb
+      - Duplicate Detection: notebooks/dup_detection.ipynb
+      - Duplicate Decisions: notebooks/dup_decision.ipynb
+      - Duplicate Removal: notebooks/dup_removal.ipynb
+      - Load PAGES 2k: notebooks/load_pages2k.ipynb
+      - Load SISAL: notebooks/load_sisal.ipynb
+      - Load CoralHydro2k: notebooks/load_ch2k.ipynb
+      - Load Iso2k: notebooks/load_iso2k.ipynb
+      - Load FE23: notebooks/load_fe23.ipynb
+  
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details  # ← ADD THIS!
+  - codehilite
+  - md_in_html
+  - attr_list
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+extra_css:
+  - stylesheets/extra.css
+
+  
