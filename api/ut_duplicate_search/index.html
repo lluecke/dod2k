@@ -3753,66 +3753,7 @@ Default is True.</p>
 <span class="normal">1805</span>
 <span class="normal">1806</span>
 <span class="normal">1807</span>
-<span class="normal">1808</span>
-<span class="normal">1809</span>
-<span class="normal">1810</span>
-<span class="normal">1811</span>
-<span class="normal">1812</span>
-<span class="normal">1813</span>
-<span class="normal">1814</span>
-<span class="normal">1815</span>
-<span class="normal">1816</span>
-<span class="normal">1817</span>
-<span class="normal">1818</span>
-<span class="normal">1819</span>
-<span class="normal">1820</span>
-<span class="normal">1821</span>
-<span class="normal">1822</span>
-<span class="normal">1823</span>
-<span class="normal">1824</span>
-<span class="normal">1825</span>
-<span class="normal">1826</span>
-<span class="normal">1827</span>
-<span class="normal">1828</span>
-<span class="normal">1829</span>
-<span class="normal">1830</span>
-<span class="normal">1831</span>
-<span class="normal">1832</span>
-<span class="normal">1833</span>
-<span class="normal">1834</span>
-<span class="normal">1835</span>
-<span class="normal">1836</span>
-<span class="normal">1837</span>
-<span class="normal">1838</span>
-<span class="normal">1839</span>
-<span class="normal">1840</span>
-<span class="normal">1841</span>
-<span class="normal">1842</span>
-<span class="normal">1843</span>
-<span class="normal">1844</span>
-<span class="normal">1845</span>
-<span class="normal">1846</span>
-<span class="normal">1847</span>
-<span class="normal">1848</span>
-<span class="normal">1849</span>
-<span class="normal">1850</span>
-<span class="normal">1851</span>
-<span class="normal">1852</span>
-<span class="normal">1853</span>
-<span class="normal">1854</span>
-<span class="normal">1855</span>
-<span class="normal">1856</span>
-<span class="normal">1857</span>
-<span class="normal">1858</span>
-<span class="normal">1859</span>
-<span class="normal">1860</span>
-<span class="normal">1861</span>
-<span class="normal">1862</span>
-<span class="normal">1863</span>
-<span class="normal">1864</span>
-<span class="normal">1865</span>
-<span class="normal">1866</span>
-<span class="normal">1867</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1808</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                                  <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                  <span class="n">comment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">automate_db_choice</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4255,70 +4196,11 @@ Default is True.</p>
                             <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
 
 
-    <span class="c1"># ax.scatter(time_1, data_1-np.mean(data_1[int_1]), facecolor=&#39;None&#39;, </span>
-    <span class="c1">#            edgecolor=&#39;tab:blue&#39;, marker=&#39;o&#39;,#marker=&#39;o&#39;,</span>
-    <span class="c1">#            s=15, label=label1, alpha=0.9)</span>
-
-    <span class="c1"># label2 = f&#39;#{jj}: {id_2}&#39;# f&#39;ID2: {id_2} (#{jj}))&#39; </span>
-    <span class="c1"># ax.scatter(time_2, data_2-np.mean(data_2[int_2]), color=&#39;tab:red&#39;, marker=&#39;x&#39;,#marker=&#39;D&#39;,</span>
-    <span class="c1">#            s=15, label=label2, alpha=0.9)</span>
-
                             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Leave room for suptitle</span>
                             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
 
-
-
-
-
-                            <span class="c1"># print(&#39;- &#39;, m_id)</span>
-
-                            <span class="c1"># r = df[df[&#39;datasetId&#39;]==m_id].iloc[0]  # Get first row as Series</span>
-
-                            <span class="c1"># mm = df[df[&#39;datasetId&#39;]==m_id].index.values[0]</span>
-                            <span class="c1"># #     print(mm)</span>
-                            <span class="c1"># mt, mi1, mi2 = np.intersect1d(df[&#39;year&#39;].loc[ii], df[&#39;year&#39;].loc[mm], return_indices=True) </span>
-                            <span class="c1"># plt.figure(figsize=(5, 1.5), dpi=100)</span>
-                            <span class="c1"># # print(&#39;a&#39;, df[&#39;paleoData_values&#39;].loc[mm])</span>
-                            <span class="c1"># # print(mm, mi2, mi1)</span>
-                            <span class="c1"># # print(&#39;b&#39;, df[&#39;paleoData_values&#39;].loc[mm][mi2])</span>
-                            <span class="c1"># # print(&#39;c&#39;, df[&#39;paleoData_values&#39;].loc[ii][mi1])</span>
-                            <span class="c1"># plt.subplot(121)</span>
-                            <span class="c1"># plt.plot(np.array(df[&#39;paleoData_values&#39;].loc[mm])[mi2], np.array(df[&#39;paleoData_values&#39;].loc[ii])[mi1])</span>
-                            <span class="c1"># plt.ylabel(m_id)</span>
-                            <span class="c1"># plt.xlabel(id_1)</span>
-                            <span class="c1"># mt, mi1, mi2 = np.intersect1d(df[&#39;year&#39;].loc[jj], df[&#39;year&#39;].loc[mm], return_indices=True) </span>
-
-                            <span class="c1"># plt.subplot(122)</span>
-                            <span class="c1"># plt.plot(np.array(df[&#39;paleoData_values&#39;].loc[mm])[mi2], np.array(df[&#39;paleoData_values&#39;].loc[jj])[mi1])</span>
-                            <span class="c1"># plt.ylabel(m_id)</span>
-                            <span class="c1"># plt.xlabel(id_2)</span>
-                            <span class="c1"># plt.tight_layout()</span>
-                            <span class="c1"># # dup_plot(df, ii, mm, id_1, m_id, time_1, df[&#39;year&#39;].loc[mm], mt, data_1, df[&#39;paleoData_values&#39;].loc[mm], mi1, mi2, 0, fig_scale=0.5)</span>
-                            <span class="c1"># plt.show(block=True)</span>
-
-                            <span class="c1"># print(f&quot;     - {&#39;Database&#39;:20s}: {r[&#39;originalDatabase&#39;]}&quot;)</span>
-                            <span class="c1"># print(f&quot;     - {&#39;URL&#39;:20s}: {r[&#39;originalDataURL&#39;]}&quot;)</span>
-                            <span class="c1"># print(f&quot;     - {&#39;Dataset ID&#39;:20s}: {r[&#39;datasetId&#39;]}&quot;)</span>
-                            <span class="c1"># print(f&quot;     - {&#39;Proxy&#39;:20s}: {r[&#39;archiveType&#39;]} | {r[&#39;paleoData_proxy&#39;]} | {r[&#39;paleoData_variableName&#39;]}&quot;)</span>
-                            <span class="c1"># print(f&quot;     - {&#39;Site&#39;:20s}: {r[&#39;geo_siteName&#39;]}&quot;)</span>
-                            <span class="c1"># print(f&quot;     - {&#39;Location&#39;:20s}: ({r[&#39;geo_meanLat&#39;]:.2f}, {r[&#39;geo_meanLon&#39;]:.2f}) elev: {r[&#39;geo_meanElev&#39;]:.0f}m&quot;)</span>
-                            <span class="c1"># if len(dup_dec)&gt;1:</span>
-                            <span class="c1">#     # print(&#39;mm: &#39;, mm)</span>
-                            <span class="c1">#     # print(np.array(dup_dec)[:, 0])</span>
-                            <span class="c1">#     # print(np.array(dup_dec)[:, 1])</span>
-                            <span class="c1">#     # print(str(mm) in np.array(dup_dec)[:, 0])</span>
-                            <span class="c1">#     # print(str(mm) in np.array(dup_dec)[:, 1])</span>
-                            <span class="c1">#     if str(mm) in np.array(dup_dec)[:, 0]:</span>
-                            <span class="c1">#         mm_loc=np.array(dup_dec)[:, 0]==str(mm)</span>
-                            <span class="c1">#         print(f&#39;FOUND IN DUP FILE, duplicate of {np.array(dup_dec)[mm_loc, 4]}&#39;)</span>
-                            <span class="c1">#         print(f&quot;     - {&#39;PREVIOUS DECISION&#39;:20s}: {np.array(dup_dec)[mm_loc, -4]}&quot;)</span>
-                            <span class="c1">#     if str(mm) in np.array(dup_dec)[:, 1]:</span>
-                            <span class="c1">#         mm_loc=np.array(dup_dec)[:, 1]==str(mm)</span>
-                            <span class="c1">#         print(f&#39;FOUND IN DUP FILE, duplicate of {np.array(dup_dec)[mm_loc, 3]}&#39;)</span>
-                            <span class="c1">#         print(f&quot;     - {&#39;PREVIOUS DECISION&#39;:20s}: {np.array(dup_dec)[mm_loc, -3]}&quot;)</span>
-                        <span class="c1"># raise Exception</span>
                         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-------&#39;</span><span class="o">*</span><span class="mi">15</span><span class="p">)</span>
 
                     <span class="k">if</span> <span class="n">comment</span><span class="p">:</span>
@@ -4326,7 +4208,7 @@ Default is True.</p>
                         <span class="n">dec_comment</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n_pot_dups</span><span class="si">}</span><span class="s1">: **COMMENT** Please type your comment here and/or press enter.&#39;</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">dec_comment</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-                    <span class="n">keep</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n_pot_dups</span><span class="si">}</span><span class="s1">: **DECISION** Keep record 1 (%s, blue circles) [1], record 2 (%s, red crosses) [2], keep both [b], keep none [n] or create a composite of both records [c]?  [Type 1/2/b/n/c]:&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">))</span>
+                    <span class="n">keep</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">n_pot_dups</span><span class="si">}</span><span class="s1">: **DECISION** Keep record 1 (%s, blue circles) [1], record 2 (%s, red crosses) [2], keep both [b], keep none [n] or create a composite of both records [c]? Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">))</span>
 
 
 
@@ -6082,7 +5964,58 @@ operator details in the composite notes.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2201</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2150</span>
+<span class="normal">2151</span>
+<span class="normal">2152</span>
+<span class="normal">2153</span>
+<span class="normal">2154</span>
+<span class="normal">2155</span>
+<span class="normal">2156</span>
+<span class="normal">2157</span>
+<span class="normal">2158</span>
+<span class="normal">2159</span>
+<span class="normal">2160</span>
+<span class="normal">2161</span>
+<span class="normal">2162</span>
+<span class="normal">2163</span>
+<span class="normal">2164</span>
+<span class="normal">2165</span>
+<span class="normal">2166</span>
+<span class="normal">2167</span>
+<span class="normal">2168</span>
+<span class="normal">2169</span>
+<span class="normal">2170</span>
+<span class="normal">2171</span>
+<span class="normal">2172</span>
+<span class="normal">2173</span>
+<span class="normal">2174</span>
+<span class="normal">2175</span>
+<span class="normal">2176</span>
+<span class="normal">2177</span>
+<span class="normal">2178</span>
+<span class="normal">2179</span>
+<span class="normal">2180</span>
+<span class="normal">2181</span>
+<span class="normal">2182</span>
+<span class="normal">2183</span>
+<span class="normal">2184</span>
+<span class="normal">2185</span>
+<span class="normal">2186</span>
+<span class="normal">2187</span>
+<span class="normal">2188</span>
+<span class="normal">2189</span>
+<span class="normal">2190</span>
+<span class="normal">2191</span>
+<span class="normal">2192</span>
+<span class="normal">2193</span>
+<span class="normal">2194</span>
+<span class="normal">2195</span>
+<span class="normal">2196</span>
+<span class="normal">2197</span>
+<span class="normal">2198</span>
+<span class="normal">2199</span>
+<span class="normal">2200</span>
+<span class="normal">2201</span>
 <span class="normal">2202</span>
 <span class="normal">2203</span>
 <span class="normal">2204</span>
@@ -6213,58 +6146,7 @@ operator details in the composite notes.</p>
 <span class="normal">2329</span>
 <span class="normal">2330</span>
 <span class="normal">2331</span>
-<span class="normal">2332</span>
-<span class="normal">2333</span>
-<span class="normal">2334</span>
-<span class="normal">2335</span>
-<span class="normal">2336</span>
-<span class="normal">2337</span>
-<span class="normal">2338</span>
-<span class="normal">2339</span>
-<span class="normal">2340</span>
-<span class="normal">2341</span>
-<span class="normal">2342</span>
-<span class="normal">2343</span>
-<span class="normal">2344</span>
-<span class="normal">2345</span>
-<span class="normal">2346</span>
-<span class="normal">2347</span>
-<span class="normal">2348</span>
-<span class="normal">2349</span>
-<span class="normal">2350</span>
-<span class="normal">2351</span>
-<span class="normal">2352</span>
-<span class="normal">2353</span>
-<span class="normal">2354</span>
-<span class="normal">2355</span>
-<span class="normal">2356</span>
-<span class="normal">2357</span>
-<span class="normal">2358</span>
-<span class="normal">2359</span>
-<span class="normal">2360</span>
-<span class="normal">2361</span>
-<span class="normal">2362</span>
-<span class="normal">2363</span>
-<span class="normal">2364</span>
-<span class="normal">2365</span>
-<span class="normal">2366</span>
-<span class="normal">2367</span>
-<span class="normal">2368</span>
-<span class="normal">2369</span>
-<span class="normal">2370</span>
-<span class="normal">2371</span>
-<span class="normal">2372</span>
-<span class="normal">2373</span>
-<span class="normal">2374</span>
-<span class="normal">2375</span>
-<span class="normal">2376</span>
-<span class="normal">2377</span>
-<span class="normal">2378</span>
-<span class="normal">2379</span>
-<span class="normal">2380</span>
-<span class="normal">2381</span>
-<span class="normal">2382</span>
-<span class="normal">2383</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+<span class="normal">2332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create composite records from overlapping duplicate proxy datasets and generate metadata.</span>
 
