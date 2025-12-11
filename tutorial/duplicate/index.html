@@ -1943,34 +1943,28 @@ The function <code>join_composites_metadata</code> also creates summary figures 
 <span class="n">tmp_decisions</span> <span class="o">=</span> <span class="n">decisions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </code></pre></div>
 <p>This dataframe initiates a loop in which the records which are associated with multiple decisions are fed into another round of duplicate detection, decisions and removal. This is necessary to ensure that no duplicates remain in the merged dataframe because of combined decisions.</p>
-<p>!!! info 'Example'</p>
+<div class="admonition info">
+<p class="admonition-title">Example</p>
 <ul>
-<li><code>REMOVE</code>/<code>KEEP</code> and <code>COMPOSITE</code>:<ul>
+<li><code>REMOVE</code>/<code>KEEP</code> and <code>COMPOSITE</code>:</li>
 <li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
 <li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
 <li>In this case, <code>b</code> and <code>ac</code> (the composite record of <code>a</code> and <code>c</code>) would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>   </li>
-</ul>
-</li>
-<li><code>REMOVE</code>/<code>KEEP</code> &amp; <code>REMOVE</code>/<code>KEEP</code><ul>
+<li><code>REMOVE</code>/<code>KEEP</code> &amp; <code>REMOVE</code>/<code>KEEP</code></li>
 <li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
 <li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>REMOVE</code>, <code>c</code> -&gt; <code>KEEP</code>.</li>
 <li>In this case, <code>a</code> would be removed, but <code>b</code> and <code>c</code> will be kept and would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>. </li>
-</ul>
-</li>
-<li><code>COMPOSITE</code> x 2<ul>
+<li><code>COMPOSITE</code> x 2</li>
 <li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>COMPOSITE</code>, <code>b</code> -&gt; <code>COMPOSITE</code></li>
 <li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
 <li>In this case, <code>ab</code> and <code>ac</code> would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>.</li>
 </ul>
-</li>
-</ul>
+</div>
 <p>The loop iterates for a maximum of ten, but stops as soon as no duplicates are detected anymore in the dataframe subset. Note that this loop only checks among the records associated with more than one decision. In each iteration, the operator also has the opportunity to end the duplicate search. Note also that it is not advised to create multiple iterations of composites. </p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Simple composite tracking for debugging only</span>
 <span class="n">composite_log</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
-
-
     <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
     <span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span>
 
@@ -2139,22 +2133,19 @@ SUCCESS!!
 <p>This step runs an entire duplicate detection and thus can take a substantial amount of time, as previously. Alternatively, you can skip this step, output the dataframe and feed it back into <code>dup_detection.ipynb</code> and repeat the duplicate workflow.</p>
 </div>
 <h3 id="35-save-duplicate-free-dataframe">3.5 Save duplicate free dataframe</h3>
-<p>Merge <code>df_composite</code> and <code>df_cleaned</code> to create duplicate free dataframe:</p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_cleaned</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
+<p>Once the operator is satisfied that no more duplicates remain, the final dataframe can be created</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </code></pre></div>
-<p>Sort the columns and assign a name to the dataframe which is used for saving purposes (determines directory and filename). Make sure that <code>date</code> and operator initials <code>initials</code> are used in the name.</p>
-<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+<p>and saved via </p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
 <span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-Now save the dataframe to pickle, and to csv:</p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># save concatenate dataframe as db_merged</span>
-<span class="n">df_dupfree</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_compact.pkl&#39;</span><span class="p">)</span>
 
-<span class="c1"># save to a list of csv files (metadata, data, year)</span>
+
 <span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df_dupfree</span><span class="p">)</span>
 </code></pre></div>
-<p>We also need to preserve some metadata on the decision process via </p>
+<p>In order to provide the associated operator's information (such as details, date of creation and operator's comments), we also create the README file:</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># write header with operator information as README txt file</span>
 <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_dupfree_README.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
