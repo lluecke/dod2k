@@ -1358,6 +1358,33 @@
 <p>This tutorial guides you through the complete end-to-end workflow to recreate the DoD2k database from original source data.</p>
 <h2 id="complete-workflow-summary">Complete Workflow Summary</h2>
 <pre class="mermaid"><code>graph LR
+
+    %% --- Group 1 ---
+    subgraph S1[Duplicate Detection]
+        A[Load&lt;br/&gt;Databases]
+        B[Merge]
+        C[Detect&lt;br/&gt;Duplicates]
+    end
+
+    %% --- Group 2 ---
+    subgraph S1[Duplicate Decisions]
+        C
+    end
+
+
+    %% --- Group 3 ---
+    subgraph S2[Duplicate Removal]
+        C
+        D[Review]
+        E[Remove]
+        F{Residual Duplicates?}
+    end
+
+    A --&gt; B --&gt; C
+    C --&gt; D --&gt; E --&gt; F
+    F --&gt;|Yes| C
+    F --&gt;|No| G[Final&lt;br/&gt;DoD2k]</code></pre>
+<pre class="mermaid"><code>graph LR
     A[Load&lt;br/&gt;Databases] --&gt; B[Merge]
     B --&gt; C[Detect&lt;br/&gt;Duplicates]
     C --&gt; D[Review]
