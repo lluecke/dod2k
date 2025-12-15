@@ -4,7 +4,7 @@ A Python toolkit for integrating and standardizing global paleoclimate proxy dat
 
 ## Documentation
 
-For full documentation, please visit: [https://lluecke.github.io/dod2k/]([https://lluecke.github.io/dod2k/])
+For full documentation, please visit: [https://lluecke.github.io/dod2k/](https://lluecke.github.io/dod2k/)
 
 ## Quick Start
 
