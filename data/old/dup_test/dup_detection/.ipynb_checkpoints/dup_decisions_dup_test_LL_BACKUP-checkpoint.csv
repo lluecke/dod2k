@@ -1,5 +1,0 @@
-# Decisions for duplicate candidate pairs. 
-# Operated by Lucie Luecke (LL)
-# E-Mail: ljluec1@st-andrews.ac.uk
-# Created on: 2025-12-11 10:04:04.612445 (UTC)
-index 1,index 2,figure path,datasetId 1,datasetId 2,originalDatabase 1,originalDatabase 2,geo_siteName 1,geo_siteName 2,geo_meanLat 1,geo_meanLat 2,geo_meanLon 1,geo_meanLon 2,geo_meanElevation 1,geo_meanElevation 2,archiveType 1,archiveType 2,paleoData_proxy 1,paleoData_proxy 2,originalDataURL 1,originalDataURL 2,year 1,year 2,Decision 1,Decision 2,Decision type,Decision comment
