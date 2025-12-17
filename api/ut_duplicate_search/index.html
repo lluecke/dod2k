@@ -1294,9 +1294,7 @@ Script written by Lucie Luecke, 6/7/23</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">824</span>
-<span class="normal">825</span>
-<span class="normal">826</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">826</span>
 <span class="normal">827</span>
 <span class="normal">828</span>
 <span class="normal">829</span>
@@ -1321,7 +1319,9 @@ Script written by Lucie Luecke, 6/7/23</p>
 <span class="normal">848</span>
 <span class="normal">849</span>
 <span class="normal">850</span>
-<span class="normal">851</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">density_scatter</span><span class="p">(</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">)</span>   <span class="p">:</span>
+<span class="normal">851</span>
+<span class="normal">852</span>
+<span class="normal">853</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">density_scatter</span><span class="p">(</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">)</span>   <span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Scatter plot colored by 2d histogram</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1925,7 +1925,9 @@ Script written by Lucie Luecke, 6/7/23</p>
 <span class="normal">818</span>
 <span class="normal">819</span>
 <span class="normal">820</span>
-<span class="normal">821</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dup_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">,</span> <span class="n">time_1</span><span class="p">,</span> <span class="n">time_2</span><span class="p">,</span> <span class="n">time_12</span><span class="p">,</span> <span class="n">data_1</span><span class="p">,</span> <span class="n">data_2</span><span class="p">,</span> <span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="p">,</span> 
+<span class="normal">821</span>
+<span class="normal">822</span>
+<span class="normal">823</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dup_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">,</span> <span class="n">time_1</span><span class="p">,</span> <span class="n">time_2</span><span class="p">,</span> <span class="n">time_12</span><span class="p">,</span> <span class="n">data_1</span><span class="p">,</span> <span class="n">data_2</span><span class="p">,</span> <span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="p">,</span> 
              <span class="n">pot_dup_corr</span><span class="p">,</span> <span class="n">keys_to_print</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">,</span> <span class="s1">&#39;originalDataURL&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="s1">&#39;archiveType&#39;</span><span class="p">,</span> 
                                           <span class="s1">&#39;proxy | variableName&#39;</span><span class="p">,</span> <span class="c1">#&#39;archive|proxy&#39;, </span>
                                           <span class="s1">&#39;geo_siteName&#39;</span><span class="p">,</span> <span class="s1">&#39;lat | lon | elev&#39;</span><span class="p">,</span> <span class="s1">&#39;mean | std | units&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span> <span class="p">],</span> 
@@ -1979,7 +1981,7 @@ Script written by Lucie Luecke, 6/7/23</p>
     <span class="n">init_offs</span> <span class="o">=</span> <span class="o">-</span><span class="mf">.6</span>
     <span class="n">str_limit</span> <span class="o">=</span> <span class="mi">50</span>
 
-    <span class="n">fig</span>  <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">90</span><span class="o">*</span><span class="n">fig_scale</span><span class="p">)</span>
+    <span class="n">fig</span>  <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="o">*</span><span class="n">fig_scale</span><span class="p">)</span>
     <span class="n">grid</span> <span class="o">=</span> <span class="n">GS</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
     <span class="n">ax</span>   <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">,:</span><span class="mi">3</span><span class="p">])</span>
     <span class="c1">#</span>
@@ -2006,7 +2008,9 @@ Script written by Lucie Luecke, 6/7/23</p>
     <span class="n">txt</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Metadata (differences are highlighted in blue; only first &#39;</span><span class="o">+</span>
            <span class="nb">str</span><span class="p">(</span><span class="n">str_limit</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39; characters are displayed)&#39;</span><span class="p">)</span>
 
-    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mf">.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mf">.9</span><span class="p">]</span>
+    <span class="c1"># column positions</span>
+    <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mf">.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">.1</span><span class="o">+</span><span class="mf">.9</span><span class="o">+</span><span class="mf">0.15</span><span class="p">]</span>
+
     <span class="n">rows</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">0.3</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="o">-</span><span class="mf">0.45</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">cols</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rows</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">txt</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fs</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -2378,10 +2382,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 949</span>
-<span class="normal"> 950</span>
-<span class="normal"> 951</span>
-<span class="normal"> 952</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 952</span>
 <span class="normal"> 953</span>
 <span class="normal"> 954</span>
 <span class="normal"> 955</span>
@@ -2709,7 +2710,10 @@ Default is True.</p>
 <span class="normal">1277</span>
 <span class="normal">1278</span>
 <span class="normal">1279</span>
-<span class="normal">1280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1280</span>
+<span class="normal">1281</span>
+<span class="normal">1282</span>
+<span class="normal">1283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                         <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Review potential duplicate pairs in a proxy database and decide which records to keep, remove, or combine.</span>
@@ -3228,10 +3232,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1283</span>
-<span class="normal">1284</span>
-<span class="normal">1285</span>
-<span class="normal">1286</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1286</span>
 <span class="normal">1287</span>
 <span class="normal">1288</span>
 <span class="normal">1289</span>
@@ -3753,7 +3754,10 @@ Default is True.</p>
 <span class="normal">1805</span>
 <span class="normal">1806</span>
 <span class="normal">1807</span>
-<span class="normal">1808</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1808</span>
+<span class="normal">1809</span>
+<span class="normal">1810</span>
+<span class="normal">1811</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                                  <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                  <span class="n">comment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">automate_db_choice</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -5964,10 +5968,7 @@ operator details in the composite notes.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2150</span>
-<span class="normal">2151</span>
-<span class="normal">2152</span>
-<span class="normal">2153</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2153</span>
 <span class="normal">2154</span>
 <span class="normal">2155</span>
 <span class="normal">2156</span>
@@ -6146,7 +6147,10 @@ operator details in the composite notes.</p>
 <span class="normal">2329</span>
 <span class="normal">2330</span>
 <span class="normal">2331</span>
-<span class="normal">2332</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+<span class="normal">2332</span>
+<span class="normal">2333</span>
+<span class="normal">2334</span>
+<span class="normal">2335</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create composite records from overlapping duplicate proxy datasets and generate metadata.</span>
 
@@ -6339,7 +6343,7 @@ operator details in the composite notes.</p>
 
 
 <h3 id="dod2k_utilities.ut_duplicate_search.plot_duplicates" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_single</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
@@ -6456,9 +6460,7 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">854</span>
-<span class="normal">855</span>
-<span class="normal">856</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">856</span>
 <span class="normal">857</span>
 <span class="normal">858</span>
 <span class="normal">859</span>
@@ -6546,7 +6548,10 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 <span class="normal">941</span>
 <span class="normal">942</span>
 <span class="normal">943</span>
-<span class="normal">944</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">plot_single</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">944</span>
+<span class="normal">945</span>
+<span class="normal">946</span>
+<span class="normal">947</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate plots of potential duplicate records in a proxy database and optionally save their metadata.</span>
 
@@ -6631,8 +6636,9 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
         <span class="n">dup_mdata</span> <span class="o">+=</span> <span class="p">[</span><span class="n">dup_mdata_row</span><span class="p">]</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">save_figures</span><span class="p">:</span>
-            <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;%03d_</span><span class="si">{</span><span class="n">id_1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">id_2</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/dup_detection&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
-
+            <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;%03d_</span><span class="si">{</span><span class="n">id_1</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">id_2</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">i_pot_dups</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;_</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">/dup_detection&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">figformat</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">display</span><span class="p">:</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
 
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== POTENTIAL DUPLICATE </span><span class="si">%d</span><span class="s1">/</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">n_pot_dups</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;: </span><span class="si">%s</span><span class="s1">+</span><span class="si">%s</span><span class="s1"> ===&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">jj</span><span class="p">]))</span>

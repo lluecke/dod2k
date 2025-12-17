@@ -1157,6 +1157,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_plot.get_colours2" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_colours2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dod2k_utilities.ut_plot.plot_PCs" class="md-nav__link">
     <span class="md-ellipsis">
       plot_PCs
@@ -1169,6 +1178,15 @@
   <a href="#dod2k_utilities.ut_plot.plot_coverage2" class="md-nav__link">
     <span class="md-ellipsis">
       plot_coverage2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_plot.plot_coverage_analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      plot_coverage_analysis
     </span>
   </a>
   
@@ -1268,7 +1286,7 @@
 
 
 <h3 id="dod2k_utilities.ut_plot.df_colours_markers" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">df_colours_markers</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;dod2k_dupfree_dupfree&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">df_colours_markers</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;dod2k_v2.0&#39;</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1302,7 +1320,7 @@
               </div>
             </td>
             <td>
-                  <code>&#39;dod2k_dupfree_dupfree&#39;</code>
+                  <code>&#39;dod2k_v2.0&#39;</code>
             </td>
           </tr>
       </tbody>
@@ -1354,62 +1372,62 @@
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">726</span>
-<span class="normal">727</span>
-<span class="normal">728</span>
-<span class="normal">729</span>
-<span class="normal">730</span>
-<span class="normal">731</span>
-<span class="normal">732</span>
-<span class="normal">733</span>
-<span class="normal">734</span>
-<span class="normal">735</span>
-<span class="normal">736</span>
-<span class="normal">737</span>
-<span class="normal">738</span>
-<span class="normal">739</span>
-<span class="normal">740</span>
-<span class="normal">741</span>
-<span class="normal">742</span>
-<span class="normal">743</span>
-<span class="normal">744</span>
-<span class="normal">745</span>
-<span class="normal">746</span>
-<span class="normal">747</span>
-<span class="normal">748</span>
-<span class="normal">749</span>
-<span class="normal">750</span>
-<span class="normal">751</span>
-<span class="normal">752</span>
-<span class="normal">753</span>
-<span class="normal">754</span>
-<span class="normal">755</span>
-<span class="normal">756</span>
-<span class="normal">757</span>
-<span class="normal">758</span>
-<span class="normal">759</span>
-<span class="normal">760</span>
-<span class="normal">761</span>
-<span class="normal">762</span>
-<span class="normal">763</span>
-<span class="normal">764</span>
-<span class="normal">765</span>
-<span class="normal">766</span>
-<span class="normal">767</span>
-<span class="normal">768</span>
-<span class="normal">769</span>
-<span class="normal">770</span>
-<span class="normal">771</span>
-<span class="normal">772</span>
-<span class="normal">773</span>
-<span class="normal">774</span>
-<span class="normal">775</span>
-<span class="normal">776</span>
-<span class="normal">777</span>
-<span class="normal">778</span>
-<span class="normal">779</span>
-<span class="normal">780</span>
-<span class="normal">781</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">df_colours_markers</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;dod2k_dupfree_dupfree&#39;</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">798</span>
+<span class="normal">799</span>
+<span class="normal">800</span>
+<span class="normal">801</span>
+<span class="normal">802</span>
+<span class="normal">803</span>
+<span class="normal">804</span>
+<span class="normal">805</span>
+<span class="normal">806</span>
+<span class="normal">807</span>
+<span class="normal">808</span>
+<span class="normal">809</span>
+<span class="normal">810</span>
+<span class="normal">811</span>
+<span class="normal">812</span>
+<span class="normal">813</span>
+<span class="normal">814</span>
+<span class="normal">815</span>
+<span class="normal">816</span>
+<span class="normal">817</span>
+<span class="normal">818</span>
+<span class="normal">819</span>
+<span class="normal">820</span>
+<span class="normal">821</span>
+<span class="normal">822</span>
+<span class="normal">823</span>
+<span class="normal">824</span>
+<span class="normal">825</span>
+<span class="normal">826</span>
+<span class="normal">827</span>
+<span class="normal">828</span>
+<span class="normal">829</span>
+<span class="normal">830</span>
+<span class="normal">831</span>
+<span class="normal">832</span>
+<span class="normal">833</span>
+<span class="normal">834</span>
+<span class="normal">835</span>
+<span class="normal">836</span>
+<span class="normal">837</span>
+<span class="normal">838</span>
+<span class="normal">839</span>
+<span class="normal">840</span>
+<span class="normal">841</span>
+<span class="normal">842</span>
+<span class="normal">843</span>
+<span class="normal">844</span>
+<span class="normal">845</span>
+<span class="normal">846</span>
+<span class="normal">847</span>
+<span class="normal">848</span>
+<span class="normal">849</span>
+<span class="normal">850</span>
+<span class="normal">851</span>
+<span class="normal">852</span>
+<span class="normal">853</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">df_colours_markers</span><span class="p">(</span><span class="n">db_name</span><span class="o">=</span><span class="s1">&#39;dod2k_v2.0&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate archive colours and proxy markers for plotting functions.</span>
 
@@ -1429,7 +1447,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;#4477AA&#39;</span><span class="p">,</span> <span class="s1">&#39;#EE6677&#39;</span><span class="p">,</span> <span class="s1">&#39;#228833&#39;</span><span class="p">,</span> <span class="s1">&#39;#CCBB44&#39;</span><span class="p">,</span> <span class="s1">&#39;#66CCEE&#39;</span><span class="p">,</span> <span class="s1">&#39;#AA3377&#39;</span><span class="p">,</span> <span class="s1">&#39;#BBBBBB&#39;</span><span class="p">,</span> <span class="s1">&#39;#44AA99&#39;</span><span class="p">]</span>
 
-    <span class="n">df</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
 
 
     <span class="c1"># count archive types</span>
@@ -1654,79 +1672,7 @@
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">784</span>
-<span class="normal">785</span>
-<span class="normal">786</span>
-<span class="normal">787</span>
-<span class="normal">788</span>
-<span class="normal">789</span>
-<span class="normal">790</span>
-<span class="normal">791</span>
-<span class="normal">792</span>
-<span class="normal">793</span>
-<span class="normal">794</span>
-<span class="normal">795</span>
-<span class="normal">796</span>
-<span class="normal">797</span>
-<span class="normal">798</span>
-<span class="normal">799</span>
-<span class="normal">800</span>
-<span class="normal">801</span>
-<span class="normal">802</span>
-<span class="normal">803</span>
-<span class="normal">804</span>
-<span class="normal">805</span>
-<span class="normal">806</span>
-<span class="normal">807</span>
-<span class="normal">808</span>
-<span class="normal">809</span>
-<span class="normal">810</span>
-<span class="normal">811</span>
-<span class="normal">812</span>
-<span class="normal">813</span>
-<span class="normal">814</span>
-<span class="normal">815</span>
-<span class="normal">816</span>
-<span class="normal">817</span>
-<span class="normal">818</span>
-<span class="normal">819</span>
-<span class="normal">820</span>
-<span class="normal">821</span>
-<span class="normal">822</span>
-<span class="normal">823</span>
-<span class="normal">824</span>
-<span class="normal">825</span>
-<span class="normal">826</span>
-<span class="normal">827</span>
-<span class="normal">828</span>
-<span class="normal">829</span>
-<span class="normal">830</span>
-<span class="normal">831</span>
-<span class="normal">832</span>
-<span class="normal">833</span>
-<span class="normal">834</span>
-<span class="normal">835</span>
-<span class="normal">836</span>
-<span class="normal">837</span>
-<span class="normal">838</span>
-<span class="normal">839</span>
-<span class="normal">840</span>
-<span class="normal">841</span>
-<span class="normal">842</span>
-<span class="normal">843</span>
-<span class="normal">844</span>
-<span class="normal">845</span>
-<span class="normal">846</span>
-<span class="normal">847</span>
-<span class="normal">848</span>
-<span class="normal">849</span>
-<span class="normal">850</span>
-<span class="normal">851</span>
-<span class="normal">852</span>
-<span class="normal">853</span>
-<span class="normal">854</span>
-<span class="normal">855</span>
-<span class="normal">856</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">856</span>
 <span class="normal">857</span>
 <span class="normal">858</span>
 <span class="normal">859</span>
@@ -1771,7 +1717,69 @@
 <span class="normal">898</span>
 <span class="normal">899</span>
 <span class="normal">900</span>
-<span class="normal">901</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geo_EOF_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pca_rec</span><span class="p">,</span> <span class="n">EOFs</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">barlabel</span><span class="o">=</span><span class="s1">&#39;EOF&#39;</span><span class="p">,</span> <span class="n">which_EOF</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">901</span>
+<span class="normal">902</span>
+<span class="normal">903</span>
+<span class="normal">904</span>
+<span class="normal">905</span>
+<span class="normal">906</span>
+<span class="normal">907</span>
+<span class="normal">908</span>
+<span class="normal">909</span>
+<span class="normal">910</span>
+<span class="normal">911</span>
+<span class="normal">912</span>
+<span class="normal">913</span>
+<span class="normal">914</span>
+<span class="normal">915</span>
+<span class="normal">916</span>
+<span class="normal">917</span>
+<span class="normal">918</span>
+<span class="normal">919</span>
+<span class="normal">920</span>
+<span class="normal">921</span>
+<span class="normal">922</span>
+<span class="normal">923</span>
+<span class="normal">924</span>
+<span class="normal">925</span>
+<span class="normal">926</span>
+<span class="normal">927</span>
+<span class="normal">928</span>
+<span class="normal">929</span>
+<span class="normal">930</span>
+<span class="normal">931</span>
+<span class="normal">932</span>
+<span class="normal">933</span>
+<span class="normal">934</span>
+<span class="normal">935</span>
+<span class="normal">936</span>
+<span class="normal">937</span>
+<span class="normal">938</span>
+<span class="normal">939</span>
+<span class="normal">940</span>
+<span class="normal">941</span>
+<span class="normal">942</span>
+<span class="normal">943</span>
+<span class="normal">944</span>
+<span class="normal">945</span>
+<span class="normal">946</span>
+<span class="normal">947</span>
+<span class="normal">948</span>
+<span class="normal">949</span>
+<span class="normal">950</span>
+<span class="normal">951</span>
+<span class="normal">952</span>
+<span class="normal">953</span>
+<span class="normal">954</span>
+<span class="normal">955</span>
+<span class="normal">956</span>
+<span class="normal">957</span>
+<span class="normal">958</span>
+<span class="normal">959</span>
+<span class="normal">960</span>
+<span class="normal">961</span>
+<span class="normal">962</span>
+<span class="normal">963</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geo_EOF_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">pca_rec</span><span class="p">,</span> <span class="n">EOFs</span><span class="p">,</span> <span class="n">keys</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">8</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">barlabel</span><span class="o">=</span><span class="s1">&#39;EOF&#39;</span><span class="p">,</span> <span class="n">which_EOF</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot geographic distribution of records colored by EOF loadings.</span>
 
@@ -1838,28 +1846,18 @@
 
     <span class="n">all_EOFs</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">*</span><span class="n">EOFs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">which_EOF</span><span class="p">][</span><span class="n">ii</span><span class="p">]</span>  <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">EOFs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">which_EOF</span><span class="p">]))]</span>
 
-    <span class="n">colors</span><span class="p">,</span> <span class="n">sm</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_colours2</span><span class="p">(</span><span class="n">all_EOFs</span><span class="p">,</span> 
+    <span class="n">colors</span><span class="p">,</span> <span class="n">sm</span><span class="p">,</span> <span class="n">norm</span> <span class="o">=</span> <span class="n">get_colours2</span><span class="p">(</span><span class="n">all_EOFs</span><span class="p">,</span> 
                                 <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span><span class="n">minval</span><span class="o">=-</span><span class="mf">0.6</span><span class="p">,</span><span class="n">maxval</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-                                   <span class="c1"># minval=np.min(all_EOFs), maxval=np.max(all_EOFs)</span>
-                                    <span class="c1"># minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), </span>
-                                    <span class="c1"># maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])</span>
-                                   <span class="c1">#minval=np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), </span>
-                                   <span class="c1">#maxval=np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))]) </span>
-                                   <span class="c1"># ) manual set to make EOF1, EOF2 colorscales equal as well as symmetric</span>
 
     <span class="n">ijk</span><span class="o">=</span><span class="mi">0</span>
+
+
 
     <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
 
         <span class="n">marker</span>  <span class="o">=</span> <span class="n">mt</span><span class="p">[</span><span class="n">ijk</span><span class="p">]</span>
 
-        <span class="n">colors</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">get_colours</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">*</span><span class="n">EOFs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">which_EOF</span><span class="p">],</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span><span class="n">minval</span><span class="o">=-</span><span class="mf">0.6</span><span class="p">,</span><span class="n">maxval</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
-                               <span class="c1"># minval=np.min(all_EOFs), maxval=np.max(all_EOFs))</span>
-                               <span class="c1"># minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), </span>
-                               <span class="c1"># maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])</span>
-                               <span class="c1"># minval=-0.6 # np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), </span>
-                               <span class="c1"># maxval=+0.6 #np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))])</span>
-                               <span class="c1"># ) # manual set to make EOF1, EOF2 colorscales equal as well as symmetric</span>
+        <span class="n">colors</span> <span class="o">=</span> <span class="n">get_colours</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">*</span><span class="n">EOFs</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">which_EOF</span><span class="p">],</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;RdBu_r&#39;</span><span class="p">,</span><span class="n">minval</span><span class="o">=-</span><span class="mf">0.6</span><span class="p">,</span><span class="n">maxval</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
         <span class="n">id_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">],</span> <span class="n">pca_rec</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> 
         <span class="k">for</span> <span class="n">jj</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pca_rec</span><span class="p">[</span><span class="n">key</span><span class="p">])):</span>
 
@@ -1899,7 +1897,7 @@
 
 
 <h3 id="dod2k_utilities.ut_plot.geo_plot" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">geo_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">geo_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">return_col</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2016,77 +2014,7 @@
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">643</span>
-<span class="normal">644</span>
-<span class="normal">645</span>
-<span class="normal">646</span>
-<span class="normal">647</span>
-<span class="normal">648</span>
-<span class="normal">649</span>
-<span class="normal">650</span>
-<span class="normal">651</span>
-<span class="normal">652</span>
-<span class="normal">653</span>
-<span class="normal">654</span>
-<span class="normal">655</span>
-<span class="normal">656</span>
-<span class="normal">657</span>
-<span class="normal">658</span>
-<span class="normal">659</span>
-<span class="normal">660</span>
-<span class="normal">661</span>
-<span class="normal">662</span>
-<span class="normal">663</span>
-<span class="normal">664</span>
-<span class="normal">665</span>
-<span class="normal">666</span>
-<span class="normal">667</span>
-<span class="normal">668</span>
-<span class="normal">669</span>
-<span class="normal">670</span>
-<span class="normal">671</span>
-<span class="normal">672</span>
-<span class="normal">673</span>
-<span class="normal">674</span>
-<span class="normal">675</span>
-<span class="normal">676</span>
-<span class="normal">677</span>
-<span class="normal">678</span>
-<span class="normal">679</span>
-<span class="normal">680</span>
-<span class="normal">681</span>
-<span class="normal">682</span>
-<span class="normal">683</span>
-<span class="normal">684</span>
-<span class="normal">685</span>
-<span class="normal">686</span>
-<span class="normal">687</span>
-<span class="normal">688</span>
-<span class="normal">689</span>
-<span class="normal">690</span>
-<span class="normal">691</span>
-<span class="normal">692</span>
-<span class="normal">693</span>
-<span class="normal">694</span>
-<span class="normal">695</span>
-<span class="normal">696</span>
-<span class="normal">697</span>
-<span class="normal">698</span>
-<span class="normal">699</span>
-<span class="normal">700</span>
-<span class="normal">701</span>
-<span class="normal">702</span>
-<span class="normal">703</span>
-<span class="normal">704</span>
-<span class="normal">705</span>
-<span class="normal">706</span>
-<span class="normal">707</span>
-<span class="normal">708</span>
-<span class="normal">709</span>
-<span class="normal">710</span>
-<span class="normal">711</span>
-<span class="normal">712</span>
-<span class="normal">713</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">713</span>
 <span class="normal">714</span>
 <span class="normal">715</span>
 <span class="normal">716</span>
@@ -2096,7 +2024,79 @@
 <span class="normal">720</span>
 <span class="normal">721</span>
 <span class="normal">722</span>
-<span class="normal">723</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geo_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="normal">723</span>
+<span class="normal">724</span>
+<span class="normal">725</span>
+<span class="normal">726</span>
+<span class="normal">727</span>
+<span class="normal">728</span>
+<span class="normal">729</span>
+<span class="normal">730</span>
+<span class="normal">731</span>
+<span class="normal">732</span>
+<span class="normal">733</span>
+<span class="normal">734</span>
+<span class="normal">735</span>
+<span class="normal">736</span>
+<span class="normal">737</span>
+<span class="normal">738</span>
+<span class="normal">739</span>
+<span class="normal">740</span>
+<span class="normal">741</span>
+<span class="normal">742</span>
+<span class="normal">743</span>
+<span class="normal">744</span>
+<span class="normal">745</span>
+<span class="normal">746</span>
+<span class="normal">747</span>
+<span class="normal">748</span>
+<span class="normal">749</span>
+<span class="normal">750</span>
+<span class="normal">751</span>
+<span class="normal">752</span>
+<span class="normal">753</span>
+<span class="normal">754</span>
+<span class="normal">755</span>
+<span class="normal">756</span>
+<span class="normal">757</span>
+<span class="normal">758</span>
+<span class="normal">759</span>
+<span class="normal">760</span>
+<span class="normal">761</span>
+<span class="normal">762</span>
+<span class="normal">763</span>
+<span class="normal">764</span>
+<span class="normal">765</span>
+<span class="normal">766</span>
+<span class="normal">767</span>
+<span class="normal">768</span>
+<span class="normal">769</span>
+<span class="normal">770</span>
+<span class="normal">771</span>
+<span class="normal">772</span>
+<span class="normal">773</span>
+<span class="normal">774</span>
+<span class="normal">775</span>
+<span class="normal">776</span>
+<span class="normal">777</span>
+<span class="normal">778</span>
+<span class="normal">779</span>
+<span class="normal">780</span>
+<span class="normal">781</span>
+<span class="normal">782</span>
+<span class="normal">783</span>
+<span class="normal">784</span>
+<span class="normal">785</span>
+<span class="normal">786</span>
+<span class="normal">787</span>
+<span class="normal">788</span>
+<span class="normal">789</span>
+<span class="normal">790</span>
+<span class="normal">791</span>
+<span class="normal">792</span>
+<span class="normal">793</span>
+<span class="normal">794</span>
+<span class="normal">795</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">geo_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="mf">4.5</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span> <span class="n">return_col</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the spatial distribution of paleo-proxy records on a global map.</span>
 
@@ -2175,6 +2175,8 @@
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">hh</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.03</span><span class="p">,</span><span class="o">-</span><span class="mf">0.01</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
     <span class="n">grid</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 
+    <span class="k">if</span> <span class="n">return_col</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">archive_colour</span>
 
     <span class="k">return</span> <span class="n">fig</span>
 </code></pre></div></td></tr></table></div>
@@ -2434,8 +2436,74 @@ Default is False.</p>
 <div class="doc doc-object doc-function">
 
 
+<h3 id="dod2k_utilities.ut_plot.get_colours2" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_colours2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;brewer_RdBu_11&#39;</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">maxval</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>generates colours from a colormap based on the <em>data</em> values (array or list)
+returns <em>cols</em>: list of colours, in same order as data</p>
+
+
+            <details class="quote">
+              <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_colours2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;brewer_RdBu_11&#39;</span><span class="p">,</span> <span class="n">minval</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                <span class="n">maxval</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    generates colours from a colormap based on the *data* values (array or list)</span>
+<span class="sd">    returns *cols*: list of colours, in same order as data</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">Normalize</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.cm</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cm</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">minval</span><span class="p">:</span>
+        <span class="n">minval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">maxval</span><span class="p">:</span>
+        <span class="n">maxval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">minval</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">maxval</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">cmap</span>         <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="n">colormap</span><span class="p">)</span>
+    <span class="n">sm</span>           <span class="o">=</span> <span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span> <span class="o">=</span> <span class="n">colormap</span><span class="p">)</span>
+    <span class="n">sm</span><span class="o">.</span><span class="n">set_array</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+    <span class="n">norm</span>         <span class="o">=</span> <span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">minval</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">maxval</span><span class="p">)</span>
+    <span class="n">rgba</span>         <span class="o">=</span> <span class="n">cmap</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="n">cols</span>         <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">rgba</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cols</span><span class="p">,</span> <span class="n">sm</span><span class="p">,</span> <span class="n">norm</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h3 id="dod2k_utilities.ut_plot.plot_PCs" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_PCs</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_PCs</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span></code>
 
 </h3>
 
@@ -2575,77 +2643,7 @@ Default is False.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">542</span>
-<span class="normal">543</span>
-<span class="normal">544</span>
-<span class="normal">545</span>
-<span class="normal">546</span>
-<span class="normal">547</span>
-<span class="normal">548</span>
-<span class="normal">549</span>
-<span class="normal">550</span>
-<span class="normal">551</span>
-<span class="normal">552</span>
-<span class="normal">553</span>
-<span class="normal">554</span>
-<span class="normal">555</span>
-<span class="normal">556</span>
-<span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
-<span class="normal">561</span>
-<span class="normal">562</span>
-<span class="normal">563</span>
-<span class="normal">564</span>
-<span class="normal">565</span>
-<span class="normal">566</span>
-<span class="normal">567</span>
-<span class="normal">568</span>
-<span class="normal">569</span>
-<span class="normal">570</span>
-<span class="normal">571</span>
-<span class="normal">572</span>
-<span class="normal">573</span>
-<span class="normal">574</span>
-<span class="normal">575</span>
-<span class="normal">576</span>
-<span class="normal">577</span>
-<span class="normal">578</span>
-<span class="normal">579</span>
-<span class="normal">580</span>
-<span class="normal">581</span>
-<span class="normal">582</span>
-<span class="normal">583</span>
-<span class="normal">584</span>
-<span class="normal">585</span>
-<span class="normal">586</span>
-<span class="normal">587</span>
-<span class="normal">588</span>
-<span class="normal">589</span>
-<span class="normal">590</span>
-<span class="normal">591</span>
-<span class="normal">592</span>
-<span class="normal">593</span>
-<span class="normal">594</span>
-<span class="normal">595</span>
-<span class="normal">596</span>
-<span class="normal">597</span>
-<span class="normal">598</span>
-<span class="normal">599</span>
-<span class="normal">600</span>
-<span class="normal">601</span>
-<span class="normal">602</span>
-<span class="normal">603</span>
-<span class="normal">604</span>
-<span class="normal">605</span>
-<span class="normal">606</span>
-<span class="normal">607</span>
-<span class="normal">608</span>
-<span class="normal">609</span>
-<span class="normal">610</span>
-<span class="normal">611</span>
-<span class="normal">612</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">612</span>
 <span class="normal">613</span>
 <span class="normal">614</span>
 <span class="normal">615</span>
@@ -2674,7 +2672,77 @@ Default is False.</p>
 <span class="normal">638</span>
 <span class="normal">639</span>
 <span class="normal">640</span>
-<span class="normal">641</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_PCs</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="normal">641</span>
+<span class="normal">642</span>
+<span class="normal">643</span>
+<span class="normal">644</span>
+<span class="normal">645</span>
+<span class="normal">646</span>
+<span class="normal">647</span>
+<span class="normal">648</span>
+<span class="normal">649</span>
+<span class="normal">650</span>
+<span class="normal">651</span>
+<span class="normal">652</span>
+<span class="normal">653</span>
+<span class="normal">654</span>
+<span class="normal">655</span>
+<span class="normal">656</span>
+<span class="normal">657</span>
+<span class="normal">658</span>
+<span class="normal">659</span>
+<span class="normal">660</span>
+<span class="normal">661</span>
+<span class="normal">662</span>
+<span class="normal">663</span>
+<span class="normal">664</span>
+<span class="normal">665</span>
+<span class="normal">666</span>
+<span class="normal">667</span>
+<span class="normal">668</span>
+<span class="normal">669</span>
+<span class="normal">670</span>
+<span class="normal">671</span>
+<span class="normal">672</span>
+<span class="normal">673</span>
+<span class="normal">674</span>
+<span class="normal">675</span>
+<span class="normal">676</span>
+<span class="normal">677</span>
+<span class="normal">678</span>
+<span class="normal">679</span>
+<span class="normal">680</span>
+<span class="normal">681</span>
+<span class="normal">682</span>
+<span class="normal">683</span>
+<span class="normal">684</span>
+<span class="normal">685</span>
+<span class="normal">686</span>
+<span class="normal">687</span>
+<span class="normal">688</span>
+<span class="normal">689</span>
+<span class="normal">690</span>
+<span class="normal">691</span>
+<span class="normal">692</span>
+<span class="normal">693</span>
+<span class="normal">694</span>
+<span class="normal">695</span>
+<span class="normal">696</span>
+<span class="normal">697</span>
+<span class="normal">698</span>
+<span class="normal">699</span>
+<span class="normal">700</span>
+<span class="normal">701</span>
+<span class="normal">702</span>
+<span class="normal">703</span>
+<span class="normal">704</span>
+<span class="normal">705</span>
+<span class="normal">706</span>
+<span class="normal">707</span>
+<span class="normal">708</span>
+<span class="normal">709</span>
+<span class="normal">710</span>
+<span class="normal">711</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_PCs</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">eigenvectors</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot principal components and reconstructed time series.</span>
 
@@ -2709,7 +2777,7 @@ Default is False.</p>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="c1">#color=&#39;k&#39;, </span>
-             <span class="n">zorder</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
+             <span class="n">zorder</span><span class="o">=</span><span class="mi">999</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">years_hom</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
@@ -2718,7 +2786,7 @@ Default is False.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;paleoData_zscores&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">311</span><span class="o">+</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">PCs</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">PCs</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ii</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;time (year CE)&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;PC </span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -2727,11 +2795,11 @@ Default is False.</p>
         <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">years_hom</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="n">years_hom</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">20</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ii</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
 
-    <span class="n">f</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;PCs_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">title</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">utf</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;PCs_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">title</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">Dzr</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span>  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">Dzr</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span>  <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;paleoData_zscores&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;paleoData_zscores_reconstructed&#39;</span><span class="p">)</span>
 
@@ -2740,7 +2808,7 @@ Default is False.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">paleoData_zscores_hom</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">paleoData_zscores_hom</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
@@ -2751,7 +2819,7 @@ Default is False.</p>
 
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">Dzr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">Dzr</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">Dzr</span><span class="p">[</span><span class="n">ii</span><span class="p">,:],</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years_hom</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">Dzr</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">999</span><span class="p">)</span>
 
     <span class="n">ax</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">([])</span>
@@ -2766,12 +2834,12 @@ Default is False.</p>
     <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">211</span><span class="o">+</span><span class="n">ii</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_recs</span><span class="p">),</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="n">ii</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_recs</span><span class="p">),</span> <span class="n">eigenvectors</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ii</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;rec&#39;</span><span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;EOF </span><span class="si">%d</span><span class="s1"> load&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 
-    <span class="n">f</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;EOFloading_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">title</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">utf</span><span class="o">.</span><span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;EOFloading_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">title</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">PCs</span><span class="p">,</span> <span class="n">eigenvectors</span>
 </code></pre></div></td></tr></table></div>
@@ -2885,35 +2953,7 @@ year in the given range and produces a step plot showing total coverage.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">498</span>
-<span class="normal">499</span>
-<span class="normal">500</span>
-<span class="normal">501</span>
-<span class="normal">502</span>
-<span class="normal">503</span>
-<span class="normal">504</span>
-<span class="normal">505</span>
-<span class="normal">506</span>
-<span class="normal">507</span>
-<span class="normal">508</span>
-<span class="normal">509</span>
-<span class="normal">510</span>
-<span class="normal">511</span>
-<span class="normal">512</span>
-<span class="normal">513</span>
-<span class="normal">514</span>
-<span class="normal">515</span>
-<span class="normal">516</span>
-<span class="normal">517</span>
-<span class="normal">518</span>
-<span class="normal">519</span>
-<span class="normal">520</span>
-<span class="normal">521</span>
-<span class="normal">522</span>
-<span class="normal">523</span>
-<span class="normal">524</span>
-<span class="normal">525</span>
-<span class="normal">526</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">526</span>
 <span class="normal">527</span>
 <span class="normal">528</span>
 <span class="normal">529</span>
@@ -2926,7 +2966,35 @@ year in the given range and produces a step plot showing total coverage.</p>
 <span class="normal">536</span>
 <span class="normal">537</span>
 <span class="normal">538</span>
-<span class="normal">539</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_coverage2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_coverage2</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot the coverage of records over a range of years.</span>
 
@@ -2977,8 +3045,202 @@ year in the given range and produces a step plot showing total coverage.</p>
 <div class="doc doc-object doc-function">
 
 
+<h3 id="dod2k_utilities.ut_plot.plot_coverage_analysis" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">plot_coverage_analysis</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Plot the coverage of records over a range of years.</p>
+<p>This function counts how many records in the DataFrame overlap with each 
+year in the given range and produces a step plot showing total coverage.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing 'year' data for each record. Each row should have
+'miny' and 'maxy' indicating the start and end year of the record.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>years</code>
+            </td>
+            <td>
+                  <code><span title="array">array</span> - <span title="like">like</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Array of years over which to compute coverage.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>title</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Title of the plot. Default is an empty string.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="matplotlib.figure.Figure">Figure</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The matplotlib Figure object containing the plot.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="quote">
+              <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span>
+<span class="normal">581</span>
+<span class="normal">582</span>
+<span class="normal">583</span>
+<span class="normal">584</span>
+<span class="normal">585</span>
+<span class="normal">586</span>
+<span class="normal">587</span>
+<span class="normal">588</span>
+<span class="normal">589</span>
+<span class="normal">590</span>
+<span class="normal">591</span>
+<span class="normal">592</span>
+<span class="normal">593</span>
+<span class="normal">594</span>
+<span class="normal">595</span>
+<span class="normal">596</span>
+<span class="normal">597</span>
+<span class="normal">598</span>
+<span class="normal">599</span>
+<span class="normal">600</span>
+<span class="normal">601</span>
+<span class="normal">602</span>
+<span class="normal">603</span>
+<span class="normal">604</span>
+<span class="normal">605</span>
+<span class="normal">606</span>
+<span class="normal">607</span>
+<span class="normal">608</span>
+<span class="normal">609</span>
+<span class="normal">610</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_coverage_analysis</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot the coverage of records over a range of years.</span>
+
+<span class="sd">    This function counts how many records in the DataFrame overlap with each </span>
+<span class="sd">    year in the given range and produces a step plot showing total coverage.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        DataFrame containing &#39;year&#39; data for each record. Each row should have</span>
+<span class="sd">        &#39;miny&#39; and &#39;maxy&#39; indicating the start and end year of the record.</span>
+<span class="sd">    years : array-like</span>
+<span class="sd">        Array of years over which to compute coverage.</span>
+<span class="sd">    title : str, optional</span>
+<span class="sd">        Title of the plot. Default is an empty string.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.figure.Figure</span>
+<span class="sd">        The matplotlib Figure object containing the plot.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">coverage_filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">years</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">miny</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">years</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">years</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])):</span>
+        <span class="c1"># time_12, int_1, int_2 = np.intersect1d(years, df.iloc[ii].year, return_indices=True)</span>
+        <span class="n">coverage_filt</span><span class="p">[(</span><span class="n">years</span><span class="o">&gt;=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">miny</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">years</span><span class="o">&lt;=</span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">]</span><span class="o">.</span><span class="n">maxy</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># coverage_filt[int_1]+=1</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">coverage_filt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total # of records&#39;</span><span class="p">)</span>
+
+    <span class="n">h1</span><span class="p">,</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;# of records per archive&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h3 id="dod2k_utilities.ut_plot.plot_length" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_length</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_length</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3079,29 +3341,7 @@ are excluded from the plot. Default is 0 (all bins shown).</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span>
-<span class="normal">221</span>
-<span class="normal">222</span>
-<span class="normal">223</span>
-<span class="normal">224</span>
-<span class="normal">225</span>
-<span class="normal">226</span>
-<span class="normal">227</span>
-<span class="normal">228</span>
-<span class="normal">229</span>
-<span class="normal">230</span>
-<span class="normal">231</span>
-<span class="normal">232</span>
-<span class="normal">233</span>
-<span class="normal">234</span>
-<span class="normal">235</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">235</span>
 <span class="normal">236</span>
 <span class="normal">237</span>
 <span class="normal">238</span>
@@ -3131,7 +3371,29 @@ are excluded from the plot. Default is 0 (all bins shown).</p>
 <span class="normal">262</span>
 <span class="normal">263</span>
 <span class="normal">264</span>
-<span class="normal">265</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_length</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_length</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot a histogram of lengths from a DataFrame.</span>
 
@@ -3175,7 +3437,7 @@ are excluded from the plot. Default is 0 (all bins shown).</p>
     <span class="n">rr</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">res</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">count_res</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
         <span class="k">if</span> <span class="n">count</span><span class="o">&lt;</span><span class="n">mincount</span><span class="p">:</span> <span class="k">continue</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
         <span class="n">ii</span><span class="o">+=</span><span class="mi">1</span>
         <span class="n">rr</span><span class="o">+=</span><span class="p">[</span><span class="n">res</span><span class="p">]</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span>
@@ -3194,7 +3456,7 @@ are excluded from the plot. Default is 0 (all bins shown).</p>
 
 
 <h3 id="dod2k_utilities.ut_plot.plot_resolution" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">plot_resolution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">plot_resolution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3297,29 +3559,7 @@ counts than <code>mincount</code> are merged into a coarser bin. Default is 0
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_plot.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span>
-<span class="normal">142</span>
-<span class="normal">143</span>
-<span class="normal">144</span>
-<span class="normal">145</span>
-<span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span>
-<span class="normal">154</span>
-<span class="normal">155</span>
-<span class="normal">156</span>
-<span class="normal">157</span>
-<span class="normal">158</span>
-<span class="normal">159</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">159</span>
 <span class="normal">160</span>
 <span class="normal">161</span>
 <span class="normal">162</span>
@@ -3369,7 +3609,29 @@ counts than <code>mincount</code> are merged into a coarser bin. Default is 0
 <span class="normal">206</span>
 <span class="normal">207</span>
 <span class="normal">208</span>
-<span class="normal">209</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_resolution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_resolution</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">mincount</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Plot a histogram of resolutions from a DataFrame.</span>
 
@@ -3433,7 +3695,7 @@ counts than <code>mincount</code> are merged into a coarser bin. Default is 0
     <span class="n">ii</span><span class="o">=</span><span class="mi">0</span>
     <span class="n">rr</span><span class="o">=</span><span class="p">[]</span>
     <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">count_res</span><span class="p">)):</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">count_res</span><span class="p">[</span><span class="n">kk</span><span class="p">])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span> <span class="n">count_res</span><span class="p">[</span><span class="n">kk</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
         <span class="n">ii</span><span class="o">+=</span><span class="mi">1</span>
         <span class="n">rr</span><span class="o">+=</span><span class="p">[</span><span class="n">kk</span><span class="p">]</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">ii</span><span class="p">))</span>

@@ -1388,8 +1388,7 @@
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_functions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">499</span>
-<span class="normal">500</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">500</span>
 <span class="normal">501</span>
 <span class="normal">502</span>
 <span class="normal">503</span>
@@ -1414,7 +1413,8 @@
 <span class="normal">522</span>
 <span class="normal">523</span>
 <span class="normal">524</span>
-<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+<span class="normal">525</span>
+<span class="normal">526</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">cleanup</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Remove special characters and leading/trailing whitespace from a string.</span>
 
@@ -1522,8 +1522,7 @@
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_functions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">568</span>
-<span class="normal">569</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">569</span>
 <span class="normal">570</span>
 <span class="normal">571</span>
 <span class="normal">572</span>
@@ -1545,7 +1544,8 @@
 <span class="normal">588</span>
 <span class="normal">589</span>
 <span class="normal">590</span>
-<span class="normal">591</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">conv_nan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="normal">591</span>
+<span class="normal">592</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">conv_nan</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert NaN values to missing data indicator (-9999.99).</span>
 
@@ -1647,8 +1647,7 @@ masked array with these values masked out.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_functions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">594</span>
-<span class="normal">595</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">595</span>
 <span class="normal">596</span>
 <span class="normal">597</span>
 <span class="normal">598</span>
@@ -1666,7 +1665,8 @@ masked array with these values masked out.</p>
 <span class="normal">610</span>
 <span class="normal">611</span>
 <span class="normal">612</span>
-<span class="normal">613</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">convert_to_nparray</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="normal">613</span>
+<span class="normal">614</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">convert_to_nparray</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Convert data array to masked array with missing values marked.</span>
 
@@ -1980,7 +1980,7 @@ masked array with these values masked out.</p>
     <span class="k">if</span> <span class="n">form</span><span class="o">==</span><span class="s1">&#39;pdf&#39;</span><span class="p">:</span> 
         <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span><span class="o">+</span><span class="n">addfigs</span><span class="o">+</span><span class="n">ddir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> 
                     <span class="n">transparent</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">(),</span>
-                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved figure in &#39;</span><span class="o">+</span> <span class="n">addfigs</span><span class="o">+</span><span class="n">ddir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">form</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">close</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span>
@@ -2289,8 +2289,7 @@ masked array with these values masked out.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_functions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">528</span>
-<span class="normal">529</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">529</span>
 <span class="normal">530</span>
 <span class="normal">531</span>
 <span class="normal">532</span>
@@ -2327,7 +2326,8 @@ masked array with these values masked out.</p>
 <span class="normal">563</span>
 <span class="normal">564</span>
 <span class="normal">565</span>
-<span class="normal">566</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fns</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;.nc&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">other_cond</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">print_dir</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="normal">566</span>
+<span class="normal">567</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fns</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;.nc&#39;</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">other_cond</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">print_dir</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Find filenames in a directory matching specific criteria.</span>
 
@@ -2690,8 +2690,7 @@ types (float32 for numeric arrays, str for text fields).</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_functions.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">622</span>
-<span class="normal">623</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">623</span>
 <span class="normal">624</span>
 <span class="normal">625</span>
 <span class="normal">626</span>
@@ -2704,7 +2703,8 @@ types (float32 for numeric arrays, str for text fields).</p>
 <span class="normal">633</span>
 <span class="normal">634</span>
 <span class="normal">635</span>
-<span class="normal">636</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_array_string</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="normal">636</span>
+<span class="normal">637</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">parse_array_string</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parse string representation of array back to numpy array&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="c1"># Remove brackets and split by comma</span>
@@ -3407,7 +3407,8 @@ last_header_row). Default is False.</p>
 <span class="normal">494</span>
 <span class="normal">495</span>
 <span class="normal">496</span>
-<span class="normal">497</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">trans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+<span class="normal">497</span>
+<span class="normal">498</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">trans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
             <span class="n">figformat</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span> <span class="n">close</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">addfigs</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Save a matplotlib figure to file with optional formats.</span>
@@ -3452,9 +3453,10 @@ last_header_row). Default is False.</p>
                 <span class="n">transparent</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">(),</span>
                 <span class="nb">format</span><span class="o">=</span><span class="n">figformat</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">figformat</span><span class="o">==</span><span class="s1">&#39;pdf&#39;</span><span class="p">:</span> 
-        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_dir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.jpg&#39;</span><span class="p">,</span> 
+        <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_dir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.png&#39;</span><span class="p">,</span> 
                     <span class="n">transparent</span><span class="o">=</span><span class="n">trans</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">get_facecolor</span><span class="p">(),</span>
-                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+                    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved figure in &#39;</span><span class="o">+</span> <span class="n">fig_dir</span><span class="o">+</span><span class="s1">&#39;/&#39;</span><span class="o">+</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="o">+</span><span class="n">figformat</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">close</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">return</span>

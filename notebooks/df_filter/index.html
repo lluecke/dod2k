@@ -1846,7 +1846,7 @@ if str(os.getcwd())==str(repo_root):
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Repo root: /home/jupyter-lluecke/compile_proxy_database_v2.2/dod2k
+<pre>Repo root: /home/jupyter-lluecke/dod2k
 Working directory matches repo root. 
 </pre>
 </div>
@@ -1906,14 +1906,12 @@ from dod2k_utilities import ut_functions as utf # contains utility functions
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Read compact dataframe for filtering.</p>
-<p>{db_name} refers to the database, including</p>
+<p>Read compact dataframe.</p>
+<p>{db_name} refers to the database, including e.g.</p>
 <ul>
 <li>database of databases:<ul>
-<li>dod2k_dupfree_dupfree (twice filtered for duplicates)</li>
-<li>dod2k_dupfree_dupfree_MT (twice filtered for duplicates and filtered for MT sensitive proxies only)</li>
-<li>dod2k_dupfree (once filtered for duplicates)</li>
-<li>dod2k (NOT filtered for duplicates, only fusion of the input databases)</li>
+<li>dod2k_v2.0 (dod2k: duplicate free, merged database)</li>
+<li>all_merged (NOT filtered for duplicates, only fusion of the input databases)</li>
 </ul>
 </li>
 <li>original databases:<ul>
@@ -1948,7 +1946,7 @@ from dod2k_utilities import ut_functions as utf # contains utility functions
 </div>
 </clipboard-copy>
 </div>
-<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s1">'dod2k_v1.2'</span>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">db_name</span> <span class="o">=</span> <span class="s1">'dod2k_v2.0'</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">originalDatabase</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
@@ -1956,7 +1954,7 @@ from dod2k_utilities import ut_functions as utf # contains utility functions
 <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-3">
-db_name = 'dod2k_v1.2'
+db_name = 'dod2k_v2.0'
 
 df = utf.load_compact_dataframe_from_csv(db_name)
 print(df.originalDatabase.unique())
@@ -1973,35 +1971,37 @@ print(df.info())</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>['FE23 (Breitenmoser et al. (2014))' 'CoralHydro2k v1.0.0'
- 'dod2k_composite_standardised' 'Iso2k v1.0.1'
- 'PAGES2k v2.0.0 (Ocn_103 updated with Dee et al. 2020)' 'SISAL v3']
+<pre>['PAGES 2k v2.2.0' 'FE23 (Breitenmoser et al. (2014))'
+ 'CoralHydro2k v1.0.1' 'Iso2k v1.1.2' 'SISAL v3' 'dod2k_composite_z']
 &lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 4516 entries, 0 to 4515
-Data columns (total 19 columns):
- #   Column                                Non-Null Count  Dtype  
----  ------                                --------------  -----  
- 0   archiveType                           4516 non-null   object 
- 1   climateInterpretation_variable        4516 non-null   object 
- 2   climateInterpretation_variableDetail  4516 non-null   object 
- 3   dataSetName                           4516 non-null   object 
- 4   datasetId                             4516 non-null   object 
- 5   duplicateDetails                      4516 non-null   object 
- 6   geo_meanElev                          4433 non-null   float32
- 7   geo_meanLat                           4516 non-null   float32
- 8   geo_meanLon                           4516 non-null   float32
- 9   geo_siteName                          4516 non-null   object 
- 10  originalDataURL                       4516 non-null   object 
- 11  originalDatabase                      4516 non-null   object 
- 12  paleoData_notes                       4516 non-null   object 
- 13  paleoData_proxy                       4516 non-null   object 
- 14  paleoData_sensorSpecies               4516 non-null   object 
- 15  paleoData_units                       4516 non-null   object 
- 16  paleoData_values                      4516 non-null   object 
- 17  year                                  4516 non-null   object 
- 18  yearUnits                             4516 non-null   object 
-dtypes: float32(3), object(16)
-memory usage: 617.6+ KB
+RangeIndex: 4957 entries, 0 to 4956
+Data columns (total 22 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   archiveType                    4957 non-null   object 
+ 1   dataSetName                    4957 non-null   object 
+ 2   datasetId                      4957 non-null   object 
+ 3   duplicateDetails               4957 non-null   object 
+ 4   geo_meanElev                   4875 non-null   float32
+ 5   geo_meanLat                    4957 non-null   float32
+ 6   geo_meanLon                    4957 non-null   float32
+ 7   geo_siteName                   4957 non-null   object 
+ 8   interpretation_direction       4957 non-null   object 
+ 9   interpretation_seasonality     4957 non-null   object 
+ 10  interpretation_variable        4957 non-null   object 
+ 11  interpretation_variableDetail  4957 non-null   object 
+ 12  originalDataURL                4957 non-null   object 
+ 13  originalDatabase               4957 non-null   object 
+ 14  paleoData_notes                4957 non-null   object 
+ 15  paleoData_proxy                4957 non-null   object 
+ 16  paleoData_sensorSpecies        4957 non-null   object 
+ 17  paleoData_units                4957 non-null   object 
+ 18  paleoData_values               4957 non-null   object 
+ 19  paleoData_variableName         4957 non-null   object 
+ 20  year                           4957 non-null   object 
+ 21  yearUnits                      4957 non-null   object 
+dtypes: float32(3), object(19)
+memory usage: 794.0+ KB
 None
 </pre>
 </div>
@@ -2059,22 +2059,34 @@ None
 <span class="c1"># e.g.</span>
 
 <span class="c1"># # filter for &gt;&gt;moisture&lt;&lt; sensitive records only (also include records which are moisture and temperature sensitive)</span>
-<span class="n">df_filter</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'interpretation_variable'</span><span class="p">]</span><span class="o">==</span><span class="s1">'moisture'</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'interpretation_variable'</span><span class="p">]</span><span class="o">==</span><span class="s1">'temperature+moisture'</span><span class="p">)]</span>
+<span class="c1"># df_filter = df.loc[(df['interpretation_variable']=='moisture')|(df['interpretation_variable']=='temperature+moisture')]</span>
+<span class="c1"># df_filter.name = db_name + "_filtered_M_TM" </span>
 
-<span class="c1"># # filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)</span>
-<span class="c1"># df_filter = df.loc[(df['interpretation_variable']=='moisture')]</span>
+
+<span class="c1"># filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)</span>
+<span class="n">df_filter</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'interpretation_variable'</span><span class="p">]</span><span class="o">==</span><span class="s1">'moisture'</span><span class="p">)]</span>
+<span class="n">df_filter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">db_name</span> <span class="o">+</span> <span class="s2">"_filtered_M"</span> 
+
 
 <span class="c1"># # filter for &gt;&gt;temperature&lt;&lt; sensitive records only (also include records which are moisture and temperature sensitive)</span>
-<span class="c1"># df_filter = df.loc[(df['interpretation_variable']=='temperature')|(df['interpretation_variable']=='temperature+moisture'])]</span>
+<span class="c1"># df_filter = df.loc[(df['interpretation_variable']=='temperature')|(df['interpretation_variable']=='temperature+moisture')]</span>
+<span class="c1"># df_filter.name = db_name + "_filtered_T_TM" </span>
 
 <span class="c1"># # filter for &gt;&gt;exclusively temperature&lt;&lt; sensitive records only (without t+m)</span>
 <span class="c1"># df_filter = df.loc[(df['interpretation_variable']=='temperature')]</span>
+<span class="c1"># df_filter.name = db_name + "_filtered_T" </span>
+
 
 <span class="c1"># ---&gt; archiveType and paleoData_proxy</span>
 <span class="c1"># e.g.</span>
 
 <span class="c1"># # filter for specific proxy type, e.g. archiveType='speleothem' and paleoData_proxy='d18O'</span>
 <span class="c1"># df_filter = df.loc[(df['archiveType']=='speleothem')&amp;(df['paleoData_proxy']=='d18O')]</span>
+<span class="c1"># df_filter.name = db_name + "_filtered_speleo_d18O" </span>
+
+<span class="c1"># # filter for specific proxy type, e.g. archiveType='speleothem' only</span>
+<span class="c1"># df_filter = df.loc[(df['archiveType']=='speleothem')]</span>
+<span class="c1"># df_filter.name = db_name + "_filtered_speleothem" </span>
 
 
 <span class="c1"># ---&gt; paleoData_proxy only</span>
@@ -2091,22 +2103,34 @@ None
 # e.g.
 
 # # filter for &gt;&gt;moisture&lt;&lt; sensitive records only (also include records which are moisture and temperature sensitive)
-df_filter = df.loc[(df['interpretation_variable']=='moisture')|(df['interpretation_variable']=='temperature+moisture')]
+# df_filter = df.loc[(df['interpretation_variable']=='moisture')|(df['interpretation_variable']=='temperature+moisture')]
+# df_filter.name = db_name + "_filtered_M_TM" 
 
-# # filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)
-# df_filter = df.loc[(df['interpretation_variable']=='moisture')]
+
+# filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)
+df_filter = df.loc[(df['interpretation_variable']=='moisture')]
+df_filter.name = db_name + "_filtered_M" 
+
 
 # # filter for &gt;&gt;temperature&lt;&lt; sensitive records only (also include records which are moisture and temperature sensitive)
-# df_filter = df.loc[(df['interpretation_variable']=='temperature')|(df['interpretation_variable']=='temperature+moisture'])]
+# df_filter = df.loc[(df['interpretation_variable']=='temperature')|(df['interpretation_variable']=='temperature+moisture')]
+# df_filter.name = db_name + "_filtered_T_TM" 
 
 # # filter for &gt;&gt;exclusively temperature&lt;&lt; sensitive records only (without t+m)
 # df_filter = df.loc[(df['interpretation_variable']=='temperature')]
+# df_filter.name = db_name + "_filtered_T" 
+
 
 # ---&gt; archiveType and paleoData_proxy
 # e.g.
 
 # # filter for specific proxy type, e.g. archiveType='speleothem' and paleoData_proxy='d18O'
 # df_filter = df.loc[(df['archiveType']=='speleothem')&amp;(df['paleoData_proxy']=='d18O')]
+# df_filter.name = db_name + "_filtered_speleo_d18O" 
+
+# # filter for specific proxy type, e.g. archiveType='speleothem' only
+# df_filter = df.loc[(df['archiveType']=='speleothem')]
+# df_filter.name = db_name + "_filtered_speleothem" 
 
 
 # ---&gt; paleoData_proxy only
@@ -2156,7 +2180,6 @@ df_filter = df.loc[(df['interpretation_variable']=='moisture')|(df['interpretati
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># df needs name reassigned as it gets lost otherwise after assigning new value to df (through the filtering above)</span>
 
 <span class="c1"># for the M+T filtered example, revise df.name to _filtered_MT</span>
-<span class="n">df_filter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">db_name</span> <span class="o">+</span> <span class="s2">"_filtered_M"</span> 
 <span class="nb">print</span><span class="p">(</span><span class="n">df_filter</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
 <span class="k">assert</span> <span class="n">df_filter</span><span class="o">.</span><span class="n">name</span><span class="o">!=</span><span class="n">db_name</span>
@@ -2164,7 +2187,6 @@ df_filter = df.loc[(df['interpretation_variable']=='moisture')|(df['interpretati
 <div class="clipboard-copy-txt" id="cell-5"># df needs name reassigned as it gets lost otherwise after assigning new value to df (through the filtering above)
 
 # for the M+T filtered example, revise df.name to _filtered_MT
-df_filter.name = db_name + "_filtered_M" 
 print(df_filter.name)
 
 assert df_filter.name!=db_name</div>
@@ -2179,7 +2201,7 @@ assert df_filter.name!=db_name</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>dod2k_v1.2_filtered_M
+<pre>dod2k_v2.0_filtered_M
 </pre>
 </div>
 </div>
@@ -2231,31 +2253,34 @@ assert df_filter.name!=db_name</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-Index: 1597 entries, 2 to 4513
-Data columns (total 19 columns):
- #   Column                                Non-Null Count  Dtype  
----  ------                                --------------  -----  
- 0   archiveType                           1597 non-null   object 
- 1   climateInterpretation_variable        1597 non-null   object 
- 2   climateInterpretation_variableDetail  1597 non-null   object 
- 3   dataSetName                           1597 non-null   object 
- 4   datasetId                             1597 non-null   object 
- 5   duplicateDetails                      1597 non-null   object 
- 6   geo_meanElev                          1565 non-null   float32
- 7   geo_meanLat                           1597 non-null   float32
- 8   geo_meanLon                           1597 non-null   float32
- 9   geo_siteName                          1597 non-null   object 
- 10  originalDataURL                       1597 non-null   object 
- 11  originalDatabase                      1597 non-null   object 
- 12  paleoData_notes                       1597 non-null   object 
- 13  paleoData_proxy                       1597 non-null   object 
- 14  paleoData_sensorSpecies               1597 non-null   object 
- 15  paleoData_units                       1597 non-null   object 
- 16  paleoData_values                      1597 non-null   object 
- 17  year                                  1597 non-null   object 
- 18  yearUnits                             1597 non-null   object 
-dtypes: float32(3), object(16)
-memory usage: 230.8+ KB
+Index: 996 entries, 303 to 4421
+Data columns (total 22 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   archiveType                    996 non-null    object 
+ 1   dataSetName                    996 non-null    object 
+ 2   datasetId                      996 non-null    object 
+ 3   duplicateDetails               996 non-null    object 
+ 4   geo_meanElev                   986 non-null    float32
+ 5   geo_meanLat                    996 non-null    float32
+ 6   geo_meanLon                    996 non-null    float32
+ 7   geo_siteName                   996 non-null    object 
+ 8   interpretation_direction       996 non-null    object 
+ 9   interpretation_seasonality     996 non-null    object 
+ 10  interpretation_variable        996 non-null    object 
+ 11  interpretation_variableDetail  996 non-null    object 
+ 12  originalDataURL                996 non-null    object 
+ 13  originalDatabase               996 non-null    object 
+ 14  paleoData_notes                996 non-null    object 
+ 15  paleoData_proxy                996 non-null    object 
+ 16  paleoData_sensorSpecies        996 non-null    object 
+ 17  paleoData_units                996 non-null    object 
+ 18  paleoData_values               996 non-null    object 
+ 19  paleoData_variableName         996 non-null    object 
+ 20  year                           996 non-null    object 
+ 21  yearUnits                      996 non-null    object 
+dtypes: float32(3), object(19)
+memory usage: 167.3+ KB
 None
 </pre>
 </div>
@@ -2381,8 +2406,8 @@ utf.write_compact_dataframe_to_csv(df_filter)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>METADATA: archiveType, climateInterpretation_variable, climateInterpretation_variableDetail, dataSetName, datasetId, duplicateDetails, geo_meanElev, geo_meanLat, geo_meanLon, geo_siteName, originalDataURL, originalDatabase, paleoData_notes, paleoData_proxy, paleoData_sensorSpecies, paleoData_units, yearUnits
-Saved to /home/jupyter-lluecke/compile_proxy_database_v2.2/dod2k/data/dod2k_v1.2_filtered_M/dod2k_v1.2_filtered_M_compact_%s.csv
+<pre>METADATA: datasetId, archiveType, dataSetName, duplicateDetails, geo_meanElev, geo_meanLat, geo_meanLon, geo_siteName, interpretation_direction, interpretation_seasonality, interpretation_variable, interpretation_variableDetail, originalDataURL, originalDatabase, paleoData_notes, paleoData_proxy, paleoData_sensorSpecies, paleoData_units, paleoData_variableName, yearUnits
+Saved to /home/jupyter-lluecke/dod2k/data/dod2k_v2.0_filtered_M/dod2k_v2.0_filtered_M_compact_%s.csv
 </pre>
 </div>
 </div>
@@ -2425,31 +2450,34 @@ utf.load_compact_dataframe_from_csv(df_filter.name).info()</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 1597 entries, 0 to 1596
-Data columns (total 19 columns):
- #   Column                                Non-Null Count  Dtype  
----  ------                                --------------  -----  
- 0   archiveType                           1597 non-null   object 
- 1   climateInterpretation_variable        1597 non-null   object 
- 2   climateInterpretation_variableDetail  1597 non-null   object 
- 3   dataSetName                           1597 non-null   object 
- 4   datasetId                             1597 non-null   object 
- 5   duplicateDetails                      1597 non-null   object 
- 6   geo_meanElev                          1565 non-null   float32
- 7   geo_meanLat                           1597 non-null   float32
- 8   geo_meanLon                           1597 non-null   float32
- 9   geo_siteName                          1597 non-null   object 
- 10  originalDataURL                       1597 non-null   object 
- 11  originalDatabase                      1597 non-null   object 
- 12  paleoData_notes                       1597 non-null   object 
- 13  paleoData_proxy                       1597 non-null   object 
- 14  paleoData_sensorSpecies               1597 non-null   object 
- 15  paleoData_units                       1597 non-null   object 
- 16  paleoData_values                      1597 non-null   object 
- 17  year                                  1597 non-null   object 
- 18  yearUnits                             1597 non-null   object 
-dtypes: float32(3), object(16)
-memory usage: 218.5+ KB
+RangeIndex: 996 entries, 0 to 995
+Data columns (total 22 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   archiveType                    996 non-null    object 
+ 1   dataSetName                    996 non-null    object 
+ 2   datasetId                      996 non-null    object 
+ 3   duplicateDetails               996 non-null    object 
+ 4   geo_meanElev                   986 non-null    float32
+ 5   geo_meanLat                    996 non-null    float32
+ 6   geo_meanLon                    996 non-null    float32
+ 7   geo_siteName                   996 non-null    object 
+ 8   interpretation_direction       996 non-null    object 
+ 9   interpretation_seasonality     996 non-null    object 
+ 10  interpretation_variable        996 non-null    object 
+ 11  interpretation_variableDetail  996 non-null    object 
+ 12  originalDataURL                996 non-null    object 
+ 13  originalDatabase               996 non-null    object 
+ 14  paleoData_notes                996 non-null    object 
+ 15  paleoData_proxy                996 non-null    object 
+ 16  paleoData_sensorSpecies        996 non-null    object 
+ 17  paleoData_units                996 non-null    object 
+ 18  paleoData_values               996 non-null    object 
+ 19  paleoData_variableName         996 non-null    object 
+ 20  year                           996 non-null    object 
+ 21  yearUnits                      996 non-null    object 
+dtypes: float32(3), object(19)
+memory usage: 159.6+ KB
 </pre>
 </div>
 </div>
