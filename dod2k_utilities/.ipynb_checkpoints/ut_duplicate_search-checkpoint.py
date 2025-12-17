@@ -606,7 +606,7 @@ def dup_plot(df, ii, jj, id_1, id_2, time_1, time_2, time_12, data_1, data_2, in
     init_offs = -.6
     str_limit = 50
     
-    fig  = plt.figure(figsize=(10, 8.5), dpi=90*fig_scale)
+    fig  = plt.figure(figsize=(10, 8.5), dpi=300*fig_scale)
     grid = GS(3,4, wspace=0.6)
     ax   = plt.subplot(grid[0,:3])
     #
@@ -633,7 +633,9 @@ def dup_plot(df, ii, jj, id_1, id_2, time_1, time_2, time_12, data_1, data_2, in
     txt = ('Metadata (differences are highlighted in blue; only first '+
            str(str_limit)+' characters are displayed)')
 
-    cols = [.1, -.1+0, -.1+.3, -.1+.9]
+    # column positions
+    cols = [.1, -.1+0, -.1+.3, -.1+.9+0.15]
+    
     rows = [-0.3]+[-0.45]*3
     
     ax.text(cols[0], rows[0], txt, transform=ax.transAxes, ha='left', fontsize=fs-1)
@@ -851,7 +853,7 @@ def density_scatter( x , y, ax = None, fig=None, sort = True, bins = 20, **kwarg
     return ax
     
 #==============================================================================
-def plot_duplicates(df, save_figures=True, write_output=True, plot_single=False):
+def plot_duplicates(df, save_figures=True, write_output=True, display=False):
     """
     Generate plots of potential duplicate records in a proxy database and optionally save their metadata.
 
@@ -936,8 +938,9 @@ def plot_duplicates(df, save_figures=True, write_output=True, plot_single=False)
         dup_mdata += [dup_mdata_row]
         plt.show(block=False)
         if save_figures:
-            save_fig(fig, f'%03d_{id_1}_{id_2}'%i_pot_dups+'_'+f'_{ii}_{jj}', dir='%s/dup_detection'%df.name, form='pdf')
-            
+            save_fig(fig, f'%03d_{id_1}_{id_2}'%i_pot_dups+'_'+f'_{ii}_{jj}', dir='%s/dup_detection'%df.name, figformat='pdf')
+        if not display:
+            plt.close(fig)
 
         
         print('=== POTENTIAL DUPLICATE %d/%d'%(i_pot_dups, n_pot_dups)+': %s+%s ==='%(df['datasetId'].iloc[ii], df['datasetId'].iloc[jj]))

@@ -439,7 +439,7 @@ def figsave(fig, name, trans=False, add='/', fc='white',
     if form=='pdf': 
         fig.savefig(os.getcwd()+addfigs+ddir+'/'+name+'.jpg', 
                     transparent=trans, facecolor=fig.get_facecolor(),
-                    format='jpg', dpi=100, bbox_inches='tight', pad_inches=0.0)
+                    format='png', dpi=300, bbox_inches='tight', pad_inches=0.0)
     print('saved figure in '+ addfigs+ddir+'/'+name+'.'+form)
     if close: plt.close()
     return
@@ -489,9 +489,10 @@ def save_fig(fig, filename, trans=False, dir='/', fc='white',
                 transparent=trans, facecolor=fig.get_facecolor(),
                 format=figformat, bbox_inches='tight', pad_inches=0.0)
     if figformat=='pdf': 
-        fig.savefig(fig_dir+'/'+filename+'.jpg', 
+        fig.savefig(fig_dir+'/'+filename+'.png', 
                     transparent=trans, facecolor=fig.get_facecolor(),
-                    format='jpg', dpi=100, bbox_inches='tight', pad_inches=0.0)
+                    format='png', dpi=300, bbox_inches='tight', pad_inches=0.0)
+        
     print('saved figure in '+ fig_dir+'/'+filename+'.'+figformat)
     if close: plt.close()
     return

@@ -1,5 +1,16 @@
+data/speleo_modeling/*.nc.gz
 figs/
 tmp/
 old/
 site/
 *.pdf
+cru_ts4.07.1901.2022.tmp.dat.nc
+cru_ts4.07.1901.2022.tmp.dat.nc.gz
+**/.ipynb_checkpoints/
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+.env

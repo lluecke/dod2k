@@ -82,7 +82,7 @@ uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ti
 ```
 
 <figure markdown="span">
-  ![Archive barchart](assets/images/dod2k_barchart.pdf){ width="800" }
+  ![Archive barchart](assets/images/dod2k_barchart.png){ width="800" }
   <figcaption>Figure 1: Number of records for each proxy type, by archive.</figcaption>
 </figure>
 
@@ -141,7 +141,7 @@ utf.save_fig(fig, f'{df.name}_spatial_all', dir=df.name)
 Which creates this plot
 
 <figure markdown="span">
-  ![Archive map](assets/images/overview_map.pdf){ width="800" }
+  ![Archive map](assets/images/overview_map.png){ width="800" }
   <figcaption>Figure 2: Spatial distribution of records by archive and proxy type.</figcaption>
 </figure>
 

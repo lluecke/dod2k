@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <!-- Mobile viewport optimization h5bp.com/ad -->
+        <meta name="HandheldFriendly" content="True">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+           
+        <!-- Chrome, Firefox OS and Opera -->
+        <meta name="theme-color" content="#002147">
+        <!-- Windows Phone -->
+        <meta name="msapplication-navbutton-color" content="#002147">        
+        <!-- iOS Safari -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        
+        <!-- Internet Explorer use the highest version available -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <!-- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading -->
+        <!--[if IEMobile]>
+            <meta http-equiv="cleartype" content="on">
+        <![endif]-->
+
+        <title>SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0 - ORA - Oxford University Research Archive</title>
+        <meta name="keywords" content="paleoclimate, speleothem, isotope, carbon, oxygen, trace elements, sisal, database">
+<meta name="citation_title" content="SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0">
+<meta name="citation_author" content="Kaushal, N">
+<meta name="citation_author" content="Lechleitner, F A">
+<meta name="citation_author" content="Wilhelm, M">
+<meta name="citation_author" content="SISAL Working Group members">
+<meta name="citation_date" content="2024">
+<meta name="citation_publication_date" content="2024">
+<meta name="DC.type" content="http://purl.org/dc/dcmitype/Dataset">
+<meta name="prism.doi" content="10.5287/ora-2nanwp4rk">
+<meta name="prism.keyword" content="paleoclimate">
+<meta name="prism.keyword" content="speleothem">
+<meta name="prism.keyword" content="isotope">
+<meta name="prism.keyword" content="carbon">
+<meta name="prism.keyword" content="oxygen">
+<meta name="prism.keyword" content="trace elements">
+<meta name="prism.keyword" content="SISAL">
+<meta name="prism.keyword" content="database">
+<meta name="DC.publisher" content="University of Oxford">
+        <link href="https://ora.ox.ac.uk/objects/opensearch.xml" title="ORA - Oxford University Research Archive" type="application/opensearchdescription+xml" rel="search" />
+        <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon-ac4e6d2325074c7e246a1964dbb7aff49f082aabf71015d9bcb3a7ff6c87d009.ico" />
+        <meta name="captcha_public_key" content="6Lf7NW0gAAAAAOgzuw2XP52H9juwRjxBcv5f27I6">
+        <meta name="v3_captcha_public_key" content="6LcAGMEgAAAAANzor_IzwA7fTPyvAR6M-q73I_TY">
+        <script src="https://www.google.com/jsapi" type="89ef95f916a668716893a420-text/javascript"></script>
+<script src="/assets/chartkick-5e0c9f02ca4a5f86de13929478540481a16f981ff18624ab116e40260e58492b.js" type="89ef95f916a668716893a420-text/javascript"></script>
+        <script src="https://www.gstatic.com/charts/loader.js" type="89ef95f916a668716893a420-text/javascript"></script>
+        <script type="89ef95f916a668716893a420-text/javascript">
+            var script = document.createElement("script");
+            script.src = "https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=" + "6LcAGMEgAAAAANzor_IzwA7fTPyvAR6M-q73I_TY" 
+            script.setAttribute("async", "");
+            script.setAttribute("defer", "");
+            document.head.appendChild(script);
+        </script>
+        <link rel="stylesheet" media="all" href="/assets/application-3fa28494393204dc07a7f939e15aea21d394fab8d9608891627cde24e7b5f1e3.css" />
+        <link rel="stylesheet" media="all" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" />
+
+        <script async src="https://badge.dimensions.ai/badge.js" type="89ef95f916a668716893a420-text/javascript"></script>
+
+        <script defer src="https://static.addtoany.com/menu/page.js" type="89ef95f916a668716893a420-text/javascript"></script>
+        
+        <script src="/assets/application-a34a60aed99b6653b7044c292d8f1fa568d0b73b3b9fccb453c786e228bc0c38.js" type="89ef95f916a668716893a420-text/javascript"></script>
+        
+        <link rel="alternate" title="xml" type="application/xml" href="https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4.xml" />
+<link rel="alternate" title="dc_xml" type="text/xml" href="https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4.dc_xml" />
+<link rel="alternate" title="oai_dc_xml" type="text/xml" href="https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4.oai_dc_xml" />
+
+        <script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+	  		tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+		});
+        </script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" type="89ef95f916a668716893a420-text/javascript"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112489724-1" type="89ef95f916a668716893a420-text/javascript"></script>
+<script type="89ef95f916a668716893a420-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-112489724-1');
+
+  gtag('config', 'G-G0G77YF0RY');
+</script>
+    </head>
+    <body class="blacklight-catalog blacklight-catalog-show">
+
+        <div id="wrapper-body">
+            <div id="mobileNavHeader">
+    <nav class="mobile-logos" aria-label="Home and Oxford">
+        <span class="sr-only">Logos</span>
+        <a href="/" id="ora-logo-mob" aria-label="ORA Homepage" title="ORA Homepage"></a>
+        <a href="http://ox.ac.uk" target="_blank" id="ox-logo-mob" rel="noopener" aria-label="University of Oxford Homepage" title="University of Oxford Homepage"></a>
+    </nav>
+    
+    <button class="mobileNavTrigger" aria-label="Main menu" aria-expanded="false">
+      <i></i><i></i><i></i>
+    </button>
+</div>
+
+
+<div id="mobile-nav" aria-hidden="true" style="visibility:hidden">
+    <nav aria-label="Site sections">
+        <span class="sr-only">Header links</span>        
+        <ul>
+            <li><a href="/search_history" id="search_history_mob" title="Go to search history">Search History</a></li>
+            <li>
+                <a href="/bookmarks" id="bookmarks_nav_mob" title="Go to my bookmarks">
+
+
+                    <span data-role='bookmark-counter' class="hide-bookmark ">
+                        Bookmarks
+                        <span class="badge">0</span>
+                    </span>
+                </a>
+            </li>
+            
+
+                <li><a href="/" title="New search">New Search</a></li>
+
+            <li><a href="https://ora.ox.ac.uk/collections">Collections</a></li>
+            <li><a href="https://ora.ox.ac.uk/about">About</a></li>
+            <li><a href="https://ora.ox.ac.uk/deposit">Deposit</a></li>    
+            <li><a href="https://libguides.bodleian.ox.ac.uk/ora" target="_blank" rel="noopener">Help</a></li>
+        </ul>
+    </nav>
+    <nav aria-label="Static pages">
+        <span class="sr-only">Footer links</span>
+        <ul>
+            <li><a href="/policies">Policies</a></li>
+            <li><a href="/disclaimer">Disclaimer</a></li>
+            <li><a href="https://glam.web.ox.ac.uk/privacy-policy-ora" rel="noopener"  target="_blank">Privacy Policy</a></li>
+            <li><a href="/cookies">Cookies</a></li>
+            <li><a href="https://visit.bodleian.ox.ac.uk/accessibility" target="_blank">Accessibility Statement</a></li>
+            <li><a href="https://www2.bodleian.ox.ac.uk/ora/deposit-in-ora/copyright_and_other_legal_issues" target="_blank" rel="noopener">Copyright</a></li>
+            <li><a href="/api">API</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/feedback">Feedback</a></li>
+        </ul>
+    </nav>
+</div>
+
+            <div id="ajax-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+
+            <header id="header-navbar" class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <nav class="nav-left" aria-label="Home and Oxford">
+                <a href="/" id="ora-logo" aria-label="ORA Homepage" title="ORA Homepage"></a>
+                <a href="https://www.ox.ac.uk" target="_blank" id="ox-logo" rel="noopener" aria-label="University of Oxford Homepage" title="University of Oxford Homepage"></a>
+            </nav>
+            <nav class="nav-accessible" aria-label="Accessible">
+    <a class="sr-only" href="#main-container">Skip to main</a>
+</nav>
+<nav class="nav-center" aria-label="Site sections">
+         <a href="/" title="New search">NEW SEARCH</a>
+    <a data-page="portals" href="https://ora.ox.ac.uk/collections">Collections</a>
+    <a data-page="about" href="https://ora.ox.ac.uk/about">About</a>
+    <a data-page="deposit" href="https://ora.ox.ac.uk/deposit">Deposit</a>    
+    <a href="https://libguides.bodleian.ox.ac.uk/ora" target="_blank" title="Help" rel="noopener">HELP</a>   
+</nav>
+<nav class="nav-right" aria-label="History and bookmarks">
+    <a href="/search_history" id="search_history" class="ora-icons" data-toggle="tooltip" data-placement="bottom" title="Go to search history" aria-label="Search history">
+       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" y="1032" title="Search history icon">
+            <path d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+        </svg>
+    </a>
+
+    <a href="/bookmarks" id="bookmarks_nav" class="ora-icons" data-toggle="tooltip" data-placement="bottom" title="Go to my bookmarks" aria-label="Bookmarks">
+        
+        
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22.6 33" title="My bookmarks icon">
+            <path d="M22.6 21.6c0 .7-.6 1.2-1.2 1.3H13l-1 9.6c0 .2-.1.3-.2.4-.1.1-.2.2-.4.2-.3 0-.6-.2-.6-.5L9.3 23h-8C.6 23 0 22.4 0 21.7c0-1.6.5-3.2 1.5-4.4.8-1.2 2.1-1.9 3.5-2V5.1c-.7 0-1.3-.2-1.8-.7-1-1-1-2.6 0-3.6C3.7.3 4.4 0 5 0h12.5c.7 0 1.3.2 1.8.7.5.5.8 1.1.7 1.8 0 .7-.2 1.4-.7 1.8-.5.5-1.1.8-1.8.8v10.1c1.4.1 2.7.8 3.5 1.9 1.1 1.3 1.6 2.9 1.6 4.5zm-13.2-7V5.7c0-.2-.1-.3-.2-.5-.1-.1-.3-.1-.4-.1-.3 0-.6.2-.6.6v9c0 .2.1.3.2.5.1.1.3.2.4.2.2 0 .3-.1.5-.2 0-.3.1-.4.1-.6z"/>
+        </svg>
+        <span data-role='bookmark-counter' id="bookmark-counter" class="hide-bookmark  digit-1">
+            0</span>
+    </a>
+
+</nav>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+    <nav class="back-block">
+        <div class="container">
+            <a class="btn back-catalog back-search" href="/">Back to Search</a> 
+        </div>
+    </nav>
+
+            <aside id="help-block">
+    <button id="help-trigger" class="close-help" aria-label="Contact">CONTACT</button>
+    <div id="help-block-content">
+          <div class="alert-aside" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>  NOTE: </strong>The ORA office is closed from Wednesday 24th December 2025 and will reopen on Friday 2nd January 2026.
+          </div>
+        <form id="help_form" class="email-form" autocomplete="on" action="/contact_us" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+        <div class="form-group">
+            <label for="contact_aside_name">Name</label>
+            <input type="text" id="contact_aside_name" name="name" placeholder="Full name" autocomplete="name"
+                data-validation="alphanumeric required"  
+                data-validation-error-msg="Invalid name"
+                data-validation-allowing="-' "
+                class="help-block-input">
+        </div>
+        <div class="form-group">
+            <label for="contact_aside_email">Email</label>
+            <input type="text" id="contact_aside_email" name="email" placeholder="email@example.com" autocomplete="email"
+                data-validation="email required"
+                data-validation-error-msg="Invalid email"
+                class="help-block-input">
+        </div>
+        <label for="help-magiun" style="display: none">-</label>
+        <input type="text" name="magiun" class="magiun" value="magiun" id="help-magiun"> 
+        <div class="form-group">
+            <label for="contact_aside_comment">Comment</label>
+            <textarea rows="3" id="contact_aside_comment" name="comment" placeholder="Your comment (max 600 characters)..."
+                    data-validation-error-msg="Invalid comment" maxlength="600"
+                    data-validation="required" class="help-block-input"></textarea>
+        </div>
+        <input type="hidden" id="help_page_url" name="page_url" class="hidden-page-url">
+        <div class="form-group">
+          <div id='helpSubmitButtonCaptchaDiv' class="help-block-input"></div>
+          <button type        = "submit"
+                  id          = "helpSubmitButton"
+                  class       = "aside-plane submit-form help-block-input"
+                  data-config = "#help-magiun"
+                  data-form   = "#help_form">
+              Send message
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 535.5 535.5" class="send-plane">
+                  <path d="M0 497.25l535.5-229.5L0 38.25v178.5l382.5 51-382.5 51z"/>
+              </svg>
+          </button>
+        </div>
+</form>    </div>
+</aside>
+
+
+            <aside id="feedback-block">
+  <button id="feedback-trigger" class="close-feedback" aria-label="Feedback">FEEDBACK</button>
+  <div id="feedback-block-content">
+    <form id="feedback_form" class="email-form" autocomplete="on" action="/ora_feedback" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+      <fieldset>
+        <legend class="feedback-intro">We welcome feedback about our service.</legend>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="feedback_radio" id="feedback_like" value="I like">
+          <label class="form-check-label" for="feedback_like">
+            <i class="fa fa-smile"></i> I like...
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="feedback_radio" id="feedback_dislike" value="I dislike">
+          <label class="form-check-label" for="feedback_dislike">
+            <i class="fa fa-sad-tear"></i> I dislike...
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="feedback_radio" id="feedback_suggestion" value="I have a suggestion">
+          <label class="form-check-label" for="feedback_suggestion">
+            <i class="fa fa-lightbulb fa-lightbulb-align"></i> I have a suggestion...
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="feedback_radio" id="feedback_help" value="I need help">
+          <label class="form-check-label" for="feedback_help">
+            <i class="fa fa-life-ring"></i> I need help...
+          </label>
+        </div>
+      </fieldset>
+      <div class="form-group">
+        <label for="feedback_aside_name">Name</label>
+        <input type="text" id="feedback_aside_name" name="name" placeholder="Full name" autocomplete="name"
+             data-validation="alphanumeric required"
+             data-validation-error-msg="Invalid name"
+             data-validation-allowing="-' "
+             class="feedback-block-input">
+      </div>
+      <div class="form-group">
+        <label for="feedback_aside_email">Email</label>
+        <input type="text" id="feedback_aside_email" name="email" placeholder="email@example.com" autocomplete="email"
+              data-validation="email"
+              data-validation-error-msg="Invalid email"
+              class="feedback-block-input">
+      </div>
+      <label for="feedback-magiun" style="display: none">-</label>
+      <input type="text" name="magiun" class="magiun" value="magiun" id="feedback-magiun"> 
+      <div class="form-group">
+        <label for="feedback_aside_comment">Comment</label>
+        <textarea rows="3" id="feedback_aside_comment" name="comment" placeholder="Your comment (max 600 characters)..."
+                data-validation-error-msg="Invalid comment" maxlength="600"
+                data-validation="required" class="feedback-block-input"></textarea>
+      </div>
+      <input type="hidden" id="feedback_page_url" name="page_url" class="hidden-page-url">
+      <div class="form-group">
+        <div id='feedbackSubmitButtonCaptchaDiv' class="feedback-block-input"></div>
+        <button type        = "submit"
+                id          = "feedbackSubmitButton"
+                class       = "aside-plane submit-form feedback-block-input"
+                data-config = "#feedback-magiun"
+                data-form   = "#feedback_form">
+          Send message
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 535.5 535.5" class="send-plane">
+            <path d="M0 497.25l535.5-229.5L0 38.25v178.5l382.5 51-382.5 51z"/>
+          </svg>
+        </button>
+      </div>
+</form>  </div>
+</aside>
+
+
+            <main id="main-container" class="container">
+                <div class="row">
+                    <aside>
+    <nav id="singleDocumentPanel" aria-label="Document sections">
+        <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="204">
+            <li><button data-target="#Actions">Actions</button></li>
+              <li><button data-target="#AccessDocument">Access Document</button></li>
+              <li><button data-target="#Authors">Authors/Creators</button></li>
+              <li><button data-target="#Funding" class="trigger-collapse">Funding</button></li>
+              <li><button data-target="#BibliographicDetails" class="trigger-collapse" >Bibliographic Details</button></li>
+              <li><button data-target="#ItemDescription" class="trigger-collapse" >Item Description</button></li>
+              <li><button data-target="#Related" class="trigger-collapse">Related Items</button></li>
+              <li><button data-target="#TermsOfUse">Terms of Use</button></li>
+            <li><button data-target="#Metrics">Metrics</button></li>
+        </ul>
+    </nav>
+</aside>
+
+
+<div id="content" class="col-md-9 col-sm-8 show-document details-page">
+	
+<div id="document" class="document " itemscope  itemtype="http://schema.org/Thing">
+  <div id="doc_uuid-1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4">
+    <!-- Render schema.org json-->
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@id": "uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4",
+  "@type": "Dataset",
+  "name": "SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0",
+  "description": "How to cite this dataset:\n\nKaushal, Nikita, Lechleitner, Franziska, Wilhelm, Micah and SISAL working group members (2024): SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0. University of Oxford. Dataset. DOI: 10.5287/ora-2nanwp4rk\n\nThis is the latest version of this item. Previous versions of the item can be found at the following links:\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database Version 1.0. (deposited 04 Jun 2018 07:14)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 1b. (deposited 13 Feb 2019 15:30)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 2.0. (deposited 20 Feb 2020 11:22)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 2.0. (deposited 13 Jul 2020 10:07)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 3.0. (deposited 25 Aug 2023 (**NB: This version of the dataset has been superseded by a revised iteration: SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0 (http://dx.doi.org/10.5287/ora-2nanwp4rk) **)\n\nStable isotope and trace elements records from speleothems provide information on past climate changes, most particularly information that can be used to reconstruct past changes in precipitation and atmospheric circulation. SISAL (Speleothem Isotope Synthesis and Analysis) is an international working group of the Past Global Changes (PAGES) project. The working group aims to provide a comprehensive compilation of speleothem isotope and trace elements records for climate reconstruction and model evaluation. SISALv3 database contains 892 oxygen isotope, 620 carbon isotope, 95 Mg/Ca, 85 Sr/Ca, 52 Ba/Ca, 25 U/Ca, 29 P/Ca and 14 Sr isotope records from 838 speleothems from 365 cave sites worldwide, and metadata describing the cave settings and age models of these records. This version contains standardized age-depth models. There are also 51 datafiles containing trace element data and 246 image files of cave maps and entity scans.\n\nIn order to assure traceability, any presentation, report, or publication that uses the SISALv3 database should cite Atsawawaranunt et al. (2018; https://doi.org/10.5194/essd-10-1687-2018), Comas-Bru et al. (2019; https://doi.org/10.5194/cp-15-1557-2019), Comas-Bru et al. (2020; https://doi.org/10.5194/essd-2020-39) and Kaushal et al. (2023; https://doi.org/10.5287/ora-mzy8pozvk). If using individual sites, the literature citations for published work provided in the database should also be cited. Contact information of data contributors of unpublished data is also provided and they should be contacted when unpublished records are used on an individual basis. If cave site or entity (speleothem) images stored into linked repository folder are to be used, corresponding citation, copyright and license information must be adhered to. This information is provided in an excel file in the repository.",
+  "sameAs": "10.5287/ora-2nanwp4rk",
+  "datePublished": "2024-01-01T00:00:00Z",
+  "publisher": [
+    {
+      "@type": "Organization",
+      "name": "University of Oxford"
+    }
+  ],
+  "copyrightYear": 2024,
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Kaushal, N"
+    },
+    {
+      "@type": "Person",
+      "name": "Lechleitner, F A"
+    },
+    {
+      "@type": "Person",
+      "name": "Wilhelm, M"
+    },
+    {
+      "@type": "Person",
+      "name": "SISAL Working Group members"
+    }
+  ],
+  "contributor": [
+
+  ],
+  "inLanguage": null,
+  "license": "http://creativecommons.org/licenses/by/4.0/",
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r8049g6101",
+      "contentSize": "1726468414",
+      "encodingFormat": "zip"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "README_SISALv3.pdf",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r9k41zf383",
+      "contentSize": "807020",
+      "encodingFormat": "pdf"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3_cave_map_entity_images.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rht24wk470",
+      "contentSize": "747023862",
+      "encodingFormat": "zip"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3_data_entry_workbook_standardised_sheets.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rd791sh05n",
+      "contentSize": "535627",
+      "encodingFormat": "zip"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3_database_mysql_csv.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rst74cr50f",
+      "contentSize": "112366372",
+      "encodingFormat": "zip"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3_codes.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rdz010r11j",
+      "contentSize": "828859",
+      "encodingFormat": "zip"
+    },
+    {
+      "@type": "DataDownload",
+      "name": "sisalv3_standardised_trace_elements_datafiles.zip",
+      "contentUrl": "https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r5h73px02d",
+      "contentSize": "460418580",
+      "encodingFormat": "zip"
+    }
+  ],
+  "funding": [
+    {
+      "@type": "Grant",
+      "identifier": " DSS-108",
+      "funder": {
+        "@type": "Organization",
+        "name": "Past Global Changes",
+        "identifier": null
+      }
+    }
+  ],
+  "contentReferenceTime": null,
+  "temporalCoverage": null,
+  "spatialCoverage": null,
+  "accountablePerson": null,
+  "keywords": [
+    "paleoclimate",
+    "speleothem",
+    "isotope",
+    "carbon",
+    "oxygen",
+    "trace elements",
+    "SISAL",
+    "database"
+  ]
+}
+</script>
+
+
+<div class="dl-horizontal  dl-invert">
+    <section class="details-page-header">
+        <div class="details-page-tools">
+            <ul class="nav details-top-actions">
+                <li class="export-listitem">
+                    <div class="panel panel-default show-tools">
+                        <div class="panel-body">
+                            <div id="export-dropdown" class="dropdown btn-group actions-block">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="detailsExportMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <i class="fa fa-download ora-icons" aria-hidden="true" title="Export icon"></i>
+                                    Export
+                                    <span class="caret"></span>
+                                </button>
+
+                                <ul class="dropdown-menu" aria-labelledby="detailsExportMenu">
+                                    <li class="details-bibtex">
+                                        <a target="_blank" id="export_bibtex" rel="nofollow" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/export_record.bibtex">BibTeX</a>                
+                                    </li>
+                                    <li class="details-endnote-file">
+                                        <a target="_blank" id="export_endnote" rel="nofollow" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/export_record.endnote">EndNote</a>
+                                    </li>
+                                    <li class="details-refworks-file">
+                                        <a target="RefWorksMain" id="export_refworks" rel="nofollow" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/export_record.refworks">RefWorks</a>
+                                    </li>
+                                    <li>
+                                      <a target="_blank" rel="nofollow" href="/ora_oaipmh_service/rioxx_terms_cc0?identifier=oai%3Aora.ox.ac.uk%3Auuid%3A1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4&amp;verb=GetRecord">CC0 version of this metadata</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
+                  
+                    <li class="bookmark">
+                          <form class="bookmark_toggle" data-doc-id="uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4" action="/bookmarks/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="_method" value="put" />
+</form>
+                    </li>
+  
+  
+  
+            </ul>
+        </div>
+        <div class="details-page-header_image"  tabindex="0">
+            <img src="/assets/resources/dataset-607b251d39862b2ebcb440513e61341404a6ae8fb31364b077b8d7e7acd5e6ab.svg" alt="Dataset icon"> 
+        </div>
+        <div class="details-page-header_details"  tabindex="0">
+          <h1 class="details-page-type_of_work">Dataset
+          </h1>
+          <h2 itemprop="name">SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0</h2>
+        </div>
+    </section>
+    
+    <div class="details-block" tabindex="0">
+    <div>
+    </div>
+        <div class="details-block-abstract">
+            <dl>
+                
+<dt class="blacklight-documentation col-md-3">Documentation:</dt>
+<dd class="abstract-block blacklight-documentation">
+		<div class="text-documentation">            
+		
+<html><body><p>How to cite this dataset:
+
+Kaushal, Nikita, Lechleitner, Franziska, Wilhelm, Micah and SISAL working group members (2024): SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0. University of Oxford. Dataset. DOI: 10.5287/ora-2nanwp4rk
+
+This is the latest version of this item. Previous versions of the item can be found at the following links:
+
+• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database Version 1.0. (deposited 04 Jun 2018 07:14)
+
+• SISAL (Spe...</p><script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="89ef95f916a668716893a420-|49" defer></script></body></html>
+
+    <a class="read-more-documentation read-more-button" style="float:right" href="#">Expand documentation</a>
+		</div>
+		<a class="read-less-documentation" style="float:right;display:none;" href="#">Collapse documentation</a>
+		<script type="89ef95f916a668716893a420-text/javascript">
+		$(document).on('click', '.read-more-documentation', function (e) {
+			e.preventDefault();
+			$('.read-less-documentation').show();
+			$('.text-documentation').html('How to cite this dataset:\n\nKaushal, Nikita, Lechleitner, Franziska, Wilhelm, Micah and SISAL working group members (2024): SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0. University of Oxford. Dataset. DOI: 10.5287/ora-2nanwp4rk\n\nThis is the latest version of this item. Previous versions of the item can be found at the following links:\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database Version 1.0. (deposited 04 Jun 2018 07:14)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 1b. (deposited 13 Feb 2019 15:30)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 2.0. (deposited 20 Feb 2020 11:22)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 2.0. (deposited 13 Jul 2020 10:07)\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database version 3.0. (deposited 25 Aug 2023 (**NB: This version of the dataset has been superseded by a revised iteration: SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0 (http://dx.doi.org/10.5287/ora-2nanwp4rk) **)\n\nStable isotope and trace elements records from speleothems provide information on past climate changes, most particularly information that can be used to reconstruct past changes in precipitation and atmospheric circulation. SISAL (Speleothem Isotope Synthesis and Analysis) is an international working group of the Past Global Changes (PAGES) project. The working group aims to provide a comprehensive compilation of speleothem isotope and trace elements records for climate reconstruction and model evaluation. SISALv3 database contains 892 oxygen isotope, 620 carbon isotope, 95 Mg/Ca, 85 Sr/Ca, 52 Ba/Ca, 25 U/Ca, 29 P/Ca and 14 Sr isotope records from 838 speleothems from 365 cave sites worldwide, and metadata describing the cave settings and age models of these records. This version contains standardized age-depth models. There are also 51 datafiles containing trace element data and 246 image files of cave maps and entity scans.\n\nIn order to assure traceability, any presentation, report, or publication that uses the SISALv3 database should cite Atsawawaranunt et al. (2018; https://doi.org/10.5194/essd-10-1687-2018), Comas-Bru et al. (2019; https://doi.org/10.5194/cp-15-1557-2019), Comas-Bru et al. (2020; https://doi.org/10.5194/essd-2020-39) and Kaushal et al. (2023; https://doi.org/10.5287/ora-mzy8pozvk). If using individual sites, the literature citations for published work provided in the database should also be cited. Contact information of data contributors of unpublished data is also provided and they should be contacted when unpublished records are used on an individual basis. If cave site or entity (speleothem) images stored into linked repository folder are to be used, corresponding citation, copyright and license information must be adhered to. This information is provided in an excel file in the repository.');
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		});
+
+		$(document).on('click', '.read-less-documentation', function (e) {
+			e.preventDefault();
+			$('.read-less-documentation').hide();
+			$('.text-documentation').html('\n<html><body><p>How to cite this dataset:\n\nKaushal, Nikita, Lechleitner, Franziska, Wilhelm, Micah and SISAL working group members (2024): SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0. University of Oxford. Dataset. DOI: 10.5287/ora-2nanwp4rk\n\nThis is the latest version of this item. Previous versions of the item can be found at the following links:\n\n• SISAL (Speleothem Isotopes Synthesis and AnaLysis Working Group) database Version 1.0. (deposited 04 Jun 2018 07:14)\n\n• SISAL (Spe...<\/p><\/body><\/html>\n <a class=\"read-more-documentation read-more-button\" style=\"float:right\" href=\"#\">Expand documentation<\/a>');
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		});
+		</script>
+</dd>
+
+            </dl>
+        </div>
+    <div>
+    </div>
+</div>
+
+
+    <div id="Actions" class="details-block" tabindex="0">
+    <h3>Actions</h3><hr>
+    <div class="actions-tools">
+        <ul class="nav details-page-actions">
+              
+  
+                <li class="email">
+                    <a data-toggle="modal" id="emailLink" aria-label="Link to email" rel="nofollow" href="#emailForm"><i class="email-icon ora-icons" aria-hidden="true" title="Email icon" ></i><p>Email</p></a>
+
+<div id="emailForm" class="modal fade email-container" role="dialog" tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Email this record</h1>
+                <button type="button" class="ajax-modal-close close focus focus--effect-wave" data-dismiss="modal" aria-hidden="true" aria-label="Close">×</button>
+                <div>Send the bibliographic details of this record to your email address.</div>
+            </div>
+            <div class="modal-body">
+                <form id="email_form" class="email-form" action="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/email_record" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+                <div class="form-group">
+                    <label for="etr_email">Your Email</label>
+                    <p><small>Please enter the email address that the record information will be sent to.</small></p>
+                    <input type="text" class="form-control" id="etr_email" name="email"
+                           data-validation="email required"
+                           data-validation-error-msg="You have not provided a valid email address"
+                           placeholder="email@example.com">
+                </div>
+                <label for="email-magiun" style="display: none">-</label>
+                <input type="text" name="magiun" class="magiun" id="email-magiun" value="magiun"> 
+                <div class="form-group">
+                    <label for="etr_comment">Your message <i>(optional)</i></label>
+                    <p><small>Please add any additional information to be included within the email.</small></p>
+                    <textarea class="form-control" rows="3" id="etr_comment" name="comment"
+                              data-validation-optional="true"></textarea>
+                </div>
+                <input type="hidden" name="url" id="url" value="https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4" />
+                    <input type="hidden" name="citation" id="citation" value="Kaushal, N., et al. SISALv3: Speleothem Isotopes Synthesis and AnaLysis Database Version 3.0. University of Oxford, 2024." />
+                    <input type="hidden" name="header_text" id="header_text" value="Send the bibliographic details of this record to your email address." />
+                    <input type="hidden" name="email_context" id="email_context" value="Please enter the email address that the record information will be sent to." />
+                    <input type="hidden" name="message_context" id="message_context" value="Please add any additional information to be included within the email." />
+                    <input type="hidden" name="footer_context" id="footer_context" value="" />
+                <div class="modal-footer">
+                    <div id="emailFormSubmitButtonCaptchaDiv"></div>
+                    <button type    = "submit" 
+                        id          = "emailFormSubmitButton"
+                        class       = "modal-submit submit-form"
+                        data-config = "#email-magiun" 
+                        data-form   = "#emailForm"> 
+                        
+                        Send
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 535.5 535.5" class="send-plane">
+                          <path d="M0 497.25l535.5-229.5L0 38.25v178.5l382.5 51-382.5 51z"/>
+                        </svg>
+                    </button>
+                    <p><small></small></p>
+                </div>
+</form>            </div>
+        </div>
+    </div>
+</div>
+                </li>
+  
+                <li class="citation">
+                    <a data-toggle="modal" id="citeLink" aria-label="Link to cite" rel="nofollow" href="#citeForm"><i class="cite-icon ora-icons" aria-hidden="true" title="Cite icon"></i><p>Cite</p></a>
+
+<div id="citeForm" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Cite this record</h1>
+                <button type="button" class="ajax-modal-close close focus focus--effect-wave" data-dismiss="modal" aria-hidden="true" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="apa" class="citation">
+                    <h2>APA Style</h2>
+                    <div id="apa-style" contentEditable="true" aria-label="APA style">Kaushal, N., Lechleitner, F. A., Wilhelm, M., &amp; members, S. I. S. A. L. W. G. (2024). SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0. University of Oxford.</div>
+                    <button class="btn copy-citation" data-clipboard-target="#apa-style">
+                        <i class="far fa-copy"></i>
+                        Copy APA Style
+                    </button>
+                    <input type="hidden" value="Copy APA Style">
+                </div>
+                <div id="mla" class="citation">
+                    <h2>MLA Style</h2>
+                    <div id="mla-style" contentEditable="true" aria-label="MLA style">Kaushal, N., et al. SISALv3: Speleothem Isotopes Synthesis and AnaLysis Database Version 3.0. University of Oxford, 2024.</div>
+                    <button class="btn copy-citation" data-clipboard-target="#mla-style">
+                        <i class="far fa-copy"></i>
+                        Copy MLA Style
+                    </button>
+                    <input type="hidden" value="Copy MLA Style">
+                </div>
+                <div id="chicago" class="citation">
+                    <h2>Chicago Style</h2>
+                    <div id="chicago-style" contentEditable="true" aria-label="Chicago style">Kaushal, N, F A Lechleitner, M Wilhelm, and SISAL Working Group members. 2024. “SISALv3: Speleothem Isotopes Synthesis and AnaLysis Database Version 3.0.” University of Oxford.</div>
+                    <button class="btn copy-citation" data-clipboard-target="#chicago-style">
+                        <i class="far fa-copy"></i>
+                        Copy Chicago Style
+                    </button>
+                    <input type="hidden" value="Copy Chicago Style">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                </li>
+  
+                <li class="share">
+                    <div class="a2a_kit a2a_kit_size_32 a2a_default_style">
+  <a id="shareLink" class="a2a_dd" aria-label="Link to share" rel="nofollow" href="https://www.addtoany.com/share"><i class="fa fa-share-alt ora-icons" aria-hidden="true" title="Share icon"></i><p>Share</p></a>
+</div>
+
+<script type="89ef95f916a668716893a420-text/javascript">
+  // Don't display full menu: if mini-menu displayed, don't continue with click event
+  $('#shareLink').on('click', function (e) {
+    if ($('#a2apage_dropdown').css('display') != 'none') {
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
+      return false;
+    }
+  });
+
+  var a2a_config = a2a_config || {};
+  a2a_config.prioritize = [ 'copy_link', 'threads', 'bluesky', 'mastodon', 'x', 'linkedin', 'teams', 'facebook', 'facebook_messenger', 'reddit' ];
+  a2a_config.onclick = 1;
+  a2a_config.num_services = 10;
+</script>
+                </li>
+            <li class="details-print"><a id="print_link" aria-label="Link to print" rel="nofollow" href=""><i class="print-icon ora-icons" aria-hidden="true" title="Print icon"></i><p>Print</p></a>
+ 
+<script type="89ef95f916a668716893a420-text/javascript">
+$('#print_link').click(function(e){
+    e.stopImmediatePropagation();
+    var read_less_list = [];
+    $('.read-more-button').each(function(){
+        $(this).click();
+        var class_name = $(this).attr("class");
+        class_name = class_name.replace('read-more-button', '');
+        class_name = class_name.replace('more', 'less');
+        read_less_list.push(class_name);
+    });
+    var target = "";
+    $(".trigger-collapse").each(function(){
+        target = $(this).data("target");
+        $(".details-page").find(target+" > div").collapse("show");
+    });
+    target = "";
+    window.print();
+    $.each(read_less_list, function(index, value){
+        $('.'+value).click();
+    });
+    
+    
+    return false;
+});
+</script>
+</li>
+
+        </ul>
+    </div>
+
+</div>
+
+
+      <div id="AccessDocument" class="details-block" tabindex="0">
+    <h3>Access Document</h3><hr>
+    <div id="download-tools" class="panel panel-default show-tools actions-block">
+    <dl>
+        <div id="details-download-block">
+            <dt>
+                <svg width="24" height="24" class="lock-icon" aria-hidden="true">
+                  <path d="M17.9 11.9V6.1c0-3.3-2.7-5.9-5.9-5.9-3.3 0-5.9 2.6-5.9 5.9v1.3h2.4V6.1c0-2 1.6-3.5 3.6-3.5s3.6 1.6 3.6 3.6V10c-1.1-.6-2.3-.9-3.6-.9-4.1 0-7.5 3.4-7.5 7.5s3.4 7.5 7.5 7.5 7.5-3.4 7.5-7.5c-.1-1.9-.7-3.5-1.7-4.7zM12 21.6c-2.8 0-5.1-2.3-5.1-5.1s2.3-5.1 5.1-5.1 5.1 2.3 5.1 5.1-2.2 5.1-5.1 5.1zm2.1-5.1c0 1.1-.9 2.1-2.1 2.1s-2.1-.9-2.1-2.1c0-1.1.9-2.1 2.1-2.1s2.1.9 2.1 2.1z" fill="#1FA800"/>
+                </svg>
+                Files:
+            </dt>
+            <dd>
+                <ul>
+
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r9k41zf383">README_SISALv3.pdf</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (<a id="preview-file" rel="nofollow" data-remote="true" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r9k41zf383/preview">Preview</a>, pdf, 788.1KB, <a target="_blank" rel="nofollow" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rdz010r11j">sisalv3_codes.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 809.4KB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rd791sh05n">sisalv3_data_entry_workbook_standardised_sheets.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 523.1KB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rst74cr50f">sisalv3_database_mysql_csv.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 107.2MB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r5h73px02d">sisalv3_standardised_trace_elements_datafiles.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 439.1MB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/rht24wk470">sisalv3_cave_map_entity_images.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 712.4MB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pull-left file-download">
+                              <a target="_blank" class="download-full-text-link download-links-toggle" rel="canonical" data-toggle="tooltip" data-placement="bottom" href="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/files/r8049g6101">sisalv3.zip</a>
+                        </div>
+
+                        <div class="pull-right file-details">
+                            (zip, 1.6GB, <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">Terms of use</a>)
+                        </div>
+                    </li>
+                </ul>
+            </dd>
+        </div>
+</dl>
+
+<div id="loading-preview-file" style="display:none">Generating preview...</div>
+<div id="preview-pdf" style="display: none">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <iframe width="915" height="1000" frameborder="1"></iframe>
+</div>
+
+
+
+    
+</div>
+
+<div id="noLocalCopy" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Why is the content I wish to access not available via ORA?</h1>
+                <button type="button" class="ajax-modal-close close" data-dismiss="modal" aria-hidden="true" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body no-local-copy">
+                <div>
+                    <div class="statement-text">
+                    Bibliographic data (the information relating to research outputs) and full-text items (e.g. articles, theses, reports, etc.) arrive in ORA from several different sources. Unfortunately we are not able to make available the full-text for every research output.
+                    </div>
+
+                    <div class="statement-text">
+                    Please <a href="/contact">contact the ORA team</a> if you have queries regarding unavailable content OR if you are aware of a full-text copy we can make available.
+                    </div>
+
+                    <h2>
+                    Content may be unavailable for the following four reasons
+                    </h2>
+
+                    <div class="statement-text-list">
+                    <ul>
+                    <li>
+                    Version unsuitable
+                        <ol>
+                        We have not obtained a suitable full-text for a given research output. See the <a target="_blank" rel="noopener" href="https://www2.bodleian.ox.ac.uk/ora/deposit-in-ora/ora_guidance/versions_advice_for_authors">versions advice</a> for more information.
+                        </ol>
+                    </li>
+                    <li>
+                    Recently completed
+                        <ol>
+                        Sometimes content is held in ORA but is unavailable for a fixed period of time to comply with the policies and wishes of rights holders.
+                        </ol>
+                    </li>
+                    <li>
+                    Permissions
+                        <ol>
+                        All content made available in ORA should comply with relevant rights, such as copyright. See the <a target="_blank" rel="noopener" href="https://www2.bodleian.ox.ac.uk/ora/deposit-in-ora/copyright_and_other_legal_issues/copyright-guide-for-authors">copyright guide</a> for more information.
+                        </ol>
+                    </li>
+                    <li>
+                    Clearance
+                        <ol>
+                        Some thesis volumes scanned as part of the digitisation scheme funded by Dr Leonard Polonsky are currently unavailable due to sensitive material or uncleared third-party copyright content. We are attempting to contact authors whose theses are affected.
+                        </ol>
+                    </li>
+                    </ul>
+                    </div>    
+
+                    <h2>
+                    Alternative access to the full-text
+                    </h2>
+
+                    <div class="statement-text">
+                    You may be able to access the full-text directly from the publisher's website using the 'Publisher Copy' link in the 'Links & Downloads' box from a research output's ORA record page. This method may require an institutional or individual subscription to the journal/resource.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+  </div>
+
+
+      <div id=AuthorsCreators class="details-block" tabindex="0">
+    <h3>Authors/Creators</h3><hr>
+    <input type="hidden" name="default_expand_all_authors" id="default_expand_all_authors" value="false" />
+<input type="hidden" name="default_expand_all_contributors" id="default_expand_all_contributors" value="false" />
+
+<div class="panel panel-default">
+        <div style="padding-bottom:10px;margin-left:20px">
+            
+
+    <div class="blacklight-authors field-truncated">
+            <div id="text_field" class="text-authors text-vertical">
+                
+  <div style="padding-bottom:10px">
+      <a data-toggle="collapse" id="authorsToggle0" href="#authorsDetails0" style="text-decoration:none;"
+        role="button" aria-expanded="false" aria-controls="authorsDetails0" class='authors-toggle'>
+      <span>+ </span>Kaushal, N
+      </a>
+
+      <span style="float:right"><a target="_blank" href="/objects/?f[f_contributors__name][]=Kaushal, N">More by this author/creator</a></span>
+
+    <div id="authorsDetails0" class="collapse field-details authors-details plus-collapse" tabindex="0" role="region">
+      <dl>
+          <dt>Institution:</dt>
+          <dd>University of Oxford</dd>
+          <dt>Division:</dt>
+          <dd>MPLS</dd>
+          <dt>Department:</dt>
+          <dd>Earth Sciences</dd>
+          <dt>Role:</dt>
+          <dd>Creator</dd>
+
+      </dl>
+    </div>
+
+  </div>
+
+  <div style="padding-bottom:10px">
+      <a data-toggle="collapse" id="authorsToggle1" href="#authorsDetails1" style="text-decoration:none;"
+        role="button" aria-expanded="false" aria-controls="authorsDetails1" class='authors-toggle'>
+      <span>+ </span>Lechleitner, F A
+      </a>
+
+      <span style="float:right"><a target="_blank" href="/objects/?f[f_contributors__name][]=Lechleitner, F A">More by this author/creator</a></span>
+
+    <div id="authorsDetails1" class="collapse field-details authors-details plus-collapse" tabindex="0" role="region">
+      <dl>
+          <dt>Role:</dt>
+          <dd>Creator</dd>
+
+      </dl>
+    </div>
+
+  </div>
+
+  <div style="padding-bottom:10px">
+      <a data-toggle="collapse" id="authorsToggle2" href="#authorsDetails2" style="text-decoration:none;"
+        role="button" aria-expanded="false" aria-controls="authorsDetails2" class='authors-toggle'>
+      <span>+ </span>Wilhelm, M
+      </a>
+
+      <span style="float:right"><a target="_blank" href="/objects/?f[f_contributors__name][]=Wilhelm, M">More by this author/creator</a></span>
+
+    <div id="authorsDetails2" class="collapse field-details authors-details plus-collapse" tabindex="0" role="region">
+      <dl>
+          <dt>Role:</dt>
+          <dd>Creator</dd>
+
+      </dl>
+    </div>
+
+  </div>
+
+  <div style="padding-bottom:10px">
+      <a data-toggle="collapse" id="authorsToggle3" href="#authorsDetails3" style="text-decoration:none;"
+        role="button" aria-expanded="false" aria-controls="authorsDetails3" class='authors-toggle'>
+      <span>+ </span>SISAL Working Group members
+      </a>
+
+      <span style="float:right"><a target="_blank" href="/objects/?f[f_contributors__name][]=SISAL Working Group members">More by this author/creator</a></span>
+
+    <div id="authorsDetails3" class="collapse field-details authors-details plus-collapse" tabindex="0" role="region">
+      <dl>
+          <dt>Role:</dt>
+          <dd>Creator</dd>
+
+      </dl>
+    </div>
+
+  </div>
+
+<script type="89ef95f916a668716893a420-text/javascript">
+  $( document ).ready(function() { 
+    if ($("#default_expand_all_authors").val() == 'true') {
+        $('.authors-toggle').click();
+      }
+  });
+</script>
+            </div>
+    </div>
+
+        </div>
+    
+</div>
+  </div>
+
+
+      <div id="Funding" class="details-block" tabindex="-1">
+    <h3>
+      <button class="section-header" data-toggle="collapse" href="#collapseFunding" aria-expanded="false" aria-controls="collapseFunding" tabindex="0">
+        Funding
+        <i class="details-chevron" aria-hidden="true"></i>
+      </button>
+      <hr>
+    </h3>
+
+    <div id="collapseFunding" class="collapse collapsible-section" role="region">
+      <div class="panel panel-default" style="padding-bottom:10px;margin-left:20px">
+    
+
+    <div class="blacklight-funders field-truncated">
+            <div id="text_field" class="text-funders text-vertical">
+                  <div style="padding-bottom:10px">
+      <a data-toggle="collapse" id="fundersToggle0" href="#fundersDetails0" style="text-decoration:none;"
+        role="button" aria-expanded="false" aria-controls="fundersDetails0" class="funders-toggle">
+      <span>+ </span>Past Global Changes
+      </a>
+
+    <span style="float:right"><a target="_blank" href="/objects/?f[f_funding__funder_name][]=Past Global Changes">More from this funder</a></span>
+
+    <div id="fundersDetails0" class="funders-details collapse plus-collapse" tabindex="0" role="region">	
+      <dl>    
+          <div>
+            <dt>Grant:</dt>
+                <dd> DSS-108</dd>
+          </div>
+      </dl>
+    </div>
+  </div>
+
+            </div>
+    </div>
+
+</div>
+
+    </div>
+  </div>
+
+
+      <div id="BibliographicDetails" class="details-block" tabindex="-1">
+    <h3>
+      <button class="section-header" data-toggle="collapse" data-target="#collapseBibliographic" aria-expanded="false" aria-controls="collapseBibliographic" tabindex="0">
+        Bibliographic Details
+        <i class="details-chevron" aria-hidden="true"></i>
+      </button>
+      <hr>
+    </h3>
+    <b class="highlight-section" aria-hidden="true"></b>
+    <div id="collapseBibliographic" class="collapse collapsible-section" role="region">
+      <div id="bibliographicDetailsBody" class="panel panel-default" tabindex="0">
+    <dl>
+                <dt class="blacklight-publisher_name">Publisher:</dt>
+            <dd class="blacklight-publisher_name">
+                       University of Oxford
+            </dd>
+                <dt class="blacklight-citation_publication_date">Publication date:</dt>
+            <dd class="blacklight-citation_publication_date">
+                    2024
+            </dd>
+                <dt class="blacklight-data_digital_data_version">Version number:</dt>
+            <dd class="blacklight-data_digital_data_version">
+                    4
+            </dd>
+                <dt class="blacklight-identifier_doi">DOI:</dt>
+            <dd class="blacklight-identifier_doi">
+                    <div class="text-identifier_doi text-vertical">
+                            <div><a target="_blank" href="https://dx.doi.org/10.5287/ora-2nanwp4rk">10.5287/ora-2nanwp4rk</a></div>
+                    </div>
+            </dd>
+
+
+    </dl>
+</div>
+
+    </div>
+  </div>
+
+
+      <div id="ItemDescription" class="details-block" tabindex="-1">
+    <h3>
+      <button class="section-header" data-toggle="collapse" href="#collapseDescription" aria-expanded="false" aria-controls="collapseDescription" tabindex="0">
+        Item Description
+        <i class="details-chevron" aria-hidden="true"></i>
+      </button>
+      <hr>
+    </h3>
+
+    <div id="collapseDescription" class="collapse collapsible-section" role="region">
+      <div id="itemDescriptionBody" class="panel panel-default" tabindex="0">
+  <dl>
+                <dt class="blacklight-keyword">Keywords:</dt>
+            <dd class="blacklight-keyword">
+                    <div class="text-keyword text-vertical">     
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=paleoclimate">paleoclimate</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=speleothem">speleothem</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=isotope">isotope</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=carbon">carbon</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=oxygen">oxygen</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=trace elements">trace elements</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=SISAL">SISAL</a></div>
+                            <div><a target="_blank" href="/objects/?f[f_keyword][]=database">database</a></div>
+                    </div>
+            </dd>
+                <dt class="blacklight-identifier_pubs_identifier">Pubs id:</dt>
+            <dd class="blacklight-identifier_pubs_identifier">
+                  <div class="text-identifier_pubs_identifier text-vertical">
+                    <div>1782128</div>
+                  </div>
+            </dd>
+                <dt class="blacklight-tinypid">Local pid:</dt>
+            <dd class="blacklight-tinypid">
+                    <div class="text-tinypid">     
+                        pubs:1782128}
+                    </div>
+            </dd>
+                <dt class="blacklight-record_created_date">Deposit date:</dt>
+            <dd class="blacklight-record_created_date">
+                    <div class="text-record_created_date">     
+                        2024-02-21
+                    </div>
+            </dd>
+  </dl>
+</div>
+
+
+    </div>
+  </div>
+
+
+      <div id="Related" class="details-block" tabindex="-1">
+    <h3>
+      <button class="section-header" data-toggle="collapse" href="#collapseRelated" aria-expanded="false" aria-controls="collapseRelated" tabindex="0">
+        Related Items
+        <i class="details-chevron" aria-hidden="true"></i>
+      </button>
+      <hr>
+    </h3>
+
+    <div id="collapseRelated" class="collapse collapsible-section" role="region">
+      <div id="relatedBody" class="panel panel-default" tabindex="0">
+  <dl>
+      <dt class="blacklight-related-item-title col-md-3">Related item:</dt>
+        <dd><a target="_blank" href="http://dx.doi.org/10.5287/ora-mzy8pozvk">SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0</a></dd>
+  </dl>
+</div>
+
+    </div>
+  </div>
+
+
+    
+
+      <div id="TermsOfUse" class="details-block" tabindex="0">
+      <h3>Terms of use</h3><hr>
+      <div id="copyright" class="panel panel-default">
+  <div class="panel-body">
+    <dl>
+        <dt class="blacklight-rights_holders">Copyright holder:</dt>
+            <dd class="blacklight-rights_holders">Nikita Kaushal</dd>
+        <dt class="blacklight-rights_copyright_date">Copyright date:</dt>
+            <dd class="blacklight-rights_copyright_date">2024</dd>
+    </dl>
+    <dl style="margin-top:10px">
+      <dt class="blacklight-licence">Licence:</dt>
+      <dd class="blacklight-licence">
+            <a target="_blank" href="http://creativecommons.org/licenses/by/4.0/">CC Attribution (CC BY)</a>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+
+
+  </div>
+
+
+
+    <div id="Metrics" class="details-block">
+  <h3>
+    <button class="heading-link section-header" data-toggle="collapse" id="analytics-query" href="#collapseStats" 
+      aria-expanded="false" aria-controls="collapseStats" tabindex="0">Metrics
+      <i id="stats-show-chevron" class="details-chevron" aria-hidden="true"></i>
+    </button>
+    <hr>
+  </h3>
+
+  <div id="collapseStats" class="collapse row" role="region">
+    <div class="row">
+    <div id="ga-block" class="stats-block col-xs-12 col-sm-4">
+      <h4 id="views-header" tabindex="0">Views and Downloads</h4>
+      <div id="views-block" class="stats-block col-xs-12 col-sm-12" style="min-height: 142px;">
+  <div id="statsSpinner" style="height: 120px">
+    <br>
+    <i class="fa fa-spinner fa-spin fa-2x fa-fw" aria-hidden="true" style="margin-left: 35px"></i>
+  </div>
+   <div id="barChart" style="height: 120px; width:300px; font-size: 15px!important;" tabindex="0"></div>
+   <br>
+   <a href="/stats#IRUS_stats"> About views and downloads </a>
+</div>
+
+
+    </div>
+
+    <div id="altmetrics-block" class="stats-block col-xs-12 col-sm-4">
+      <h4 id="altmetrics-header" style="display:none">Altmetrics</h4> <br> <br>
+        <div id="altmetrics-body" class='altmetric-embed altmetric-tool' data-badge-type='donut' data-doi="10.5287/ora-2nanwp4rk" data-hide-no-mentions="true" data-badge-details='right' data-condensed='true'></div>
+    </div>
+
+    <div id="dimensions-block" class="stats-block col-xs-12 col-sm-4">
+      <h4 id="dimensions-header" style="display:none">Dimensions</h4> <br> <br>
+        <div id="dimensions-body" class="__dimensions_badge_embed__" data-doi="10.5287/ora-2nanwp4rk" data-style="small_circle" data-hide-zero-citations="true"></div>
+    </div>
+
+</div>
+
+<script type="89ef95f916a668716893a420-text/javascript">
+    $(document).ready(function(){
+      function show_metrics_badge(target) {
+        $(target).closest('.stats-block').find('h4').show();
+      }
+
+      const observer = new MutationObserver(mutationList =>  
+        mutationList.filter(m => m.type === 'childList').forEach(m => {  
+          m.addedNodes.forEach(show_metrics_badge);  
+        })); 
+
+    if ($('#altmetrics-body')[0] != undefined) {
+      observer.observe($('#altmetrics-body')[0], {childList: true, subtree: true});
+    }
+    if ($('#dimensions-body')[0] != undefined) {
+      observer.observe($('#dimensions-body')[0], {childList: true, subtree: true});
+    }
+    });
+</script>
+  </div>
+ </div>
+
+ <script type="89ef95f916a668716893a420-text/javascript">
+  $(document).ready(function() {
+    $("#analytics-query").on('click', function(e) {
+      // Invoke captcha, then ajax call to backend for validation and analytics results
+      e.preventDefault();
+
+      // Query analytics if opening section
+      if ($(this).attr("aria-expanded") == "false") {
+        var v3_captcha_key = $("meta[name='v3_captcha_public_key']").attr('content');
+        try {
+          grecaptcha.ready(function() {
+            grecaptcha.execute(v3_captcha_key, {action: 'query_analytics'}).then(function(token) {
+              base_path = $(location).attr('origin');
+              analyticsUrl = new URL(base_path + "/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/query_analytics");
+              analyticsUrl.searchParams.append('token', token);
+              $.ajax({
+                type:'GET',
+                url: analyticsUrl,
+              });
+            });
+          });
+        } 
+        catch(e) {
+            console.log("Could not create analytics catpcha.");
+        }
+      }
+    });
+  });
+ </script>
+
+    <div id="report-update-section" class="details-block" tabindex="0">
+    <hr>
+    <p>
+If you are the owner of this record, you can report an update to it here:
+    <a data-toggle="modal" style="display:inline-block" target="_blank" class="report-update-link" href="#reportUpdate">Report update to this record</a>
+</p>
+
+<div id="reportUpdate" class="modal fade email-container" role="dialog" tabindex='-1'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Report an update</h1>
+                <button type="button" class="ajax-modal-close close focus focus--effect-wave" data-dismiss="modal" aria-hidden="true" aria-label="Close">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="report_update_form" autocomplete="on" action="/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4/report_update" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+                <div class="form-group">
+                    <label for="update_name">Your name</label>
+                    <input type="text" class="form-control" id="update_name" name="name" autocomplete="name"
+                           placeholder="Full name" 
+                           data-validation="alphanumeric required"  
+                           data-validation-error-msg="You have not provided your full name"
+                           data-validation-allowing="-' ">
+                </div>
+                <div class="form-group">
+                    <label for="update_email">Your Email</label>
+                    <p><small>We require your email address in order to let you know the outcome of your enquiry.</small></p>
+                    <input type="text" class="form-control" id="update_email" name="email" autocomplete="email"
+                           data-validation="email required"
+                           data-validation-error-msg="You have not provided a valid email address"
+                           placeholder="email@example.com">
+                </div>
+                <label for="report-magiun" style="display: none">-</label>
+                <input type="text" name="magiun" class="magiun" value="magiun" id="report-magiun"> 
+                <div class="form-group">
+                <fieldset>
+                    <legend>Reason for update</legend>
+                    <input type="radio" id="reason1" name="reason" value="PDF can now be made available" checked><label for="reason1" class="rfu_label_checkbox">PDF can now be made available</label><br>
+                    <input type="radio" id="reason2" name="reason" value="Paper now published"><label for="reason2" class="rfu_label_checkbox">Paper now published</label><br>
+                    <input type="radio" id="reason3" name="reason" value="Error in record"><label for="reason3" class="rfu_label_checkbox">Error in record</label><br>
+                    <input type="radio" id="reason4" name="reason" value="Other"><label for="reason4" class="rfu_label_checkbox">Other</label><br>
+                </fieldset>
+                </div>
+                <div class="form-group">
+                    <label for="update_comment">Update details</label>
+                    <p><small>Please add any additional information to be included within the email.</small></p>
+                    <textarea class="form-control" rows="3" id="update_comment" name="details"
+                              data-validation-error-msg="You have not provided any details about your request"
+                              data-validation="required"></textarea>
+                </div>
+                <input type="hidden" name="title" id="title" value="SISALv3: Speleothem Isotopes Synthesis and AnaLysis database version 3.0" />
+                <input type="hidden" name="url" id="url" value="https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4" />
+
+                <div class="modal-footer">
+                    <div id="reportUpdateSubmitButtonCaptchaDiv"></div>
+                    <button type        = "submit" 
+                            id          = "reportUpdateSubmitButton" 
+                            class       = "modal-submit submit-form" 
+                            data-config = "#report-magiun" 
+                            data-form   = "#report_update_form"> 
+                        Request update
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 535.5 535.5" class="send-plane">
+                            <path d="M0 497.25l535.5-229.5L0 38.25v178.5l382.5 51-382.5 51z"/>
+                        </svg>
+                    </button>
+                </div>
+</form>            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+</div>
+
+  </div>
+</div>
+
+
+</div>
+                </div>
+            </main>
+            
+    <div id="scrollTop" class="">
+        <i class="fas fa-long-arrow-alt-up"></i>
+        <p>TO TOP</p>
+    </div>
+
+            
+<footer class="">
+    <nav class="container" aria-label="Static pages">
+        <p>&copy; Copyright - Bodleian Libraries 2025</p>
+        <div class="footer-nav">
+            <a href="/disclaimer" data-page="disclaimer">Disclaimer</a>
+            <span class="list-separator">|</span> 
+            <a href="https://glam.web.ox.ac.uk/privacy-policy-ora" target="_blank" rel="noopener">Privacy Policy</a>
+            <span class="list-separator">|</span> 
+            <a href="/policies">Policies</a>
+            <span class="list-separator">|</span> 
+            <a href="/cookies">Cookies</a>
+            <span class="list-separator">|</span> 
+            <a href="https://visit.bodleian.ox.ac.uk/accessibility" target="_blank">Accessibility</a>
+            <span class="list-separator">|</span> 
+            <a href="https://www2.bodleian.ox.ac.uk/ora/deposit-in-ora/copyright_and_other_legal_issues" target="_blank" rel="noopener">Copyright</a>
+            <span class="list-separator">|</span> 
+            <a href="/api">API</a>
+            <span class="list-separator">|</span> 
+            <a href="/contact">Contact</a>
+            <a href="https://www.bodleian.ox.ac.uk/" title="Bodleian Libraries Homepage" aria-label="Bodleian Libraries Homepage" target="_blank" id="bodleian-logo" rel="noopener"></a>
+        </div>
+    </nav>
+</footer>
+        </div>
+    </body>
+</html>

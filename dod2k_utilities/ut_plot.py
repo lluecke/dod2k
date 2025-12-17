@@ -134,7 +134,29 @@ def get_colours(data, colormap='brewer_RdBu_11', minval=False,
     return cols
 
 
-def plot_resolution(df, title='', mincount=0):
+def get_colours2(data, colormap='brewer_RdBu_11', minval=False,
+                maxval=False):
+    """
+    generates colours from a colormap based on the *data* values (array or list)
+    returns *cols*: list of colours, in same order as data
+    """
+    from matplotlib.colors import Normalize
+    import matplotlib.cm as cm
+    if not minval:
+        minval = np.min(data)
+    if not maxval:
+        maxval = np.max(data)
+    print(minval)
+    print(maxval)
+    N = len(data)
+    cmap         = cm.get_cmap(colormap)
+    sm           = cm.ScalarMappable(cmap = colormap)
+    sm.set_array(range(N))
+    norm         = Normalize(vmin=minval, vmax=maxval)
+    rgba         = cmap(norm(data))
+    cols         = list(rgba)
+    return cols, sm, norm
+def plot_resolution(df, title='', mincount=0, col='tab:blue'):
     """
     Plot a histogram of resolutions from a DataFrame.
 
@@ -198,7 +220,7 @@ def plot_resolution(df, title='', mincount=0):
     ii=0
     rr=[]
     for kk in np.sort(list(count_res)):
-        plt.bar(ii, count_res[kk])
+        plt.bar(ii, count_res[kk], color=col)
         ii+=1
         rr+=[kk]
     ax.set_xticks(range(ii))
@@ -210,7 +232,7 @@ def plot_resolution(df, title='', mincount=0):
     
 
 
-def plot_length(df, title='', mincount=0):
+def plot_length(df, title='', mincount=0, col='tab:blue'):
     """
     Plot a histogram of lengths from a DataFrame.
 
@@ -254,7 +276,7 @@ def plot_length(df, title='', mincount=0):
     rr=[]
     for res, count in count_res.items():
         if count<mincount: continue
-        plt.bar(ii, count)
+        plt.bar(ii, count, color=col)
         ii+=1
         rr+=[res]
     ax.set_xticks(range(ii))
@@ -264,7 +286,7 @@ def plot_length(df, title='', mincount=0):
     plt.show()
     return 
 
-def get_archive_colours(archives_sorted, archive_count, cols):
+def get_archive_colours(archives_sorted, archive_count, cols= [ '#4477AA', '#EE6677', '#228833', '#CCBB44', '#66CCEE', '#AA3377', '#BBBBBB', '#44AA99', '#332288']):
     
     archive_colour = {'other': cols[-1]}
     other_archives = []
@@ -401,13 +423,14 @@ def plot_geo_archive_proxy_short(df, archives_sorted, archive_proxy_count_short,
     return fig
 
 
-def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[]):
+def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[], marker='default', size='default', figsize='default'):
 
     proxy_lats = df['geo_meanLat'].values
     proxy_lons = df['geo_meanLon'].values
     
     # plots the map
-    fig = plt.figure(figsize=(15, 12), dpi=350)
+    figsize=(15, 12) if figsize=='default' else figsize
+    fig = plt.figure(figsize=figsize, dpi=350)
     grid = GS(1, 3)
     
     ax = plt.subplot(grid[:, :], projection=ccrs.Robinson()) # create axis with Robinson projection of globe
@@ -422,10 +445,15 @@ def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[]):
     # 1st loop: go through archive types individually (determines marker type)
     # 2nd loop: through paleo proxy types attributed to the specific archive, which is colour coded
     
-    
-    mt = 'ov^s<>pP*XDdh'*10 # generates string of marker types
+    if marker=='default':
+        mt = 'ov^s<>pP*XDdh'*10 # generates string of marker types
+    else:
+        mt = marker
 
-    
+    if size=='default':
+        s = 200
+    else:
+        s = size
     archive_types = np.unique(df['archiveType'])
     
     ijk=0
@@ -441,7 +469,7 @@ def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[]):
                         transform=ccrs.PlateCarree(), zorder=999,
                         marker=marker, color=archive_colour[at], 
                         label=label,#.replace('marine sediment:', 'marine sediment:\n'), 
-                        lw=.3, ec='k', s=200)
+                        lw=.3, ec='k', s=s)
             if at not in highlight_archives: ijk+=1
                 
     plt.legend(bbox_to_anchor=(-0.01,-0.01), loc='upper left', ncol=3, fontsize=13.5, framealpha=0)
@@ -538,8 +566,50 @@ def plot_coverage2(df, years, title=''):
     plt.show()
     return fig
 
+def plot_coverage_analysis(df, years, key, col, title=''):
+    """
+    Plot the coverage of records over a range of years.
 
-def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
+    This function counts how many records in the DataFrame overlap with each 
+    year in the given range and produces a step plot showing total coverage.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing 'year' data for each record. Each row should have
+        'miny' and 'maxy' indicating the start and end year of the record.
+    years : array-like
+        Array of years over which to compute coverage.
+    title : str, optional
+        Title of the plot. Default is an empty string.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        The matplotlib Figure object containing the plot.
+    """
+    coverage_filt = np.zeros(years.shape[0])
+
+    miny, maxy = years[0], years[-1]
+    for ii in range(len(df['year'])):
+        # time_12, int_1, int_2 = np.intersect1d(years, df.iloc[ii].year, return_indices=True)
+        coverage_filt[(years>=df.iloc[ii].miny)&(years<=df.iloc[ii].maxy)] += 1
+        # coverage_filt[int_1]+=1
+    
+    fig = plt.figure(figsize=(6, 3), dpi=100)
+    plt.title(title)
+    ax = plt.gca()
+    plt.step(years, coverage_filt, color=col, label=key, lw=3)
+    plt.xlabel('year')
+    plt.ylabel('total # of records')
+    
+    h1, l1 = ax.get_legend_handles_labels()
+    plt.legend(h1, l1, ncol=3, framealpha=0)
+    plt.ylabel('# of records per archive')
+    plt.show()
+    return fig
+
+def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name='', col='tab:blue'):
     """
     Plot principal components and reconstructed time series.
 
@@ -574,7 +644,7 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
     ax = plt.subplot(311)
     
     plt.plot(years_hom, np.ma.mean(paleoData_zscores_hom, axis=0), #color='k', 
-             zorder=999)
+             zorder=999, color=col)
     
     ax.axes.xaxis.set_ticklabels([])
     plt.axvline(years_hom[0], color='k', lw=.5, alpha=.5)
@@ -583,7 +653,7 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
     plt.ylabel('paleoData_zscores')
     for ii in range(2):
         ax = plt.subplot(311+ii+1)
-        plt.plot(years_hom, PCs[ii])
+        plt.plot(years_hom, PCs[ii], color=col)
         if ii==1: plt.xlabel('time (year CE)')
         plt.ylabel('PC %d'%(ii+1))
         plt.axhline(0, color='k', alpha=0.5, lw=0.5)
@@ -592,11 +662,11 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
         plt.xlim(years_hom[0]-20, years_hom[-1]+20)
         if ii==0: ax.axes.xaxis.set_ticklabels([])
 
-    f.save_fig(fig, 'PCs_%s'%title, dir=name)
+    utf.save_fig(fig, 'PCs_%s'%title, dir=name)
 
     plt.figure()
     for ii in range(paleoData_zscores_hom.shape[0]):
-        plt.plot(paleoData_zscores_hom[ii,:], Dzr[ii,:],  alpha=0.4, lw=1)
+        plt.plot(paleoData_zscores_hom[ii,:], Dzr[ii,:],  alpha=0.4, lw=1, color=col)
     plt.xlabel('paleoData_zscores')
     plt.ylabel('paleoData_zscores_reconstructed')
 
@@ -605,7 +675,7 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
     plt.suptitle(title)
     ax = plt.subplot(211)
     for ii in range(paleoData_zscores_hom.shape[0]):
-        plt.plot(years_hom, paleoData_zscores_hom[ii,:], color='tab:blue', alpha=0.4, lw=1)
+        plt.plot(years_hom, paleoData_zscores_hom[ii,:], color=col, alpha=0.4, lw=1)
     plt.plot(years_hom, np.ma.mean(paleoData_zscores_hom, axis=0), color='k', zorder=999)
     
     ax.axes.xaxis.set_ticklabels([])
@@ -616,7 +686,7 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
     
     ax = plt.subplot(212)
     for ii in range(Dzr.shape[0]):
-        plt.plot(years_hom, Dzr[ii,:], color='tab:blue', alpha=0.4, lw=1)
+        plt.plot(years_hom, Dzr[ii,:], color=col, alpha=0.4, lw=1)
     plt.plot(years_hom, np.ma.mean(Dzr, axis=0), color='k', zorder=999)
     
     ax.axes.xaxis.set_ticklabels([])
@@ -631,16 +701,16 @@ def plot_PCs(years_hom, eigenvectors, paleoData_zscores_hom, title='', name=''):
     plt.suptitle(title)
     for ii in range(2):
         plt.subplot(211+ii)
-        plt.plot(range(n_recs), eigenvectors[ii])
+        plt.plot(range(n_recs), eigenvectors[ii], color=col)
         if ii==1: plt.xlabel('rec')
         plt.ylabel('EOF %d load'%(ii+1))
         plt.axhline(0, color='k', alpha=0.5, lw=0.5)
         
-    f.save_fig(fig, 'EOFloading_%s'%title, dir=name)
+    utf.save_fig(fig, 'EOFloading_%s'%title, dir=name)
     
     return PCs, eigenvectors
 
-def geo_plot(df, fs=(9,4.5), dpi=350, **kwargs):
+def geo_plot(df, fs=(9,4.5), dpi=350, return_col=False,  **kwargs):
     """
     Plot the spatial distribution of paleo-proxy records on a global map.
 
@@ -719,11 +789,13 @@ def geo_plot(df, fs=(9,4.5), dpi=350, **kwargs):
     plt.legend(hh, ll, bbox_to_anchor=(0.03,-0.01), loc='upper left', ncol=3, fontsize=12, framealpha=0)
     grid.tight_layout(fig)
 
+    if return_col:
+        return fig, archive_colour
     
     return fig
 
 
-def df_colours_markers(db_name='dod2k_dupfree_dupfree'):
+def df_colours_markers(db_name='dod2k_v2.0'):
     """
     Generate archive colours and proxy markers for plotting functions.
 
@@ -743,7 +815,7 @@ def df_colours_markers(db_name='dod2k_dupfree_dupfree'):
     """
     cols = [ '#4477AA', '#EE6677', '#228833', '#CCBB44', '#66CCEE', '#AA3377', '#BBBBBB', '#44AA99']
 
-    df = f.load_compact_dataframe_from_csv(db_name)
+    df = utf.load_compact_dataframe_from_csv(db_name)
 
     
     # count archive types
@@ -848,28 +920,18 @@ def geo_EOF_plot(df, pca_rec, EOFs, keys, fs=(13,8), dpi=350, barlabel='EOF', wh
     
     all_EOFs = [a[key]*EOFs[key][which_EOF][ii]  for key in keys for ii in range(len(EOFs[key][which_EOF]))]
    
-    colors, sm, norm = f.get_colours2(all_EOFs, 
+    colors, sm, norm = get_colours2(all_EOFs, 
                                 colormap='RdBu_r',minval=-0.6,maxval=0.6)
-                                   # minval=np.min(all_EOFs), maxval=np.max(all_EOFs)
-                                    # minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), 
-                                    # maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])
-                                   #minval=np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), 
-                                   #maxval=np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))]) 
-                                   # ) manual set to make EOF1, EOF2 colorscales equal as well as symmetric
     
     ijk=0
+
+    
 
     for key in keys:
         
         marker  = mt[ijk]
 
-        colors = f.get_colours(a[key]*EOFs[key][which_EOF], colormap='RdBu_r',minval=-0.6,maxval=0.6)
-                               # minval=np.min(all_EOFs), maxval=np.max(all_EOFs))
-                               # minval=np.min([np.min(all_EOFs) -1*np.max(all_EOFs)]), 
-                               # maxval=np.max([np.max(all_EOFs) -1*np.min(all_EOFs)])
-                               # minval=-0.6 # np.max([np.min(all_EOFs), -np.abs(np.max(all_EOFs))]), 
-                               # maxval=+0.6 #np.min([np.max(all_EOFs), np.abs(np.min(all_EOFs))])
-                               # ) # manual set to make EOF1, EOF2 colorscales equal as well as symmetric
+        colors = get_colours(a[key]*EOFs[key][which_EOF], colormap='RdBu_r',minval=-0.6,maxval=0.6)
         id_mask = np.isin(df['datasetId'], pca_rec[key]) 
         for jj in range(len(pca_rec[key])):
             

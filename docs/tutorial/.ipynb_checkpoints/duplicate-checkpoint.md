@@ -496,7 +496,7 @@ This dataframe initiates a loop in which the records which are associated with m
 !!! info "Example"
 
     * `REMOVE`/`KEEP` and `COMPOSITE`:
-      * duplicate pair `a` and `b` have had the decisions assigned: `a`-> `REMOVE`, `b` -> `KEEP`
+      - duplicate pair `a` and `b` have had the decisions assigned: `a`-> `REMOVE`, `b` -> `KEEP`
       * duplicate pair `a` and `c` have had the decisions assigned: `a` -> `COMPOSITE`, `c` -> `COMPOSITE`.
       * In this case, `b` and `ac` (the composite record of `a` and `c`) would be <span style="color:red">**duplicates in the merged dataframe**</span>   
     * `REMOVE`/`KEEP` & `REMOVE`/`KEEP`

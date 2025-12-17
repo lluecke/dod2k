@@ -16,7 +16,7 @@ hide:
 
 
 <figure markdown="span">
-  ![Global coverage](assets/images/overview_map.pdf){ width="100%" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" }
+  ![Global coverage](assets/images/overview_map.png){ width="100%" style="border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" }
   <figcaption>Global distribution of paleoclimate proxy records in DoD2k v2.0</figcaption>
 </figure>
 

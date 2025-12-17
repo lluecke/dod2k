@@ -9,12 +9,14 @@ Provides functions for filtering, homogenising, manipulating and analysing data(
 
 import numpy as np
 import matplotlib.pyplot as plt
-import dod2k.functions as f
+import dod2k_utilities.ut_functions as utf
+import dod2k_utilities.ut_plot as uplt
 from functools import reduce
 from matplotlib.gridspec import GridSpec as GS
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import matplotlib
+import xarray as xr
 
 
 
@@ -351,12 +353,12 @@ def find_shared_period(df, minmax=False, time='year', data='paleoData_zscores'):
         print('No shared period across all records.')
         miny = np.nan
         maxy = np.nan
-        plt.figure()
-        for jj, ii in enumerate(df.index):
-            dd = df.at[ii, data]
-            yy = df.at[ii, time]
-            plt.plot(yy, dd-np.mean(dd)+jj)
-            if minmax: plt.xlim(minmax[0], minmax[-1])
+        # plt.figure()
+        # for jj, ii in enumerate(df.index):
+        #     dd = df.at[ii, data]
+        #     yy = df.at[ii, time]
+        #     plt.plot(yy, dd-np.mean(dd)+jj)
+        #     if minmax: plt.xlim(minmax[0], minmax[-1])
     return miny, maxy
  
 
@@ -379,7 +381,7 @@ def calc_z_score(x):
     z /= np.std(x.paleoData_values)
     return z
 
-def add_zscores_to_df(df, key, plot_output=True):
+def add_zscores_plot(df, key, plot_output=True):
     """
     Add z-scores of paleoData_values to the DataFrame.
 
@@ -422,7 +424,7 @@ def add_zscores_to_df(df, key, plot_output=True):
     fig.tight_layout()
     return df
 
-def add_aux_variables(df, key, mincount=0, **kwargs):
+def add_auxvars_plot_summary(df_filtered, key, mincount=0, col='k', **kwargs):
     """
     Add auxiliary variables to the DataFrame and generate summary plots.
 
@@ -431,7 +433,7 @@ def add_aux_variables(df, key, mincount=0, **kwargs):
 
     Parameters
     ----------
-    df : pandas.DataFrame
+    df_filtered : pandas.DataFrame
         DataFrame containing 'year' and 'paleoData_values'.
     key : str
         Title for plots.
@@ -447,17 +449,22 @@ def add_aux_variables(df, key, mincount=0, **kwargs):
     """
     
     # add 'length, miny, maxy' to dataframe
-    df['length'] = df.paleoData_values.apply(len)
-    df['miny']   = df.year.apply(np.min)
-    df['maxy']   = df.year.apply(np.max)
+    df_filtered['length'] = df_filtered.paleoData_values.apply(len)
+    df_filtered['miny']   = df_filtered.year.apply(np.min)
+    df_filtered['maxy']   = df_filtered.year.apply(np.max)
     
-    years    = np.arange(min(df.miny), max(df.maxy)+1)
-    plot_coverage(df, years, key, **kwargs)
+    add_resolution_to_df(df_filtered, print_output=True)
+
+    df_tmp = df_filtered.copy()
+    df_tmp['archiveType']=key
     
-    add_resolution_to_df(df, print_output=True)
-    plot_resolution(df, key, mincount=mincount)
-    plot_length(df, key, mincount=mincount)
-    return df
+    # years    = np.arange(min(df.miny), max(df.maxy)+1)
+    uplt.plot_coverage(df_tmp, [key], [key], [], {key: col}, **kwargs)
+    
+    uplt.plot_resolution(df_tmp, key, mincount=mincount, col=col)
+    uplt.plot_length(df_tmp, key, mincount=mincount, col=col)
+    
+    return df_filtered
 
 def add_resolution_to_df(df, print_output=False, plot_output=False):
     """
@@ -561,7 +568,7 @@ def PCA(covariance):
 
     return eigenvalues, eigenvectors
     
-def fraction_of_explained_var(covariance, eigenvalues, n_recs, title='', db_name=''):
+def fraction_of_explained_var(covariance, eigenvalues, n_recs, title='', db_name='', col='tab:blue'):
     """
     Compute and plot the fraction of variance explained by principal components.
 
@@ -595,17 +602,19 @@ def fraction_of_explained_var(covariance, eigenvalues, n_recs, title='', db_name
     fig = plt.figure()
     plt.title(title)
     ax = plt.gca()
-    plt.plot(np.arange(len(frac_explained_var))+1, frac_explained_var, label='fraction of explained variance')
+    plt.plot(np.arange(len(frac_explained_var))+1, frac_explained_var, label='fraction of explained variance', color=col, lw=2)
     plt.xlim(-1, 10)
     plt.ylabel('fraction of explained variance')
     
     plt.xlabel('PC')
     
     ax1 = ax.twinx()
-    ax1.plot(np.arange(len(frac_explained_var))+1, cum_frac_explained_var, ls=':', label='cumulative fraction of explained variance')
+    ax1.plot(np.arange(len(frac_explained_var))+1, cum_frac_explained_var, ls=':', 
+             label='cumulative fraction of explained variance', color=col, lw=2)
+    
     plt.ylabel('cumulative fraction of explained variance') 
     
-    f.figsave(fig, 'foev_%s'%title, add=db_name)
+    utf.figsave(fig, 'foev_%s'%title, add=db_name)
 
     return frac_explained_var
 
