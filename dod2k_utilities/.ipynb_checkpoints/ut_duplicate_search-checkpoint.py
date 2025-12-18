@@ -1675,8 +1675,10 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
                             
                             # Create figure with info as title
                             mt, mi1, mi2 = np.intersect1d(df['year'].loc[ii], df['year'].loc[mm], return_indices=True) 
-                            fig = plt.figure(figsize=(4*2, 2), dpi=120)
-                            fig.suptitle(info_text + prev_dup_text, fontsize=8, y=0.98)
+
+                            
+                            multiple_fig = plt.figure(figsize=(4*2, 2), dpi=120)
+                            multiple_fig.suptitle(info_text + prev_dup_text, fontsize=8, y=0.98)
 
 
 
@@ -1729,6 +1731,9 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
                             plt.tight_layout()  # Leave room for suptitle
                             plt.show(block=True)
 
+                            save_fig(multiple_fig, '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+f'__{ii}_{jj}_MULTIPLE_{mm}', 
+                                     dir=f'/dup_detection/{df.name}', figformat='pdf')
+
 
 
                         print('-------'*15)
@@ -1740,13 +1745,14 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
                         dec_comment = ''
                     keep = input(f'{i_pot_dups+1}/{n_pot_dups}: **DECISION** Keep record 1 (%s, blue circles) [1], record 2 (%s, red crosses) [2], keep both [b], keep none [n] or create a composite of both records [c]? Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:'%(id_1, id_2))
 
+
                 
                 
-                    save_fig(fig, '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d'%(ii,jj), dir=f'/dup_detection/{df.name}', figformat='jpg')
+                    save_fig(fig, '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+f'__{ii}_{jj}', dir=f'/dup_detection/{df.name}', figformat='pdf')
         
                     
                     figpath    = 'https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/%s'%df.name
-                    figpath  += '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d,jpg'%(ii,jj)
+                    figpath  += '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+f'__{ii}_{jj}.jpg'
                     
                 # now write down the decision
                 if keep=='1':
@@ -1812,23 +1818,34 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
 
 
 def define_hierarchy(df, hierarchy='default'):
-    
-    df['Hierarchy'] = 0 
+    #define hierarchy, 
+    df['Hierarchy'] = 99
     if hierarchy=='default':
-        df.loc[df['originalDatabase']=='PAGES2k v2.2.0', 'Hierarchy'] = 5
-        df.loc[df['originalDatabase']=='FE23 (Breitenmoser et al. (2014))', 'Hierarchy'] = 4
-        df.loc[df['originalDatabase']=='CoralHydro2k v1.0.1', 'Hierarchy'] = 2
-        df.loc[df['originalDatabase']=='Iso2k v1.1.2', 'Hierarchy'] = 3
-        df.loc[df['originalDatabase']=='SISAL v3', 'Hierarchy'] = 1
+        df.loc[df['originalDatabase']=='PAGES 2k v2.2.0', 'Hierarchy'] = 1
+        df.loc[df['originalDatabase']=='FE23 (Breitenmoser et al. (2014))', 'Hierarchy'] = 5
+        df.loc[df['originalDatabase']=='CoralHydro2k v1.0.1', 'Hierarchy'] = 3
+        df.loc[df['originalDatabase']=='Iso2k v1.1.2', 'Hierarchy'] = 4
+        df.loc[df['originalDatabase']=='SISAL v3', 'Hierarchy'] = 2
     else:
-        df.loc[df['originalDatabase']=='PAGES2k v2.2.0', 'Hierarchy'] = hierarchy['pages2k']
+        df.loc[df['originalDatabase']=='PAGES 2k v2.2.0', 'Hierarchy'] = hierarchy['pages2k']
         df.loc[df['originalDatabase']=='FE23 (Breitenmoser et al. (2014))', 'Hierarchy'] = hierarchy['fe23']
         df.loc[df['originalDatabase']=='CoralHydro2k v1.0.1', 'Hierarchy'] = hierarchy['ch2k']
         df.loc[df['originalDatabase']=='Iso2k v1.1.2', 'Hierarchy'] = hierarchy['iso2k']
         df.loc[df['originalDatabase']=='SISAL v3', 'Hierarchy'] = hierarchy['sisal']
         
+    print('Chosen hierarchy:')
 
+    
+    
+    for db, h in df.groupby('originalDatabase')['Hierarchy'].min().sort_values().items():
+        if h==1: 
+            print(f'{h}. {db} (highest)')
+        elif h==len(df.originalDatabase.unique()): 
+            print(f'{h}. {db} (lowest)')
+        else:
+            print(f'{h}. {db}')
     return df
+    
 
 # def duplicate_decisions_old(df, operator_details=False, choose_recollection=True, #keep_all=False, 
 #                         plot=True, remove_identicals=True, dist_tolerance_km=8):
