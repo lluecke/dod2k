@@ -1713,7 +1713,7 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
 </code></pre></div>
-By default the hierarchy uses the novelty of the databases for the importance level: </p>
+By default the hierarchy uses the novelty of the databases for determining the importance level: </p>
 <p><code>PAGES 2k v2.2.0</code> &gt; <code>SISAL v3</code> &gt; <code>CoralHydro2k v1.0.1</code> &gt; <code>Iso2k v1.1.2</code> &gt; <code>FE23 (Breitenmoser et al. (2014))</code></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -1826,6 +1826,21 @@ Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:
 <p class="admonition-title">Backup &amp; Resume</p>
 <p>The process creates backup files in <code>data/DB/dup_detection/</code>. If interrupted, you can resume from the backup.</p>
 </div>
+<div class="admonition info">
+<p class="admonition-title">Handling of multiple duplicates</p>
+<p>The decision process is currently not optimised for handling of multiple duplicates (i.e. records which have more than one potential duplicate candidate), going through the duplicates on a pair-by-pair basis. However, <code>dup.duplicate_decisions_multiple</code> includes improved handling of multiple duplicates. For any records which are associated with multiple duplicates, all the other duplicate candidates are shown alongside the summary figure for the duplicate candidate pair. Any previous decisions, when available, are shown besides the <code>datasetId</code>, <code>archiveType</code>, <code>paleoData_proxy</code> etc.:</p>
+<div class="highlight"><pre><span></span><code>***ATTENTION*** THIS RECORD IS ASSOCIATED WITH MULTIPLE DUPLICATES! 
+PLEASE PAY SPECIAL ATTENTION WHEN MAKING DECISIONS FOR THIS RECORD!
+The potential duplicates also associated with this record are:
+ Dataset ID          : iso2k_786
+     - URL                 : https://www.ncdc.noaa.gov/paleo/study/1856
+</code></pre></div>
+<p><figure markdown="span">
+  <img alt="Multiple summary figure" src="../../assets/images/dup_detection/duplicate_multiples.png" width="800" />
+  <figcaption>Figure 2: Summary figure for multiple duplicates.</figcaption>
+</figure></p>
+<p>The operator can then make an informed decision for each candidate pair.</p>
+</div>
 <details class="question">
 <summary>Can I Reverse a Decision?</summary>
 <p>There is currently no option to reverse a decision while running the duplicate decisions. 
@@ -1842,25 +1857,10 @@ However should the operator want to revise a previous decision they have two opt
 </li>
 </ol>
 </details>
-<div class="admonition info">
-<p class="admonition-title">Handling of multiple duplicates</p>
-<p>The decision process is currently not optimised for handling of multiple duplicates (i.e. records which have more than one potential duplicate candidate), going through the duplicates on a pair-by-pair basis. However, <code>dup.duplicate_decisions_multiple</code> includes improved handling of multiple duplicates. For any records which are associated with multiple duplicates, all the other duplicate candidates are shown alongside the summary figure for the duplicate candidate pair. Any previous decisions, when available, are shown besides the <code>datasetId</code>, <code>archiveType</code>, <code>paleoData_proxy</code> etc.:</p>
-<div class="highlight"><pre><span></span><code>***ATTENTION*** THIS RECORD IS ASSOCIATED WITH MULTIPLE DUPLICATES! 
-PLEASE PAY SPECIAL ATTENTION WHEN MAKING DECISIONS FOR THIS RECORD!
-The potential duplicates also associated with this record are:
- Dataset ID          : iso2k_786
-     - URL                 : https://www.ncdc.noaa.gov/paleo/study/1856
-</code></pre></div>
-<p><figure markdown="span">
-  <img alt="Multiple summary figure" src="../../assets/images/dup_detection/duplicate_multiples.png" width="800" />
-  <figcaption>Figure 2: Summary figure for multiple duplicates.</figcaption>
-</figure></p>
-<p>The operator can then make an informed decision for each candidate pair.</p>
-</div>
 <hr />
 <h2 id="step-3-duplicate-removal-dup_removalipynb"><strong>Step 3: Duplicate removal (<code>dup_removal.ipynb</code>)</strong></h2>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_removal/"><code>dup_removal.ipynb</code></a></p>
-<p>This notebook removes duplicates based on decisions from Step 2.</p>
+<p>This notebook removes duplicates based on the operator's previous decisions (see Step 2).</p>
 <!-- This interactive notebook (`dup_removal.ipynb`) removes the duplicates flagged in `dup_detection.ipynb`, following the decisions made in `dup_decision.ipynb`. The decisions include
 - removal of redundant duplicates
 - creation of composites
@@ -1869,7 +1869,7 @@ The potential duplicates also associated with this record are:
 
 <h3 id="31-initialisation">3.1 Initialisation</h3>
 <p>To set up the working directory and load the compact dataframe, please follow the instructions detailed in steps 1.1 (set up working directory), 1.2 (load compact dataframe) and 2.1 (provide operator credentials).</p>
-<p>In addition, <code>datasetId</code> needs to be set as dataframe index to reliably identify the duplicates later on:
+<p>In addition, <code>datasetId</code> is set as dataframe index to reliably identify the duplicates later on:
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
 </code></pre></div></p>
@@ -1880,7 +1880,7 @@ The potential duplicates also associated with this record are:
 <span class="n">data</span><span class="p">,</span> <span class="n">header</span>  <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df_decisions</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
-<p><code>dup.read_csv</code> provides the <code>header</code>, which details the operator's details as provided in the decision file, along with any comments on the general decision process. Later in the notebook, <code>header</code> is written into a metadata file which should be provided alongside the duplicate free dataset. <code>df_decisions</code> is a <code>pandas</code> dataframe which is populated with the decision data, record by record, and will be used to implement the decisions to create a duplicate free dataset.</p>
+<p><code>dup.read_csv</code> reads the <code>header</code>, which provides the operator's details as saved in the decision file, along with any comments on the general decision process. Later in the notebook, <code>header</code> is written into a metadata file which should be provided alongside the duplicate free dataset. <code>df_decisions</code> is a <code>pandas</code> dataframe which is populated with the decision data, record by record, and will be used to implement the decisions to create a duplicate free dataset.</p>
 <h3 id="33-implement-duplicate-decisions">3.3 Implement duplicate decisions</h3>
 <p>From <code>df_decisions</code> we extract a dictionary which includes all decisions for each individual record:</p>
 <p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">decisions</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1891,10 +1891,7 @@ The potential duplicates also associated with this record are:
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">decisions</span><span class="p">:</span> <span class="n">decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">+=</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span>
 </code></pre></div>
-This dictionary can be used to identify and track multiple decisions, as well as to review the choices made.</p>
-<p>We also extract details of each decisions, which will later be used to populate the field <code>duplicateDetails</code> in the final dataframe (the output of this notebook):</p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup_details</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">provide_dup_details</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
-</code></pre></div>
+This dictionary can be used to identify and track decisions for multiple duplicates (records which are associated with more than one duplicate candidate pair).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Note that any one record can appear more than once and have multiple decisions associated with it (e.g. <code>'REMOVE'</code>, <code>'KEEP'</code> or <code>'COMPOSITE'</code>).</p>
@@ -1905,6 +1902,9 @@ This dictionary can be used to identify and track multiple decisions, as well as
 <li><strong>Check</strong> for records which have multiple decisions associated. These are potentially remaining duplicates.</li>
 </ol>
 </div>
+<p>We also extract the details of each decisions, which will later be used to populate the field <code>duplicateDetails</code> in the final dataframe (the output of this notebook). The details provide information on the nature of the decision (automatically determined or manually, i.e. by the operator), as well as operator's comments. </p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup_details</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">provide_dup_details</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+</code></pre></div>
 <h4 id="331-records-to-be-removed">3.3.1. Records to be removed</h4>
 <p>First simply remove all the records to which the decision <code>REMOVE</code> or <code>COMPOSITE</code> applies to and store in <code>df_cleaned</code>, while all <code>'REMOVE'</code> or <code>'COMPOSITE'</code> type records are stored in <code>df_duplica_rmv</code> (for later inspection).</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
@@ -1912,7 +1912,7 @@ This dictionary can be used to identify and track multiple decisions, as well as
 <span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span>
 
-<span class="n">df_duplica</span>     <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">remove_IDs</span><span class="p">,</span> <span class="s1">&#39;datasetId&#39;</span><span class="p">]</span> <span class="c1"># df containing only records which were removed</span>
+<span class="n">df_duplica</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">remove_IDs</span><span class="p">,</span> <span class="s1">&#39;datasetId&#39;</span><span class="p">]</span> <span class="c1"># df containing only records which were removed</span>
 <span class="n">df_cleaned</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Removed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_duplica</span><span class="p">)</span><span class="si">}</span><span class="s1"> REMOVE or COMPOSITE type records.&#39;</span><span class="p">)</span>
@@ -1952,18 +1952,30 @@ The function <code>join_composites_metadata</code> also creates summary figures 
 <div class="admonition info">
 <p class="admonition-title">Example</p>
 <ul>
-<li><code>REMOVE</code>/<code>KEEP</code> and <code>COMPOSITE</code>:</li>
-<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
-<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
-<li>In this case, <code>b</code> and <code>ac</code> (the composite record of <code>a</code> and <code>c</code>) would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>   </li>
-<li><code>REMOVE</code>/<code>KEEP</code> &amp; <code>REMOVE</code>/<code>KEEP</code></li>
-<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>REMOVE</code>, <code>b</code> -&gt; <code>KEEP</code></li>
-<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>REMOVE</code>, <code>c</code> -&gt; <code>KEEP</code>.</li>
-<li>In this case, <code>a</code> would be removed, but <code>b</code> and <code>c</code> will be kept and would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>. </li>
-<li><code>COMPOSITE</code> x 2</li>
-<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code>-&gt; <code>COMPOSITE</code>, <code>b</code> -&gt; <code>COMPOSITE</code></li>
-<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> -&gt; <code>COMPOSITE</code>, <code>c</code> -&gt; <code>COMPOSITE</code>.</li>
-<li>In this case, <code>ab</code> and <code>ac</code> would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span>.</li>
+<li>
+<p><code>REMOVE</code>/<code>KEEP</code> and <code>COMPOSITE</code>:</p>
+<ul>
+<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code> → <code>REMOVE</code>, <code>b</code> → <code>KEEP</code></li>
+<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> → <code>COMPOSITE</code>, <code>c</code> → <code>COMPOSITE</code></li>
+<li>In this case, <code>b</code> and <code>ac</code> (the composite record of <code>a</code> and <code>c</code>) would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span></li>
+</ul>
+</li>
+<li>
+<p><code>REMOVE</code>/<code>KEEP</code> &amp; <code>REMOVE</code>/<code>KEEP</code></p>
+<ul>
+<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code> → <code>REMOVE</code>, <code>b</code> → <code>KEEP</code></li>
+<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> → <code>REMOVE</code>, <code>c</code> → <code>KEEP</code></li>
+<li>In this case, <code>a</code> would be removed, but <code>b</code> and <code>c</code> will be kept and would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span></li>
+</ul>
+</li>
+<li>
+<p><code>COMPOSITE</code> × 2</p>
+<ul>
+<li>duplicate pair <code>a</code> and <code>b</code> have had the decisions assigned: <code>a</code> → <code>COMPOSITE</code>, <code>b</code> → <code>COMPOSITE</code></li>
+<li>duplicate pair <code>a</code> and <code>c</code> have had the decisions assigned: <code>a</code> → <code>COMPOSITE</code>, <code>c</code> → <code>COMPOSITE</code></li>
+<li>In this case, <code>ab</code> and <code>ac</code> would be <span style="color:red"><strong>duplicates in the merged dataframe</strong></span></li>
+</ul>
+</li>
 </ul>
 </div>
 <p>The loop iterates for a maximum of ten, but stops as soon as no duplicates are detected anymore in the dataframe subset. Note that this loop only checks among the records associated with more than one decision. In each iteration, the operator also has the opportunity to end the duplicate search. Note also that it is not advised to create multiple iterations of composites. </p>
