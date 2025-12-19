@@ -816,15 +816,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-rerun-duplicate-detection-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 4: Rerun Duplicate Detection (Optional)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#related-tutorials" class="md-nav__link">
     <span class="md-ellipsis">
       Related Tutorials
@@ -1318,15 +1309,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-rerun-duplicate-detection-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 4: Rerun Duplicate Detection (Optional)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#related-tutorials" class="md-nav__link">
     <span class="md-ellipsis">
       Related Tutorials
@@ -1369,6 +1351,7 @@
 <p class="admonition-title">Time Investment</p>
 <p>Recreating DoD2k from scratch is a substantial undertaking. Consider using the pre-built DoD2k v2.0 for most applications.</p>
 </div>
+<hr />
 <h2 id="step-1-load-the-input-databases-from-source">Step 1: Load the input databases from source</h2>
 <p>Load each database using the interactive notebooks in <code>dod2k/notebooks/</code>. Each notebook is named <code>load_DB.ipynb</code> for database <code>DB</code>.</p>
 <details class="info">
@@ -1440,6 +1423,7 @@
 <p class="admonition-title">See Also</p>
 <p>For detailed information on the loading process, see <a href="../load_merge/">Loading &amp; Merging Databases</a>.</p>
 </div>
+<hr />
 <h2 id="step-2-merge-the-databases">Step 2: Merge the databases</h2>
 <p><strong>Notebook:</strong> <a href="../../notebooks/merge_databases/">merge_databases.ipynb</a></p>
 <p>After running all the load notebooks, the next step is to merge the standardised compact dataframes into a single database.</p>
@@ -1459,6 +1443,7 @@ Ultimately, the decisions are implemented and the identified duplicates are remo
 <p class="admonition-title">See Also</p>
 <p>For complete details on the duplicate detection workflow, see <a href="../duplicate/">Duplicate Detection Tutorial</a>.</p>
 </div>
+<hr />
 <h3 id="31-duplicate-detection">3.1 Duplicate detection</h3>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_detection/">dup_detection.ipynb</a></p>
 <p>Set up the environment and load the merged dataset:
@@ -1487,6 +1472,7 @@ and subsequently
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">python</span> <span class="n">scripts</span><span class="o">/</span><span class="n">dup_detection</span><span class="o">.</span><span class="n">py</span>
 </code></pre></div></p>
 </details>
+<hr />
 <h3 id="32-duplicate-decisions">3.2 Duplicate decisions</h3>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_decision/">dup_decision.ipynb</a></p>
 <p>This step requires operator input to classify detected duplicate candidates.</p>
@@ -1501,17 +1487,19 @@ and subsequently
 <span class="n">operator_details</span> <span class="o">=</span> <span class="p">[</span><span class="n">initials</span><span class="p">,</span> <span class="n">fullname</span><span class="p">,</span> <span class="n">email</span><span class="p">]</span>
 </code></pre></div></li>
 </ol>
-<p><strong>Define database hierarchy</strong> for automated decisions:
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGES2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CoralHydro2k v1.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SISAL v3&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<p><strong>Automate recurrent decisions</strong>, using the default hierarchy and an additional automated preference criterion for specific database combinations:
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># implement hierarchy for automated decisions for identical records</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
 </code></pre></div></p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># automate database choice for specific database cominations</span>
+<span class="n">automate_db_choice</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;preferred_db&#39;</span><span class="p">:</span> <span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;rejected_db&#39;</span><span class="p">:</span> <span class="s1">&#39;PAGES 2k v2.2.0&#39;</span><span class="p">,</span> 
+                      <span class="s1">&#39;reason&#39;</span><span class="p">:</span> <span class="s1">&#39;conservative replication requirement&#39;</span><span class="p">}</span>
+</code></pre></div>
 <p><strong>Run the decision process:</strong>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> 
-                        <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                 <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">automate_db_choice</span><span class="o">=</span><span class="n">automate_db_choice</span><span class="p">)</span>
 </code></pre></div>
 <strong>Output:</strong> <code>data/all_merged/dup_detection/dup_decisions_all_merged_INITIALS_DATE.csv</code></p>
 <p>For each candidate pair, the operator decides to:</p>
@@ -1528,32 +1516,49 @@ and subsequently
 <li><strong>Manual:</strong> Ambiguous cases require operator review with summary figures</li>
 </ul>
 </div>
-<p>!! tip "Backup &amp; Resume Functionality"
-    The decision process automatically creates backup files in <code>data/all_merged/dup_detection/</code>. If your session is interrupted, you can restart the process and it will resume from where the backup left off. This is especially useful for large databases with hundreds of duplicate pairs.</p>
+<p>!! tip "Backup &amp; Resume Functionality"</p>
+<div class="highlight"><pre><span></span><code>The decision process automatically creates backup files in `data/all_merged/dup_detection/`. If your session is interrupted, you can restart the process and it will resume from where the backup left off. This is especially useful for large databases with hundreds of duplicate pairs.
+</code></pre></div>
+<hr />
 <h3 id="33-remove-duplicates">3.3 Remove Duplicates</h3>
 <p><strong>Notebook:</strong> <a href="../../notebooks/dup_removal/">dup_removal.ipynb</a></p>
 <p>Implement the decisions to create the final duplicate-free database.</p>
 <p><strong>Setup:</strong>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Set index</span>
-<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
 
 <span class="c1"># Load decisions (specify your initials and date)</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/dup_detection/dup_decisions_</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span>
 <span class="n">data</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df_decisions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Collect decisions for each record</span>
+<span class="n">decisions</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">collect_record_decisions</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">)</span>
+
+<span class="c1"># Collect duplicate details for each record</span>
+<span class="n">dup_details</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">collect_dup_details</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
 </code></pre></div></p>
 <p><strong>Implementation workflow:</strong></p>
 <p>The notebook processes duplicates in four steps:</p>
 <ol>
 <li>
-<p><strong>Remove records marked as <code>REMOVE</code></strong> - All records flagged for removal are separated into <code>df_duplica_rmv</code> (for inspection) and dropped from the working dataframe <code>df_dupfree_rmv</code></p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED</span>
+<p><strong>Remove duplicate record</strong> - All records flagged for removal or compositing are saved in <code>df_duplica</code> (for inspection) and dropped from the cleaned dataframe <code>df_cleaned</code></p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED OR COMPOSITED</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span>
 
-<span class="n">df_dupfree_rmv</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+<span class="n">df_duplica</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">remove_IDs</span><span class="p">,</span> <span class="s1">&#39;datasetId&#39;</span><span class="p">]</span> <span class="c1"># df containing only records which were removed</span>
+<span class="n">df_cleaned</span> <span class="o">=</span>  <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+
+<span class="c1"># also add columns on decision process to df_cleaned:</span>
+<span class="n">df_cleaned</span><span class="p">[</span><span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;N/A&#39;</span>
+<span class="k">for</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">dup_details</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">ID</span> <span class="ow">in</span> <span class="n">df_cleaned</span><span class="o">.</span><span class="n">index</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">df_cleaned</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;N/A&#39;</span><span class="p">:</span> 
+            <span class="n">df_cleaned</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span> <span class="n">df_cleaned</span><span class="o">.</span><span class="n">at</span><span class="p">[</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;duplicateDetails&#39;</span><span class="p">]</span><span class="o">+=</span><span class="n">dup_details</span><span class="p">[</span><span class="n">ID</span><span class="p">]</span>
 </code></pre></div>
 </li>
 <li>
@@ -1562,15 +1567,138 @@ and subsequently
 <span class="n">comp_ID_pairs</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="p">[(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
 
 <span class="c1"># create new composite data and metadata from the pairs</span>
+<span class="c1"># loop through the composite pairs and check metadata</span>
 <span class="n">df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
 </code></pre></div>
 </li>
 <li>
-<p><strong>Check for overlapping decisions</strong> - The algorithm identifies any records with conflicting decisions (e.g., both <code>REMOVE</code> and <code>COMPOSITE</code> from different duplicate pairs)</p>
+<p><strong>Join and check for overlapping decisions</strong> -</p>
+</li>
+</ol>
+<p>The duplicate free dataframe is obtained by joining 
+- <code>df_cleaned</code> (duplicate free as all records with decision <code>REMOVE</code> and/or <code>COMPOSITE</code> removed) and
+- <code>df_composite</code> (dupicate free as duplicates are composited)</p>
 <div class="admonition warning">
-<p class="admonition-title">Multiple Duplicates Handling - Under Construction</p>
-<p>Automated screening for records with multiple conflicting duplicate decisions is currently under development. Such cases should be manually reviewed if they occur.</p>
+<p class="admonition-title">Warning</p>
+<p>There might still be duplicates between the two dataframes: when a record has been associated with more than 1 duplicate candidate pair. Therefore, we loop through the records in the joined dataframe which have been associated with multiple duplicates.</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># initiate the loop</span>
+<span class="n">tmp_df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_cleaned</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
+<span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span>
+<span class="n">tmp_decisions</span> <span class="o">=</span> <span class="n">decisions</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">composite_log</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span> 
+    <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;ITERATION # </span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">multiple_dups</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">tmp_decisions</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp_decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">multiple_dups</span><span class="p">:</span>
+                <span class="n">multiple_dups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiple_dups</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Check which of the multiple duplicate IDs are still in the dataframe</span>
+        <span class="n">multiple_dups_new</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_ids</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># Get all current IDs as a set</span>
+
+        <span class="k">for</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">multiple_dups</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">current_ids</span><span class="p">:</span>  <span class="c1"># Simple membership check</span>
+                <span class="n">multiple_dups_new</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">multiple_dups_new</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;WARNING! Decisions associated with </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">multiple_dups_new</span><span class="p">)</span><span class="si">}</span><span class="s1"> multiple duplicates in the new dataframe.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Please review these records below and run through a further duplicate detection workflow until no more duplicates are found.&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No more multiple duplicates found in current dataframe.&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS!!&#39;</span><span class="p">)</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;No more multiple duplicates.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS!!&#39;</span><span class="p">)</span>
+        <span class="k">break</span>
+
+    <span class="c1"># Now we create a small dataframe which needs to be checked for duplicates.</span>
+    <span class="n">df_check</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">copy</span><span class="p">()[</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">],</span> <span class="n">multiple_dups_new</span><span class="p">)]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Check dataframe: &#39;</span><span class="p">)</span>
+    <span class="n">df_check</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tmp&#39;</span>
+    <span class="n">df_check</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_check</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_check</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+    <span class="c1"># We then run a brief duplicate detection algorithm on the dataframe. Note that by default the composited data has the highest value in the hierarchy.</span>
+    <span class="n">pot_dup_IDs</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pot_dup_IDs</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS!! NO MORE DUPLICATES DETECTED!!&#39;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">yn</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+        <span class="k">while</span> <span class="n">yn</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">]:</span>
+            <span class="n">yn</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Do you want to continue with the decision process for duplicates? [y/n]&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">yn</span><span class="o">==</span><span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="k">break</span>
+
+    <span class="n">df_check</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df_check</span><span class="p">)</span>
+    <span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                            <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># implement the decisions</span>
+    <span class="n">tmp_df_decisions</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_check</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/dup_detection/dup_decisions_</span><span class="si">{</span><span class="n">df_check</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">tmp_dup_details</span>   <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">provide_dup_details</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+
+
+    <span class="c1"># decisions</span>
+    <span class="n">tmp_decisions</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+        <span class="n">id1</span><span class="p">,</span> <span class="n">id2</span>   <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId 2&#39;</span><span class="p">]]</span>
+        <span class="n">dec1</span><span class="p">,</span> <span class="n">dec2</span> <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision 2&#39;</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">dec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">],</span> <span class="p">[</span><span class="n">dec1</span><span class="p">,</span> <span class="n">dec2</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tmp_decisions</span><span class="p">:</span> <span class="n">tmp_decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">tmp_decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">+=</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span>
+
+    <span class="n">df_check</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">df_check</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df_check</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="c1">#drop all REMOVE or COMPOSITE types</span>
+    <span class="n">tmp_remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+    <span class="n">tmp_remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+    <span class="n">tmp_remove_IDs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tmp_remove_IDs</span><span class="p">)</span><span class="c1">#[id for id in np.unique(tmp_remove_IDs) if id not in tmp_remove_IDs]</span>
+    <span class="n">tmp_df_cleaned</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">tmp_remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+
+    <span class="c1"># # composite the </span>
+    <span class="n">tmp_comp_ID_pairs</span> <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="p">[(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tmp_comp_ID_pairs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">pair</span> <span class="ow">in</span> <span class="n">tmp_comp_ID_pairs</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+            <span class="n">id1</span><span class="p">,</span> <span class="n">id2</span> <span class="o">=</span> <span class="n">pair</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">],</span> <span class="n">pair</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">]</span>
+            <span class="c1"># Log what was composited</span>
+            <span class="n">composite_log</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s1">&#39;iteration&#39;</span><span class="p">:</span> <span class="n">ii</span><span class="p">,</span>
+                <span class="s1">&#39;composited&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">],</span>
+                <span class="s1">&#39;new_id&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">id1</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">id2</span><span class="si">}</span><span class="s2">_composite&quot;</span>  <span class="c1"># or however you generate it</span>
+            <span class="p">})</span>
+    <span class="c1"># # create new composite data and metadata from the pairs</span>
+    <span class="c1"># # loop through the composite pairs and check metadata</span>
+    <span class="n">tmp_df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">tmp_comp_ID_pairs</span><span class="p">,</span> <span class="n">tmp_df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+
+    <span class="n">tmp_df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tmp_df_cleaned</span><span class="p">,</span> <span class="n">tmp_df_composite</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finished iteration.&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;NEW DATAFRAME:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ii</span><span class="o">==</span><span class="mi">19</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;STILL DUPLICATES PRESENT AFTER MULTIPLE ITERATIONS! REVISE DECISION PROCESS!!&#39;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--&#39;</span><span class="o">*</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Created </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">composite_log</span><span class="p">)</span><span class="si">}</span><span class="s2"> composites across all iterations&quot;</span><span class="p">)</span>
+</code></pre></div>
 </div>
+<ol>
+<li>
+<p><strong>Check again for remaining duplicates in the entire dataframe</strong></p>
 </li>
 <li>
 <p><strong>Merge results</strong> - Cleaned records (<code>df_dupfree_rmv</code>) and composites (<code>df_composite</code>) are combined into the final duplicate-free database</p>
@@ -1657,21 +1785,28 @@ The notebook will:
 
 **Output:** Duplicate-free database saved in `data/all_merged_INITIALS_DATE_dupfree/` -->
 
-<hr />
-<h2 id="step-4-rerun-duplicate-detection-optional">Step 4: Rerun Duplicate Detection (Optional)</h2>
-<p>After creating the initial duplicate-free database, you may want to verify no residual duplicates remain.</p>
-<p><strong>Load the duplicate-free database:</strong>
+<!-- ---
+
+## Step 4: Rerun Duplicate Detection (Optional)
+
+After creating the initial duplicate-free database, you may want to verify no residual duplicates remain.
+
+**Load the duplicate-free database:**
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">db_name</span> <span class="o">=</span> <span class="s1">&#39;all_merged_INITIALS_DATE_dupfree&#39;</span>  <span class="c1"># Use your actual filename</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">db_name</span>
-</code></pre></div></p>
-<p><strong>Rerun detection:</strong>
+</code></pre></div>
+
+**Rerun detection:**
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-</code></pre></div></p>
-<p>If additional duplicates are found, repeat Steps 3.2 and 3.3. This creates a <code>dupfree_dupfree</code> database, ensuring thoroughness.</p>
+</code></pre></div>
+
+If additional duplicates are found, repeat Steps 3.2 and 3.3. This creates a `dupfree_dupfree` database, ensuring thoroughness.
+ -->
+
 <div class="admonition success">
 <p class="admonition-title">Duplicate Detection Complete</p>
-<p>The database is now free of duplicates and ready for analysis.</p>
+<p>The database is now free of duplicates and ready for analysis. </p>
 </div>
 <!-- ## Step 5: Load and Visualize the Final Database
 
