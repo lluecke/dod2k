@@ -794,30 +794,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#psm-on-database-filtered-for-archivetype-and-paleodata_proxy" class="md-nav__link">
-    <span class="md-ellipsis">
-      PSM on database filtered for archiveType and paleoData_proxy
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="PSM on database filtered for archiveType and paleoData_proxy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#speleothem-delta18o-calcite-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      Speleothem $\delta^{18}O$ calcite records
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1517,30 +1493,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#psm-on-database-filtered-for-archivetype-and-paleodata_proxy" class="md-nav__link">
-    <span class="md-ellipsis">
-      PSM on database filtered for archiveType and paleoData_proxy
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="PSM on database filtered for archiveType and paleoData_proxy">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#speleothem-delta18o-calcite-records" class="md-nav__link">
-    <span class="md-ellipsis">
-      Speleothem $\delta^{18}O$ calcite records
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1582,7 +1534,7 @@
 </li>
 </ol>
 <p>!!! example</p>
-<p>For <code>archiveType</code> W</p>
+<p>For <code>archiveType</code> Wood and <code>paleoData_proxy</code> ring width, do:</p>
 <div class="highlight"><pre><span></span><code>```python title=&#39;python3/Jupyter&#39;
 # (1) filter for archiveType and/or paleoData_proxy: 
 
@@ -1611,7 +1563,9 @@ df_proxy = uta.add_auxvars_plot_summary(df_proxy, key, col=col[at])
 ```
 </code></pre></div>
 <ol>
-<li>Define proxy specific parameters for the PCA:<ul>
+<li>
+<p>Define proxy specific parameters for the PCA:</p>
+<ul>
 <li>period (start and end year): choose a period of sufficient data density (all records chosen for the analysis need to at least overlap during this period)</li>
 <li>minimum resolution: records exceeding this resolution are being excluded from the analysis. Records with higher resolution will be subsampled to create homogeneous resolution across all the records.</li>
 <li>record length: records shorter than the record length are being excluded from the analysis.</li>
@@ -1620,14 +1574,54 @@ df_proxy = uta.add_auxvars_plot_summary(df_proxy, key, col=col[at])
 <li>z-scores added to dataframe (mean=0 and std=1 over the entire record) as 'paleoData_zscores'</li>
 <li>note: z-scores may be biased if records are only partly overlapping in time, or increase in availability over time, or both.</li>
 </ul>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+</div>
+<p>For <code>archiveType</code> Wood and <code>paleoData_proxy</code> ring width, do:</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1">#========================= PROXY SPECIFIC: Wood ring width =========================</span>
+<span class="n">minres</span>    <span class="o">=</span> <span class="mi">1</span>                         <span class="c1"># homogenised resolution</span>
+<span class="n">mny</span>       <span class="o">=</span> <span class="mi">1000</span>                      <span class="c1"># start year of homogenised time coord</span>
+<span class="n">mxy</span>       <span class="o">=</span> <span class="mi">2000</span>                      <span class="c1"># end year of homogenised time coord</span>
+<span class="n">nyears</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">([</span><span class="mi">600</span><span class="p">,</span> <span class="n">mxy</span><span class="o">-</span><span class="n">mny</span><span class="p">])</span>    <span class="c1"># minimum length of each record</span>
+<span class="c1">#====================================================================</span>
+
+<span class="c1"># filter for record length during target period</span>
+<span class="n">df_proxy</span> <span class="o">=</span> <span class="n">uta</span><span class="o">.</span><span class="n">filter_record_length</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">nyears</span><span class="p">,</span> <span class="n">mny</span><span class="p">,</span> <span class="n">mxy</span><span class="p">)</span>
+
+<span class="c1"># filter for resolution</span>
+<span class="n">df_proxy</span> <span class="o">=</span> <span class="n">uta</span><span class="o">.</span><span class="n">filter_resolution</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">minres</span><span class="p">)</span>
+
+<span class="c1"># plot coverage and resolution</span>
+<span class="n">uplt</span><span class="o">.</span><span class="n">plot_coverage_analysis</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">mny</span><span class="p">,</span> <span class="n">mxy</span><span class="o">+</span><span class="n">minres</span><span class="p">,</span> <span class="n">minres</span><span class="p">),</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span><span class="p">[</span><span class="n">at</span><span class="p">])</span>
+<span class="n">uplt</span><span class="o">.</span><span class="n">plot_resolution</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span><span class="p">[</span><span class="n">at</span><span class="p">])</span>
+<span class="n">uplt</span><span class="o">.</span><span class="n">plot_length</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="n">col</span><span class="p">[</span><span class="n">at</span><span class="p">])</span>
+
+<span class="n">n_recs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">)</span> <span class="c1"># final number of records</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">[[</span><span class="s1">&#39;miny&#39;</span><span class="p">,</span> <span class="s1">&#39;maxy&#39;</span><span class="p">,</span> <span class="s1">&#39;originalDatabase&#39;</span><span class="p">]])</span>
+
+<span class="n">pca_rec</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_proxy</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span>
+
+<span class="c1"># add &#39;z-scores&#39; to dataframe and plot z-scores and values</span>
+<span class="n">df_proxy</span> <span class="o">=</span> <span class="n">uta</span><span class="o">.</span><span class="n">add_zscores_plot</span><span class="p">(</span><span class="n">df_proxy</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">plot_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 </li>
-<li>Homogenise data dimensions across the records<ul>
+<li>
+<p>Homogenise data dimensions across the records</p>
+<ul>
 <li>defines a homogenised time variable over the target period and with the target resolution (as defined in the last step), which is saved as a new column in the dataframe named 'years_hom'</li>
 <li>creates a data matrix with dimensions n_records x n_time which is saved as a new column in df, named <code>paleoData_values_hom</code> and <code>paleoData_zscores_hom</code>.</li>
 <li>Note that this data is formatted as a np.ma.masked_array, where missing data is set to zero and masked out.</li>
 </ul>
+<p>```python title='python3/Jupyter'</p>
+<h1 id="define-new-homogenised-time-coordinate">define new homogenised time coordinate</h1>
+<p>df_proxy, years_hom = uta.homogenise_time(df_proxy, mny, mxy, minres)
+time[key] = years_hom</p>
 </li>
-<li>PCA<ul>
+<li>
+<p>PCA</p>
+<ul>
 <li>obtains covariance matrix of <code>paleoData_zscores_hom</code> (note that for every two records the covariance is calculated over their intersect of data availability)</li>
 <li>obtains eigenvectors and eigenvalues via SVD composition</li>
 <li>obtains and plots fraction of explained variance, first two PCs and load for first two EOFs vs ordering in the data frame.</li>
