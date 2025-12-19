@@ -1823,7 +1823,52 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
 
 
 def define_hierarchy(df, hierarchy='default'):
-    #define hierarchy, 
+    """
+    Define priority hierarchy for different paleoclimate databases.
+    
+    Assigns a numerical hierarchy value to each record based on its original 
+    database, used for automatic duplicate resolution when records are identical.
+    Lower values indicate higher priority.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing proxy records with an 'originalDatabase' column.
+    hierarchy : str or dict, optional
+        Hierarchy definition method. If 'default', uses predefined hierarchy.
+        If dict, should contain keys for database names with priority values:
+        - 'pages2k': priority for PAGES 2k database
+        - 'fe23': priority for FE23 (Breitenmoser et al. 2014)
+        - 'ch2k': priority for CoralHydro2k
+        - 'iso2k': priority for Iso2k
+        - 'sisal': priority for SISAL
+        Default is 'default'.
+
+    Returns
+    -------
+    pandas.DataFrame
+        The input DataFrame with added 'Hierarchy' column containing priority
+        values for each record.
+    
+    Notes
+    -----
+    Default hierarchy (lower number = higher priority):
+    1. PAGES 2k v2.2.0 (highest priority)
+    2. SISAL v3
+    3. CoralHydro2k v1.0.1
+    4. Iso2k v1.1.2
+    5. FE23 (Breitenmoser et al. 2014)
+    99. All other databases (lowest priority)
+    
+    The hierarchy is used in duplicate_decisions functions to automatically
+    choose which record to keep when duplicates are identical.
+    
+    Examples
+    --------
+    >>> df = define_hierarchy(df)  # Use default hierarchy
+    >>> custom = {'PAGES 2k v2.2.0', 'Hierarchy': 2, 'SISAL v3': 1, 'FE23 (Breitenmoser et al. (2014))': 3, 'CoralHydro2k v1.0.': 4, 'Iso2k v1.1.2': 5}
+    >>> df = define_hierarchy(df, hierarchy=custom)  # Custom hierarchy
+    """
     df['Hierarchy'] = 99
     if hierarchy=='default':
         df.loc[df['originalDatabase']=='PAGES 2k v2.2.0', 'Hierarchy'] = 1
