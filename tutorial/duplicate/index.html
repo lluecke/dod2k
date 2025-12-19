@@ -1706,20 +1706,26 @@ jupyter<span class="w"> </span>nbconvert<span class="w"> </span>--to<span class=
 <!-- The initials are used to label the intermediate output files for the next steps of the workflow, and the name and email address will be saved in the final duplicate free dataframe to ensure transparency and traceability. -->
 
 <h3 id="22-hierarchy-for-duplicate-removal-for-identical-duplicates">2.2 Hierarchy for duplicate removal for identical duplicates</h3>
-<p>For automated decisions, which apply to <em>identical</em> duplicates, we have defined a hierarchy of databases, which decides which record should be kept.</p>
-<p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value n (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. Note that this parameter is not migrated to the final duplicate free database. </p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># implement hierarchy for automated decisions for identical records</span>
+<p>For automated decisions, which apply to <em>identical</em> duplicates, we have defined a hierarchy (importance level) to the databases, which automatically decides which record should be kept in case of identical data <em>and</em> metadata.</p>
+<p>The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value $n$ (the number of original databases). The hierarchy is added to the dataframe as an additional column (<code>Hierarchy</code>) for the decision process. </p>
+<p>The hierarchy is added to the dataframe </p>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># implement hierarchy for automated decisions for identical records</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
 </code></pre></div>
-<p>The default hierarchy is given as</p>
-<p>PAGES2k v2.2.0 &lt; FE23 (Breitenmoser et al. (2014)) &lt; CoralHydro2k v1.0.1 &lt; Iso2k v1.1.2 &lt; SISAL v3.</p>
+By default the hierarchy uses the novelty of the databases for the importance level: </p>
+<p><code>PAGES 2k v2.2.0</code> &gt; <code>SISAL v3</code> &gt; <code>CoralHydro2k v1.0.1</code> &gt; <code>Iso2k v1.1.2</code> &gt; <code>FE23 (Breitenmoser et al. (2014))</code></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
 <p>The hierarchy can be changed by providing a dictionary to the <code>hierarchy</code> kwarg:
-<div class="highlight"><pre><span></span><code>hierarchy={&#39;pages2k&#39;: pages2k_value, &#39;fe23&#39;: fe23_value, &#39;iso2k&#39;: iso2k_value, &#39;ch2k&#39;: ch2k_value, &#39;sisal&#39;: sisal_value}
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># Use default hierarchy</span>
+<span class="n">custom</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;PAGES 2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;SISAL v3&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CoralHydro2k v1.0.&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="n">custom</span><span class="p">)</span>  <span class="c1"># Custom hierarchy</span>
 </code></pre></div></p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This hierarchy is not saved in the final duplicate-free database.</p>
+<p>The hierarchy is not saved in the final duplicate-free database.</p>
 </div>
 <p>In order to reduce the operator workload, you also have the option to implement an automatic choice for specific database combinations. Please also specify a reason when doing so!</p>
 <p>This is meant to be for any records which do not satisfy the hierarchy criterion, i.e. records with different data but identical metadata, such as updated records. </p>

@@ -1121,6 +1121,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_duplicate_search.define_hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      define_hierarchy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#dod2k_utilities.ut_duplicate_search.density_scatter" class="md-nav__link">
     <span class="md-ellipsis">
       density_scatter
@@ -1232,8 +1241,9 @@
 
     <div class="doc doc-contents first">
 
-        <p>This script includes functions which search for duplicates. 
-Update 22/10/24 updated duplicate_decisions: 
+        <p>This script includes functions which search for duplicates. </p>
+<p>Last updated 19/12/2025 by LL for publication of dod2k v2.0</p>
+<p>Update 22/10/24 updated duplicate_decisions: 
    - created backup decision file which is intermediately saved
    - outputs URL which can be copied and pasted into browser
    - implemented a composite option in the decision process, to create a composite of two records
@@ -1281,6 +1291,274 @@ Script written by Lucie Luecke, 6/7/23</p>
 <div class="doc doc-object doc-function">
 
 
+<h3 id="dod2k_utilities.ut_duplicate_search.define_hierarchy" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Define priority hierarchy for different paleoclimate databases.</p>
+<p>Assigns a numerical hierarchy value to each record based on its original 
+database, used for automatic duplicate resolution when records are identical.
+Lower values indicate higher priority.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>df</code>
+            </td>
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>DataFrame containing proxy records with an 'originalDatabase' column.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>hierarchy</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> or <span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Hierarchy definition method. If 'default', uses predefined hierarchy.
+If dict, should contain keys for database names with priority values:
+- 'pages2k': priority for PAGES 2k database
+- 'fe23': priority for FE23 (Breitenmoser et al. 2014)
+- 'ch2k': priority for CoralHydro2k
+- 'iso2k': priority for Iso2k
+- 'sisal': priority for SISAL
+Default is 'default'.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;default&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pandas.DataFrame">DataFrame</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The input DataFrame with added 'Hierarchy' column containing priority
+values for each record.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Notes</summary>
+  <p>Default hierarchy (lower number = higher priority):
+1. PAGES 2k v2.2.0 (highest priority)
+2. SISAL v3
+3. CoralHydro2k v1.0.1
+4. Iso2k v1.1.2
+5. FE23 (Breitenmoser et al. 2014)
+99. All other databases (lowest priority)</p>
+<p>The hierarchy is used in duplicate_decisions functions to automatically
+choose which record to keep when duplicates are identical.</p>
+</details>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># Use default hierarchy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">custom</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;PAGES 2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;SISAL v3&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;CoralHydro2k v1.0.&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="n">custom</span><span class="p">)</span>  <span class="c1"># Custom hierarchy</span>
+</code></pre></div>
+
+
+            <details class="quote">
+              <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1825</span>
+<span class="normal">1826</span>
+<span class="normal">1827</span>
+<span class="normal">1828</span>
+<span class="normal">1829</span>
+<span class="normal">1830</span>
+<span class="normal">1831</span>
+<span class="normal">1832</span>
+<span class="normal">1833</span>
+<span class="normal">1834</span>
+<span class="normal">1835</span>
+<span class="normal">1836</span>
+<span class="normal">1837</span>
+<span class="normal">1838</span>
+<span class="normal">1839</span>
+<span class="normal">1840</span>
+<span class="normal">1841</span>
+<span class="normal">1842</span>
+<span class="normal">1843</span>
+<span class="normal">1844</span>
+<span class="normal">1845</span>
+<span class="normal">1846</span>
+<span class="normal">1847</span>
+<span class="normal">1848</span>
+<span class="normal">1849</span>
+<span class="normal">1850</span>
+<span class="normal">1851</span>
+<span class="normal">1852</span>
+<span class="normal">1853</span>
+<span class="normal">1854</span>
+<span class="normal">1855</span>
+<span class="normal">1856</span>
+<span class="normal">1857</span>
+<span class="normal">1858</span>
+<span class="normal">1859</span>
+<span class="normal">1860</span>
+<span class="normal">1861</span>
+<span class="normal">1862</span>
+<span class="normal">1863</span>
+<span class="normal">1864</span>
+<span class="normal">1865</span>
+<span class="normal">1866</span>
+<span class="normal">1867</span>
+<span class="normal">1868</span>
+<span class="normal">1869</span>
+<span class="normal">1870</span>
+<span class="normal">1871</span>
+<span class="normal">1872</span>
+<span class="normal">1873</span>
+<span class="normal">1874</span>
+<span class="normal">1875</span>
+<span class="normal">1876</span>
+<span class="normal">1877</span>
+<span class="normal">1878</span>
+<span class="normal">1879</span>
+<span class="normal">1880</span>
+<span class="normal">1881</span>
+<span class="normal">1882</span>
+<span class="normal">1883</span>
+<span class="normal">1884</span>
+<span class="normal">1885</span>
+<span class="normal">1886</span>
+<span class="normal">1887</span>
+<span class="normal">1888</span>
+<span class="normal">1889</span>
+<span class="normal">1890</span>
+<span class="normal">1891</span>
+<span class="normal">1892</span>
+<span class="normal">1893</span>
+<span class="normal">1894</span>
+<span class="normal">1895</span>
+<span class="normal">1896</span>
+<span class="normal">1897</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">define_hierarchy</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define priority hierarchy for different paleoclimate databases.</span>
+
+<span class="sd">    Assigns a numerical hierarchy value to each record based on its original </span>
+<span class="sd">    database, used for automatic duplicate resolution when records are identical.</span>
+<span class="sd">    Lower values indicate higher priority.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    df : pandas.DataFrame</span>
+<span class="sd">        DataFrame containing proxy records with an &#39;originalDatabase&#39; column.</span>
+<span class="sd">    hierarchy : str or dict, optional</span>
+<span class="sd">        Hierarchy definition method. If &#39;default&#39;, uses predefined hierarchy.</span>
+<span class="sd">        If dict, should contain keys for database names with priority values:</span>
+<span class="sd">        - &#39;pages2k&#39;: priority for PAGES 2k database</span>
+<span class="sd">        - &#39;fe23&#39;: priority for FE23 (Breitenmoser et al. 2014)</span>
+<span class="sd">        - &#39;ch2k&#39;: priority for CoralHydro2k</span>
+<span class="sd">        - &#39;iso2k&#39;: priority for Iso2k</span>
+<span class="sd">        - &#39;sisal&#39;: priority for SISAL</span>
+<span class="sd">        Default is &#39;default&#39;.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pandas.DataFrame</span>
+<span class="sd">        The input DataFrame with added &#39;Hierarchy&#39; column containing priority</span>
+<span class="sd">        values for each record.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Default hierarchy (lower number = higher priority):</span>
+<span class="sd">    1. PAGES 2k v2.2.0 (highest priority)</span>
+<span class="sd">    2. SISAL v3</span>
+<span class="sd">    3. CoralHydro2k v1.0.1</span>
+<span class="sd">    4. Iso2k v1.1.2</span>
+<span class="sd">    5. FE23 (Breitenmoser et al. 2014)</span>
+<span class="sd">    99. All other databases (lowest priority)</span>
+
+<span class="sd">    The hierarchy is used in duplicate_decisions functions to automatically</span>
+<span class="sd">    choose which record to keep when duplicates are identical.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; df = define_hierarchy(df)  # Use default hierarchy</span>
+<span class="sd">    &gt;&gt;&gt; custom = {&#39;PAGES 2k v2.2.0&#39;, &#39;Hierarchy&#39;: 2, &#39;SISAL v3&#39;: 1, &#39;FE23 (Breitenmoser et al. (2014))&#39;: 3, &#39;CoralHydro2k v1.0.&#39;: 4, &#39;Iso2k v1.1.2&#39;: 5}</span>
+<span class="sd">    &gt;&gt;&gt; df = define_hierarchy(df, hierarchy=custom)  # Custom hierarchy</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+    <span class="k">if</span> <span class="n">hierarchy</span><span class="o">==</span><span class="s1">&#39;default&#39;</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGES 2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CoralHydro2k v1.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SISAL v3&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;PAGES 2k v2.2.0&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;pages2k&#39;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;FE23 (Breitenmoser et al. (2014))&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;fe23&#39;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CoralHydro2k v1.0.1&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;ch2k&#39;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Iso2k v1.1.2&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;iso2k&#39;</span><span class="p">]</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;SISAL v3&#39;</span><span class="p">,</span> <span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hierarchy</span><span class="p">[</span><span class="s1">&#39;sisal&#39;</span><span class="p">]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Chosen hierarchy:&#39;</span><span class="p">)</span>
+
+
+
+    <span class="k">for</span> <span class="n">db</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">)[</span><span class="s1">&#39;Hierarchy&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">h</span><span class="o">==</span><span class="mi">1</span><span class="p">:</span> 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="n">db</span><span class="si">}</span><span class="s1"> (highest)&#39;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">h</span><span class="o">==</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">originalDatabase</span><span class="o">.</span><span class="n">unique</span><span class="p">()):</span> 
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="n">db</span><span class="si">}</span><span class="s1"> (lowest)&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">h</span><span class="si">}</span><span class="s1">. </span><span class="si">{</span><span class="n">db</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h3 id="dod2k_utilities.ut_duplicate_search.density_scatter" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">density_scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 
@@ -1294,12 +1572,7 @@ Script written by Lucie Luecke, 6/7/23</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">826</span>
-<span class="normal">827</span>
-<span class="normal">828</span>
-<span class="normal">829</span>
-<span class="normal">830</span>
-<span class="normal">831</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">831</span>
 <span class="normal">832</span>
 <span class="normal">833</span>
 <span class="normal">834</span>
@@ -1321,7 +1594,12 @@ Script written by Lucie Luecke, 6/7/23</p>
 <span class="normal">850</span>
 <span class="normal">851</span>
 <span class="normal">852</span>
-<span class="normal">853</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">density_scatter</span><span class="p">(</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">)</span>   <span class="p">:</span>
+<span class="normal">853</span>
+<span class="normal">854</span>
+<span class="normal">855</span>
+<span class="normal">856</span>
+<span class="normal">857</span>
+<span class="normal">858</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">density_scatter</span><span class="p">(</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">fig</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sort</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span> <span class="p">)</span>   <span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Scatter plot colored by 2d histogram</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1659,12 +1937,7 @@ Script written by Lucie Luecke, 6/7/23</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">555</span>
-<span class="normal">556</span>
-<span class="normal">557</span>
-<span class="normal">558</span>
-<span class="normal">559</span>
-<span class="normal">560</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">560</span>
 <span class="normal">561</span>
 <span class="normal">562</span>
 <span class="normal">563</span>
@@ -1927,7 +2200,12 @@ Script written by Lucie Luecke, 6/7/23</p>
 <span class="normal">820</span>
 <span class="normal">821</span>
 <span class="normal">822</span>
-<span class="normal">823</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dup_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">,</span> <span class="n">time_1</span><span class="p">,</span> <span class="n">time_2</span><span class="p">,</span> <span class="n">time_12</span><span class="p">,</span> <span class="n">data_1</span><span class="p">,</span> <span class="n">data_2</span><span class="p">,</span> <span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="p">,</span> 
+<span class="normal">823</span>
+<span class="normal">824</span>
+<span class="normal">825</span>
+<span class="normal">826</span>
+<span class="normal">827</span>
+<span class="normal">828</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dup_plot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">jj</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">,</span> <span class="n">time_1</span><span class="p">,</span> <span class="n">time_2</span><span class="p">,</span> <span class="n">time_12</span><span class="p">,</span> <span class="n">data_1</span><span class="p">,</span> <span class="n">data_2</span><span class="p">,</span> <span class="n">int_1</span><span class="p">,</span> <span class="n">int_2</span><span class="p">,</span> 
              <span class="n">pot_dup_corr</span><span class="p">,</span> <span class="n">keys_to_print</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;originalDatabase&#39;</span><span class="p">,</span> <span class="s1">&#39;originalDataURL&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="s1">&#39;archiveType&#39;</span><span class="p">,</span> 
                                           <span class="s1">&#39;proxy | variableName&#39;</span><span class="p">,</span> <span class="c1">#&#39;archive|proxy&#39;, </span>
                                           <span class="s1">&#39;geo_siteName&#39;</span><span class="p">,</span> <span class="s1">&#39;lat | lon | elev&#39;</span><span class="p">,</span> <span class="s1">&#39;mean | std | units&#39;</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span> <span class="p">],</span> 
@@ -2382,12 +2660,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 952</span>
-<span class="normal"> 953</span>
-<span class="normal"> 954</span>
-<span class="normal"> 955</span>
-<span class="normal"> 956</span>
-<span class="normal"> 957</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 957</span>
 <span class="normal"> 958</span>
 <span class="normal"> 959</span>
 <span class="normal"> 960</span>
@@ -2713,7 +2986,12 @@ Default is True.</p>
 <span class="normal">1280</span>
 <span class="normal">1281</span>
 <span class="normal">1282</span>
-<span class="normal">1283</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1283</span>
+<span class="normal">1284</span>
+<span class="normal">1285</span>
+<span class="normal">1286</span>
+<span class="normal">1287</span>
+<span class="normal">1288</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                         <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Review potential duplicate pairs in a proxy database and decide which records to keep, remove, or combine.</span>
@@ -3232,12 +3510,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1286</span>
-<span class="normal">1287</span>
-<span class="normal">1288</span>
-<span class="normal">1289</span>
-<span class="normal">1290</span>
-<span class="normal">1291</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1291</span>
 <span class="normal">1292</span>
 <span class="normal">1293</span>
 <span class="normal">1294</span>
@@ -3757,7 +4030,18 @@ Default is True.</p>
 <span class="normal">1808</span>
 <span class="normal">1809</span>
 <span class="normal">1810</span>
-<span class="normal">1811</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
+<span class="normal">1811</span>
+<span class="normal">1812</span>
+<span class="normal">1813</span>
+<span class="normal">1814</span>
+<span class="normal">1815</span>
+<span class="normal">1816</span>
+<span class="normal">1817</span>
+<span class="normal">1818</span>
+<span class="normal">1819</span>
+<span class="normal">1820</span>
+<span class="normal">1821</span>
+<span class="normal">1822</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1">#keep_all=False, </span>
                                  <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                  <span class="n">comment</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">automate_db_choice</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
@@ -4149,8 +4433,10 @@ Default is True.</p>
 
                             <span class="c1"># Create figure with info as title</span>
                             <span class="n">mt</span><span class="p">,</span> <span class="n">mi1</span><span class="p">,</span> <span class="n">mi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">intersect1d</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mm</span><span class="p">],</span> <span class="n">return_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> 
-                            <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
-                            <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">info_text</span> <span class="o">+</span> <span class="n">prev_dup_text</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
+
+
+                            <span class="n">multiple_fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">)</span>
+                            <span class="n">multiple_fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="n">info_text</span> <span class="o">+</span> <span class="n">prev_dup_text</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.98</span><span class="p">)</span>
 
 
 
@@ -4203,6 +4489,9 @@ Default is True.</p>
                             <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Leave room for suptitle</span>
                             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
+                            <span class="n">save_fig</span><span class="p">(</span><span class="n">multiple_fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;__</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">_MULTIPLE_</span><span class="si">{</span><span class="n">mm</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> 
+                                     <span class="nb">dir</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/dup_detection/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">figformat</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
+
 
 
                         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-------&#39;</span><span class="o">*</span><span class="mi">15</span><span class="p">)</span>
@@ -4216,11 +4505,12 @@ Default is True.</p>
 
 
 
-                    <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">_</span><span class="si">%d</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">),</span> <span class="nb">dir</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/dup_detection/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">figformat</span><span class="o">=</span><span class="s1">&#39;jpg&#39;</span><span class="p">)</span>
+
+                    <span class="n">save_fig</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;__</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;/dup_detection/</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">figformat</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">)</span>
 
 
                     <span class="n">figpath</span>    <span class="o">=</span> <span class="s1">&#39;https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="n">df</span><span class="o">.</span><span class="n">name</span>
-                    <span class="n">figpath</span>  <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="s1">&#39;_</span><span class="si">%d</span><span class="s1">_</span><span class="si">%d</span><span class="s1">,jpg&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">ii</span><span class="p">,</span><span class="n">jj</span><span class="p">)</span>
+                    <span class="n">figpath</span>  <span class="o">+=</span> <span class="s1">&#39;</span><span class="si">%03d</span><span class="s1">_</span><span class="si">%s</span><span class="s1">_</span><span class="si">%s</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">i_pot_dups</span><span class="p">,</span> <span class="n">id_1</span><span class="p">,</span> <span class="n">id_2</span><span class="p">)</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;__</span><span class="si">{</span><span class="n">ii</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">jj</span><span class="si">}</span><span class="s1">.jpg&#39;</span>
 
                 <span class="c1"># now write down the decision</span>
                 <span class="k">if</span> <span class="n">keep</span><span class="o">==</span><span class="s1">&#39;1&#39;</span><span class="p">:</span>
@@ -4553,12 +4843,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">312</span>
-<span class="normal">313</span>
-<span class="normal">314</span>
-<span class="normal">315</span>
-<span class="normal">316</span>
-<span class="normal">317</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">317</span>
 <span class="normal">318</span>
 <span class="normal">319</span>
 <span class="normal">320</span>
@@ -4793,7 +5078,12 @@ Default is True.</p>
 <span class="normal">549</span>
 <span class="normal">550</span>
 <span class="normal">551</span>
-<span class="normal">552</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
                     <span class="n">corr_thresh</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">rmse_thresh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">corr_diff_thresh</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
                     <span class="n">rmse_diff_thresh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elev_tolerance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_same_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
                     <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">False</span>
@@ -5052,6 +5342,7 @@ Default is True.</p>
     <div class="doc doc-contents ">
 
         <p>Identify potential duplicate records in a dataset based on metadata and time series similarity.</p>
+<p>Based on find_duplicates, optimized by Feng Zhu</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -5303,10 +5594,7 @@ Default is True.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 59</span>
 <span class="normal"> 60</span>
 <span class="normal"> 61</span>
 <span class="normal"> 62</span>
@@ -5557,13 +5845,20 @@ Default is True.</p>
 <span class="normal">307</span>
 <span class="normal">308</span>
 <span class="normal">309</span>
-<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_duplicates_optimized</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">dist_tolerance_km</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> 
                     <span class="n">corr_thresh</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">rmse_thresh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">corr_diff_thresh</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
                     <span class="n">rmse_diff_thresh</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">elev_tolerance</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ignore_same_database</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
                     <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">print_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span>
                    <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Identify potential duplicate records in a dataset based on metadata and time series similarity.</span>
+
+<span class="sd">    Based on find_duplicates, optimized by Feng Zhu</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -5968,74 +6263,7 @@ operator details in the composite notes.</p>
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2153</span>
-<span class="normal">2154</span>
-<span class="normal">2155</span>
-<span class="normal">2156</span>
-<span class="normal">2157</span>
-<span class="normal">2158</span>
-<span class="normal">2159</span>
-<span class="normal">2160</span>
-<span class="normal">2161</span>
-<span class="normal">2162</span>
-<span class="normal">2163</span>
-<span class="normal">2164</span>
-<span class="normal">2165</span>
-<span class="normal">2166</span>
-<span class="normal">2167</span>
-<span class="normal">2168</span>
-<span class="normal">2169</span>
-<span class="normal">2170</span>
-<span class="normal">2171</span>
-<span class="normal">2172</span>
-<span class="normal">2173</span>
-<span class="normal">2174</span>
-<span class="normal">2175</span>
-<span class="normal">2176</span>
-<span class="normal">2177</span>
-<span class="normal">2178</span>
-<span class="normal">2179</span>
-<span class="normal">2180</span>
-<span class="normal">2181</span>
-<span class="normal">2182</span>
-<span class="normal">2183</span>
-<span class="normal">2184</span>
-<span class="normal">2185</span>
-<span class="normal">2186</span>
-<span class="normal">2187</span>
-<span class="normal">2188</span>
-<span class="normal">2189</span>
-<span class="normal">2190</span>
-<span class="normal">2191</span>
-<span class="normal">2192</span>
-<span class="normal">2193</span>
-<span class="normal">2194</span>
-<span class="normal">2195</span>
-<span class="normal">2196</span>
-<span class="normal">2197</span>
-<span class="normal">2198</span>
-<span class="normal">2199</span>
-<span class="normal">2200</span>
-<span class="normal">2201</span>
-<span class="normal">2202</span>
-<span class="normal">2203</span>
-<span class="normal">2204</span>
-<span class="normal">2205</span>
-<span class="normal">2206</span>
-<span class="normal">2207</span>
-<span class="normal">2208</span>
-<span class="normal">2209</span>
-<span class="normal">2210</span>
-<span class="normal">2211</span>
-<span class="normal">2212</span>
-<span class="normal">2213</span>
-<span class="normal">2214</span>
-<span class="normal">2215</span>
-<span class="normal">2216</span>
-<span class="normal">2217</span>
-<span class="normal">2218</span>
-<span class="normal">2219</span>
-<span class="normal">2220</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2220</span>
 <span class="normal">2221</span>
 <span class="normal">2222</span>
 <span class="normal">2223</span>
@@ -6150,7 +6378,74 @@ operator details in the composite notes.</p>
 <span class="normal">2332</span>
 <span class="normal">2333</span>
 <span class="normal">2334</span>
-<span class="normal">2335</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
+<span class="normal">2335</span>
+<span class="normal">2336</span>
+<span class="normal">2337</span>
+<span class="normal">2338</span>
+<span class="normal">2339</span>
+<span class="normal">2340</span>
+<span class="normal">2341</span>
+<span class="normal">2342</span>
+<span class="normal">2343</span>
+<span class="normal">2344</span>
+<span class="normal">2345</span>
+<span class="normal">2346</span>
+<span class="normal">2347</span>
+<span class="normal">2348</span>
+<span class="normal">2349</span>
+<span class="normal">2350</span>
+<span class="normal">2351</span>
+<span class="normal">2352</span>
+<span class="normal">2353</span>
+<span class="normal">2354</span>
+<span class="normal">2355</span>
+<span class="normal">2356</span>
+<span class="normal">2357</span>
+<span class="normal">2358</span>
+<span class="normal">2359</span>
+<span class="normal">2360</span>
+<span class="normal">2361</span>
+<span class="normal">2362</span>
+<span class="normal">2363</span>
+<span class="normal">2364</span>
+<span class="normal">2365</span>
+<span class="normal">2366</span>
+<span class="normal">2367</span>
+<span class="normal">2368</span>
+<span class="normal">2369</span>
+<span class="normal">2370</span>
+<span class="normal">2371</span>
+<span class="normal">2372</span>
+<span class="normal">2373</span>
+<span class="normal">2374</span>
+<span class="normal">2375</span>
+<span class="normal">2376</span>
+<span class="normal">2377</span>
+<span class="normal">2378</span>
+<span class="normal">2379</span>
+<span class="normal">2380</span>
+<span class="normal">2381</span>
+<span class="normal">2382</span>
+<span class="normal">2383</span>
+<span class="normal">2384</span>
+<span class="normal">2385</span>
+<span class="normal">2386</span>
+<span class="normal">2387</span>
+<span class="normal">2388</span>
+<span class="normal">2389</span>
+<span class="normal">2390</span>
+<span class="normal">2391</span>
+<span class="normal">2392</span>
+<span class="normal">2393</span>
+<span class="normal">2394</span>
+<span class="normal">2395</span>
+<span class="normal">2396</span>
+<span class="normal">2397</span>
+<span class="normal">2398</span>
+<span class="normal">2399</span>
+<span class="normal">2400</span>
+<span class="normal">2401</span>
+<span class="normal">2402</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">join_composites_metadata</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">comp_ID_pairs</span><span class="p">,</span> <span class="n">df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create composite records from overlapping duplicate proxy datasets and generate metadata.</span>
 
@@ -6460,12 +6755,7 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 
             <details class="quote">
               <summary>Source code in <code>dod2k_utilities/ut_duplicate_search.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">856</span>
-<span class="normal">857</span>
-<span class="normal">858</span>
-<span class="normal">859</span>
-<span class="normal">860</span>
-<span class="normal">861</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">861</span>
 <span class="normal">862</span>
 <span class="normal">863</span>
 <span class="normal">864</span>
@@ -6551,7 +6841,12 @@ visualizes them using the <code>dup_plot</code> function, and saves the metadata
 <span class="normal">944</span>
 <span class="normal">945</span>
 <span class="normal">946</span>
-<span class="normal">947</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="normal">947</span>
+<span class="normal">948</span>
+<span class="normal">949</span>
+<span class="normal">950</span>
+<span class="normal">951</span>
+<span class="normal">952</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">plot_duplicates</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">save_figures</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">write_output</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Generate plots of potential duplicate records in a proxy database and optionally save their metadata.</span>
 
