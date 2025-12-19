@@ -11,6 +11,10 @@
       
       
       
+        <link rel="prev" href="../ut_plot/">
+      
+      
+        <link rel="next" href="../../notebooks/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +22,7 @@
     
     
       
-        <title>Data Analysis Functions - DoD2k Documentation</title>
+        <title>Analysis helper functions - DoD2k Documentation</title>
       
     
     
@@ -110,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Data Analysis Functions
+              Analysis helper functions
             
           </span>
         </div>
@@ -293,18 +297,21 @@
   
   
   
-  
-    <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
-        
+    
   
   
     
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
   
   API Reference
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -738,11 +745,32 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
+  
+    
+    
+    
+    
+      
         
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
   
   
   <span class="md-ellipsis">
@@ -751,7 +779,344 @@
   </span>
   
 
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ut_duplicate_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate helper functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ut_functions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General helper functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ut_plot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Plotting helper functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Analysis helper functions
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Analysis helper functions
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      ut_analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ut_analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.PCA" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.add_auxvars_plot_summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_auxvars_plot_summary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.add_resolution_to_df" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_resolution_to_df
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.add_zscores_plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_zscores_plot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.calc_covariance_matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_covariance_matrix
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.calc_z_score" class="md-nav__link">
+    <span class="md-ellipsis">
+      calc_z_score
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.convert_subannual_to_annual_res" class="md-nav__link">
+    <span class="md-ellipsis">
+      convert_subannual_to_annual_res
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.filter_data_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter_data_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.filter_record_length" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter_record_length
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.filter_resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter_resolution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.find_nearest2d" class="md-nav__link">
+    <span class="md-ellipsis">
+      find_nearest2d
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.find_shared_period" class="md-nav__link">
+    <span class="md-ellipsis">
+      find_shared_period
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.fraction_of_explained_var" class="md-nav__link">
+    <span class="md-ellipsis">
+      fraction_of_explained_var
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.gcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.homogenise_data_dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      homogenise_data_dimensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.homogenise_time" class="md-nav__link">
+    <span class="md-ellipsis">
+      homogenise_time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dod2k_utilities.ut_analysis.smooth" class="md-nav__link">
+    <span class="md-ellipsis">
+      smooth
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -883,6 +1248,29 @@
   
   <span class="md-ellipsis">
     Filter compact dataframe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/dup_testdatabase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Duplicate test database
     
   </span>
   
@@ -1067,6 +1455,121 @@
   
   <span class="md-ellipsis">
     Load FE23
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/merge_databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Merge original databases into a common dataframe, ready for duplicate detection.
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/analysis_speleothem/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dod2k analysis notebook: SPELEOTHEM records only
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/analysis_moisttemp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dod2k analysis notebook: MOISTURE+TEMPERATURE records only
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/analysis_moisture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dod2k analysis notebook: MOISTURE records only
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/analysis_temperature/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    dod2k analysis notebook: TEMPERATURE records only
     
   </span>
   
