@@ -1,5 +1,8 @@
 """
 This script includes functions which search for duplicates. 
+
+Last updated 19/12/2025 by LL for publication of dod2k v2.0
+
 Update 22/10/24 updated duplicate_decisions: 
    - created backup decision file which is intermediately saved
    - outputs URL which can be copied and pasted into browser
@@ -61,6 +64,8 @@ def find_duplicates_optimized(df, dist_tolerance_km=8, n_points_thresh=10,
     """
     Identify potential duplicate records in a dataset based on metadata and time series similarity.
 
+    Based on find_duplicates, optimized by Feng Zhu
+    
     Parameters
     ----------
     df : pandas.DataFrame

@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 """
 
-Author: Lucie Luecke (includes functions by Feng Zhu and Kevin Fan)
+Author: Lucie Luecke (includes functions by Feng Zhu)
 
 Provides functions for filtering, homogenising, manipulating and analysing data(frames).
+
+19/12/2025 last updated for publication for dod2k v2.0
 
 """
 
@@ -31,12 +33,16 @@ def filter_resolution(df, maxres):
         of numeric resolution values.
     maxres : int or float
         Maximum allowed resolution. Records with all resolution values less than
-        or equal to `minres` are kept.
+        or equal to `maxres` are kept.
 
     Returns
     -------
     pandas.DataFrame
-        A filtered DataFrame containing only records with resolution <= minres.
+        A filtered DataFrame containing only records with resolution <= maxres.
+    
+    Notes
+    -----
+    Prints the number of records kept and excluded after filtering.
     """
     rmask = df.resolution.apply(lambda x: np.all(np.array(x)<=maxres))
     print('Keep %d records with resolution <=%d. Exclude %d records.'%(len(df[rmask]), maxres, len(df[~rmask])))
@@ -64,6 +70,11 @@ def filter_record_length(df, nyears, mny, mxy):
     pandas.DataFrame
         A filtered DataFrame containing only records with at least `nyears`
         of data between `mny` and `mxy`.
+    
+    Notes
+    -----
+    Records are dropped in-place if they don't meet the minimum year requirement.
+    Prints the number of records kept and excluded after filtering.
     """
 
     remove = []
@@ -73,7 +84,7 @@ def filter_record_length(df, nyears, mny, mxy):
             remove+=[ii]
     
     df=df.drop(labels=remove)
-    # mask   = ~(df.length>=nyears)
+    
     print('Keep %d records with nyears>=%d during %d-%d. Exclude %d records.'%(df.shape[0], nyears, mny, mxy, len(remove)))    
     return df
 
@@ -98,7 +109,13 @@ def filter_data_availability(df, mny, mxy):
     pandas.DataFrame
         A filtered DataFrame containing only records that have data available
         between `mny` and `mxy`.
+    
+    Notes
+    -----
+    Removes records that have no data within the specified year range.
+    Prints the indices of removed records and summary statistics.
     """
+    
     remove = []
     for ii in df.index:
         if np.sum((df.at[ii, 'year']>=mny)&(df.at[ii, 'year']<=mxy))==0:
@@ -289,7 +306,7 @@ def homogenise_data_dimensions(df, years_hom, title='', print_output=False, plot
 
 
 
-def covert_subannual_to_annual(df):
+def convert_subannual_to_annual_res(df):
     """
     Convert sub-annual data to annual averages.
 
@@ -300,12 +317,21 @@ def covert_subannual_to_annual(df):
     Parameters
     ----------
     df : pandas.DataFrame
-        DataFrame containing 'year' and 'paleoData_values' columns.
+        DataFrame containing 'year' and 'paleoData_values' columns, where 'year'
+        may contain sub-annual (fractional) time values.
 
     Returns
     -------
     None
         The function modifies the DataFrame in place.
+    
+    Notes
+    -----
+    
+    For each record:
+    - Years are floored to get integer year values
+    - Data values are averaged within each integer year
+    - Both 'year' and 'paleoData_values' columns are replaced with annual values
     """
     for ii in df.index:
         year = df.at[ii, 'year']
@@ -436,16 +462,23 @@ def add_auxvars_plot_summary(df_filtered, key, mincount=0, col='k', **kwargs):
     df_filtered : pandas.DataFrame
         DataFrame containing 'year' and 'paleoData_values'.
     key : str
-        Title for plots.
+        Title for plots and archiveType label.
     mincount : int, optional
         Minimum count threshold for plotting resolution and length. Default is 0.
+    col : str, optional
+        Color for plotting. Default is 'k' (black).
     **kwargs : dict
         Additional keyword arguments passed to `plot_coverage`.
 
     Returns
     -------
     pandas.DataFrame
-        The DataFrame with added auxiliary columns.
+        The DataFrame with added auxiliary columns ('length', 'miny', 'maxy').
+    
+    Notes
+    -----
+    This function modifies the DataFrame in place by adding new columns and
+    also calls `add_resolution_to_df` to compute resolution.
     """
     
     # add 'length, miny, maxy' to dataframe
@@ -487,6 +520,7 @@ def add_resolution_to_df(df, print_output=False, plot_output=False):
     None
         The function updates the 'resolution' column of the DataFrame in place.
     """
+
 
     # sort year and data values and obtain resolution
     df['paleoData_values']= df.apply(lambda x: x.paleoData_values[np.argsort(x.year)], axis=1)
@@ -546,7 +580,7 @@ def calc_covariance_matrix(df):
 
 def PCA(covariance):
     """
-    Performs principal component analysis using singular value decomposition (SVD).
+    Perform Principal Component Analysis using singular value decomposition (SVD).
 
     Parameters
     ----------
@@ -556,9 +590,21 @@ def PCA(covariance):
     Returns
     -------
     eigenvalues : numpy.ndarray
-        Eigenvalues from SVD (singular values).
+        Eigenvalues from SVD (singular values), sorted in descending order
+        as returned by numpy's SVD implementation.
     eigenvectors : numpy.ndarray
-        Eigenvectors corresponding to the covariance matrix.
+        Right singular vectors (Vh) corresponding to the eigenvectors of
+        the covariance matrix.
+    
+    Notes
+    -----
+    This function performs PCA on paleoclimate records. The SVD decomposition yields:
+    - U: left singular vectors (not returned)
+    - s: singular values (returned as eigenvalues)
+    - Vh: right singular vectors (returned as eigenvectors)
+    
+    The eigenvectors can be used to project the data onto principal components.
+    The eigenvalues indicate the variance explained by each component.
     """
     U, s, Vh = np.linalg.svd(covariance) # s eigenvalues, U, Vh rotation matrices
 
@@ -577,18 +623,25 @@ def fraction_of_explained_var(covariance, eigenvalues, n_recs, title='', db_name
     covariance : numpy.ndarray
         Covariance matrix of the records.
     eigenvalues : numpy.ndarray
-        Eigenvalues from PCA.
+        Eigenvalues from PCA/SVD.
     n_recs : int
         Number of records.
     title : str, optional
-        Title used in the plot.
+        Title used in the plot. Default is empty string.
     db_name : str, optional
-        Name suffix for saving the figure.
+        Name suffix for saving the figure. Default is empty string.
+    col : str, optional
+        Color for plotting. Default is 'tab:blue'.
 
     Returns
     -------
     frac_explained_var : numpy.ndarray
         Fraction of variance explained by each principal component.
+    
+    Notes
+    -----
+    Creates a dual-axis plot showing both individual and cumulative fraction
+    of explained variance. The plot is saved using `utf.figsave`.
     """
     sorter = np.argsort(eigenvalues)[::-1] # sort eigenvalues in descending order
     
@@ -626,18 +679,29 @@ def smooth(data, time, res):
     Parameters
     ----------
     data : numpy.ndarray
-        Time series data array (1D or 2D).
+        Time series data array (1D or 2D). If 2D, smoothing is applied
+        along the first dimension (rows).
     time : numpy.ndarray
-        Corresponding time axis array.
+        Corresponding time axis array. Should have same length as first
+        dimension of data.
     res : int
-        Window size for smoothing (number of points).
+        Window size for smoothing (number of points). The moving average
+        uses non-overlapping windows.
 
     Returns
     -------
     smooth_time : list
-        Smoothed time axis.
+        Smoothed time axis values, containing the mean time value for
+        each window.
     smooth_data : list
-        Smoothed data values.
+        Smoothed data values, containing the mean data value for
+        each window.
+    
+    Notes
+    -----
+    This function uses a simple non-overlapping moving average with
+    window size `res`. The output length will be approximately
+    len(data) / res (rounded down).
     """
     smooth_data = []
     smooth_time = []
@@ -648,29 +712,29 @@ def smooth(data, time, res):
 
 
 
-def haversine(ll1, ll2):
-    """
-    Calculate the great circle distance between two points on Earth.
+# def haversine(ll1, ll2):
+#     """
+#     Calculate the great circle distance between two points on Earth.
     
-    Uses the haversine formula to compute the distance between two points
-    on a sphere. This is an approximation suitable for short distances on Earth.
+#     Uses the haversine formula to compute the distance between two points
+#     on a sphere. This is an approximation suitable for short distances on Earth.
     
-    Parameters
-    ----------
-    ll1 : array-like
-        First location as [latitude, longitude] in decimal degrees.
-    ll2 : array-like
-        Second location as [latitude, longitude] in decimal degrees.
+#     Parameters
+#     ----------
+#     ll1 : array-like
+#         First location as [latitude, longitude] in decimal degrees.
+#     ll2 : array-like
+#         Second location as [latitude, longitude] in decimal degrees.
     
-    Returns
-    -------
-    float
-        Distance between the two points in kilometers.
-    """
-    r = 6371
-    p = np.pi / 180
-    a = 0.5 - np.cos((ll2[0]-ll1[0])*p)/2 + np.cos(ll1[0]*p) * np.cos(ll2[0]*p) * (1-np.cos((ll2[1]-ll1[1])*p))/2
-    return 2 * r * np.arcsin(np.sqrt(a))
+#     Returns
+#     -------
+#     float
+#         Distance between the two points in kilometers.
+#     """
+#     r = 6371
+#     p = np.pi / 180
+#     a = 0.5 - np.cos((ll2[0]-ll1[0])*p)/2 + np.cos(ll1[0]*p) * np.cos(ll2[0]*p) * (1-np.cos((ll2[1]-ll1[1])*p))/2
+#     return 2 * r * np.arcsin(np.sqrt(a))
     
 def gcd(lat1, lon1, lat2, lon2, radius=6378.137):
     """
@@ -687,7 +751,7 @@ def gcd(lat1, lon1, lat2, lon2, radius=6378.137):
     lon2 : float or array-like
         Longitude(s) of second point(s) in decimal degrees.
     radius : float, optional
-        Earth radius in kilometers. Default is 6378.137 km.
+        Earth radius in kilometers. Default is 6378.137 km (equatorial radius).
     
     Returns
     -------
@@ -698,6 +762,18 @@ def gcd(lat1, lon1, lat2, lon2, radius=6378.137):
     -----
     Uses the haversine formula for calculating distances on a sphere.
     Supports vectorized operations for arrays of coordinates.
+    
+    Examples
+    --------
+    >>> # Distance between London and Paris
+    >>> gcd(51.5074, -0.1278, 48.8566, 2.3522)
+    343.5...
+    
+    >>> # Multiple distances at once
+    >>> lats1 = [40.7, 51.5, 48.8]
+    >>> lons1 = [-74.0, -0.1, 2.3]
+    >>> gcd(lats1, lons1, 52.52, 13.40)  # Distances to Berlin
+    array([6385.7..., 930.3..., 877.4...])
     """
     # Convert degrees to radians
     lon1, lat1, lon2, lat2 = map(np.radians, [lon1, lat1, lon2, lat2])

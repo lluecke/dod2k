@@ -4,6 +4,8 @@
 
 Plotting functions for displaying data(frames).
 
+Last updated 19/12/2025 for publication of dod2k v2.0
+
 """
 import numpy as np
 import matplotlib.pyplot as plt
@@ -287,6 +289,37 @@ def plot_length(df, title='', mincount=0, col='tab:blue'):
     return 
 
 def get_archive_colours(archives_sorted, archive_count, cols= [ '#4477AA', '#EE6677', '#228833', '#CCBB44', '#66CCEE', '#AA3377', '#BBBBBB', '#44AA99', '#332288']):
+    """
+    Assign colors to archive types based on record abundance.
+
+    Parameters
+    ----------
+    archives_sorted : list of str
+        Archive types sorted in descending or preferred order, typically
+        by record count.
+    archive_count : dict
+        Dictionary mapping archive type to total number of records.
+    cols : list of str, optional
+        List of color hex codes used to assign colors to major archives.
+        The last color in the list is reserved for minor archives and
+        the aggregated ``'other'`` category.
+
+    Returns
+    -------
+    archive_colour : dict
+        Mapping from archive type to assigned color. Includes an
+        ``'other'`` entry for minor archives.
+    major_archives : list of str
+        Archive types with more than 10 records.
+    other_archives : list of str
+        Archive types with 10 or fewer records.
+
+    Notes
+    -----
+    Archive types with more than 10 records are treated as major archives
+    and assigned unique colors. All remaining archive types are grouped
+    under ``'other'`` and share a common color.
+    """
     
     archive_colour = {'other': cols[-1]}
     other_archives = []
@@ -303,6 +336,34 @@ def get_archive_colours(archives_sorted, archive_count, cols= [ '#4477AA', '#EE6
     return archive_colour, major_archives, other_archives
 
 def plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ticks, archive_colour) :
+    """
+    Plot proxy counts by archive for proxy types exceeding a count threshold.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing proxy and archive metadata (not directly
+        used for plotting but retained for consistency).
+    archive_proxy_count : dict
+        Dictionary mapping proxy identifiers (e.g., ``"archive: proxy"``)
+        to record counts.
+    archive_proxy_ticks : list of str
+        Ordered list of proxy identifiers used for tick labels.
+    archive_colour : dict
+        Mapping from archive type to color.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure containing the bar chart.
+
+    Notes
+    -----
+    Only proxy types with more than 10 records are included. Bars are
+    sorted in descending order of count. Archive type is inferred from
+    the prefix of each proxy identifier and used for color coding and
+    legend construction.
+    """
 
     fig = plt.figure(figsize=(8, 5), dpi=500)
     ax  = plt.gca()
@@ -337,6 +398,33 @@ def plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_tic
 
 
 def plot_count_proxy_by_archive_all(df, archive_proxy_count, archive_proxy_ticks, archive_colour) :
+    """
+    Plot proxy counts by archive for all proxy types.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing proxy and archive metadata (not directly
+        used for plotting but retained for consistency).
+    archive_proxy_count : dict
+        Dictionary mapping proxy identifiers (e.g., ``"archive: proxy"``)
+        to record counts.
+    archive_proxy_ticks : list of str
+        Ordered list of proxy identifiers used for tick labels.
+    archive_colour : dict
+        Mapping from archive type to color.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure containing the bar chart.
+
+    Notes
+    -----
+    All proxy types are included regardless of count. Bars are sorted in
+    descending order of record count. Archive colors are derived from
+    the archive prefix of each proxy identifier.
+    """
     fig = plt.figure(figsize=(10, 7), dpi=500)
     ax  = plt.gca()
     count_by_proxy_long   = [archive_proxy_count[tt] for tt in archive_proxy_ticks]
@@ -370,6 +458,34 @@ def plot_count_proxy_by_archive_all(df, archive_proxy_count, archive_proxy_ticks
     return fig
 
 def plot_geo_archive_proxy_short(df, archives_sorted, archive_proxy_count_short, archive_colour):
+    """
+    Plot geographical distribution of proxy records for major archive–proxy combinations.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing geographic coordinates and proxy metadata.
+        Must include ``'geo_meanLat'``, ``'geo_meanLon'``,
+        ``'archiveType'``, and ``'paleoData_proxy'``.
+    archives_sorted : list of str
+        Ordered list of archive types to control plotting and legend order.
+    archive_proxy_count_short : dict
+        Nested dictionary mapping archive types to proxy counts, including
+        grouped ``'other'`` proxy categories.
+    archive_colour : dict
+        Mapping from archive type to color.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure containing the global map.
+
+    Notes
+    -----
+    Each archive–proxy combination is plotted with a distinct marker,
+    while colors indicate archive type. Proxies classified as ``'other'``
+    are plotted using masks that exclude explicitly listed proxy types.
+    """
     
     proxy_lats = df['geo_meanLat'].values
     proxy_lons = df['geo_meanLon'].values
@@ -424,6 +540,38 @@ def plot_geo_archive_proxy_short(df, archives_sorted, archive_proxy_count_short,
 
 
 def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[], marker='default', size='default', figsize='default'):
+    """
+    Plot global distribution of proxy records grouped by archive and proxy type.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing geographic coordinates and proxy metadata.
+        Must include ``'geo_meanLat'``, ``'geo_meanLon'``,
+        ``'archiveType'``, and ``'paleoData_proxy'``.
+    archive_colour : dict
+        Mapping from archive type to color.
+    highlight_archives : list of str, optional
+        Archive types to emphasize using archive-specific marker cycling.
+    marker : str or sequence, optional
+        Marker specification. If ``'default'``, a predefined sequence
+        of marker styles is used.
+    size : int or float, optional
+        Marker size. If ``'default'``, a preset size is used.
+    figsize : tuple or str, optional
+        Figure size. If ``'default'``, a predefined size is used.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Figure containing the global map.
+
+    Notes
+    -----
+    Marker shape distinguishes proxy types, while color denotes archive
+    type. Highlighted archives reuse marker cycling per archive, whereas
+    non-highlighted archives use a global marker index.
+    """
 
     proxy_lats = df['geo_meanLat'].values
     proxy_lons = df['geo_meanLon'].values
@@ -477,6 +625,46 @@ def plot_geo_archive_proxy(df, archive_colour, highlight_archives=[], marker='de
     return fig
 
 def plot_coverage(df, archives_sorted, major_archives, other_archives, archive_colour, all=False, ysc='linear', return_data=False):
+    """
+    Plot temporal coverage of proxy records, optionally separated by archive type.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing a ``'year'`` column with iterable year values
+        for each record and an ``'archiveType'`` column.
+    archives_sorted : list of str
+        Ordered list of archive types present in the dataset.
+    major_archives : list of str
+        Archive types treated as major and plotted individually.
+    other_archives : list of str
+        Archive types grouped under the ``'other'`` category.
+    archive_colour : dict
+        Mapping from archive type (and ``'other'``) to color.
+    all : bool, optional
+        If True, plot total coverage across all archives.
+    ysc : {'linear', 'log'}, optional
+        Y-axis scale.
+    return_data : bool, optional
+        If True, return coverage arrays in addition to the figure.
+
+    Returns
+    -------
+    matplotlib.figure.Figure
+        Coverage plot figure.
+    years : numpy.ndarray, optional
+        Array of years spanning the full temporal range.
+    coverage : numpy.ndarray, optional
+        Total number of records available for each year.
+    coverage_by_archive : dict, optional
+        Dictionary mapping archive type to yearly coverage arrays.
+
+    Notes
+    -----
+    Coverage is defined as the number of records overlapping each year.
+    Archive types not classified as major are aggregated into an
+    ``'other'`` category.
+    """
     #%% compute the coverage of all records and coverage per archive 
     
     MinY     = np.array([min([float(sy) for sy in yy])  for yy in df['year']]) # find minimum year for each record

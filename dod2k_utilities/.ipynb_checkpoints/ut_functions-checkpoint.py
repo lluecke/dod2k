@@ -614,6 +614,22 @@ def convert_to_nparray(data):
     return np.ma.masked_array(data, mask)
     
 def convert_to_float(txt):
+    """
+    Convert input to a float, returning a sentinel value on failure.
+
+    Parameters
+    ----------
+    txt : any
+        Input to be converted to a float. Typically a string, but any
+        object accepted by ``float()`` is allowed.
+
+    Returns
+    -------
+    float
+        Parsed floating-point value if conversion succeeds.
+        Returns ``-9999.99`` if conversion fails for any reason
+        (e.g., invalid string, None, incompatible type).
+    """
     try:
         return float(txt)
     except:
@@ -621,7 +637,24 @@ def convert_to_float(txt):
 
 
 def parse_array_string(x):
-    """Parse string representation of array back to numpy array"""
+    """
+    Parse a string representation of a numeric array into a NumPy array.
+
+    Parameters
+    ----------
+    x : str, list, or array-like
+        Input representing an array. Supported forms include:
+        - A string of comma-separated numbers, optionally enclosed
+          in square brackets (e.g., ``"[1, 2, 3]"`` or ``"1,2,3"``).
+        - A list containing a single such string.
+        - A list or array-like object of numeric values.
+
+    Returns
+    -------
+    numpy.ndarray
+        One-dimensional NumPy array of type ``np.float32`` constructed
+        from the parsed values.
+    """
     if isinstance(x, str):
         # Remove brackets and split by comma
         x = x.strip('[]').replace('\n', '').replace(' ', '')
