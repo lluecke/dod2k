@@ -55,13 +55,19 @@ nav:
       - Duplicate Detection: tutorial/duplicate.md
       - Generate DoD2k from scratch: tutorial/from_scratch.md
       - Applications: tutorial/applications.md
-  - API Reference: api/index.md
+  - API Reference: 
+      - Overview: api/index.md
+      - Duplicate helper functions: api/ut_duplicate_search.md
+      - General helper functions: api/ut_functions.md
+      - Plotting helper functions: api/ut_plot.md
+      - Analysis helper functions: api/ut_analysis.md
   # - Databases: databases.md
   - Notebooks: 
       - Overview: notebooks/index.md
       - Explore DoD2k: notebooks/df_info.ipynb
       - Plot DoD2k: notebooks/df_plot_dod2k.ipynb
       - Filter DoD2k: notebooks/df_filter.ipynb
+      - Duplicate test database: notebooks/dup_testdatabase.ipynb
       - Duplicate Detection: notebooks/dup_detection.ipynb
       - Duplicate Decisions: notebooks/dup_decision.ipynb
       - Duplicate Removal: notebooks/dup_removal.ipynb
@@ -70,6 +76,11 @@ nav:
       - Load CoralHydro2k: notebooks/load_ch2k.ipynb
       - Load Iso2k: notebooks/load_iso2k.ipynb
       - Load FE23: notebooks/load_fe23.ipynb
+      - Merge databases: notebooks/merge_databases.ipynb
+      - Analyse speleothem records: notebooks/analysis_speleothem.ipynb
+      - Analyse moisture-temperature records: notebooks/analysis_moisttemp.ipynb
+      - Analyse moisture records: notebooks/analysis_moisture.ipynb
+      - Analyse temperature records: notebooks/analysis_temperature.ipynb
   
 markdown_extensions:
   - pymdownx.highlight
@@ -92,5 +103,7 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
   

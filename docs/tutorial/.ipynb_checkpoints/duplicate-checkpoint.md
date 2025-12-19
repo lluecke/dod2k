@@ -188,27 +188,35 @@ operator_details = [initials, fullname, email]
 
 ### 2.2 Hierarchy for duplicate removal for identical duplicates
 
-For automated decisions, which apply to *identical* duplicates, we have defined a hierarchy of databases, which decides which record should be kept.
+For automated decisions, which apply to *identical* duplicates, we have defined a hierarchy (importance level) to the databases, which automatically decides which record should be kept in case of identical data *and* metadata.
 
-The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value n (the number of original databases). The hierarchy is added to the dataframe as an additional column (`Hierarchy`) for the decision process. Note that this parameter is not migrated to the final duplicate free database. 
+The hierarchy is assigned to the original databases, from 1 the highest value (should always be kept) to the lowest value $n$ (the number of original databases). The hierarchy is added to the dataframe as an additional column (`Hierarchy`) for the decision process. 
+
+The hierarchy is added to the dataframe 
 
 ```python title='python3/Jupyter'
 # implement hierarchy for automated decisions for identical records
 
 df = dup.define_hierarchy(df, hierarchy='default')
 ```
+By default the hierarchy uses the novelty of the databases for determining the importance level: 
 
-The default hierarchy is given as
+`PAGES 2k v2.2.0` > `SISAL v3` > `CoralHydro2k v1.0.1` > `Iso2k v1.1.2` > `FE23 (Breitenmoser et al. (2014))`
 
-PAGES2k v2.2.0 < FE23 (Breitenmoser et al. (2014)) < CoralHydro2k v1.0.1 < Iso2k v1.1.2 < SISAL v3.
 
-The hierarchy can be changed by providing a dictionary to the `hierarchy` kwarg:
-```
-hierarchy={'pages2k': pages2k_value, 'fe23': fe23_value, 'iso2k': iso2k_value, 'ch2k': ch2k_value, 'sisal': sisal_value}
-```
+!!! info 
+
+    The hierarchy can be changed by providing a dictionary to the `hierarchy` kwarg:
+    ```python title='python3/Jupyter'
+    
+    df = define_hierarchy(df)  # Use default hierarchy
+    custom = {'PAGES 2k v2.2.0', 'Hierarchy': 2, 'SISAL v3': 1, 'FE23 (Breitenmoser et al. (2014))': 3, 'CoralHydro2k v1.0.': 4, 'Iso2k v1.1.2': 5}
+    df = define_hierarchy(df, hierarchy=custom)  # Custom hierarchy
+    ```
 
 !!! note
-    This hierarchy is not saved in the final duplicate-free database.
+
+    The hierarchy is not saved in the final duplicate-free database.
 
 In order to reduce the operator workload, you also have the option to implement an automatic choice for specific database combinations. Please also specify a reason when doing so!
 
@@ -328,17 +336,6 @@ Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:
 !!! note "Backup & Resume"
     The process creates backup files in `data/DB/dup_detection/`. If interrupted, you can resume from the backup.
 
-??? question "Can I Reverse a Decision?"
-
-    There is currently no option to reverse a decision while running the duplicate decisions. 
-    However should the operator want to revise a previous decision they have two options: 
-
-    1. **Most recent decision:** Interrupt the process, remove the last line from the backup file (`data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv`), then restart.
-    
-    2. **Any decision:** Interrupt and directly edit the backup file columns 'Decision 1' and 'Decision 2'. Use only: `KEEP`, `REMOVE`, or `COMPOSITE`.
-
-    3. **After completion:** Manually edit the final output file with correct terminology.
-
 
 !!! info "Handling of multiple duplicates"
     The decision process is currently not optimised for handling of multiple duplicates (i.e. records which have more than one potential duplicate candidate), going through the duplicates on a pair-by-pair basis. However, `dup.duplicate_decisions_multiple` includes improved handling of multiple duplicates. For any records which are associated with multiple duplicates, all the other duplicate candidates are shown alongside the summary figure for the duplicate candidate pair. Any previous decisions, when available, are shown besides the `datasetId`, `archiveType`, `paleoData_proxy` etc.:
@@ -359,6 +356,17 @@ Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:
     The operator can then make an informed decision for each candidate pair.
 
     
+??? question "Can I Reverse a Decision?"
+
+    There is currently no option to reverse a decision while running the duplicate decisions. 
+    However should the operator want to revise a previous decision they have two options: 
+
+    1. **Most recent decision:** Interrupt the process, remove the last line from the backup file (`data/DB/dup_detection/dup_decisions_DB_INITIALS_BACKUP.csv`), then restart.
+    
+    2. **Any decision:** Interrupt and directly edit the backup file columns 'Decision 1' and 'Decision 2'. Use only: `KEEP`, `REMOVE`, or `COMPOSITE`.
+
+    3. **After completion:** Manually edit the final output file with correct terminology.
+
 ---
 
 
@@ -366,7 +374,7 @@ Note: only overlapping timesteps are being composited. [Type 1/2/b/n/c]:
 
 **Notebook:** [`dup_removal.ipynb`](../notebooks/dup_removal.ipynb)
 
-This notebook removes duplicates based on decisions from Step 2.
+This notebook removes duplicates based on the operator's previous decisions (see Step 2).
 
 <!-- This interactive notebook (`dup_removal.ipynb`) removes the duplicates flagged in `dup_detection.ipynb`, following the decisions made in `dup_decision.ipynb`. The decisions include
 - removal of redundant duplicates
@@ -379,7 +387,7 @@ This notebook removes duplicates based on decisions from Step 2.
 
 To set up the working directory and load the compact dataframe, please follow the instructions detailed in steps 1.1 (set up working directory), 1.2 (load compact dataframe) and 2.1 (provide operator credentials).
 
-In addition, `datasetId` needs to be set as dataframe index to reliably identify the duplicates later on:
+In addition, `datasetId` is set as dataframe index to reliably identify the duplicates later on:
 ```python title='python3/Jupyter'
 df.set_index('datasetId', inplace = True)
 df['datasetId']=df.index
@@ -396,31 +404,17 @@ data, header  = dup.read_csv(filename, header=True)
 df_decisions  = pd.read_csv(filename+'.csv', header=5)
 ```
 
-`dup.read_csv` provides the `header`, which details the operator's details as provided in the decision file, along with any comments on the general decision process. Later in the notebook, `header` is written into a metadata file which should be provided alongside the duplicate free dataset. `df_decisions` is a `pandas` dataframe which is populated with the decision data, record by record, and will be used to implement the decisions to create a duplicate free dataset.
+`dup.read_csv` reads the `header`, which provides the operator's details as saved in the decision file, along with any comments on the general decision process. Later in the notebook, `header` is written into a metadata file which should be provided alongside the duplicate free dataset. `df_decisions` is a `pandas` dataframe which is populated with the decision data, record by record, and will be used to implement the decisions to create a duplicate free dataset.
 
 ### 3.3 Implement duplicate decisions
 
-From `df_decisions` we extract a dictionary which includes all decisions for each individual record:
+From `df_decisions` we extract a dictionary which includes all decisions for each individual record (instead of pairwise decisions as in `df_decisions`):
 
 ```python title='python3/Jupyter'
-decisions = {}
-for ind in df_decisions.index:
-    id1, id2   = df_decisions.loc[ind, ['datasetId 1', 'datasetId 2']]
-    dec1, dec2 = df_decisions.loc[ind, ['Decision 1', 'Decision 2']]
-    for id, dec in zip([id1, id2], [dec1, dec2]):
-        if id not in decisions: decisions[id] = []
-        decisions[id]+=[dec]
+# Collect decisions for each record
+decisions = dup.collect_record_decisions(df_decisions)
 ```
-This dictionary can be used to identify and track multiple decisions, as well as to review the choices made.
-
-
-We also extract details of each decisions, which will later be used to populate the field `duplicateDetails` in the final dataframe (the output of this notebook):
-
-
-```python title='python3/Jupyter'
-dup_details = dup.provide_dup_details(df_decisions, header)
-```
-
+This dictionary can be used to identify and track decisions for multiple duplicates (records which are associated with more than one duplicate candidate pair).
 
 !!! Note
 
@@ -432,16 +426,26 @@ dup_details = dup.provide_dup_details(df_decisions, header)
     2. **Create composites** of the `COMPOSITE` records -> `df_composite`
     3. **Check** for records which have multiple decisions associated. These are potentially remaining duplicates.
 
+
+We also extract the details of each decisions, which will later be used to populate the field `duplicateDetails` in the final dataframe (the output of this notebook). The details provide information on the nature of the decision (automatically determined or manually, i.e. by the operator), as well as operator's comments. 
+
+
+```python title='python3/Jupyter'
+# Collect duplicate details for each record
+dup_details = dup.collect_dup_details(df_decisions, header)
+```
+
+
 #### 3.3.1. Records to be removed
 First simply remove all the records to which the decision `REMOVE` or `COMPOSITE` applies to and store in `df_cleaned`, while all `'REMOVE'` or `'COMPOSITE'` type records are stored in `df_duplica_rmv` (for later inspection).
 
 ```python title='python3/Jupyter'
-# load the records TO BE REMOVED
+# load the records TO BE REMOVED OR COMPOSITED
 remove_IDs  = list(df_decisions['datasetId 1'][np.isin(df_decisions['Decision 1'],['REMOVE', 'COMPOSITE'])])
 remove_IDs += list(df_decisions['datasetId 2'][np.isin(df_decisions['Decision 2'],['REMOVE', 'COMPOSITE'])])
 remove_IDs  = np.unique(remove_IDs)
 
-df_duplica     =  df.loc[remove_IDs, 'datasetId'] # df containing only records which were removed
+df_duplica =  df.loc[remove_IDs, 'datasetId'] # df containing only records which were removed
 df_cleaned =  df.drop(remove_IDs) # df freed from 'REMOVE' type duplicates
 
 print(f'Removed {len(df_duplica)} REMOVE or COMPOSITE type records.')
@@ -496,17 +500,20 @@ This dataframe initiates a loop in which the records which are associated with m
 !!! info "Example"
 
     * `REMOVE`/`KEEP` and `COMPOSITE`:
-      - duplicate pair `a` and `b` have had the decisions assigned: `a`-> `REMOVE`, `b` -> `KEEP`
-      * duplicate pair `a` and `c` have had the decisions assigned: `a` -> `COMPOSITE`, `c` -> `COMPOSITE`.
-      * In this case, `b` and `ac` (the composite record of `a` and `c`) would be <span style="color:red">**duplicates in the merged dataframe**</span>   
+        * duplicate pair `a` and `b` have had the decisions assigned: `a` → `REMOVE`, `b` → `KEEP`
+        * duplicate pair `a` and `c` have had the decisions assigned: `a` → `COMPOSITE`, `c` → `COMPOSITE`
+        * In this case, `b` and `ac` (the composite record of `a` and `c`) would be <span style="color:red">**duplicates in the merged dataframe**</span>
+    
     * `REMOVE`/`KEEP` & `REMOVE`/`KEEP`
-      * duplicate pair `a` and `b` have had the decisions assigned: `a`-> `REMOVE`, `b` -> `KEEP`
-      * duplicate pair `a` and `c` have had the decisions assigned: `a` -> `REMOVE`, `c` -> `KEEP`.
-      * In this case, `a` would be removed, but `b` and `c` will be kept and would be <span style="color:red">**duplicates in the merged dataframe**</span>. 
-    * `COMPOSITE` x 2
-      * duplicate pair `a` and `b` have had the decisions assigned: `a`-> `COMPOSITE`, `b` -> `COMPOSITE`
-      * duplicate pair `a` and `c` have had the decisions assigned: `a` -> `COMPOSITE`, `c` -> `COMPOSITE`.
-      * In this case, `ab` and `ac` would be <span style="color:red">**duplicates in the merged dataframe**</span>.
+        * duplicate pair `a` and `b` have had the decisions assigned: `a` → `REMOVE`, `b` → `KEEP`
+        * duplicate pair `a` and `c` have had the decisions assigned: `a` → `REMOVE`, `c` → `KEEP`
+        * In this case, `a` would be removed, but `b` and `c` will be kept and would be <span style="color:red">**duplicates in the merged dataframe**</span>
+    
+    * `COMPOSITE` × 2
+        * duplicate pair `a` and `b` have had the decisions assigned: `a` → `COMPOSITE`, `b` → `COMPOSITE`
+        * duplicate pair `a` and `c` have had the decisions assigned: `a` → `COMPOSITE`, `c` → `COMPOSITE`
+        * In this case, `ab` and `ac` would be <span style="color:red">**duplicates in the merged dataframe**</span>
+
 
 The loop iterates for a maximum of ten, but stops as soon as no duplicates are detected anymore in the dataframe subset. Note that this loop only checks among the records associated with more than one decision. In each iteration, the operator also has the opportunity to end the duplicate search. Note also that it is not advised to create multiple iterations of composites. 
 

@@ -23,7 +23,7 @@ Since these databases may share a number of records, these databases were subjec
 Under `dod2k/notebooks` you can find the notebook `[df_plot_dod2k.ipynb](df_plot_dod2k.ipynb)`. This notebook visualises the dataframe and produces summary figures of the database. It also reproduces the manuscript figures. 
 
 Import the python libraries
-```python 
+```python title='python3/Jupyter' 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -38,7 +38,7 @@ from dod2k_utilities import ut_plot as uplt # contains plotting functions
 
 After loading the dataframe, start off by counting the number of records in each archive type:
 
-```python
+```python title='python3/Jupyter'
 # count archive types
 archive_count = {}
 for ii, at in enumerate(set(df['archiveType'])):
@@ -46,7 +46,7 @@ for ii, at in enumerate(set(df['archiveType'])):
 ```
 
 Now count the number of records for each proxy type, depending on the archive type:
-```python
+```python title='python3/Jupyter'
 archive_proxy_count = {}
 archive_proxy_ticks = []
 for ii, at in enumerate(set(df['archiveType'])):
@@ -58,7 +58,7 @@ for ii, at in enumerate(set(df['archiveType'])):
 ```
 
 For each archive type, specify colours for each archive, but also distinguish between major archives (which have the most records) and minor archives (rare ones, only including less than ten records):
-```python
+```python title='python3/Jupyter'
 archive_colour = {'other': cols[-1]}
 other_archives = []
 major_archives = []
@@ -75,9 +75,9 @@ for ii, at in enumerate(archives_sorted):
         other_archives     +=[at]
         archive_colour[at] = cols[-1]
 ```
-Now plot a bar chart of the major archives using [`plot_count_proxy_by_archive_short()`](api/ut_plot.md#plot_count_proxy_by_archive_short)
+Now plot a bar chart of the major archives using [`plot_count_proxy_by_archive_short()`](api/ut_plot.md)
 
-```python
+```python title='python3/Jupyter'
 uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ticks, archive_colour) 
 ```
 
@@ -88,7 +88,7 @@ uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ti
 
 Next plot a spatial plot of all the proxy records:
 
-```python
+```python title='python3/Jupyter'
 #%% plot the spatial distribution of all records
 proxy_lats = df['geo_meanLat'].values
 proxy_lons = df['geo_meanLon'].values

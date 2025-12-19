@@ -954,338 +954,338 @@ def plot_duplicates(df, save_figures=True, write_output=True, display=False):
 #==============================================================================
 
 
-def duplicate_decisions(df, operator_details=False, choose_recollection=True, #keep_all=False, 
-                        plot=True, remove_identicals=True, dist_tolerance_km=8):
-    """
-    Review potential duplicate pairs in a proxy database and decide which records to keep, remove, or combine.
+# def duplicate_decisions(df, operator_details=False, choose_recollection=True, #keep_all=False, 
+#                         plot=True, remove_identicals=True, dist_tolerance_km=8):
+#     """
+#     Review potential duplicate pairs in a proxy database and decide which records to keep, remove, or combine.
 
-    This function walks through each potential duplicate pair identified in a dataset,
-    displays metadata and optionally plots the data, and allows the operator to make decisions.
-    Decisions are saved to a CSV file, and a duplicate-free dataframe can be generated.
+#     This function walks through each potential duplicate pair identified in a dataset,
+#     displays metadata and optionally plots the data, and allows the operator to make decisions.
+#     Decisions are saved to a CSV file, and a duplicate-free dataframe can be generated.
 
-    Parameters
-    ----------
-    df : pd.DataFrame
-        The dataframe containing proxy data and metadata. Expected columns include:
-            - 'geo_meanLat', 'geo_meanLon' : Latitude and longitude of the site.
-            - 'year', 'paleoData_values' : Time vector and proxy values.
-            - 'archiveType', 'paleoData_proxy' : Archive type and proxy type.
-            - 'datasetId' : Unique identifier or dataset name.
-            - 'geo_siteName' : Site name.
-            - 'originalDatabase' : Name of the original database.
-            - 'geo_meanElev' : Mean elevation of the site (optional for duplicate checks).
-            - 'Hierarchy' : Numeric value representing dataset priority (used for auto-decisions).
-            - 'originalDataURL' : URL of the original dataset.
+#     Parameters
+#     ----------
+#     df : pd.DataFrame
+#         The dataframe containing proxy data and metadata. Expected columns include:
+#             - 'geo_meanLat', 'geo_meanLon' : Latitude and longitude of the site.
+#             - 'year', 'paleoData_values' : Time vector and proxy values.
+#             - 'archiveType', 'paleoData_proxy' : Archive type and proxy type.
+#             - 'datasetId' : Unique identifier or dataset name.
+#             - 'geo_siteName' : Site name.
+#             - 'originalDatabase' : Name of the original database.
+#             - 'geo_meanElev' : Mean elevation of the site (optional for duplicate checks).
+#             - 'Hierarchy' : Numeric value representing dataset priority (used for auto-decisions).
+#             - 'originalDataURL' : URL of the original dataset.
 
-    operator_details : tuple or bool, optional
-        Tuple containing (initials, fullname, email) of the operator. If False, user input is requested.
-        Default is False.
-    choose_recollection : bool, optional
-        If True, automatically selects the record that is a recollection or update when applicable.
-        Default is True.
-    plot : bool, optional
-        If True, generate plots for manual inspection of duplicate pairs. Default is True.
-    remove_identicals : bool, optional
-        If True, automatically remove records that are identical in data and metadata. Default is True.
-    dist_tolerance_km : float, optional
-        Maximum distance (in km) for considering records as recollection updates. Default is 8 km.
+#     operator_details : tuple or bool, optional
+#         Tuple containing (initials, fullname, email) of the operator. If False, user input is requested.
+#         Default is False.
+#     choose_recollection : bool, optional
+#         If True, automatically selects the record that is a recollection or update when applicable.
+#         Default is True.
+#     plot : bool, optional
+#         If True, generate plots for manual inspection of duplicate pairs. Default is True.
+#     remove_identicals : bool, optional
+#         If True, automatically remove records that are identical in data and metadata. Default is True.
+#     dist_tolerance_km : float, optional
+#         Maximum distance (in km) for considering records as recollection updates. Default is 8 km.
 
-    Returns
-    -------
-    None
-        Decisions are saved as CSV backup and final CSV in the `df.name/dup_detection/` directory.
+#     Returns
+#     -------
+#     None
+#         Decisions are saved as CSV backup and final CSV in the `df.name/dup_detection/` directory.
 
-    Notes
-    -----
-    - Automatic decisions are made based on data identity, metadata identity, perfect correlation,
-      and recollection indicators in site names.
-    - Manual decisions are prompted via command-line input if automatic rules do not apply.
-    - Decision types include:
-        - 'AUTO: UPDATE' : Automatically select record that is a recollection/update.
-        - 'AUTO: IDENTICAL' : Automatically select record based on hierarchy if records are identical.
-        - 'MANUAL' : Decision requires operator input.
-    - Figures are saved with a standardized naming convention and linked in the CSV output.
-    """
+#     Notes
+#     -----
+#     - Automatic decisions are made based on data identity, metadata identity, perfect correlation,
+#       and recollection indicators in site names.
+#     - Manual decisions are prompted via command-line input if automatic rules do not apply.
+#     - Decision types include:
+#         - 'AUTO: UPDATE' : Automatically select record that is a recollection/update.
+#         - 'AUTO: IDENTICAL' : Automatically select record based on hierarchy if records are identical.
+#         - 'MANUAL' : Decision requires operator input.
+#     - Figures are saved with a standardized naming convention and linked in the CSV output.
+#     """
 
-    import datetime
-    # Select the metadata keys to show on the output figures - keys depend on the 
-    # dataframe and need to be determined according to the dataframe input. 
-    # if using this code on fused_database.pkl, make sure that all entries are available 
-    # in the dataframe1 Use fuse_datasets.py to fuse and homogenise metadata  of different databases.
+#     import datetime
+#     # Select the metadata keys to show on the output figures - keys depend on the 
+#     # dataframe and need to be determined according to the dataframe input. 
+#     # if using this code on fused_database.pkl, make sure that all entries are available 
+#     # in the dataframe1 Use fuse_datasets.py to fuse and homogenise metadata  of different databases.
 
-    if not operator_details:
-        initials = input('Please enter your initials here:')
-        fullname = input('Please enter your full name here:')
-        email    = input('Please enter your email address here:')
-    else:
-        initials, fullname, email = operator_details
-    date_time= str(datetime.datetime.utcnow())+' (UTC)'
-    header   = [['# Decisions for duplicate candidate pairs. ']]
-    header  += [['# Operated by %s (%s)'%(fullname, initials)]]
-    header  += [['# E-Mail: %s'%email]]
-    header  += [['# Created on: %s'%date_time]]
+#     if not operator_details:
+#         initials = input('Please enter your initials here:')
+#         fullname = input('Please enter your full name here:')
+#         email    = input('Please enter your email address here:')
+#     else:
+#         initials, fullname, email = operator_details
+#     date_time= str(datetime.datetime.utcnow())+' (UTC)'
+#     header   = [['# Decisions for duplicate candidate pairs. ']]
+#     header  += [['# Operated by %s (%s)'%(fullname, initials)]]
+#     header  += [['# E-Mail: %s'%email]]
+#     header  += [['# Created on: %s'%date_time]]
 
     
-    dirname = 'data/%s/dup_detection/'%(df.name)
-    filename = f'dup_decisions_{df.name}' # name of csv file which saves duplicate candidate pairs
+#     dirname = 'data/%s/dup_detection/'%(df.name)
+#     filename = f'dup_decisions_{df.name}' # name of csv file which saves duplicate candidate pairs
     
-    filename+=f'_{initials}'
+#     filename+=f'_{initials}'
     
-    detection_file = dirname+'dup_detection_candidates_'+df.name
+#     detection_file = dirname+'dup_detection_candidates_'+df.name
     
-    if not os.path.exists(dirname):
-        os.makedirs(dirname)
+#     if not os.path.exists(dirname):
+#         os.makedirs(dirname)
 
-    # try to load data from backup!
-    try:
-        data, hh = read_csv(dirname+filename+'_BACKUP', header=True, last_header_row=4)
-        backup_file=input(f'Found backup file ({dirname+filename}_BACKUP.csv). Do you want to start decision process from the backup file? [y/n]')
-        if backup_file=='n':
-            raise FileNotFoundError
-        data, hh = read_csv(dirname+filename+'_BACKUP', header=True, last_header_row=4)
-        print('header', hh)
-        print('data', list(data))
-        data = list(data)
+#     # try to load data from backup!
+#     try:
+#         data, hh = read_csv(dirname+filename+'_BACKUP', header=True, last_header_row=4)
+#         backup_file=input(f'Found backup file ({dirname+filename}_BACKUP.csv). Do you want to start decision process from the backup file? [y/n]')
+#         if backup_file=='n':
+#             raise FileNotFoundError
+#         data, hh = read_csv(dirname+filename+'_BACKUP', header=True, last_header_row=4)
+#         print('header', hh)
+#         print('data', list(data))
+#         data = list(data)
         
-        load_saved_data      = True
-        last_index = len(data)
-        print('start with index: ', last_index)
-    except FileNotFoundError:
-        print('No back up.')
-        load_saved_data      = False
-        data = []
-        pass
+#         load_saved_data      = True
+#         last_index = len(data)
+#         print('start with index: ', last_index)
+#     except FileNotFoundError:
+#         print('No back up.')
+#         load_saved_data      = False
+#         data = []
+#         pass
 
-    # load the potential duplicate data as found in find_duplicates function
-    pot_dup_meta, head = read_csv(detection_file, header=True)
+#     # load the potential duplicate data as found in find_duplicates function
+#     pot_dup_meta, head = read_csv(detection_file, header=True)
 
-    pot_dup_inds   = np.array(np.array(pot_dup_meta)[:, :2], dtype=int)  # indices for each pairs
-    # pot_dup_IDs    = np.array(np.array(pot_dup_meta)[:, 2:4], dtype=int) # IDs for each pairs
-    pot_dup_corrs  = np.array(np.array(pot_dup_meta)[:, 4], dtype=float)
-    pot_dup_dists  = np.array(np.array(pot_dup_meta)[:, 5], dtype=float)
+#     pot_dup_inds   = np.array(np.array(pot_dup_meta)[:, :2], dtype=int)  # indices for each pairs
+#     # pot_dup_IDs    = np.array(np.array(pot_dup_meta)[:, 2:4], dtype=int) # IDs for each pairs
+#     pot_dup_corrs  = np.array(np.array(pot_dup_meta)[:, 4], dtype=float)
+#     pot_dup_dists  = np.array(np.array(pot_dup_meta)[:, 5], dtype=float)
 
 
-    n_pot_dups   = pot_dup_inds.shape[0]
+#     n_pot_dups   = pot_dup_inds.shape[0]
     
-    # loop through the potential duplicates.
-    decisions = ['KEEP']*df.shape[0] #set False if index should be discarded from dataset.
-    cols    = [['index 1', 'index 2', 'figure path',
-                'datasetId 1', 'datasetId 2', 
-                'originalDatabase 1', 'originalDatabase 2',
-                'geo_siteName 1', 'geo_siteName 2', 
-                'geo_meanLat 1', 'geo_meanLat 2', 
-                'geo_meanLon 1', 'geo_meanLon 2', 
-                'geo_meanElevation 1', 'geo_meanElevation 2', 
-                'archiveType 1', 'archiveType 2',
-                'paleoData_proxy 1', 'paleoData_proxy 2',
-                'originalDataURL 1', 'originalDataURL 2',
-                'year 1', 'year 2',
-                'Decision 1', 'Decision 2',
-                'Decision type', 'Decision comment' ]]
-    dup_dec = []
+#     # loop through the potential duplicates.
+#     decisions = ['KEEP']*df.shape[0] #set False if index should be discarded from dataset.
+#     cols    = [['index 1', 'index 2', 'figure path',
+#                 'datasetId 1', 'datasetId 2', 
+#                 'originalDatabase 1', 'originalDatabase 2',
+#                 'geo_siteName 1', 'geo_siteName 2', 
+#                 'geo_meanLat 1', 'geo_meanLat 2', 
+#                 'geo_meanLon 1', 'geo_meanLon 2', 
+#                 'geo_meanElevation 1', 'geo_meanElevation 2', 
+#                 'archiveType 1', 'archiveType 2',
+#                 'paleoData_proxy 1', 'paleoData_proxy 2',
+#                 'originalDataURL 1', 'originalDataURL 2',
+#                 'year 1', 'year 2',
+#                 'Decision 1', 'Decision 2',
+#                 'Decision type', 'Decision comment' ]]
+#     dup_dec = []
 
     
-        # Write header and existing data ONCE before the loop (only if starting fresh)
-    if not load_saved_data:
-        with open(dirname+filename+'_BACKUP.csv', 'w', newline='') as f:
-            writer = csv.writer(f)
-            writer.writerows(header)
-            writer.writerows(cols)
-    else:
-        # If loading from backup, populate dup_dec with existing data
-        for data_row in list(data):
-            dup_dec += [list(data_row)]
+#         # Write header and existing data ONCE before the loop (only if starting fresh)
+#     if not load_saved_data:
+#         with open(dirname+filename+'_BACKUP.csv', 'w', newline='') as f:
+#             writer = csv.writer(f)
+#             writer.writerows(header)
+#             writer.writerows(cols)
+#     else:
+#         # If loading from backup, populate dup_dec with existing data
+#         for data_row in list(data):
+#             dup_dec += [list(data_row)]
             
-    # Open backup file in APPEND mode for writing new decisions
-    with open(dirname+filename+'_BACKUP.csv', 'a', newline='') as f:
-        writer = csv.writer(f)
+#     # Open backup file in APPEND mode for writing new decisions
+#     with open(dirname+filename+'_BACKUP.csv', 'a', newline='') as f:
+#         writer = csv.writer(f)
         
-        for i_pot_dups, (ii, jj) in enumerate(pot_dup_inds):
-            if load_saved_data:
-                if i_pot_dups<last_index: continue
-                else:
-                    print(ii, jj, last_index, i_pot_dups)
-            # data and metadata associated with the two potential duplicates
-            id_1, id_2       = df['datasetId'].iloc[[ii, jj]]
-            time_1, time_2   = df['year'].iloc[[ii, jj]]
-            time_12, int_1, int_2 = np.intersect1d(time_1, time_2, return_indices=True) 
-            data_1           = np.array(df['paleoData_values'].iloc[ii])
-            data_2           = np.array(df['paleoData_values'].iloc[jj])
+#         for i_pot_dups, (ii, jj) in enumerate(pot_dup_inds):
+#             if load_saved_data:
+#                 if i_pot_dups<last_index: continue
+#                 else:
+#                     print(ii, jj, last_index, i_pot_dups)
+#             # data and metadata associated with the two potential duplicates
+#             id_1, id_2       = df['datasetId'].iloc[[ii, jj]]
+#             time_1, time_2   = df['year'].iloc[[ii, jj]]
+#             time_12, int_1, int_2 = np.intersect1d(time_1, time_2, return_indices=True) 
+#             data_1           = np.array(df['paleoData_values'].iloc[ii])
+#             data_2           = np.array(df['paleoData_values'].iloc[jj])
             
-            lat_1, lat_2     = df['geo_meanLat'].iloc[[ii, jj]]
-            lon_1, lon_2     = df['geo_meanLon'].iloc[[ii, jj]]
-            site_1, site_2   = df['geo_siteName'].iloc[[ii, jj]]
-            or_db_1, or_db_2 = df['originalDatabase'].iloc[[ii, jj]]
+#             lat_1, lat_2     = df['geo_meanLat'].iloc[[ii, jj]]
+#             lon_1, lon_2     = df['geo_meanLon'].iloc[[ii, jj]]
+#             site_1, site_2   = df['geo_siteName'].iloc[[ii, jj]]
+#             or_db_1, or_db_2 = df['originalDatabase'].iloc[[ii, jj]]
 
-            auto_choice = '1' if df['Hierarchy'].iloc[ii]>=df['Hierarchy'].iloc[jj] else '2'
+#             auto_choice = '1' if df['Hierarchy'].iloc[ii]>=df['Hierarchy'].iloc[jj] else '2'
             
-            print('> %d/%d'%(i_pot_dups+1, n_pot_dups), #set_txt, 
-                   id_1, id_2, #var_1, var_2, season_1,season_2,
-                   pot_dup_dists[i_pot_dups], pot_dup_corrs[i_pot_dups],
-                   sep=',')
+#             print('> %d/%d'%(i_pot_dups+1, n_pot_dups), #set_txt, 
+#                    id_1, id_2, #var_1, var_2, season_1,season_2,
+#                    pot_dup_dists[i_pot_dups], pot_dup_corrs[i_pot_dups],
+#                    sep=',')
         
-            # Print the interpretation values 
-            print('====================================================================')
-            print('=== POTENTIAL DUPLICATE %d/%d'%(i_pot_dups, n_pot_dups)+': %s+%s ==='%(df['datasetId'].iloc[ii], df['datasetId'].iloc[jj]))
-            print('=== URL 1: %s   ==='%(df['originalDataURL'].iloc[ii]))
-            print('=== URL 2: %s   ==='%(df['originalDataURL'].iloc[jj]))
+#             # Print the interpretation values 
+#             print('====================================================================')
+#             print('=== POTENTIAL DUPLICATE %d/%d'%(i_pot_dups, n_pot_dups)+': %s+%s ==='%(df['datasetId'].iloc[ii], df['datasetId'].iloc[jj]))
+#             print('=== URL 1: %s   ==='%(df['originalDataURL'].iloc[ii]))
+#             print('=== URL 2: %s   ==='%(df['originalDataURL'].iloc[jj]))
             
-            keep = ''
-            dec_comment = ''
+#             keep = ''
+#             dec_comment = ''
 
             
-            elevation_nan = (np.isnan(df['geo_meanElev'].iloc[ii])|
-                             np.isnan(df['geo_meanElev'].iloc[jj]))
+#             elevation_nan = (np.isnan(df['geo_meanElev'].iloc[ii])|
+#                              np.isnan(df['geo_meanElev'].iloc[jj]))
             
-            metadata_identical = ((np.abs(lat_1-lat_2)<=0.1) & 
-                                  (np.abs(lon_1-lon_2)<=0.1)  & 
-                                  ((np.abs(df['geo_meanElev'].iloc[ii]-df['geo_meanElev'].iloc[jj])<=1) 
-                                    | elevation_nan) & 
-                                  (df['archiveType'].iloc[ii]==df['archiveType'].iloc[jj]) & 
-                                  (df['paleoData_proxy'].iloc[ii]==df['paleoData_proxy'].iloc[jj]) 
-                                 )
-            sites_identical     = site_1==site_2
-            URL_identical       = (df['originalDataURL'].iloc[ii]==df['originalDataURL'].iloc[jj]) 
-            # print(data_1, data_2)
-            data_identical      = (list(data_1)==list(data_2)) & (list(time_1)==list(time_2))
-            correlation_perfect = (True if pot_dup_corrs[i_pot_dups]>=0.98 else False) & (len(time_1)==len(time_2))
-            print('True if pot_dup_corrs[i_pot_dups]>=0.98 else False', True if pot_dup_corrs[i_pot_dups]>=0.98 else False)
-            print('(len(time_1)==len(time_2))', (len(time_1)==len(time_2)))
+#             metadata_identical = ((np.abs(lat_1-lat_2)<=0.1) & 
+#                                   (np.abs(lon_1-lon_2)<=0.1)  & 
+#                                   ((np.abs(df['geo_meanElev'].iloc[ii]-df['geo_meanElev'].iloc[jj])<=1) 
+#                                     | elevation_nan) & 
+#                                   (df['archiveType'].iloc[ii]==df['archiveType'].iloc[jj]) & 
+#                                   (df['paleoData_proxy'].iloc[ii]==df['paleoData_proxy'].iloc[jj]) 
+#                                  )
+#             sites_identical     = site_1==site_2
+#             URL_identical       = (df['originalDataURL'].iloc[ii]==df['originalDataURL'].iloc[jj]) 
+#             # print(data_1, data_2)
+#             data_identical      = (list(data_1)==list(data_2)) & (list(time_1)==list(time_2))
+#             correlation_perfect = (True if pot_dup_corrs[i_pot_dups]>=0.98 else False) & (len(time_1)==len(time_2))
+#             print('True if pot_dup_corrs[i_pot_dups]>=0.98 else False', True if pot_dup_corrs[i_pot_dups]>=0.98 else False)
+#             print('(len(time_1)==len(time_2))', (len(time_1)==len(time_2)))
             
-            print('metadata_identical: ', metadata_identical)
-            print('lat', (np.abs(lat_1-lat_2)<=0.1), 'lon' , (np.abs(lon_1-lon_2)<=0.1)   ,'elevation',
-                                  ( (np.abs(df['geo_meanElev'].iloc[ii]-df['geo_meanElev'].iloc[jj])<=1) 
-                                    | elevation_nan) , 'archivetype',
-                                  (df['archiveType'].iloc[ii]==df['archiveType'].iloc[jj]) ,'paleodata_proxy',
-                                  (df['paleoData_proxy'].iloc[ii]==df['paleoData_proxy'].iloc[jj]) 
-                                 )
-            print('sites_identical: ', sites_identical)
-            print('URL_identical: ', URL_identical)
-            print('data_identical: ', data_identical)
-            print('correlation_perfect: ', correlation_perfect)
-            figpath = 'no figure'
-            while keep not in ['1', '2', 'b', 'n', 'c']:
-                # go through the data and metadata and check if decision is =automatic or manual
-                if (choose_recollection 
-                    # if record 1 is update of record 2, choose 1
-                      & np.any([(ss in site_1.lower()) for ss in ['recollect', 'update', 're-collect']]) 
-                      & (pot_dup_dists[i_pot_dups]<dist_tolerance_km)
-                      & ~np.any([ss in site_2.lower() for ss in ['recollect', 'update', 're-collect']])
-                     ):
-                    keep = '1'
-                    dec_comment = 'Record 1 (%s) is UPDATE of record 2(%s) . Automatically choose 1.'%(id_1, id_2)
-                    print(dec_comment)
-                    dec_type='AUTO: UPDATE'
-                elif (choose_recollection 
-                      # if record 2 is update of record 1, choose 2
-                      & np.any([ss in site_2.lower() for ss in ['recollect', 'update', 're-collect']]) 
-                      & (pot_dup_dists[i_pot_dups]<dist_tolerance_km)
-                      & ~np.any([ss in site_1.lower() for ss in ['recollect', 'update', 're-collect']])
-                     ):
-                    keep = '2'
-                    dec_comment = 'Record 2 (%s) is UPDATE of record 1 (%s). Automatically choose 2.'%(id_2, id_1)
-                    print(dec_comment)
-                    dec_type='AUTO: UPDATE'
-                elif (remove_identicals & metadata_identical & sites_identical & URL_identical & (data_identical|correlation_perfect)):
-                    # if all metadata and data matches, choose record according to hierarchy of databases
-                    if data_identical:
-                        dec_comment = 'RECORDS IDENTICAL (identical data). Automatically choose #%s.'%auto_choice
-                    else:
-                        dec_comment = 'RECORDS IDENTICAL (perfect correlation). Automatically choose #%s.'%auto_choice
+#             print('metadata_identical: ', metadata_identical)
+#             print('lat', (np.abs(lat_1-lat_2)<=0.1), 'lon' , (np.abs(lon_1-lon_2)<=0.1)   ,'elevation',
+#                                   ( (np.abs(df['geo_meanElev'].iloc[ii]-df['geo_meanElev'].iloc[jj])<=1) 
+#                                     | elevation_nan) , 'archivetype',
+#                                   (df['archiveType'].iloc[ii]==df['archiveType'].iloc[jj]) ,'paleodata_proxy',
+#                                   (df['paleoData_proxy'].iloc[ii]==df['paleoData_proxy'].iloc[jj]) 
+#                                  )
+#             print('sites_identical: ', sites_identical)
+#             print('URL_identical: ', URL_identical)
+#             print('data_identical: ', data_identical)
+#             print('correlation_perfect: ', correlation_perfect)
+#             figpath = 'no figure'
+#             while keep not in ['1', '2', 'b', 'n', 'c']:
+#                 # go through the data and metadata and check if decision is =automatic or manual
+#                 if (choose_recollection 
+#                     # if record 1 is update of record 2, choose 1
+#                       & np.any([(ss in site_1.lower()) for ss in ['recollect', 'update', 're-collect']]) 
+#                       & (pot_dup_dists[i_pot_dups]<dist_tolerance_km)
+#                       & ~np.any([ss in site_2.lower() for ss in ['recollect', 'update', 're-collect']])
+#                      ):
+#                     keep = '1'
+#                     dec_comment = 'Record 1 (%s) is UPDATE of record 2(%s) . Automatically choose 1.'%(id_1, id_2)
+#                     print(dec_comment)
+#                     dec_type='AUTO: UPDATE'
+#                 elif (choose_recollection 
+#                       # if record 2 is update of record 1, choose 2
+#                       & np.any([ss in site_2.lower() for ss in ['recollect', 'update', 're-collect']]) 
+#                       & (pot_dup_dists[i_pot_dups]<dist_tolerance_km)
+#                       & ~np.any([ss in site_1.lower() for ss in ['recollect', 'update', 're-collect']])
+#                      ):
+#                     keep = '2'
+#                     dec_comment = 'Record 2 (%s) is UPDATE of record 1 (%s). Automatically choose 2.'%(id_2, id_1)
+#                     print(dec_comment)
+#                     dec_type='AUTO: UPDATE'
+#                 elif (remove_identicals & metadata_identical & sites_identical & URL_identical & (data_identical|correlation_perfect)):
+#                     # if all metadata and data matches, choose record according to hierarchy of databases
+#                     if data_identical:
+#                         dec_comment = 'RECORDS IDENTICAL (identical data). Automatically choose #%s.'%auto_choice
+#                     else:
+#                         dec_comment = 'RECORDS IDENTICAL (perfect correlation). Automatically choose #%s.'%auto_choice
                     
-                    print(dec_comment)
-                    keep = auto_choice#'1'
-                    dec_type='AUTO: IDENTICAL'
-                elif (remove_identicals & (data_identical|correlation_perfect)):
-                    # if most metadata and data matches except URL and/or site name, choose record according to hierarchy of databases
-                    if data_identical:
-                        dec_comment = 'RECORDS IDENTICAL (identical data) except for metadata. Automatically choose #%s.'%auto_choice
-                    else:
-                        dec_comment = 'RECORDS IDENTICAL (perfect correlation) except for metadata. Automatically choose #%s.'%auto_choice
+#                     print(dec_comment)
+#                     keep = auto_choice#'1'
+#                     dec_type='AUTO: IDENTICAL'
+#                 elif (remove_identicals & (data_identical|correlation_perfect)):
+#                     # if most metadata and data matches except URL and/or site name, choose record according to hierarchy of databases
+#                     if data_identical:
+#                         dec_comment = 'RECORDS IDENTICAL (identical data) except for metadata. Automatically choose #%s.'%auto_choice
+#                     else:
+#                         dec_comment = 'RECORDS IDENTICAL (perfect correlation) except for metadata. Automatically choose #%s.'%auto_choice
                         
-                    print(dec_comment)
-                    keep = auto_choice#'1'
-                    dec_type='AUTO: IDENTICAL except for URLs and/or geo_siteName.'
+#                     print(dec_comment)
+#                     keep = auto_choice#'1'
+#                     dec_type='AUTO: IDENTICAL except for URLs and/or geo_siteName.'
                     
-                else:
+#                 else:
                     
-                    dec_type = 'MANUAL'
-                    fig, dup_mdata_row = dup_plot(df, ii, jj, id_1, id_2, time_1, time_2, time_12, data_1, data_2, int_1, int_2, pot_dup_corrs[i_pot_dups])
-                    plt.show(block=False)
-                    print('**Decision required for this duplicate pair (see figure above).**')
+#                     dec_type = 'MANUAL'
+#                     fig, dup_mdata_row = dup_plot(df, ii, jj, id_1, id_2, time_1, time_2, time_12, data_1, data_2, int_1, int_2, pot_dup_corrs[i_pot_dups])
+#                     plt.show(block=False)
+#                     print('**Decision required for this duplicate pair (see figure above).**')
                     
-                    print('Before inputting your decision. Would you like to leave a comment on your decision process?')
-                    dec_comment = input(f'{i_pot_dups+1}/{n_pot_dups}: **COMMENT** Please type your comment here and/or press enter.')
-                    keep = input(f'{i_pot_dups+1}/{n_pot_dups}: **DECISION** Keep record 1 (%s, blue circles) [1], record 2 (%s, red crosses) [2], keep both [b], keep none [n] or create a composite of both records [c]?  [Type 1/2/b/n/c]:'%(id_1, id_2))
+#                     print('Before inputting your decision. Would you like to leave a comment on your decision process?')
+#                     dec_comment = input(f'{i_pot_dups+1}/{n_pot_dups}: **COMMENT** Please type your comment here and/or press enter.')
+#                     keep = input(f'{i_pot_dups+1}/{n_pot_dups}: **DECISION** Keep record 1 (%s, blue circles) [1], record 2 (%s, red crosses) [2], keep both [b], keep none [n] or create a composite of both records [c]?  [Type 1/2/b/n/c]:'%(id_1, id_2))
 
                 
                 
-                    save_fig(fig, '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d'%(ii,jj), dir=f'/dup_detection/{df.name}', figformat='jpg')
+#                     save_fig(fig, '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d'%(ii,jj), dir=f'/dup_detection/{df.name}', figformat='jpg')
         
                     
-                    figpath    = 'https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/%s'%df.name
-                    figpath  += '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d,jpg'%(ii,jj)
+#                     figpath    = 'https://nzero.umd.edu:444/hub/user-redirect/lab/tree/dod2k_v2.0/figs/dup_detection/%s'%df.name
+#                     figpath  += '%03d_%s_%s'%(i_pot_dups, id_1, id_2)+'_'+'_%d_%d,jpg'%(ii,jj)
                     
-                # now write down the decision
-                if keep=='1':
-                    print('KEEP BLUE CIRCLES: keep %s, remove %s.'%(id_1, id_2))
-                    decisions[ii]='KEEP'
-                    decisions[jj]='REMOVE'
-                elif keep=='2':
-                    print('KEEP RED CROSSES: remove %s, keep %s.'%(id_1, id_2))
-                    decisions[jj]='KEEP'
-                    decisions[ii]='REMOVE'
-                elif keep=='n':
-                    print('REMOVE BOTH: remove %s, remove %s.'%(id_2, id_1))
-                    decisions[ii]='REMOVE'
-                    decisions[jj]='REMOVE'
-                elif keep=='b':
-                    print('KEEP BOTH: keep %s, keep %s.'%(id_1, id_2))
-                    decisions[ii]='KEEP'
-                    decisions[jj]='KEEP'
-                elif keep=='c':
-                    print('CREATE A COMPOSITE OF BOTH RECORDS: %s, %s.'%(id_1, id_2))
-                    decisions[ii]='COMPOSITE'
-                    decisions[jj]='COMPOSITE'
+#                 # now write down the decision
+#                 if keep=='1':
+#                     print('KEEP BLUE CIRCLES: keep %s, remove %s.'%(id_1, id_2))
+#                     decisions[ii]='KEEP'
+#                     decisions[jj]='REMOVE'
+#                 elif keep=='2':
+#                     print('KEEP RED CROSSES: remove %s, keep %s.'%(id_1, id_2))
+#                     decisions[jj]='KEEP'
+#                     decisions[ii]='REMOVE'
+#                 elif keep=='n':
+#                     print('REMOVE BOTH: remove %s, remove %s.'%(id_2, id_1))
+#                     decisions[ii]='REMOVE'
+#                     decisions[jj]='REMOVE'
+#                 elif keep=='b':
+#                     print('KEEP BOTH: keep %s, keep %s.'%(id_1, id_2))
+#                     decisions[ii]='KEEP'
+#                     decisions[jj]='KEEP'
+#                 elif keep=='c':
+#                     print('CREATE A COMPOSITE OF BOTH RECORDS: %s, %s.'%(id_1, id_2))
+#                     decisions[ii]='COMPOSITE'
+#                     decisions[jj]='COMPOSITE'
 
 
             
-            cand_pair =[[ii, jj, figpath,
-                        id_1, id_2, or_db_1, or_db_2, site_1, site_2,
-                        lat_1, lat_2, lon_1, lon_2, 
-                        df['geo_meanElev'].iloc[ii], df['geo_meanElev'].iloc[jj],
-                        df['archiveType'].iloc[ii], df['archiveType'].iloc[jj],
-                        df['paleoData_proxy'].iloc[ii], df['paleoData_proxy'].iloc[jj],
-                        df['originalDataURL'].iloc[ii], df['originalDataURL'].iloc[jj],
-                        '%3.1f-%3.1f'%(np.min(df['year'].iloc[ii]), np.max(df['year'].iloc[ii])), 
-                        '%3.1f-%3.1f'%(np.min(df['year'].iloc[jj]), np.max(df['year'].iloc[jj])), 
-                        decisions[ii], decisions[jj],
-                        dec_type, dec_comment]]
-            dup_dec  += cand_pair
-            writer.writerows(cand_pair)
-            print('write decision to backup file')
-            # raise Exception
+#             cand_pair =[[ii, jj, figpath,
+#                         id_1, id_2, or_db_1, or_db_2, site_1, site_2,
+#                         lat_1, lat_2, lon_1, lon_2, 
+#                         df['geo_meanElev'].iloc[ii], df['geo_meanElev'].iloc[jj],
+#                         df['archiveType'].iloc[ii], df['archiveType'].iloc[jj],
+#                         df['paleoData_proxy'].iloc[ii], df['paleoData_proxy'].iloc[jj],
+#                         df['originalDataURL'].iloc[ii], df['originalDataURL'].iloc[jj],
+#                         '%3.1f-%3.1f'%(np.min(df['year'].iloc[ii]), np.max(df['year'].iloc[ii])), 
+#                         '%3.1f-%3.1f'%(np.min(df['year'].iloc[jj]), np.max(df['year'].iloc[jj])), 
+#                         decisions[ii], decisions[jj],
+#                         dec_type, dec_comment]]
+#             dup_dec  += cand_pair
+#             writer.writerows(cand_pair)
+#             print('write decision to backup file')
+#             # raise Exception
         
-    print('=====================================================================')
-    print('END OF DUPLICATE DECISION PROCESS.')
-    print('=====================================================================')
+#     print('=====================================================================')
+#     print('END OF DUPLICATE DECISION PROCESS.')
+#     print('=====================================================================')
 
-    comment = '# '+input('Type your comment on your decision process here and/or press enter:')
-    header  += [[comment]]
-    # header  += cols
+#     comment = '# '+input('Type your comment on your decision process here and/or press enter:')
+#     header  += [[comment]]
+#     # header  += cols
     
-    print(np.array(dup_dec).shape)
-    filename +=f'_{date_time[2:10]}'
-    write_csv(np.array(dup_dec), dirname+filename, header=header, cols=cols)
-    print('Saved the decisions under %s.csv'%(dirname+filename))
+#     print(np.array(dup_dec).shape)
+#     filename +=f'_{date_time[2:10]}'
+#     write_csv(np.array(dup_dec), dirname+filename, header=header, cols=cols)
+#     print('Saved the decisions under %s.csv'%(dirname+filename))
     
-    print('Summary of all decisions made:')
-    for ii_d in range(len(dup_dec)):
-        keep_1=dup_dec[ii_d][-4]
-        keep_2=dup_dec[ii_d][-3]
-        print('#%d: %s record %s. %s record %s.'%(ii_d, keep_1, dup_dec[ii_d][3], 
-                                                  keep_2, dup_dec[ii_d][4]))
-    return 
+#     print('Summary of all decisions made:')
+#     for ii_d in range(len(dup_dec)):
+#         keep_1=dup_dec[ii_d][-4]
+#         keep_2=dup_dec[ii_d][-3]
+#         print('#%d: %s record %s. %s record %s.'%(ii_d, keep_1, dup_dec[ii_d][3], 
+#                                                   keep_2, dup_dec[ii_d][4]))
+#     return 
 
 
 def duplicate_decisions_multiple(df, operator_details=False, choose_recollection=True, #keep_all=False, 
@@ -1298,7 +1298,7 @@ def duplicate_decisions_multiple(df, operator_details=False, choose_recollection
     displays metadata and optionally plots the data, and allows the operator to make decisions.
     Decisions are saved to a CSV file, and a duplicate-free dataframe can be generated.
 
-    ALLOWS FOR MULTIPLE DUPLICATES!
+    Copied from duplicate_decisions but improved handling of multiple duplicates.
 
     Parameters
     ----------
@@ -2402,7 +2402,54 @@ def join_composites_metadata(df, comp_ID_pairs, df_decisions, header):
     return df_comp
 
 
-def provide_dup_details(df_decisions, header):
+def collect_dup_details(df_decisions, header):
+    """
+    Generate duplicate details dictionary from decision records.
+    
+    Creates a nested dictionary structure containing information about all
+    duplicate relationships and decisions made during the duplicate review process.
+
+    Parameters
+    ----------
+    df_decisions : pandas.DataFrame
+        DataFrame containing duplicate decisions with columns:
+        - 'Decision 1', 'Decision 2': Decision for each record (KEEP/REMOVE/COMPOSITE)
+        - 'datasetId 1', 'datasetId 2': IDs of the duplicate pair
+        - 'originalDatabase 1', 'originalDatabase 2': Source databases
+        - 'Decision type': Type of decision (MANUAL/AUTO)
+        - 'Decision comment': Comments on the decision (for manual decisions)
+    header : list
+        Header information from the decision file containing operator details:
+        [0]: File description
+        [1]: Operator name and initials
+        [2]: Email
+        [3]: Creation timestamp
+
+    Returns
+    -------
+    dup_details : dict
+        Nested dictionary with structure:
+        {record_id: {
+            duplicate_count: {
+                'duplicate ID': str,
+                'duplicate database': str,
+                'duplicate decision': str,
+                'decision type': str,
+                'operator': str (for manual decisions),
+                'note': str (for manual decisions)
+            }
+        }}
+    
+    Notes
+    -----
+    - Only processes pairs where at least one record is not kept (true duplicates)
+    - Each record gets an entry for every duplicate relationship it has
+    - Manual decisions include operator details extracted from the header
+    - Automatic decisions have 'N/A' for operator and note fields
+    
+    The returned dictionary can be used to populate the 'duplicateDetails' field
+    in the final deduplicated database.
+    """
     dup_details = {}
     dup_counts  = {}
     for ind in df_decisions.index:
@@ -2430,3 +2477,38 @@ def provide_dup_details(df_decisions, header):
                 dup_details[id][dup_counts[id]]['operator'] = 'N/A'
                 dup_details[id][dup_counts[id]]['note'] = 'N/A'       
     return dup_details
+
+def collect_record_decisions(df_decisions):
+    """
+    Collect per-record decisions from a pairwise decision table.
+
+    Parameters
+    ----------
+    df_decisions : pandas.DataFrame
+        DataFrame containing pairwise record comparisons. Must include
+        the columns ``'datasetId 1'``, ``'datasetId 2'``,
+        ``'Decision 1'``, and ``'Decision 2'``, where each row represents
+        a comparison between two dataset records and the associated
+        decisions for each record.
+
+    Returns
+    -------
+    decisions : dict
+        Dictionary mapping each dataset ID to a list of decisions
+        associated with that record across all comparisons.
+
+    Notes
+    -----
+    Each row contributes two entries: one for ``'datasetId 1'`` paired
+    with ``'Decision 1'`` and one for ``'datasetId 2'`` paired with
+    ``'Decision 2'``. Records appearing in multiple rows accumulate
+    multiple decision entries in their corresponding list.
+    """
+    decisions = {}
+    for ind in df_decisions.index:
+        id1, id2   = df_decisions.loc[ind, ['datasetId 1', 'datasetId 2']]
+        dec1, dec2 = df_decisions.loc[ind, ['Decision 1', 'Decision 2']]
+        for id, dec in zip([id1, id2], [dec1, dec2]):
+            if id not in decisions: decisions[id] = []
+            decisions[id]+=[dec]
+    return decisions

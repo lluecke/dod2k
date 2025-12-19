@@ -88,11 +88,12 @@ Interactive Jupyter notebooks for working with DoD2k. Each notebook provides a c
     
     [:octicons-arrow-right-24: Open notebook](dup_removal.ipynb)
 
+
 </div>
 
 ---
 
-## Visualization & Analysis
+## Visualization & Exploration
 
 <div class="grid cards" markdown>
 
@@ -119,6 +120,53 @@ Interactive Jupyter notebooks for working with DoD2k. Each notebook provides a c
     Filter records by metadata criteria (archive type, location, etc.)
     
     [:octicons-arrow-right-24: Open notebook](df_filter.ipynb)
+
+</div>
+
+---
+
+## Analysis of filtered database
+
+<div class="grid cards" markdown>
+
+-   :material-thermometer-water:{ .lg .middle } __Moisture and temperature-moisture records__
+
+    ---
+
+    Analyse moisture and moisture-temperature sensitive records 
+    
+    [:octicons-arrow-right-24: Open notebook](analysis_moisttemp.ipynb)
+
+    
+
+-   :material-terrain:{ .lg .middle } __Speleothem records only__
+
+    ---
+
+    Analyse speleothem records
+    
+    [:octicons-arrow-right-24: Open notebook](analysis_speleothem.ipynb)
+    
+
+
+-   :material-water:{ .lg .middle } __Moisture records only__
+
+    ---
+
+    
+    Analyse moisture sensitive records 
+    
+    [:octicons-arrow-right-24: Open notebook](analysis_moisture.ipynb)
+
+    
+-   :material-thermometer:{ .lg .middle } __Temperature records__
+
+    ---
+
+    Analyse temperature sensitive records 
+    
+    [:octicons-arrow-right-24: Open notebook](analysis_temperature.ipynb)
+    
 
 </div>
 

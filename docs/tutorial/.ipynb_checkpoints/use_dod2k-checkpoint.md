@@ -65,7 +65,7 @@ sys.path.insert(0, str(dod2k))
 print(dod2k)
 from dod2k_utilities.ut_functions import load_compact_dataframe_from_csv
 ```
-The function `load_compact_dataframe_from_csv` imports the different csv files and stitches them together to form a dataframe. See [`load_compact_dataframe_from_csv()`](../api/ut_functions.md#load_compact_dataframe_from_csv) for details.
+The function `load_compact_dataframe_from_csv` imports the different csv files and stitches them together to form a dataframe. See [`load_compact_dataframe_from_csv()`](../api/ut_functions.md) for details.
 
 ### Step 2: Load the data from csv
 ```python
@@ -235,7 +235,7 @@ for ii, at in enumerate(archives_sorted):
         other_archives     +=[at]
         archive_colour[at] = cols[-1]
 ```
-Now plot a bar chart of the major archives using [`plot_count_proxy_by_archive_short()`](../api/ut_plot.md#plot_count_proxy_by_archive_short)
+Now plot a bar chart of the major archives using [`plot_count_proxy_by_archive_short()`](../api/ut_plot.md)
 
 ```python
 uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ticks, archive_colour) 
