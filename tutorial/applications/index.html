@@ -794,6 +794,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#psm-on-database-filtered-for-archivetype-and-paleodata_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      PSM on database filtered for archiveType and paleoData_proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PSM on database filtered for archiveType and paleoData_proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#speleothem-delta18o-calcite-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speleothem $\delta^{18}O$ calcite records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1493,6 +1517,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#psm-on-database-filtered-for-archivetype-and-paleodata_proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      PSM on database filtered for archiveType and paleoData_proxy
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PSM on database filtered for archiveType and paleoData_proxy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#speleothem-delta18o-calcite-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Speleothem $\delta^{18}O$ calcite records
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1521,15 +1569,48 @@
 <ol>
 <li>
 <p>Loads the filtered database for moisture and moisture-temperature records only</p>
-<p>db_name = 'dod2k_v2.0_filtered_M_TM'</p>
-<h1 id="load-dataframe">load dataframe</h1>
-<p>df = utf.load_compact_dataframe_from_csv(db_name)
-print(df.info())
-df.name = db_name</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">db_name</span> <span class="o">=</span> <span class="s1">&#39;dod2k_v2.0_filtered_M_TM&#39;</span>
+
+<span class="c1"># load dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">utf</span><span class="o">.</span><span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+<span class="n">df</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">db_name</span>
+</code></pre></div>
 </li>
 <li>
 <p>Filter <code>archive_type</code> and <code>paleoData_proxy</code> (defines subset) and produces summary plots of the data, in particular regarding: coverage, resolution and length of the records. This gives us information for the next step, in which we need to choose the parameters for the PCA</p>
 </li>
+</ol>
+<p>!!! example</p>
+<p>For <code>archiveType</code> W</p>
+<div class="highlight"><pre><span></span><code>```python title=&#39;python3/Jupyter&#39;
+# (1) filter for archiveType and/or paleoData_proxy: 
+
+at = &#39;Wood&#39;
+pt = &#39;ring width&#39;
+key = &#39;%s_%s&#39;%(at, pt)
+
+keys += [key]
+
+df_proxy = df.copy().loc[(df[&#39;archiveType&#39;]==at)].loc[(df[&#39;paleoData_proxy&#39;]==pt)] # filter records for specific archive and proxy type
+
+n_recs = len(df_proxy) # number of records
+print(&#39;n_records   : &#39;, n_recs)
+
+print(&#39;archive type: &#39;, set(df_proxy[&#39;archiveType&#39;]))
+print(&#39;proxy type:   &#39;, set(df_proxy[&#39;paleoData_proxy&#39;]))
+
+# (2) plot the spatial distribution of records
+geo_fig, col = uplt.geo_plot(df_proxy, return_col=True)
+
+# (3) plot the coverage for proxy types and plot resolution
+
+uta.convert_subannual_to_annual_res(df_proxy)
+
+df_proxy = uta.add_auxvars_plot_summary(df_proxy, key, col=col[at])
+```
+</code></pre></div>
+<ol>
 <li>Define proxy specific parameters for the PCA:<ul>
 <li>period (start and end year): choose a period of sufficient data density (all records chosen for the analysis need to at least overlap during this period)</li>
 <li>minimum resolution: records exceeding this resolution are being excluded from the analysis. Records with higher resolution will be subsampled to create homogeneous resolution across all the records.</li>

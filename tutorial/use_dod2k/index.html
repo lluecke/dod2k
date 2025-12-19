@@ -1752,7 +1752,7 @@ which shows the details of the duplicate screening process (date, operator crede
 <h2 id="loading-the-database-from-csv"><strong>Loading the database from csv</strong></h2>
 <h3 id="step-1-set-up-your-environment">Step 1: Set up your environment</h3>
 <p>Start in the repository root directory (<code>dod2k/</code>). From here import</p>
-<p><div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<p><div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="c1"># Add dod2k to path</span>
@@ -1763,7 +1763,7 @@ which shows the details of the duplicate screening process (date, operator crede
 </code></pre></div>
 The function <code>load_compact_dataframe_from_csv</code> imports the different csv files and stitches them together to form a dataframe. See <a href="../../api/ut_functions/"><code>load_compact_dataframe_from_csv()</code></a> for details.</p>
 <h3 id="step-2-load-the-data-from-csv">Step 2: Load the data from csv</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Load the duplicate-free database</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># Load the duplicate-free database</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">load_compact_dataframe_from_csv</span><span class="p">(</span><span class="s1">&#39;dod2k&#39;</span><span class="p">)</span>
 
 <span class="c1"># Check the shape</span>
@@ -1773,7 +1773,7 @@ The function <code>load_compact_dataframe_from_csv</code> imports the different 
 <h2 id="alternatively-load-the-database-from-the-pickle">Alternatively: Load the database from the pickle</h2>
 <p>For faster loading and if you only need python access, use the pickle format.
 Make sure you start in the repository root directory (<code>dod2k</code>). From here import
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 <span class="c1"># Load the duplicate-free database</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;/data/dod2k_dupfree_dupfree/dod2k_compact.pkl&#39;</span><span class="p">)</span>
@@ -1782,7 +1782,7 @@ Make sure you start in the repository root directory (<code>dod2k</code>). From 
 </code></pre></div></p>
 <h2 id="explore-the-dataframe-and-visualise-the-data"><strong>Explore the dataframe and visualise the data</strong></h2>
 <h3 id="step-3-explore-the-dataframe-column-by-column">Step 3: Explore the dataframe column by column</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 </code></pre></div>
 <p>Under <code>dod2k/notebooks</code> you can find the notebook <code>df_info.ipynb</code>. This notebook goes through the dataframe column by column and shows you a quick summary of the entries. </p>
@@ -1849,7 +1849,7 @@ The interactive notebook then goes through each column and shows the entries, fo
 <h3 id="step-4-visualise-the-dataframe">Step 4: Visualise the dataframe</h3>
 <p>Under <code>dod2k/notebooks</code> you can find the notebook <code>df_plot_dod2k.ipynb</code>. This notebook visualises the dataframe and produces summary figures of the database. It also reproduces the manuscript figures. </p>
 <p>Import the python libraries
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
@@ -1861,13 +1861,13 @@ The interactive notebook then goes through each column and shows the entries, fo
 <span class="kn">from</span><span class="w"> </span><span class="nn">dod2k_utilities</span><span class="w"> </span><span class="kn">import</span> <span class="n">ut_plot</span> <span class="k">as</span> <span class="n">uplt</span> <span class="c1"># contains plotting functions</span>
 </code></pre></div></p>
 <p>After loading the dataframe, start off by counting the number of records in each archive type:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># count archive types</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># count archive types</span>
 <span class="n">archive_count</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">at</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;archiveType&#39;</span><span class="p">])):</span>
     <span class="n">archive_count</span><span class="p">[</span><span class="n">at</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;archiveType&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">at</span><span class="p">,</span> <span class="s1">&#39;archiveType&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </code></pre></div>
 <p>Now count the number of records for each proxy type, depending on the archive type:
-<div class="highlight"><pre><span></span><code><span class="n">archive_proxy_count</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">archive_proxy_count</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">archive_proxy_ticks</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">ii</span><span class="p">,</span> <span class="n">at</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;archiveType&#39;</span><span class="p">])):</span>
     <span class="n">proxy_types</span>   <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;paleoData_proxy&#39;</span><span class="p">][</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;archiveType&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">at</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -1877,7 +1877,7 @@ The interactive notebook then goes through each column and shows the entries, fo
         <span class="n">archive_proxy_ticks</span> <span class="o">+=</span> <span class="p">[</span><span class="n">at</span><span class="o">+</span><span class="s1">&#39;: &#39;</span><span class="o">+</span><span class="n">pt</span><span class="p">]</span>
 </code></pre></div></p>
 <p>For each archive type, specify colours for each archive, but also distinguish between major archives (which have the most records) and minor archives (rare ones, only including less than ten records):
-<div class="highlight"><pre><span></span><code><span class="n">archive_colour</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;other&#39;</span><span class="p">:</span> <span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">archive_colour</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;other&#39;</span><span class="p">:</span> <span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
 <span class="n">other_archives</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">major_archives</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -1894,7 +1894,7 @@ The interactive notebook then goes through each column and shows the entries, fo
         <span class="n">archive_colour</span><span class="p">[</span><span class="n">at</span><span class="p">]</span> <span class="o">=</span> <span class="n">cols</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 </code></pre></div>
 Now plot a bar chart of the major archives using <a href="../../api/ut_plot/"><code>plot_count_proxy_by_archive_short()</code></a></p>
-<div class="highlight"><pre><span></span><code><span class="n">uplt</span><span class="o">.</span><span class="n">plot_count_proxy_by_archive_short</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archive_proxy_count</span><span class="p">,</span> <span class="n">archive_proxy_ticks</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span> 
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">uplt</span><span class="o">.</span><span class="n">plot_count_proxy_by_archive_short</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">archive_proxy_count</span><span class="p">,</span> <span class="n">archive_proxy_ticks</span><span class="p">,</span> <span class="n">archive_colour</span><span class="p">)</span> 
 </code></pre></div>
 <figure>
   <img alt="Archive barchart" src="../../assets/images/dod2k_barchart.png" width="800" />
@@ -1902,7 +1902,7 @@ Now plot a bar chart of the major archives using <a href="../../api/ut_plot/"><c
 <figcaption>Figure 1: Number of records for each proxy type, by archive.</figcaption>
 </figure>
 <p>Next plot a spatial plot of all the proxy records:</p>
-<div class="highlight"><pre><span></span><code><span class="c1">#%% plot the spatial distribution of all records</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1">#%% plot the spatial distribution of all records</span>
 <span class="n">proxy_lats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;geo_meanLat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="n">proxy_lons</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;geo_meanLon&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
@@ -1961,7 +1961,7 @@ Now plot a bar chart of the major archives using <a href="../../api/ut_plot/"><c
 <p>Under <code>dod2k/notebooks</code> you can find the notebook <code>df_filter.ipynb</code>. This notebook let's you filter the dataframe for a specific metadata type, e.g. for moisture sensitive records, or for tree/TRW type records, etc.</p>
 <p>This notebook then saves the filtered dataframe as a compact dataframe under <code>dod2k/data</code>, from which it can be loaded by other notebooks (e.g. <code>df_plot_dod2k.ipynb</code>).</p>
 <p>Start by loading the dataframe, then filter using e.g. 
-<div class="highlight"><pre><span></span><code><span class="c1"># # filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># # filter for &gt;&gt;exclusively moisture&lt;&lt; sensitive records only (without t+m)</span>
 <span class="n">df_filter</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;climateInterpretation_variable&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;moisture&#39;</span><span class="p">)]</span>
 </code></pre></div></p>
 <p>The resulting dataframe can then be saved and used as input for <code>df_info.ipynb</code> or <code>df_plot_dod2k.ipynb</code>, or you can add this line to another notebook if you prefer. </p>
