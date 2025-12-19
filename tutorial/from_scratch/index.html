@@ -1543,7 +1543,7 @@ and subsequently
 <p>The notebook processes duplicates in four steps:</p>
 <ol>
 <li>
-<p><strong>Remove duplicate record</strong> - All records flagged for removal or compositing are saved in <code>df_duplica</code> (for inspection) and dropped from the cleaned dataframe <code>df_cleaned</code></p>
+<p><strong>Remove duplicate record</strong>: All records flagged for removal or compositing are saved in <code>df_duplica</code> (for inspection) and dropped from the cleaned dataframe <code>df_cleaned</code></p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records TO BE REMOVED OR COMPOSITED</span>
 <span class="n">remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
 <span class="n">remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
@@ -1562,7 +1562,7 @@ and subsequently
 </code></pre></div>
 </li>
 <li>
-<p><strong>Create composites</strong> - Records marked as <code>COMPOSITE</code> are averaged (z-scores for data values, means for coordinates) and given new composite IDs. Summary figures are generated for quality control.</p>
+<p><strong>Create composites</strong>: Records marked as <code>COMPOSITE</code> are averaged (z-scores for data values, means for coordinates) and given new composite IDs. Summary figures are generated for quality control.</p>
 <div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="c1"># load the records to be composited</span>
 <span class="n">comp_ID_pairs</span> <span class="o">=</span> <span class="n">df_decisions</span><span class="p">[(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
 
@@ -1572,12 +1572,14 @@ and subsequently
 </code></pre></div>
 </li>
 <li>
-<p><strong>Join and check for overlapping decisions</strong> -</p>
+<p><strong>Join and check for overlapping decisions</strong>: The duplicate free dataframe is obtained by joining </p>
 </li>
+<li><code>df_cleaned</code> (duplicate free as all records with decision <code>REMOVE</code> and/or <code>COMPOSITE</code> removed) and</li>
+<li><code>df_composite</code> (dupicate free as duplicates are composited)</li>
 </ol>
-<p>The duplicate free dataframe is obtained by joining 
-- <code>df_cleaned</code> (duplicate free as all records with decision <code>REMOVE</code> and/or <code>COMPOSITE</code> removed) and
-- <code>df_composite</code> (dupicate free as duplicates are composited)</p>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code>    <span class="n">tmp_df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_cleaned</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
+    <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span>
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>There might still be duplicates between the two dataframes: when a record has been associated with more than 1 duplicate candidate pair. Therefore, we loop through the records in the joined dataframe which have been associated with multiple duplicates.</p>
@@ -1697,35 +1699,74 @@ and subsequently
 </code></pre></div>
 </div>
 <ol>
-<li>
-<p><strong>Check again for remaining duplicates in the entire dataframe</strong></p>
-</li>
-<li>
-<p><strong>Merge results</strong> - Cleaned records (<code>df_dupfree_rmv</code>) and composites (<code>df_composite</code>) are combined into the final duplicate-free database</p>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tmp_df_dupfree_rmv</span><span class="p">,</span> <span class="n">tmp_df_composite</span><span class="p">])</span>
-</code></pre></div>
-</li>
+<li><strong>Check again for remaining duplicates in the entire dataframe</strong>: The resulting dataframe should be checked once more for resulting duplicates. This can be dome by setting up a loop of the duplicate workflow until no more duplicates are found:</li>
 </ol>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code>    <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">tmp_df_dupfree</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="c1"># Now we create a  dataframe which needs to be checked for duplicates.</span>
+    <span class="n">df_check</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">df_check</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;tmp&#39;</span>
+    <span class="n">df_check</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_check</span><span class="p">))</span>
+    <span class="c1"># We then run a brief duplicate detection algorithm on the dataframe. Note that by default the composited data has the highest value in the hierarchy.</span>
+    <span class="n">pot_dup_IDs</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">find_duplicates_optimized</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">n_points_thresh</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pot_dup_IDs</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;SUCCESS!! NO MORE DUPLICATES DETECTED!!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">df_check</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">define_hierarchy</span><span class="p">(</span><span class="n">df_check</span><span class="p">)</span>
+        <span class="n">dup</span><span class="o">.</span><span class="n">duplicate_decisions_multiple</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">operator_details</span><span class="o">=</span><span class="n">operator_details</span><span class="p">,</span> <span class="n">choose_recollection</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+                                <span class="n">remove_identicals</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">backup</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="c1"># implement the decisions</span>
+        <span class="n">tmp_df_decisions</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_check</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/dup_detection/dup_decisions_</span><span class="si">{</span><span class="n">df_check</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">&#39;</span><span class="o">+</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">tmp_dup_details</span>   <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">provide_dup_details</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+
+
+        <span class="c1"># decisions</span>
+        <span class="n">tmp_decisions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ind</span> <span class="ow">in</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+            <span class="n">id1</span><span class="p">,</span> <span class="n">id2</span>   <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">,</span> <span class="s1">&#39;datasetId 2&#39;</span><span class="p">]]</span>
+            <span class="n">dec1</span><span class="p">,</span> <span class="n">dec2</span> <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">,</span> <span class="s1">&#39;Decision 2&#39;</span><span class="p">]]</span>
+            <span class="k">for</span> <span class="nb">id</span><span class="p">,</span> <span class="n">dec</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="n">id1</span><span class="p">,</span> <span class="n">id2</span><span class="p">],</span> <span class="p">[</span><span class="n">dec1</span><span class="p">,</span> <span class="n">dec2</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tmp_decisions</span><span class="p">:</span> <span class="n">tmp_decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">tmp_decisions</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">+=</span><span class="p">[</span><span class="n">dec</span><span class="p">]</span>
+
+        <span class="n">df_check</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;datasetId&#39;</span><span class="p">,</span> <span class="n">inplace</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">df_check</span><span class="p">[</span><span class="s1">&#39;datasetId&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df_check</span><span class="o">.</span><span class="n">index</span>
+
+        <span class="c1">#drop all REMOVE or COMPOSITE types</span>
+        <span class="n">tmp_remove_IDs</span>  <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 1&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+        <span class="n">tmp_remove_IDs</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;datasetId 2&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">],[</span><span class="s1">&#39;REMOVE&#39;</span><span class="p">,</span> <span class="s1">&#39;COMPOSITE&#39;</span><span class="p">])])</span>
+        <span class="n">tmp_remove_IDs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">tmp_remove_IDs</span><span class="p">)</span><span class="c1">#[id for id in np.unique(tmp_remove_IDs) if id not in tmp_remove_IDs]</span>
+        <span class="n">tmp_df_cleaned</span> <span class="o">=</span> <span class="n">tmp_df_dupfree</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">tmp_remove_IDs</span><span class="p">)</span> <span class="c1"># df freed from &#39;REMOVE&#39; type duplicates</span>
+
+        <span class="c1"># # composite the </span>
+        <span class="n">tmp_comp_ID_pairs</span> <span class="o">=</span> <span class="n">tmp_df_decisions</span><span class="p">[(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 1&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">tmp_df_decisions</span><span class="p">[</span><span class="s1">&#39;Decision 2&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;COMPOSITE&#39;</span><span class="p">)]</span>
+
+        <span class="c1"># # create new composite data and metadata from the pairs</span>
+        <span class="c1"># # loop through the composite pairs and check metadata</span>
+        <span class="n">tmp_df_composite</span> <span class="o">=</span> <span class="n">dup</span><span class="o">.</span><span class="n">join_composites_metadata</span><span class="p">(</span><span class="n">df_check</span><span class="p">,</span> <span class="n">tmp_comp_ID_pairs</span><span class="p">,</span> <span class="n">tmp_df_decisions</span><span class="p">,</span> <span class="n">header</span><span class="p">)</span>
+
+        <span class="n">tmp_df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">tmp_df_cleaned</span><span class="p">,</span> <span class="n">tmp_df_composite</span><span class="p">])</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finished last round of duplicate removal.&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Potentially run through this cell again to check for remaining duplicates.&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This process once again goes, at least once, through the entire duplicate detection, decision and removal workflow and might therefore take a considerable amount of time. </p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Detailed Instructions</p>
 <p>For complete step-by-step code and explanations, see Section 3.3 of the <a href="../duplicate/#33-implement-duplicate-decisions">Duplicate Detection Tutorial</a>.</p>
 </div>
 <p><strong>Save the duplicate-free database:</strong>
-<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code><span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_dupfree_rmv</span><span class="p">,</span> <span class="n">df_composite</span><span class="p">])</span>
-<span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
+<div class="highlight"><span class="filename">python3/Jupyter</span><pre><span></span><code>    <span class="n">df_dupfree</span> <span class="o">=</span> <span class="n">df_dupfree</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">columns</span><span class="p">)]</span>
+    <span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">initials</span><span class="si">}</span><span class="s1">_</span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s1">_dupfree&#39;</span>
 
-<span class="c1"># Create output directory</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/&#39;</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># Save files</span>
-<span class="n">df_dupfree</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_compact.pkl&#39;</span><span class="p">)</span>
-<span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df_dupfree</span><span class="p">)</span>
-
-<span class="c1"># Save metadata README</span>
-<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;data/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">df_dupfree</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">_dupfree_README.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">header</span><span class="p">:</span>
-    <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="c1"># save to a list of csv files (metadata, data, year)</span>
+    <span class="n">utf</span><span class="o">.</span><span class="n">write_compact_dataframe_to_csv</span><span class="p">(</span><span class="n">df_dupfree</span><span class="p">)</span>
 </code></pre></div></p>
 <p><strong>Output:</strong> Duplicate-free database saved in <code>data/all_merged_INITIALS_DATE_dupfree/</code></p>
 <div class="admonition success">
@@ -1803,11 +1844,11 @@ After creating the initial duplicate-free database, you may want to verify no re
 
 If additional duplicates are found, repeat Steps 3.2 and 3.3. This creates a `dupfree_dupfree` database, ensuring thoroughness.
  -->
+<!-- 
+!!! success "Duplicate Detection Complete"
+    The database is now free of duplicates and ready for analysis. 
 
-<div class="admonition success">
-<p class="admonition-title">Duplicate Detection Complete</p>
-<p>The database is now free of duplicates and ready for analysis. </p>
-</div>
+ -->
 <!-- ## Step 5: Load and Visualize the Final Database
 
 **Notebook:** [df_info.ipynb](../notebooks/df_info.ipynb) and [df_plot_dod2k.ipynb](../notebooks/df_plot_dod2k.ipynb)
