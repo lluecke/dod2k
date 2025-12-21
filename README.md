@@ -64,7 +64,7 @@ How to get started with the dod2k environment, functions, notebooks and products
         
     2. For speleothem analysis:
        
-       To run ```notebooks/S_analysis_v1.6.ipynb``` you will first need to create the directory ```data/speleothem_modeling_inputs```, and download into it data from their source urls:
+       To run ```notebooks/analysis_speleothem.ipynb``` you will first need to create the directory ```data/speleothem_modeling_inputs```, and download into it data from their source urls:
     
     ```
     mkdir speleothem_modeling_inputs
@@ -74,6 +74,7 @@ How to get started with the dod2k environment, functions, notebooks and products
     wget https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.07/cruts.2304141047.v4.07/tmp/cru_ts4.07.1901.2022.tmp.dat.nc.gz
     gunzip cru_ts4.07.1901.2022.tmp.dat.nc.gz
     ```
+       Windows users may have to install wget (https://gnuwin32.sourceforge.net/packages/wget.htm), or install the data into the appropriate directories through other means.
 
 
 
