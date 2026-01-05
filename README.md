@@ -18,7 +18,7 @@ DoD2k (Database of Databases 2k) integrates five major paleoclimate databases:
 | **SISAL** | v3 | [ORA](https://ora.ox.ac.uk/objects/uuid:1e91e2ac-ca9f-46e5-85f3-8d82d4d3cfd4) | [Kaushal et al. 2024](https://essd.copernicus.org/articles/16/1933/2024/) | 546 | speleothems |
 | **Iso2k** | v1.1.2 | [LiPDverse](https://lipdverse.org/iso2k/current_version/) | [Konecky et al. 2020](https://essd.copernicus.org/articles/12/2261/2020/) |435 | multi-proxy|
 | **CoralHydro2k** | v1.0.1 | [LiPDverse](https://lipdverse.org/CoralHydro2k/current_version/) | [Walter et al. 2023](https://essd.copernicus.org/articles/15/2081/2023/) |221| corals|
-| **FE23** | - | [NCEI](https://www.ncei.noaa.gov/access/paleo-search/study/36773) | [Evans et al. 2022](https://cp.copernicus.org/articles/18/2583/2022/) |2754| tree-rings |
+| **FE23** | - | [NCEI](https://www.ncei.noaa.gov/access/paleo-search/study/36773) | [Franke, Evans et al. 2022](https://cp.copernicus.org/articles/18/2583/2022/) |2754| tree-rings |
 
 
 
