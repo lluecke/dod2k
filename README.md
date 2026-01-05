@@ -74,6 +74,7 @@ How to get started with the dod2k environment, functions, notebooks and products
     wget https://crudata.uea.ac.uk/cru/data/hrg/cru_ts_4.07/cruts.2304141047.v4.07/tmp/cru_ts4.07.1901.2022.tmp.dat.nc.gz
     gunzip cru_ts4.07.1901.2022.tmp.dat.nc.gz
     ```
+    
        Windows users may have to install wget (https://gnuwin32.sourceforge.net/packages/wget.htm), or install the data into the appropriate directories through other means. It should be noted that wget is also used used in many of the load files in the notebooks directory.
 
 
