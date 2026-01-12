@@ -110,31 +110,34 @@ print(df.info())
 
 ```text title="Output"
 <class 'pandas.core.frame.DataFrame'>
-RangeIndex: 4516 entries, 0 to 4515
-Data columns (total 19 columns):
- #   Column                                Non-Null Count  Dtype  
----  ------                                --------------  -----  
- 0   archiveType                           4516 non-null   object 
- 1   climateInterpretation_variable        4516 non-null   object 
- 2   climateInterpretation_variableDetail  4516 non-null   object 
- 3   dataSetName                           4516 non-null   object 
- 4   datasetId                             4516 non-null   object 
- 5   duplicateDetails                      4516 non-null   object 
- 6   geo_meanElev                          4433 non-null   float32
- 7   geo_meanLat                           4516 non-null   float32
- 8   geo_meanLon                           4516 non-null   float32
- 9   geo_siteName                          4516 non-null   object 
- 10  originalDataURL                       4516 non-null   object 
- 11  originalDatabase                      4516 non-null   object 
- 12  paleoData_notes                       4516 non-null   object 
- 13  paleoData_proxy                       4516 non-null   object 
- 14  paleoData_sensorSpecies               4516 non-null   object 
- 15  paleoData_units                       4516 non-null   object 
- 16  paleoData_values                      4516 non-null   object 
- 17  year                                  4516 non-null   object 
- 18  yearUnits                             4516 non-null   object 
-dtypes: float32(3), object(16)
-memory usage: 617.6+ KB
+RangeIndex: 4781 entries, 0 to 4780
+Data columns (total 22 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   archiveType                    4781 non-null   object 
+ 1   dataSetName                    4781 non-null   object 
+ 2   datasetId                      4781 non-null   object 
+ 3   duplicateDetails               4781 non-null   object 
+ 4   geo_meanElev                   4699 non-null   float32
+ 5   geo_meanLat                    4781 non-null   float32
+ 6   geo_meanLon                    4781 non-null   float32
+ 7   geo_siteName                   4781 non-null   object 
+ 8   interpretation_direction       4781 non-null   object 
+ 9   interpretation_seasonality     4781 non-null   object 
+ 10  interpretation_variable        4781 non-null   object 
+ 11  interpretation_variableDetail  4781 non-null   object 
+ 12  originalDataURL                4781 non-null   object 
+ 13  originalDatabase               4781 non-null   object 
+ 14  paleoData_notes                4781 non-null   object 
+ 15  paleoData_proxy                4781 non-null   object 
+ 16  paleoData_sensorSpecies        4781 non-null   object 
+ 17  paleoData_units                4781 non-null   object 
+ 18  paleoData_values               4781 non-null   object 
+ 19  paleoData_variableName         4781 non-null   object 
+ 20  year                           4781 non-null   object 
+ 21  yearUnits                      4781 non-null   object 
+dtypes: float32(3), object(19)
+memory usage: 765.8+ KB
 None
 ```
 The interactive notebook then goes through each column and shows the entries, for example

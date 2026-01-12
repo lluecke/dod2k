@@ -55,7 +55,7 @@ Here we explain how to load these files into a pandas dataframe using python.
 ### Step 1: Set up your environment
 Start in the repository root directory (`dod2k/`). From here import
 
-```python
+```python title='python3/Jupyter'
 import sys
 from pathlib import Path
 
@@ -68,7 +68,7 @@ from dod2k_utilities.ut_functions import load_compact_dataframe_from_csv
 The function `load_compact_dataframe_from_csv` imports the different csv files and stitches them together to form a dataframe. See [`load_compact_dataframe_from_csv()`](../api/ut_functions.md) for details.
 
 ### Step 2: Load the data from csv
-```python
+```python title='python3/Jupyter'
 # Load the duplicate-free database
 df = load_compact_dataframe_from_csv('dod2k')
 
@@ -81,7 +81,7 @@ print(f"Columns: {', '.join(df.columns)}")
 ## Alternatively: Load the database from the pickle
 For faster loading and if you only need python access, use the pickle format.
 Make sure you start in the repository root directory (`dod2k`). From here import
-```python
+```python title='python3/Jupyter'
 import pandas as pd
 
 # Load the duplicate-free database
@@ -95,7 +95,7 @@ print(f"Database contains {len(df)} records")
 
 ### Step 3: Explore the dataframe column by column
 
-```python
+```python title='python3/Jupyter'
 import pandas as pd
 import numpy as np
 ```
@@ -104,42 +104,45 @@ Under `dod2k/notebooks` you can find the notebook `df_info.ipynb`. This notebook
 
 The key features of this notebook are:
 
-```python title="Input"
+```python title='python3/Jupyter' title="Input"
 print(df.info())
 ```
 
 ```text title="Output"
 <class 'pandas.core.frame.DataFrame'>
-RangeIndex: 4516 entries, 0 to 4515
-Data columns (total 19 columns):
- #   Column                                Non-Null Count  Dtype  
----  ------                                --------------  -----  
- 0   archiveType                           4516 non-null   object 
- 1   climateInterpretation_variable        4516 non-null   object 
- 2   climateInterpretation_variableDetail  4516 non-null   object 
- 3   dataSetName                           4516 non-null   object 
- 4   datasetId                             4516 non-null   object 
- 5   duplicateDetails                      4516 non-null   object 
- 6   geo_meanElev                          4433 non-null   float32
- 7   geo_meanLat                           4516 non-null   float32
- 8   geo_meanLon                           4516 non-null   float32
- 9   geo_siteName                          4516 non-null   object 
- 10  originalDataURL                       4516 non-null   object 
- 11  originalDatabase                      4516 non-null   object 
- 12  paleoData_notes                       4516 non-null   object 
- 13  paleoData_proxy                       4516 non-null   object 
- 14  paleoData_sensorSpecies               4516 non-null   object 
- 15  paleoData_units                       4516 non-null   object 
- 16  paleoData_values                      4516 non-null   object 
- 17  year                                  4516 non-null   object 
- 18  yearUnits                             4516 non-null   object 
-dtypes: float32(3), object(16)
-memory usage: 617.6+ KB
+RangeIndex: 4781 entries, 0 to 4780
+Data columns (total 22 columns):
+ #   Column                         Non-Null Count  Dtype  
+---  ------                         --------------  -----  
+ 0   archiveType                    4781 non-null   object 
+ 1   dataSetName                    4781 non-null   object 
+ 2   datasetId                      4781 non-null   object 
+ 3   duplicateDetails               4781 non-null   object 
+ 4   geo_meanElev                   4699 non-null   float32
+ 5   geo_meanLat                    4781 non-null   float32
+ 6   geo_meanLon                    4781 non-null   float32
+ 7   geo_siteName                   4781 non-null   object 
+ 8   interpretation_direction       4781 non-null   object 
+ 9   interpretation_seasonality     4781 non-null   object 
+ 10  interpretation_variable        4781 non-null   object 
+ 11  interpretation_variableDetail  4781 non-null   object 
+ 12  originalDataURL                4781 non-null   object 
+ 13  originalDatabase               4781 non-null   object 
+ 14  paleoData_notes                4781 non-null   object 
+ 15  paleoData_proxy                4781 non-null   object 
+ 16  paleoData_sensorSpecies        4781 non-null   object 
+ 17  paleoData_units                4781 non-null   object 
+ 18  paleoData_values               4781 non-null   object 
+ 19  paleoData_variableName         4781 non-null   object 
+ 20  year                           4781 non-null   object 
+ 21  yearUnits                      4781 non-null   object 
+dtypes: float32(3), object(19)
+memory usage: 765.8+ KB
 None
 ```
 The interactive notebook then goes through each column and shows the entries, for example
 
-```python title="Input"
+```python title='python3/Jupyter' title="Input"
 # archiveType
 key = 'archiveType'
 print('%s: '%key)
@@ -155,7 +158,7 @@ archiveType:
 ["<class 'str'>"]
 ```
 
-```python title="Input"
+```python title='python3/Jupyter' title="Input"
 # paleoData_proxy
 key = 'paleoData_proxy'
 print('%s: '%key)
@@ -183,7 +186,7 @@ For further guidance see the [interactive notebook](../notebooks/df_info.ipynb).
 Under `dod2k/notebooks` you can find the notebook `df_plot_dod2k.ipynb`. This notebook visualises the dataframe and produces summary figures of the database. It also reproduces the manuscript figures. 
 
 Import the python libraries
-```python 
+```python title='python3/Jupyter' 
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -198,7 +201,7 @@ from dod2k_utilities import ut_plot as uplt # contains plotting functions
 
 After loading the dataframe, start off by counting the number of records in each archive type:
 
-```python
+```python title='python3/Jupyter'
 # count archive types
 archive_count = {}
 for ii, at in enumerate(set(df['archiveType'])):
@@ -206,7 +209,7 @@ for ii, at in enumerate(set(df['archiveType'])):
 ```
 
 Now count the number of records for each proxy type, depending on the archive type:
-```python
+```python title='python3/Jupyter'
 archive_proxy_count = {}
 archive_proxy_ticks = []
 for ii, at in enumerate(set(df['archiveType'])):
@@ -218,7 +221,7 @@ for ii, at in enumerate(set(df['archiveType'])):
 ```
 
 For each archive type, specify colours for each archive, but also distinguish between major archives (which have the most records) and minor archives (rare ones, only including less than ten records):
-```python
+```python title='python3/Jupyter'
 archive_colour = {'other': cols[-1]}
 other_archives = []
 major_archives = []
@@ -237,7 +240,7 @@ for ii, at in enumerate(archives_sorted):
 ```
 Now plot a bar chart of the major archives using [`plot_count_proxy_by_archive_short()`](../api/ut_plot.md)
 
-```python
+```python title='python3/Jupyter'
 uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ticks, archive_colour) 
 ```
 
@@ -248,7 +251,7 @@ uplt.plot_count_proxy_by_archive_short(df, archive_proxy_count, archive_proxy_ti
 
 Next plot a spatial plot of all the proxy records:
 
-```python
+```python title='python3/Jupyter'
 #%% plot the spatial distribution of all records
 proxy_lats = df['geo_meanLat'].values
 proxy_lons = df['geo_meanLon'].values
@@ -317,7 +320,7 @@ This notebook then saves the filtered dataframe as a compact dataframe under `do
 
 
 Start by loading the dataframe, then filter using e.g. 
-```python
+```python title='python3/Jupyter'
 # # filter for >>exclusively moisture<< sensitive records only (without t+m)
 df_filter = df.loc[(df['climateInterpretation_variable']=='moisture')]
 ```
