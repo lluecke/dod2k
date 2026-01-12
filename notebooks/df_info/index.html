@@ -2807,34 +2807,34 @@ df.name = db_name
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 4957 entries, 0 to 4956
+RangeIndex: 4781 entries, 0 to 4780
 Data columns (total 22 columns):
  #   Column                         Non-Null Count  Dtype  
 ---  ------                         --------------  -----  
- 0   archiveType                    4957 non-null   object 
- 1   dataSetName                    4957 non-null   object 
- 2   datasetId                      4957 non-null   object 
- 3   duplicateDetails               4957 non-null   object 
- 4   geo_meanElev                   4875 non-null   float32
- 5   geo_meanLat                    4957 non-null   float32
- 6   geo_meanLon                    4957 non-null   float32
- 7   geo_siteName                   4957 non-null   object 
- 8   interpretation_direction       4957 non-null   object 
- 9   interpretation_seasonality     4957 non-null   object 
- 10  interpretation_variable        4957 non-null   object 
- 11  interpretation_variableDetail  4957 non-null   object 
- 12  originalDataURL                4957 non-null   object 
- 13  originalDatabase               4957 non-null   object 
- 14  paleoData_notes                4957 non-null   object 
- 15  paleoData_proxy                4957 non-null   object 
- 16  paleoData_sensorSpecies        4957 non-null   object 
- 17  paleoData_units                4957 non-null   object 
- 18  paleoData_values               4957 non-null   object 
- 19  paleoData_variableName         4957 non-null   object 
- 20  year                           4957 non-null   object 
- 21  yearUnits                      4957 non-null   object 
+ 0   archiveType                    4781 non-null   object 
+ 1   dataSetName                    4781 non-null   object 
+ 2   datasetId                      4781 non-null   object 
+ 3   duplicateDetails               4781 non-null   object 
+ 4   geo_meanElev                   4699 non-null   float32
+ 5   geo_meanLat                    4781 non-null   float32
+ 6   geo_meanLon                    4781 non-null   float32
+ 7   geo_siteName                   4781 non-null   object 
+ 8   interpretation_direction       4781 non-null   object 
+ 9   interpretation_seasonality     4781 non-null   object 
+ 10  interpretation_variable        4781 non-null   object 
+ 11  interpretation_variableDetail  4781 non-null   object 
+ 12  originalDataURL                4781 non-null   object 
+ 13  originalDatabase               4781 non-null   object 
+ 14  paleoData_notes                4781 non-null   object 
+ 15  paleoData_proxy                4781 non-null   object 
+ 16  paleoData_sensorSpecies        4781 non-null   object 
+ 17  paleoData_units                4781 non-null   object 
+ 18  paleoData_values               4781 non-null   object 
+ 19  paleoData_variableName         4781 non-null   object 
+ 20  year                           4781 non-null   object 
+ 21  yearUnits                      4781 non-null   object 
 dtypes: float32(3), object(19)
-memory usage: 794.0+ KB
+memory usage: 765.8+ KB
 None
 </pre>
 </div>
@@ -2910,7 +2910,7 @@ print(df.index)</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>RangeIndex(start=0, stop=4957, step=1)
+<pre>RangeIndex(start=0, stop=4781, step=1)
 </pre>
 </div>
 </div>
@@ -2973,11 +2973,10 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>dataSetName: 
 ['NAm-MtLemon.Briffa.2002' 'NAm-MtLemon.Briffa.2002'
- 'NAm-MtLemon.Briffa.2002' ... 'Sahiya cave'
- 'Ocn-ArabianSea.Doose-Rolinski.2001, Ocn-ArabianSea.Doose-Rolinski.2001'
+ 'NAm-MtLemon.Briffa.2002' ... 'Sahiya cave' 'Sahiya cave'
  'europe_swed019w, europe_swed021w']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 3845/4957
+No. of unique values: 3843/4781
 </pre>
 </div>
 </div>
@@ -3046,15 +3045,15 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>4957
-4957
+<pre>4781
+4781
 datasetId (starts with): 
-['pages2k_5' 'pages2k_7' 'pages2k_8' ... 'sisal_901.0_545'
- 'dod2k_composite_z_pages2k_1686_pages2k_1688'
+['pages2k_5' 'pages2k_8' 'pages2k_18' ... 'sisal_901.0_544'
+ 'sisal_901.0_545'
  'dod2k_composite_z_FE23_europe_swed019w_FE23_europe_swed021w']
 ["&lt;class 'str'&gt;"]
 datasetId starts with:  ['FE23' 'ch2k' 'dod2k' 'iso2k' 'pages2k' 'sisal']
-No. of unique values: 4957/4957
+No. of unique values: 4781/4781
 </pre>
 </div>
 </div>
@@ -3126,7 +3125,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  'www.ncdc.noaa.gov/paleo/study/2474']
 ['this compilation']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 3776/4957
+No. of unique values: 3776/4781
 </pre>
 </div>
 </div>
@@ -3193,7 +3192,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 ['CoralHydro2k v1.0.1' 'FE23 (Breitenmoser et al. (2014))' 'Iso2k v1.1.2'
  'PAGES 2k v2.2.0' 'SISAL v3' 'dod2k_composite_z']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 6/4957
+No. of unique values: 6/4781
 </pre>
 </div>
 </div>
@@ -3274,15 +3273,15 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 3       2700.0
 4       2700.0
          ...  
-4952    1190.0
-4953    1190.0
-4954    1190.0
-4955    -695.0
-4956     400.0
-Name: geo_meanElev, Length: 4957, dtype: float32
+4776    1190.0
+4777    1190.0
+4778    1190.0
+4779    1190.0
+4780     400.0
+Name: geo_meanElev, Length: 4781, dtype: float32
 ['-1' '-10' '-1011' ... '991' '994' '995']
 ["&lt;class 'float'&gt;"]
-No. of unique values: 1091/4957
+No. of unique values: 1091/4781
 </pre>
 </div>
 </div>
@@ -3356,7 +3355,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  '59' '6' '60' '61' '62' '63' '64' '65' '66' '67' '68' '69' '7' '70' '71'
  '72' '73' '75' '76' '77' '78' '79' '8' '80' '81' '82' '9']
 ["&lt;class 'float'&gt;"]
-No. of unique values: 2169/4957
+No. of unique values: 2168/4781
 </pre>
 </div>
 </div>
@@ -3445,7 +3444,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  '84' '85' '86' '87' '88' '89' '9' '90' '91' '92' '93' '94' '95' '96' '97'
  '98' '99']
 ["&lt;class 'float'&gt;"]
-No. of unique values: 2641/4957
+No. of unique values: 2640/4781
 </pre>
 </div>
 </div>
@@ -3507,10 +3506,10 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>geo_siteName: 
-['Mt. Lemon' 'Mt. Lemon' 'Mt. Lemon' ... 'Sahiya cave' 'Arabian Sea'
+['Mt. Lemon' 'Mt. Lemon' 'Mt. Lemon' ... 'Sahiya cave' 'Sahiya cave'
  'COMPOSITE: Torneträskr+f.,Bartoli + Torneträskfos.,Bartoli']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 3527/4957
+No. of unique values: 3527/4781
 </pre>
 </div>
 </div>
@@ -3585,10 +3584,357 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <pre>archiveType: 
 ['Borehole' 'Coral' 'Documents' 'GlacierIce' 'GroundIce' 'LakeSediment'
  'MarineSediment' 'MolluskShell' 'Other' 'Sclerosponge' 'Speleothem'
- 'Wood' 'speleothem']
+ 'Wood']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 13/4957
+No. of unique values: 12/4781
 </pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d061107f-e5f2-4492-a209-c49b338278df">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">'archiveType'</span><span class="p">]</span><span class="o">==</span><span class="s1">'MarineSediment'</span><span class="p">)</span><span class="o">&amp;</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'paleoData_proxy'</span><span class="p">]</span><span class="o">==</span><span class="s1">'d18O'</span><span class="p">)][[</span><span class="s1">'paleoData_proxy'</span><span class="p">,</span> <span class="s1">'interpretation_variable'</span><span class="p">,</span> <span class="s1">'originalDatabase'</span><span class="p">,</span> <span class="s1">'originalDataURL'</span><span class="p">]]</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-14">df[(df['archiveType']=='MarineSediment')&amp;(df['paleoData_proxy']=='d18O')][['paleoData_proxy', 'interpretation_variable', 'originalDatabase', 'originalDataURL']]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>paleoData_proxy</th>
+<th>interpretation_variable</th>
+<th>originalDatabase</th>
+<th>originalDataURL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>317</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>PAGES 2k v2.2.0</td>
+<td>https://www1.ncdc.noaa.gov/pub/data/paleo/page...</td>
+</tr>
+<tr>
+<th>871</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>PAGES 2k v2.2.0</td>
+<td>https://www1.ncdc.noaa.gov/pub/data/paleo/page...</td>
+</tr>
+<tr>
+<th>3844</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://doi.pangaea.de/10.1594/PANGAEA.857573</td>
+</tr>
+<tr>
+<th>3874</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo-search/study/2519</td>
+</tr>
+<tr>
+<th>3875</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo-search/study/2519</td>
+</tr>
+<tr>
+<th>3879</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/18315</td>
+</tr>
+<tr>
+<th>3881</th>
+<td>d18O</td>
+<td>moisture</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/8725</td>
+</tr>
+<tr>
+<th>3882</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/8725</td>
+</tr>
+<tr>
+<th>3979</th>
+<td>d18O</td>
+<td>moisture</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>3980</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>3988</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/22592</td>
+</tr>
+<tr>
+<th>4002</th>
+<td>d18O</td>
+<td>moisture</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/16155</td>
+</tr>
+<tr>
+<th>4003</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/16155</td>
+</tr>
+<tr>
+<th>4085</th>
+<td>d18O</td>
+<td>N/A</td>
+<td>Iso2k v1.1.2</td>
+<td>http://doi.pangaea.de/10.1594/PANGAEA.780423</td>
+</tr>
+<tr>
+<th>4118</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo-search/study/5966</td>
+</tr>
+<tr>
+<th>4120</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>http://doi.pangaea.de/10.1594/PANGAEA.776444</td>
+</tr>
+<tr>
+<th>4122</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/6242</td>
+</tr>
+<tr>
+<th>4127</th>
+<td>d18O</td>
+<td>moisture</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>4128</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>4133</th>
+<td>d18O</td>
+<td>N/A</td>
+<td>Iso2k v1.1.2</td>
+<td>http://doi.pangaea.de/10.1594/PANGAEA.735717</td>
+</tr>
+<tr>
+<th>4134</th>
+<td>d18O</td>
+<td>moisture</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>4135</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://www.ncdc.noaa.gov/paleo/study/5968</td>
+</tr>
+<tr>
+<th>4204</th>
+<td>d18O</td>
+<td>temperature</td>
+<td>Iso2k v1.1.2</td>
+<td>https://doi.pangaea.de/10.1594/PANGAEA.760166</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=d69a835f-e403-4a2d-9072-9cf614fefbb1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'archiveType'</span><span class="p">]</span><span class="o">==</span><span class="s1">'MarineSediment'</span><span class="p">][[</span><span class="s1">'paleoData_proxy'</span><span class="p">,</span> <span class="s1">'interpretation_variable'</span><span class="p">]]</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-15">df[df['archiveType']=='MarineSediment'][['paleoData_proxy', 'interpretation_variable']]</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[15]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>paleoData_proxy</th>
+<th>interpretation_variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>47</th>
+<td>Mg/Ca</td>
+<td>temperature</td>
+</tr>
+<tr>
+<th>48</th>
+<td>temperature</td>
+<td>temperature</td>
+</tr>
+<tr>
+<th>63</th>
+<td>alkenone</td>
+<td>temperature</td>
+</tr>
+<tr>
+<th>74</th>
+<td>alkenone</td>
+<td>temperature</td>
+</tr>
+<tr>
+<th>75</th>
+<td>Uk37</td>
+<td>N/A</td>
+</tr>
+<tr>
+<th>...</th>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<th>4133</th>
+<td>d18O</td>
+<td>N/A</td>
+</tr>
+<tr>
+<th>4134</th>
+<td>d18O</td>
+<td>moisture</td>
+</tr>
+<tr>
+<th>4135</th>
+<td>d18O</td>
+<td>temperature</td>
+</tr>
+<tr>
+<th>4147</th>
+<td>dD</td>
+<td>N/A</td>
+</tr>
+<tr>
+<th>4204</th>
+<td>d18O</td>
+<td>temperature</td>
+</tr>
+</tbody>
+</table>
+<p>125 rows × 2 columns</p>
+</div>
 </div>
 </div>
 </div>
@@ -3611,10 +3957,10 @@ No. of unique values: 13/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-14">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3631,7 +3977,7 @@ No. of unique values: 13/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-14"># paleoData_proxy
+<div class="clipboard-copy-txt" id="cell-16"># paleoData_proxy
 key = 'paleoData_proxy'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3655,10 +4001,10 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  'diatom' 'dinocyst' 'dust' 'effective precipitation' 'foraminifera'
  'growth rate' 'historical' 'humidification index' 'ice melt'
  'maximum latewood density' 'multiproxy' 'nitrate' 'pollen' 'reflectance'
- 'residual chronology' 'ring width' 'sodium' 'sulfate' 'temperature'
- 'thickness' 'varve thickness']
+ 'ring width' 'sodium' 'sulfate' 'temperature' 'thickness'
+ 'varve thickness']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 38/4957
+No. of unique values: 37/4781
 </pre>
 </div>
 </div>
@@ -3682,10 +4028,10 @@ No. of unique values: 38/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [15]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-15">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3702,7 +4048,7 @@ No. of unique values: 38/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-15"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-17"># climate_interpretation
 key = 'paleoData_sensorSpecies'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3744,10 +4090,10 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')
  'QUST' 'QUVE' 'Siderastrea radians' 'Siderastrea siderea'
  'Siderastrea stellata' 'Solenastrea bournoni' 'TABA' 'TADI' 'TAMU' 'TEGR'
  'THOC' 'THPL' 'TSCA' 'TSCR' 'TSDU' 'TSHE' 'TSME' 'ULSP' 'VIKE' 'WICE'
- 'bournoni' 'heliopora' 'labyrinthiformis' 'lamellina' 'lobata' 'lutea'
- 'nan' 'siderea']
+ 'bournoni' 'labyrinthiformis' 'lamellina' 'lobata' 'lutea' 'nan'
+ 'siderea']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 194/4957
+No. of unique values: 193/4781
 </pre>
 </div>
 </div>
@@ -3771,10 +4117,10 @@ No. of unique values: 194/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-16">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3791,7 +4137,7 @@ No. of unique values: 194/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-16"># # paleoData_notes
+<div class="clipboard-copy-txt" id="cell-18"># # paleoData_notes
 key = 'paleoData_notes'
 print('%s: '%key)
 print(df[key].values)
@@ -3809,11 +4155,10 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>paleoData_notes: 
-['nan' 'nan' 'nan' ... 'calcite'
- 'pages2k_1686: SON1997: T(sediments) = (Uk37-0.316)/(0.023); paleoData_units changed - was originally deg C; climateInterpretation_seasonality changed - was originally Annual, pages2k_1688: All O2K-LR records have been quality-controlled according to protocols published in Nature Geoscience supplement.; climateInterpretation_seasonality changed - was originally Annual'
+['nan' 'nan' 'nan' ... 'calcite' 'calcite'
  'FE23_europe_swed019w: Investigator: Schweingruber, FE23_europe_swed021w: Investigator: Schweingruber']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 426/4957
+No. of unique values: 426/4781
 </pre>
 </div>
 </div>
@@ -3837,10 +4182,10 @@ No. of unique values: 426/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [17]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-17">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3856,7 +4201,7 @@ No. of unique values: 426/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-17"># paleoData_variableName
+<div class="clipboard-copy-txt" id="cell-19"># paleoData_variableName
 key = 'paleoData_variableName'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3877,8 +4222,8 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
  'calcification rate' 'chloride' 'composite' 'concentration' 'count'
  'd13C' 'd18O' 'd2H' 'dD' 'dust' 'effective precipitation' 'growth rate'
  'humidification index' 'ice melt' 'maximum latewood density' 'nan'
- 'nitrate' 'precipitation' 'reflectance' 'residual chronology'
- 'ring width' 'sodium' 'sulfate' 'temperature' 'thickness' 'year']
+ 'nitrate' 'precipitation' 'reflectance' 'ring width' 'sodium' 'sulfate'
+ 'temperature' 'thickness' 'year']
 ["&lt;class 'str'&gt;"]
 </pre>
 </div>
@@ -3914,10 +4259,10 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [18]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-18">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3933,7 +4278,7 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-18"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-20"># climate_interpretation
 key = 'interpretation_direction'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -3956,7 +4301,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  'depends (orbital timescale: More Indian Monsoon moisture--&gt;more enriched. Since 3ka: Indian source has been stable, so amount effect dominates: more rainfall, more intense hydrological cycle --&gt;More depleted)'
  'increase' 'negaitive' 'negative' 'positive'
  'positive for d18O-temperature relation, negative for d13C-precipiation amount']
-No. of unique values: 14/4957
+No. of unique values: 14/4781
 </pre>
 </div>
 </div>
@@ -3980,10 +4325,10 @@ No. of unique values: 14/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [19]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-19">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -3999,7 +4344,7 @@ No. of unique values: 14/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-19"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-21"># climate_interpretation
 key = 'interpretation_seasonality'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4023,7 +4368,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  'May-Dec' 'May-Jul' 'May-Oct' 'May-Sep' 'N/A' 'None' 'Nov-Apr' 'Nov-Feb'
  'Nov-Jan' 'Oct-Apr' 'Oct-Dec' 'Oct-Sep' 'Sep-Apr' 'Sep-Aug' 'Sep-Nov'
  'Sep-Oct' 'Spr-Sum' 'Summer' 'Wet Season' 'Winter' 'deleteMe' 'subannual']
-No. of unique values: 53/4957
+No. of unique values: 53/4781
 </pre>
 </div>
 </div>
@@ -4047,10 +4392,10 @@ No. of unique values: 53/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [20]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-20">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4066,7 +4411,7 @@ No. of unique values: 53/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-20"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-22"># climate_interpretation
 key = 'interpretation_variable'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4083,12 +4428,9 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>interpretation_variable: 
-['N/A' 'NOT temperature NOT moisture' 'None' 'circulationIndex'
- 'circulationVariable' 'deleteMe' 'effectivePrecipitation' 'evaporation'
- 'hydrologicBalance' 'moisture' 'precipitation' 'precipitationIsotope'
- 'salinity' 'seasonality' 'streamflow' 'temperature'
+['N/A' 'NOT temperature NOT moisture' 'moisture' 'temperature'
  'temperature+moisture']
-No. of unique values: 17/4957
+No. of unique values: 5/4781
 </pre>
 </div>
 </div>
@@ -4112,10 +4454,10 @@ No. of unique values: 17/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [21]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-21">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4131,7 +4473,7 @@ No. of unique values: 17/4957
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">kk</span> <span class="k">for</span> <span class="n">kk</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-21"># climate_interpretation
+<div class="clipboard-copy-txt" id="cell-23"># climate_interpretation
 key = 'interpretation_variableDetail'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4148,55 +4490,93 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>interpretation_variableDetail: 
-['0.58 +- 0.11ppt/degrees C' 'Aleutian Low/westerly storm trajectories'
- 'Amount of rainfall change'
- 'Australian-Indonesian Summer monsoon; More negative d18O values correspond to stronger amount'
- 'Australian-Indonesian monsoon rainfall'
- 'Competing influence of polar and maritime airmasses'
- 'Continental Sweden' 'E:P lake water' 'ENSO/PDO'
- 'East Asian Monsoon Strength; more negative values of d18O are interpreted as indicative of increased monsoon strength'
- 'East Asian Monsoon rainfall'
+['0.58 +- 0.11ppt/degrees C'
  'FE23_europe_swed019w: N/A, FE23_europe_swed021w: N/A'
- 'Indian Monsoon Strength'
- 'Indian Summer Monsoon; more negative values of d18O are interpreted as indicative of increased monsoon strength'
- 'Indian monsoon'
- 'Lower precipitation produces higher d13C and Sr/Ca values'
- 'Maximum air temperature, seasonal' 'Maximum temperature'
- 'Monsoon strength'
- 'More negative d18O values correspond to stronger amount' 'N/A' 'NaN'
- 'None' 'Precipitation' 'SAM' 'Seasonal' 'Seasonal, annual'
- 'South China Sea' 'Southern Tibet'
- 'The interpretation is made for an older section of the sample. Last 2k data was not the focus of the manuscript'
- 'Variations in NAO (related to the amount of rainfall. Season not specified)'
- 'air' 'air-surface' 'air@600m' 'air@condensationLevel' 'air@surface'
- 'amount of rainfall'
- 'changes of d18O in speleothems reflect changes of the average d18O of rainfall in the region related to rainfall seasonality'
- 'd18O changes of speleothems reflect effects of temperature on raifnall d18O, rainfall amounts affect cave hydrology and biomass density above the cave, which is recorded in d13C of speleothems'
- 'eff' 'ground@surface' 'groundwater'
- 'higher values are related to less rainfall - this can be realted to less moisture influex from the Caribbean due to a southward shift of the ITCZ in phases when high amounts of meltwater enter the cooling north Atlantic Ocean; after ~4.3 ka the connection to the north Atalatic is lost and ENSO becomes more important with warm ENSO events (El Nino) causing higher d18O'
- 'ice@surface' 'in the southern tropical Andes' 'lake level'
- 'lake surface' 'lake water' 'lake, winds in eastern Patagonia'
- 'lake@surface' 'minimum temperature' 'moisture'
- 'more negative values of d18O are interpreted as indicative of increased summer monsoon precipitation'
- 'more positive d18O values are interpreted to represent wetter conditions'
- 'more positive values of d13C indicate a spread of C4 prairy grasses and decline of C3 forest plants, more positive d18O indicates evaporation of soil water which is stronger in the prairy environment than in the forsest'
- 'near sea surface' 'of precipitation'
- 'pages2k_1686: sea@surface, pages2k_1688: sea@surface' 'precipitation'
- 'precipitation amount' 'rain' 'regional and hemispheric temperature'
- 'relative amount of winter snowfall' 'relative humidity'
- 'relative portion of summer (SAM) vs winter rainfall' 'sea surface'
- 'sea@surface' 'sea_surface' 'soil moisture' 'sub surface (30m)'
+ 'Maximum air temperature, seasonal' 'Maximum temperature' 'N/A' 'NaN'
+ 'None'
+ 'Original interpretation_variable: circulationIndex, interpretation_variableDetail: lake water'
+ 'Original interpretation_variable: circulationVariable, interpretation_variableDetail: Indian monsoon'
+ 'Original interpretation_variable: circulationVariable, interpretation_variableDetail: More negative d18O values correspond to stronger amount'
+ 'Original interpretation_variable: circulationVariable, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: circulationVariable, interpretation_variableDetail: tropical or North Pacific moisture'
+ 'Original interpretation_variable: deleteMe, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: deleteMe, interpretation_variableDetail: more positive values of d13C indicate a spread of C4 prairy grasses and decline of C3 forest plants, more positive d18O indicates evaporation of soil water which is stronger in the prairy environment than in the forsest'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: E:P lake water'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: Seasonal'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: air@surface'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: eff'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: lake level'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: lake water'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: lake, winds in eastern Patagonia'
+ 'Original interpretation_variable: effectivePrecipitation, interpretation_variableDetail: soil moisture'
+ 'Original interpretation_variable: evaporation, interpretation_variableDetail: Aleutian Low/westerly storm trajectories'
+ 'Original interpretation_variable: evaporation, interpretation_variableDetail: Indian Monsoon Strength'
+ 'Original interpretation_variable: evaporation, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: hydrologicBalance, interpretation_variableDetail: groundwater'
+ 'Original interpretation_variable: hydrologicBalance, interpretation_variableDetail: lake water'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Amount of rainfall change'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Australian-Indonesian Summer monsoon; More negative d18O values correspond to stronger amount'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Australian-Indonesian monsoon rainfall'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Continental Sweden'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: ENSO/PDO'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: East Asian Monsoon Strength; more negative values of d18O are interpreted as indicative of increased monsoon strength'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Indian Summer Monsoon; more negative values of d18O are interpreted as indicative of increased monsoon strength'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Lower precipitation produces higher d13C and Sr/Ca values'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Monsoon strength'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: More negative d18O values correspond to stronger amount'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Precipitation'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: SAM'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Seasonal'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Seasonal, annual'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: South China Sea'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Southern Tibet'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: The interpretation is made for an older section of the sample. Last 2k data was not the focus of the manuscript'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: Variations in NAO (related to the amount of rainfall. Season not specified)'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: air@surface'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: amount of rainfall'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: d18O changes of speleothems reflect effects of temperature on raifnall d18O, rainfall amounts affect cave hydrology and biomass density above the cave, which is recorded in d13C of speleothems'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: higher values are related to less rainfall - this can be realted to less moisture influex from the Caribbean due to a southward shift of the ITCZ in phases when high amounts of meltwater enter the cooling north Atlantic Ocean; after ~4.3 ka the connection to the north Atalatic is lost and ENSO becomes more important with warm ENSO events (El Nino) causing higher d18O'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: in the southern tropical Andes'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: more negative values of d18O are interpreted as indicative of increased summer monsoon precipitation'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: more positive d18O values are interpreted to represent wetter conditions'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: precipitation'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: relative portion of summer (SAM) vs winter rainfall'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: surface'
+ 'Original interpretation_variable: precipitation, interpretation_variableDetail: variations in paleoprecipitation amount on a multi-annual timescale (On longer timescales, however, the flowstone?s growth dynamics have to be considered)'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: Competing influence of polar and maritime airmasses'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: East Asian Monsoon rainfall'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: minimum temperature'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: moisture'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: of precipitation'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: precipitation'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: precipitation amount'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: rain'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: relative humidity'
+ 'Original interpretation_variable: precipitationIsotope, interpretation_variableDetail: summer monsoon'
+ 'Original interpretation_variable: salinity, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: salinity, interpretation_variableDetail: sea surface'
+ 'Original interpretation_variable: salinity, interpretation_variableDetail: surface'
+ 'Original interpretation_variable: seaIce, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: seasonality, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: seasonality, interpretation_variableDetail: changes of d18O in speleothems reflect changes of the average d18O of rainfall in the region related to rainfall seasonality'
+ 'Original interpretation_variable: seasonality, interpretation_variableDetail: relative amount of winter snowfall'
+ 'Original interpretation_variable: streamflow, interpretation_variableDetail: N/A'
+ 'Original interpretation_variable: streamflow, interpretation_variableDetail: lake water'
+ 'Seasonal, annual' 'air' 'air-surface' 'air@600m' 'air@condensationLevel'
+ 'air@surface' 'ground@surface' 'ice@surface' 'lake surface' 'lake water'
+ 'lake@surface' 'near sea surface' 'regional and hemispheric temperature'
+ 'sea surface' 'sea@surface' 'sea_surface' 'sub surface (30m)'
  'sub surface (~50 m)' 'subsurface (60-80m)' 'subsurface, 136 m'
- 'subsurface, 143 m' 'summer monsoon' 'surface'
+ 'subsurface, 143 m' 'surface'
  'temperature - manually assigned by DoD2k authors for paleoData_proxy = Mg/Ca'
  'temperature - manually assigned by DoD2k authors for paleoData_proxy = Sr/Ca'
  'temperature+moisture - manually assigned by DoD2k authors for paleoData_proxy = d18O'
  'temperature+moisture - manually assigned by DoD2k authors for paleoData_proxy = d18O.'
- 'tropical or North Pacific moisture'
  'variations in air temperature due to large-scale atmospheric patterns'
- 'variations in paleoprecipitation amount on a multi-annual timescale (On longer timescales, however, the flowstone?s growth dynamics have to be considered)'
  'variations in winter temperature in the Alps']
-No. of unique values: 84/4957
+No. of unique values: 105/4781
 </pre>
 </div>
 </div>
@@ -4231,10 +4611,10 @@ No. of unique values: 84/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [22]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-22">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4255,7 +4635,7 @@ No. of unique values: 84/4957
     <span class="k">except</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'dataSetName'</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">ii</span><span class="p">],</span> <span class="s1">'NaNs detected.'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-22"># # paleoData_values
+<div class="clipboard-copy-txt" id="cell-24"># # paleoData_values
 key = 'paleoData_values'
 
 print('%s: '%key)
@@ -4279,15 +4659,11 @@ print(np.unique([str(type(dd)) for dd in df[key]]))</div>
 <pre>paleoData_values: 
 NAm-MtLemon.Briffa.2002       : 0.154 -- 2.91
 &lt;class 'numpy.ndarray'&gt;
-NAm-MtLemon.Briffa.2002       : 0.245 -- 1.655
-&lt;class 'numpy.ndarray'&gt;
 NAm-MtLemon.Briffa.2002       : 0.283 -- 1.666
 &lt;class 'numpy.ndarray'&gt;
 NAm-MtLemon.Briffa.2002       : 0.574 -- 0.951
 &lt;class 'numpy.ndarray'&gt;
 NAm-MtLemon.Briffa.2002       : 0.707 -- 1.118
-&lt;class 'numpy.ndarray'&gt;
-NAm-MtLemon.Briffa.2002       : 0.789 -- 1.102
 &lt;class 'numpy.ndarray'&gt;
 NAm-MtLemon.Briffa.2002       : 0.757 -- 1.114
 &lt;class 'numpy.ndarray'&gt;
@@ -4301,21 +4677,25 @@ NAm-Landslide.Luckman.2006    : 0.057 -- 0.76
 &lt;class 'numpy.ndarray'&gt;
 NAm-Landslide.Luckman.2006    : 0.164 -- 1.781
 &lt;class 'numpy.ndarray'&gt;
-NAm-Landslide.Luckman.2006    : 0.125 -- 1.813
-&lt;class 'numpy.ndarray'&gt;
 NAm-Landslide.Luckman.2006    : 0.116 -- 1.889
 &lt;class 'numpy.ndarray'&gt;
 NAm-SmithersSkiArea.Schweingru: 0.319 -- 1.73
-&lt;class 'numpy.ndarray'&gt;
-NAm-SmithersSkiArea.Schweingru: 0.628 -- 1.56
 &lt;class 'numpy.ndarray'&gt;
 NAm-SmithersSkiArea.Schweingru: 0.472 -- 1.576
 &lt;class 'numpy.ndarray'&gt;
 NAm-SmithersSkiArea.Schweingru: 0.44 -- 0.83
 &lt;class 'numpy.ndarray'&gt;
-NAm-SmithersSkiArea.Schweingru: 0.655 -- 1.176
-&lt;class 'numpy.ndarray'&gt;
 NAm-SmithersSkiArea.Schweingru: 0.636 -- 1.179
+&lt;class 'numpy.ndarray'&gt;
+Asi-GANGCD.PAGES2k.2013       : 0.102 -- 2.109
+&lt;class 'numpy.ndarray'&gt;
+Ocn-Mayotte.Zinke.2008        : -5.49 -- -4.35
+&lt;class 'numpy.ndarray'&gt;
+Ocn-Mayotte.Zinke.2008        : -2.98 -- -0.29
+&lt;class 'numpy.ndarray'&gt;
+Ocn-Mayotte.Zinke.2008        : 8.537 -- 9.087
+&lt;class 'numpy.ndarray'&gt;
+Ocn-Mayotte.Zinke.2008        : -0.159 -- 1.305
 &lt;class 'numpy.ndarray'&gt;
 ["&lt;class 'numpy.ndarray'&gt;"]
 </pre>
@@ -4341,10 +4721,10 @@ NAm-SmithersSkiArea.Schweingru: 0.636 -- 1.179
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [23]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-23">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4361,7 +4741,7 @@ NAm-SmithersSkiArea.Schweingru: 0.636 -- 1.179
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-23"># paleoData_units
+<div class="clipboard-copy-txt" id="cell-25"># paleoData_units
 key = 'paleoData_units'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4384,7 +4764,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
  'permil' 'ppb' 'standardized_anomalies' 'unitless' 'yr AD' 'z score'
  'z-scores']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 23/4957
+No. of unique values: 23/4781
 </pre>
 </div>
 </div>
@@ -4408,10 +4788,10 @@ No. of unique values: 23/4957
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [24]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [26]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-24">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4429,7 +4809,7 @@ No. of unique values: 23/4957
     <span class="k">except</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">'NaNs detected.'</span><span class="p">,</span> <span class="n">vv</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-24"># # year
+<div class="clipboard-copy-txt" id="cell-26"># # year
 key = 'year'
 print('%s: '%key)
 for ii, vv in enumerate(df[key][:20]):
@@ -4453,21 +4833,21 @@ NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
 NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
 NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
 NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
-NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
-NAm-MtLemon.Briffa.2002       : 1568.0 -- 1983.0
 Arc-Arjeplog.Bjorklund.2014   : 1200.0 -- 2010.0
 Arc-Arjeplog.Bjorklund.2014   : 1200.0 -- 2010.0
 Asi-CHIN019.Li.2010           : 1509.0 -- 2006.0
 NAm-Landslide.Luckman.2006    : 913.0 -- 2001.0
 NAm-Landslide.Luckman.2006    : 913.0 -- 2001.0
 NAm-Landslide.Luckman.2006    : 913.0 -- 2001.0
-NAm-Landslide.Luckman.2006    : 913.0 -- 2001.0
 NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
-NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
-NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
+Asi-GANGCD.PAGES2k.2013       : 1567.0 -- 1999.0
+Ocn-Mayotte.Zinke.2008        : 1865.62 -- 1993.62
+Ocn-Mayotte.Zinke.2008        : 1865.62 -- 1993.62
+Ocn-Mayotte.Zinke.2008        : 1881.62 -- 1994.29
+Ocn-Mayotte.Zinke.2008        : 1881.62 -- 1993.62
 ["&lt;class 'numpy.ndarray'&gt;"]
 </pre>
 </div>
@@ -4492,10 +4872,10 @@ NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [25]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [27]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-25">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-27">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4512,7 +4892,7 @@ NAm-SmithersSkiArea.Schweingru: 1680.0 -- 1983.0
 <span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">dd</span><span class="p">))</span> <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]]))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">'No. of unique values: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">key</span><span class="p">]))</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-25"># yearUnits
+<div class="clipboard-copy-txt" id="cell-27"># yearUnits
 key = 'yearUnits'
 print('%s: '%key)
 print(np.unique([kk for kk in df[key]]))
@@ -4532,7 +4912,7 @@ print(f'No. of unique values: {len(np.unique(df[key]))}/{len(df)}')</div>
 <pre>yearUnits: 
 ['CE']
 ["&lt;class 'str'&gt;"]
-No. of unique values: 1/4957
+No. of unique values: 1/4781
 </pre>
 </div>
 </div>
@@ -4548,7 +4928,7 @@ No. of unique values: 1/4957
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
-<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-26">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-28">
 <div>
 <span class="notice" hidden="">Copied!</span>
 <svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
@@ -4560,7 +4940,7 @@ No. of unique values: 1/4957
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span>
 </pre></div>
-<div class="clipboard-copy-txt" id="cell-26"></div>
+<div class="clipboard-copy-txt" id="cell-28"></div>
 </div>
 </div>
 </div>
