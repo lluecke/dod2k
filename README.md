@@ -1,6 +1,6 @@
-# DoD 2k
+# DoD2k and DT2k
 
-A Python toolkit for integrating and standardizing global paleoclimate proxy databases to create a duplicate-free, quality-controlled database of databases for the Common Era (DoD2k)
+A duplicate-free, quality-controlled database of databases for the Common Era (DoD2k), and a Python toolkit for integrating and standardizing global paleoclimate proxy databases to create it (DT2k).
 
 ## Documentation
 
